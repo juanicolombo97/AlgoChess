@@ -13,20 +13,24 @@ $ sudo apt install default-jdk ant git
 ```
 Verificamos que se hayan instalado correctamente:
 
-`$ javac -version
+```
+$ javac -version
 javac 1.8.0_181
 $ ant -version
 Apache Ant(TM) version 1.10.1 compiled on February 2 2017
 $ git --version
-git version 2.17.1`
+git version 2.17.1
+```
 
 
 **Procedimiento para usar el repositorio:**
 
 1-Creamos una carpeta donde vamos a guardar el repositorio.
 
-`$ mkdir AlgoChess
-$ cd AlgoChess`
+```
+$ mkdir AlgoChess
+$ cd AlgoChess
+```
 
 2- Inicializamos un repositorio local git.
 
