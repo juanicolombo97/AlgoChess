@@ -8,7 +8,8 @@
 
 Las únicas herramientas necesarias para trabajar en el proyecto son el entorno de desarrollo de Java (JDK), Apache Ant para la construcción automatizada y Git para el control de versiones.
 
-```$ sudo apt update
+```
+$ sudo apt update
 $ sudo apt install default-jdk ant git
 ```
 Verificamos que se hayan instalado correctamente:
