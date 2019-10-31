@@ -15,10 +15,15 @@ $ sudo apt install default-jdk ant git
 Verificamos que se hayan instalado correctamente:
 
 $ javac -version
+
 javac 1.8.0_181
+
 $ ant -version
+
 Apache Ant(TM) version 1.10.1 compiled on February 2 2017
+
 $ git --version
+
 git version 2.17.1
 
 
