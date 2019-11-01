@@ -23,6 +23,15 @@ $ git --version
 git version 2.17.1
 ```
 
+**Instalar ant:**
+
+1- Instalar homebrew y luego ant:
+
+```
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew install ant
+
+```
 
 **Procedimiento para usar el repositorio:**
 
