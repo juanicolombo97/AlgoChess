@@ -10,4 +10,5 @@ notifications:
       -juanicolombo@icloud.com
       -fran.gu1498@gmail.com
       -tkleppe@fi.uba.ar
+      -nsalvanescki@fi.uba.ar
     on_failure: always
