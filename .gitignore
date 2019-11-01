@@ -8,3 +8,14 @@
 
 Thumbs.db
 .DS_Store
+
+# Build
+out
+build
+bin
+libs
+
+
+#Java
+
+*.jar
