@@ -1,5 +1,6 @@
-import Excepciones.CurarCatapultaException;
-import Excepciones.NoPuedeAtacarException;
+
+import excepciones.CurarCatapultaException;
+import excepciones.NoPuedeAtacarException;
 
 public class Acciones {
 

@@ -1,5 +1,5 @@
-import Excepciones.CurarCatapultaException;
-import Excepciones.NoPuedeAtacarException;
+import excepciones.CurarCatapultaException;
+import excepciones.NoPuedeAtacarException;
 
 public class Catapulta implements Unidades {
     private static int costoUnidad = 5;

@@ -1,5 +1,6 @@
-import Excepciones.CurarCatapultaException;
-import Excepciones.NoPuedeAtacarException;
+import excepciones.CurarCatapultaException;
+import excepciones.NoPuedeAtacarException;
+// Interfaz que representa las unidades del juego.
 
 public interface Unidades {
     // Interfaz de las unidades del juego.
