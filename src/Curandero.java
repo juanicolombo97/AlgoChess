@@ -1,4 +1,7 @@
-public class Curandero implements Unidades{
+import Excepciones.CurarCatapultaException;
+import Excepciones.NoPuedeAtacarException;
+
+public class Curandero implements Unidades {
     private static int costoUnidad = 2;
     private int vidaUnidad = 75;
     private static int curacion = 15;
@@ -15,21 +18,25 @@ public class Curandero implements Unidades{
     }
 
     @Override
-    public int getDanio() {
-        return 0;
+    public int getDanio() throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El curandero no puede atacar.");
+    }
+    @Override
+    public int getDanioDist() throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El curandero no puede atacar.");
     }
 
     @Override
-    public int getDanioDist() {
-        return 0;
+    public void atacado(int danio) {
+        vidaUnidad -= danio;
     }
 
-    @Override
-    public void modificarVida(int cambioVida) {
-        vidaUnidad += cambioVida;
-    }
-
-    public int curar(){
+    public int getCuracion(){
         return curacion;
+    }
+
+    @Override
+    public void curar(int curacion) throws CurarCatapultaException {
+        vidaUnidad+= curacion;
     }
 }

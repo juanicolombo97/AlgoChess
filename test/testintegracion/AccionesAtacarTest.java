@@ -1,3 +1,4 @@
+import Excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -50,20 +51,5 @@ public class AccionesAtacarTest {
 
         // Dano catapulta: 20 ---  Vida soldado: 100 // VidaCuranderoPostAtaque: 80
         assertEquals(80,soldado.getVida());
-    }
-
-    @Test
-        // Prueba Catapulta ataca a corta distancia y no saca vida.
-
-    void catapultaAtacaSoldadoACortaDist() throws Exception {
-        Catapulta catapulta = new Catapulta();
-        Soldado soldado = new Soldado();
-        Acciones accionAtacar = new Acciones();
-
-        // Catapulta ataca a soldado a corta distancia.
-        accionAtacar.atacarCuerpo(catapulta,soldado);
-
-        // Dano catapulta: 0 ---  Vida soldado: 100 // VidaCuranderoPostAtaque: 10
-        assertEquals(100,soldado.getVida());
     }
 }

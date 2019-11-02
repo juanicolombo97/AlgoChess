@@ -1,3 +1,5 @@
+import Excepciones.CurarCatapultaException;
+import Excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,30 +20,38 @@ class CuranderoTest {
 
     @Test
     // Los curanderos no tienen danio de ataque, entonces danio tiene que ser igual a 0.
-    void getDanio() {
+    void getDanio() throws NoPuedeAtacarException{
         Curandero curandero = new Curandero();
-        assertEquals(0,curandero.getDanio());
+        try {
+            curandero.getDanio();
+        }catch (NoPuedeAtacarException e){
+            assertEquals("El curandero no puede atacar.",e.getMessage());
+        }
     }
 
     @Test
-    void getDanioDist() {
+    void getDanioDist() throws NoPuedeAtacarException {
         Curandero curandero = new Curandero();
-        assertEquals(0,curandero.getDanioDist());
+        try {
+            curandero.getDanio();
+        }catch (NoPuedeAtacarException e){
+            assertEquals("El curandero no puede atacar.",e.getMessage());
+        }
     }
 
     @Test
     void modificarVida() {
         Curandero curandero = new Curandero();
 
-        curandero.modificarVida(-30);
+        curandero.atacado(30);
         assertEquals(45,curandero.getVida());
     }
 
     @Test
     // Auto curamos al curandero.
-    void curar() {
+    void curar() throws CurarCatapultaException {
         Curandero curandero = new Curandero();
-        curandero.modificarVida(curandero.curar());
+        curandero.curar(curandero.getCuracion());
         assertEquals(90,curandero.getVida());
     }
 }

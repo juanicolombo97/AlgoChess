@@ -1,4 +1,7 @@
-public class Soldado implements Unidades{
+import Excepciones.CurarCatapultaException;
+import Excepciones.NoPuedeAtacarException;
+
+public class Soldado implements Unidades {
     private static int costoUnidad = 1;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 10;
@@ -15,17 +18,23 @@ public class Soldado implements Unidades{
     }
 
     @Override
-    public int getDanio() {
+    public int getDanio() throws NoPuedeAtacarException {
         return danioCuerpo;
     }
 
     @Override
-    public int getDanioDist() {
-        return danioDistancia;
-    }
-    @Override
-    public void modificarVida(int cambioVida){
-        vidaUnidad += cambioVida;
+    public int getDanioDist() throws NoPuedeAtacarException{
+        throw new NoPuedeAtacarException("El soldado solo ataca cuerpo a cuerpo");
     }
 
+    @Override
+    public void atacado(int danio) {
+        vidaUnidad -= danio;
+    }
+
+    public void curar(int curacion) throws CurarCatapultaException {
+        vidaUnidad += curacion;
+    }
 }
+
+

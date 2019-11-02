@@ -5,34 +5,30 @@ import org.junit.jupiter.api.Test;
 
 //Pruebas realizadas a la clase Soldado.
 
-class SoldadoTest {
+class JineteTest {
 
     @Test
     void getCosto() throws Exception{
-        Soldado soldado = new Soldado();
-        Assertions.assertEquals(1,soldado.getCosto());
+      Jinete jinete = new Jinete();
+      Assertions.assertEquals(3,jinete.getCosto());
     }
 
     @Test
     void getVida() throws  Exception{
-        Soldado soldado1 = new Soldado();
-        Assertions.assertEquals(100,soldado1.getVida());
+        Jinete jinete = new Jinete();
+        Assertions.assertEquals(100,jinete.getVida());
     }
 
     @Test
     void getDanio() throws Exception{
-        Soldado soldado2 = new Soldado();
-        Assertions.assertEquals(10,soldado2.getDanio());
+        Jinete jinete = new Jinete();
+        Assertions.assertEquals(5,jinete.getDanio());
     }
 
     @Test
     void getDanioDist() throws NoPuedeAtacarException {
-        Soldado solda3 = new Soldado();
-        try {
-            solda3.getDanio();
-        }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El soldado solo ataca cuerpo a cuerpo",e.getMessage());
-        }
+        Jinete jinete = new Jinete();
+        Assertions.assertEquals(15,jinete.getDanioDist());
     }
 
     @Test

@@ -1,3 +1,6 @@
+import Excepciones.CurarCatapultaException;
+import Excepciones.NoPuedeAtacarException;
+
 public class Jinete implements Unidades {
     private static int costoUnidad = 3;
     private int vidaUnidad = 100;
@@ -16,17 +19,21 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public int getDanio() {
+    public int getDanio() throws NoPuedeAtacarException {
         return danioCuerpo;
     }
 
     @Override
-    public int getDanioDist() {
+    public int getDanioDist() throws NoPuedeAtacarException {
         return danioDistancia;
     }
 
     @Override
-    public void modificarVida(int cambioVida) {
-        vidaUnidad += cambioVida;
+    public void atacado(int danio) {
+        vidaUnidad -= danio;
+    }
+    @Override
+    public void curar(int curacion) throws CurarCatapultaException{
+        vidaUnidad += curacion;
     }
 }

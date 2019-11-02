@@ -1,3 +1,6 @@
+import Excepciones.CurarCatapultaException;
+import Excepciones.NoPuedeAtacarException;
+
 public class Catapulta implements Unidades {
     private static int costoUnidad = 5;
     private int vidaUnidad = 50;
@@ -15,21 +18,24 @@ public class Catapulta implements Unidades {
     }
 
     @Override
-    public int getDanio() {
-        return danioCuerpo;
+    public int getDanio() throws NoPuedeAtacarException {
+       throw new NoPuedeAtacarException("La catapulta no puede atacar cuerpo a cuerpo");
     }
 
     @Override
-    public int getDanioDist() {
+    public int getDanioDist() throws NoPuedeAtacarException {
         return danioDistancia;
     }
 
     @Override
-    public void modificarVida(int cambioVida) {
-        vidaUnidad += cambioVida;
+    public void atacado(int danio) {
+        vidaUnidad-= danio;
     }
+
     @Override
-    public String toString() {
-        return "Catapulta";
+    public void curar(int curacion) throws CurarCatapultaException {
+        throw new CurarCatapultaException("No se puede curar a una catapulta");
     }
+
+
 }
