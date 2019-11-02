@@ -1,5 +1,5 @@
-import Excepciones.CurarCatapultaException;
-import Excepciones.NoPuedeAtacarException;
+import excepciones.CurarCatapultaException;
+import excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

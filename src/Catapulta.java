@@ -4,7 +4,6 @@ import excepciones.NoPuedeAtacarException;
 public class Catapulta implements Unidades {
     private static int costoUnidad = 5;
     private int vidaUnidad = 50;
-    private static int danioCuerpo = 0;
     private static int danioDistancia = 20;
 
     @Override

@@ -1,4 +1,4 @@
-import Excepciones.NoPuedeAtacarException;
+import excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -5,7 +5,6 @@ public class Soldado implements Unidades {
     private static int costoUnidad = 1;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 10;
-    private static int danioDistancia = 0;
 
     @Override
     public int getCosto() {

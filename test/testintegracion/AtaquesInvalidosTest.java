@@ -1,8 +1,5 @@
-import Excepciones.CurarCatapultaException;
-import Excepciones.NoPuedeAtacarException;
+import excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Test;
-
-import java.awt.event.ActionEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
