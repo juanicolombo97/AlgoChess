@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/juanicolombo97/AlgoChess.svg?branch=master)](https://travis-ci.org/juanicolombo97/AlgoChess) [![codecov](https://codecov.io/gh/juanicolombo97/AlgoChess/branch/master/graph/badge.svg)](https://codecov.io/gh/juanicolombo97/AlgoChess) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6de97cc998d24332adba6782c03a1de9)](https://www.codacy.com/manual/juanicolombo97/AlgoChess?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juanicolombo97/AlgoChess&amp;utm_campaign=Badge_Grade)  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
-
-
-**Instalación previa:**
+##Instalación previa:
 
 Las únicas herramientas necesarias para trabajar en el proyecto son el entorno de desarrollo de Java (JDK), Apache Ant para la construcción automatizada y Git para el control de versiones.
 
@@ -23,7 +21,7 @@ $ git --version
 git version 2.17.1
 ```
 
-**Instalar ant:**
+##Instalar ant:
 
 1- Instalar homebrew y luego ant:
 
@@ -33,14 +31,13 @@ $ brew install ant
 
 ```
 
-**Procedimiento para usar el repositorio:**
+##Procedimiento para usar el repositorio:
 
 1-Creamos una carpeta donde vamos a guardar el repositorio.
 
-```
-$ mkdir AlgoChess
-$ cd AlgoChess
-```
+
+`$ mkdir AlgoChess`
+`$ cd AlgoChess`
 
 2- Inicializamos un repositorio local git.
 
@@ -53,7 +50,6 @@ $ cd AlgoChess
 4- Actualizamos el repositorio local para obtener todo lo del remoto.
 
 `$ git pull origin master`
-
 
 TP2-Algoritmos y Programación 3-FIUBA
 
