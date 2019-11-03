@@ -8,24 +8,28 @@ import org.junit.jupiter.api.Test;
 class SoldadoTest {
 
     @Test
+        // Devuelve el costo correcto.
     void getCosto() throws Exception{
         Soldado soldado = new Soldado();
         Assertions.assertEquals(1,soldado.getCosto());
     }
 
     @Test
+        // Devuelve la vida de la unidad.
     void getVida() throws  Exception{
         Soldado soldado1 = new Soldado();
         Assertions.assertEquals(100,soldado1.getVida());
     }
 
     @Test
+        // Devuelve el danio a corta dista correcto.
     void getDanio() throws Exception{
         Soldado soldado2 = new Soldado();
         Assertions.assertEquals(10,soldado2.getDanio());
     }
 
     @Test
+        // Tira error ya que el soldado no ataca a distancia.
     void getDanioDist() throws NoPuedeAtacarException {
         Soldado solda3 = new Soldado();
         try {
@@ -52,5 +56,12 @@ class SoldadoTest {
         solda5.curarse(10);
 
         Assertions.assertEquals(110,solda5.getVida());
+    }
+    @Test
+        // Prueba que si la unidad llega a 0 de vida esta muerta.
+    void matarUnidad(){
+        Soldado soldado = new Soldado();
+        soldado.recibirDanio(100);
+        Assertions.assertEquals(false,soldado.estaVivo());
     }
 }

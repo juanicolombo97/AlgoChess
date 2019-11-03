@@ -3,7 +3,6 @@ import Excepciones.NoPuedeAtacarException;
 // Interfaz que representa las unidades del juego.
 
 public interface Unidades {
-    // Interfaz de las unidades del juego.
 
     public int getCosto();
 
@@ -20,4 +19,6 @@ public interface Unidades {
     public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException;
 
     public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException;
+
+    public boolean estaVivo();
 }

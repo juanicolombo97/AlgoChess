@@ -17,6 +17,7 @@ public class UnidadesFabrica {
         if(unidad.equalsIgnoreCase("Catapulta")){
             return new Catapulta();
         }
+        // Error que se genera cuando se quiere crear una unidad invalida.
         throw new UnidadInvalidaException("La unidad es invalida");
     }
 }
