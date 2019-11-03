@@ -3,7 +3,9 @@ jdk:
   - openjdk8
 dist: trusty
 
-script: "mvn cobertura:cobertura"
+script: 
+- mvn cobertura:cobertura
+- mvn test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
