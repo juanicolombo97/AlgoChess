@@ -43,7 +43,7 @@ class CuranderoTest {
     void modificarVida() {
         Curandero curandero = new Curandero();
 
-        curandero.atacado(30);
+        curandero.recibirDanio(30);
         assertEquals(45,curandero.getVida());
     }
 
@@ -51,7 +51,7 @@ class CuranderoTest {
     // Auto curamos al curandero.
     void curar() throws CurarCatapultaException {
         Curandero curandero = new Curandero();
-        curandero.curar(curandero.getCuracion());
+        curandero.curarse(curandero.getCuracion());
         assertEquals(90,curandero.getVida());
     }
 }

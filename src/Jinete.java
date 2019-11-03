@@ -29,11 +29,22 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public void atacado(int danio) {
+    public void recibirDanio(int danio) {
         vidaUnidad -= danio;
     }
+
     @Override
-    public void curar(int curacion) throws CurarCatapultaException{
+    public void curarse(int curacion) throws CurarCatapultaException{
         vidaUnidad += curacion;
     }
+    @Override
+    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanio());
+    }
+
+    @Override
+    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanioDist());
+    }
+
 }

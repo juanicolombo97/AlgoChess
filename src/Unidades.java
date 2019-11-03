@@ -13,7 +13,11 @@ public interface Unidades {
 
     public int getDanioDist() throws NoPuedeAtacarException;
 
-    public void atacado(int danio);
+    public void recibirDanio(int danio);
 
-    public void curar(int curacion) throws CurarCatapultaException;
+    public void curarse(int curacion) throws CurarCatapultaException;
+
+    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException;
+
+    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException;
 }

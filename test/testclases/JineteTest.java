@@ -36,7 +36,7 @@ class JineteTest {
     void sacarVida() throws  Exception {
         Soldado solda4 = new Soldado();
 
-        solda4.atacado(10);
+        solda4.recibirDanio(10);
 
         Assertions.assertEquals(90,solda4.getVida());
     }
@@ -45,7 +45,7 @@ class JineteTest {
     void sumarVida() throws Exception {
         Soldado solda5 = new Soldado();
 
-        solda5.curar(10);
+        solda5.curarse(10);
 
         Assertions.assertEquals(110,solda5.getVida());
     }

@@ -41,7 +41,7 @@ public class CatapultaTest {
     @Test
     void atacar() {
         Catapulta catapulta = new Catapulta();
-        catapulta.atacado(50);
+        catapulta.recibirDanio(50);
         Assertions.assertEquals(0,catapulta.getVida());
     }
 
@@ -50,7 +50,7 @@ public class CatapultaTest {
     void curar() throws CurarCatapultaException {
         Catapulta catapulta = new Catapulta();
         try {
-            catapulta.curar(20);
+            catapulta.curarse(20);
         }catch (CurarCatapultaException e) {
             Assertions.assertEquals("No se puede curar a una catapulta", e.getMessage());
         }
