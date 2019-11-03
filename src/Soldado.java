@@ -27,12 +27,23 @@ public class Soldado implements Unidades {
     }
 
     @Override
-    public void atacado(int danio) {
+    public void recibirDanio(int danio) {
         vidaUnidad -= danio;
     }
 
-    public void curar(int curacion) throws CurarCatapultaException {
+    @Override
+    public void curarse(int curacion) throws CurarCatapultaException {
         vidaUnidad += curacion;
+    }
+
+    @Override
+    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanio());
+    }
+
+    @Override
+    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanioDist());
     }
 }
 

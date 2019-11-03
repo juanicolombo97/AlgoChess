@@ -5,14 +5,14 @@ import Excepciones.NoPuedeAtacarException;
 public class Acciones {
 
     public void atacarCuerpo(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
-        atacado.atacado(atacante.getDanio());
+        atacante.atacarCuerpo(atacado);
     }
 
     public void atacarDistancia(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
-        atacado.atacado(atacante.getDanioDist());
+        atacante.atacarDistancia(atacado);
     }
 
-    public void curarAUnidad(Curandero curandero, Unidades unidadCurar) throws CurarCatapultaException {
-        unidadCurar.curar(curandero.getCuracion());
+    public void curarAUnidad(Curandero curandero, Unidades unidadACurar) throws CurarCatapultaException {
+        curandero.curar(unidadACurar);
     }
 }

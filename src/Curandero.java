@@ -27,7 +27,7 @@ public class Curandero implements Unidades {
     }
 
     @Override
-    public void atacado(int danio) {
+    public void recibirDanio(int danio) {
         vidaUnidad -= danio;
     }
 
@@ -36,7 +36,22 @@ public class Curandero implements Unidades {
     }
 
     @Override
-    public void curar(int curacion) throws CurarCatapultaException {
+    public void curarse(int curacion) throws CurarCatapultaException {
         vidaUnidad+= curacion;
     }
+
+    public void curar(Unidades unidadACurar) throws CurarCatapultaException{
+        unidadACurar.curarse(this.getCuracion());
+    }
+
+    @Override
+    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanio());
+    }
+
+    @Override
+    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException{
+        atacado.recibirDanio(this.getDanioDist());
+    }
+
 }
