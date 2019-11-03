@@ -1,4 +1,4 @@
-import excepciones.CurarCatapultaException;
+import Excepciones.CurarCatapultaException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
