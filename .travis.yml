@@ -5,9 +5,11 @@ jdk:
   - openjdk10
   - openjdk11
 
-install: ant deps
-
-
+script:
+  - mvn test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  
 notifications:
   email:
     recipients:
