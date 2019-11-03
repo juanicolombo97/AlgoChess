@@ -18,6 +18,9 @@ libs
 # Maven
 target
 
-#Java
 
+# Java
+*.class
 *.jar
+*.war
+*.ear
