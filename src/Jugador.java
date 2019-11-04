@@ -29,6 +29,6 @@ public class Jugador {
         UnidadNueva unidad = new UnidadNueva();
         Unidades unidadCreada = unidad.crearUnidad(unidadNueva);
         modificarPuntos(unidadCreada.getCosto());
-        unidadesDisponibles.put(unidadCreada,unidadCreada);fefe
+        unidadesDisponibles.put(unidadCreada,unidadCreada);
     }
 }
