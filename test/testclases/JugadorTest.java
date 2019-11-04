@@ -28,7 +28,7 @@ public class JugadorTest {
 
     @Test
         // Jugador modifica los puntos correctamente.
-    public void jugadorModificaPuntos(){
+    public void jugadorModificaPuntosYSusPuntosSeModifican(){
         Jugador jugador = new Jugador();
         jugador.modificarPuntos(10);
         Assertions.assertEquals(10,jugador.getPuntos());

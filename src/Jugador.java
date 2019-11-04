@@ -26,6 +26,10 @@ public class Jugador {
 
     }
 
+    public void curar(Unidades curandero, Unidades unidadACurar){
+
+    }
+
     public void crearUnidad(String unidadNueva) throws UnidadInvalidaException {
         UnidadNueva unidad = new UnidadNueva();
         Unidades unidadCreada = unidad.crearUnidad(unidadNueva);
