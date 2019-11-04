@@ -10,6 +10,8 @@ public class Casillero {
     }
     // Recibe unidad de otro casillero
     public void recibir_unidad(Unidades unidad){
-        this.unidad_actual = unidad;
+        if this.esta_vacio() {
+            this.unidad_actual = unidad;
+        }
     }
 }
