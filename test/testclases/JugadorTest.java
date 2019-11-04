@@ -1,4 +1,4 @@
-import Excepciones.UnidadInvalidaException;
+import excepciones.UnidadInvalidaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

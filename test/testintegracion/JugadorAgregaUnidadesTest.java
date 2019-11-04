@@ -1,4 +1,4 @@
-import Excepciones.UnidadInvalidaException;
+import excepciones.UnidadInvalidaException;
 
 public class JugadorAgregaUnidadesTest {
 
