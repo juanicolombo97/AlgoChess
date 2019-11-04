@@ -7,50 +7,50 @@ public class JugadorAgregaUnidadesTest {
 
     @Test
         // Agrego un soldado y se modifican correctamente los puntos.
-    public void agregarUnidadesAJugadorSoldado() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadSoldadoYSuCantidadDePuntosDecreceEn1() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("Juan");
         jugador.crearUnidad("Soldado");
         Assertions.assertEquals(19,jugador.getPuntos());
     }
 
     @Test
         // Agrego Jinete y se modifican correctamente.
-    public void agregarUnidadesAJugadorJinete() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadJineteYSuCantidadDePuntosDecreceEn3() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("Juan");
         jugador.crearUnidad("Jinete");
         Assertions.assertEquals(17,jugador.getPuntos());
     }
 
     @Test
         // Agrego catapulta y se modifican los puntos.
-    public void agregarUnidadesAJugadorCatapulta() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadCatapultaYSuCantidadDePuntosDecreceEn5() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("Juan");
         jugador.crearUnidad("Catapulta");
         Assertions.assertEquals(15,jugador.getPuntos());
     }
 
     @Test
         // Agrego curandero y se modifican los puntos correctamente.
-    public void agregarUnidadesAJugador() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadCuranderoYSuCantidadDePuntosDecreceEn2() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("Juan");
         jugador.crearUnidad("Curandero");
         Assertions.assertEquals(18,jugador.getPuntos());
     }
 
     @Test
         //El jugador crea correctamente a pesar de pasar el nombre en minuscula.
-    public void agregarUnidadMinuscula() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadCuranderoEnMinusculaYSeCreaNormalmente() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("Juan");
         jugador.crearUnidad("curandero");
         Assertions.assertEquals(18,jugador.getPuntos());
     }
 
     @Test
         //Ingresar un nombre incorrecto genera un error.
-    public void unidadIncorrectaLanzaError() throws UnidadInvalidaException {
-        Jugador jugador = new Jugador("juan");
+    public void jugadorAgregaUnidadInvalidaYSeLevantaLaExcepcion() throws UnidadInvalidaException {
+        Jugador jugador = new Jugador("Juan");
         try {
-            jugador.crearUnidad("Minion");
+            jugador.crearUnidad("Lancero");
         } catch (UnidadInvalidaException | NoAlcanzanLosPuntosException e) {
             Assertions.assertEquals("La unidad es invalida", e.getMessage());
         }
