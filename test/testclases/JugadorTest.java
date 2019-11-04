@@ -20,7 +20,7 @@ public class JugadorTest {
 
     @Test
         // jugador crea unidad correctamente.
-    public void jugadorCreaUnidad() throws UnidadInvalidaException {
+    public void jugadorCreaUnidadYSuCantidadDeUnidadesAumentaEn1() throws UnidadInvalidaException {
         Jugador jugador = new Jugador();
         jugador.crearUnidad("Soldado");
         Assertions.assertEquals(1,jugador.getUnidadesCreadas().size());
