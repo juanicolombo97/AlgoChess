@@ -1,8 +1,7 @@
 public class Casillero {
-    private boolean vacia = true;
     private Unidad unidad_actual = null;
     public boolean esta_vacio(){
-        return this.vacia;
+        return (this.unidad_actual == null);
     }
     // Mueve unidad a otro casillero, elimina la guardada en el atributo unidad_actual
     public void mover_unidad_a(Unidad unidad, Casillero destino){
