@@ -7,7 +7,7 @@ public class JugadorTest {
 
     @Test
         // Creo un jugador y tiene 20 puntos disponibles
-    public void arrancaConLosPuntosCorrectos() {
+    public void jugadorArrancaConLosPuntosCorrectos() {
         Jugador jugador = new Jugador();
         Assertions.assertEquals(20,jugador.getPuntos());
     }
@@ -16,6 +16,14 @@ public class JugadorTest {
     public void jugadorNuevoNoTieneUnidades(){
         Jugador jugador = new Jugador();
         Assertions.assertEquals(true,jugador.getUnidadesCreadas().isEmpty());
+    }
+
+    @Test
+    // Jugador modifica los puntos correctamente.
+    public void jugadorModificaPuntosYSusPuntosSeModifican(){
+        Jugador jugador = new Jugador();
+        jugador.modificarPuntos(10);
+        Assertions.assertEquals(10,jugador.getPuntos());
     }
 
     @Test
@@ -60,14 +68,6 @@ public class JugadorTest {
     }
 
     @Test
-        // Jugador modifica los puntos correctamente.
-    public void jugadorModificaPuntosYSusPuntosSeModifican(){
-        Jugador jugador = new Jugador();
-        jugador.modificarPuntos(10);
-        Assertions.assertEquals(10,jugador.getPuntos());
-    }
-
-    @Test
     // Agrego un soldado y se modifican correctamente los puntos.
     public void jugadorAgregaUnidadSoldadoYSusPuntosSeDecrementanEn1() throws UnidadInvalidaException {
         Jugador jugador = new Jugador();
@@ -106,5 +106,4 @@ public class JugadorTest {
         jugador.crearUnidad("curandero");
         Assertions.assertEquals(18,jugador.getPuntos());
     }
-
 }
