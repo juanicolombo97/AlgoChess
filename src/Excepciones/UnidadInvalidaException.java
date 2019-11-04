@@ -1,4 +1,4 @@
-package Excepciones;
+package excepciones;
 
 // Se lanza cuando se quiere crear una Unidad invalida.
 

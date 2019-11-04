@@ -1,7 +1,7 @@
 import Excepciones.CurarCatapultaException;
 import Excepciones.NoPuedeAtacarException;
 
-public class Soldado implements Unidades {
+public class Soldado implements Unidades{
     private static int costoUnidad = 1;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 10;
