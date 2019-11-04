@@ -19,7 +19,8 @@ public class Jugador {
     }
 
     public void atacar(Unidades atacante, Unidades atacado){
-
+        //tablero combatir: atacante con atacado
+        // internamente, dependiendo de la posicion (sabida por tablero) se llama a atacr Cuerpo
     }
 
     public void mover(Unidades unidadAmover){
