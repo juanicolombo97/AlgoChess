@@ -4,8 +4,8 @@ public class Casillero {
         return (this.unidad_actual == null);
     }
     // Mueve unidad a otro casillero, elimina la guardada en el atributo unidad_actual
-    public void mover_unidad_a(Unidades unidad, Casillero destino){
-        destino.recibir_unidad(unidad);
+    public void mover_unidad_a(Casillero destino){
+        destino.recibir_unidad(this.unidad_actual);
         this.unidad_actual = null;
     }
     // Recibe unidad de otro casillero
