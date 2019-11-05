@@ -10,6 +10,7 @@ public class Jugador {
     private int puntos = 20;
     private HashMap unidadesDisponibles = new HashMap();
     private String nombre;
+    private int puntosDisponiblesParaJugar = 20;
 
     public Jugador(String nombre){
         this.nombre = nombre;
@@ -65,5 +66,8 @@ public class Jugador {
         if((puntos - unidad.getCosto()) < 0 ){
             throw new NoAlcanzanLosPuntosException("Esta unidad cuesta mas de los puntos que dispone");
         }
+    }
+    public boolean seguirJugando() {
+        return puntosDisponiblesParaJugar != 0;
     }
 }
