@@ -14,6 +14,9 @@ public class IniciarJuego {
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
         inicializacionTurnos(jugador1,jugador2);
 
+        // Termina el la inicializacion de las unidades, comienza etapa de jugar.
+        JugabilidadJuego comienzoJuego = new JugabilidadJuego();
+        comienzoJuego.arrancarJuego(jugador1,jugador2);
     }
         //Crea los jugadores del juego.
     public Jugador crearJugador(String msg) {
@@ -43,6 +46,7 @@ public class IniciarJuego {
         colocarFichas(jugadorQueArranca);
         System.out.println("Turno de " + listaJugadores.get(0).getNombre());
         colocarFichas(listaJugadores.get(0));
+
     }
 
     public void colocarFichas(Jugador jugador) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
