@@ -58,6 +58,8 @@ public class IniciarJuego {
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
+            }catch (excepciones.UnidadInvalidaException e){
+                System.out.println(e.getMessage());
             }
         } while (jugador.puedeSeguirColocandoFichas());
     }
