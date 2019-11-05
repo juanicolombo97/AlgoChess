@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class TableroTest {
 
     @Test
-    public void tableroVacioDeUnidadesAlCrearTablero(){
+    public void tableroVacioDeUnidadesAlCrearTablero() {
         Tablero tablero = new Tablero();
         Assert.assertEquals(0, tablero.cantUnidades());
     }
@@ -20,7 +20,7 @@ public class TableroTest {
     }
 
     @Test
-    public void agregarMasDeUnaUnidadAlTablero(){
+    public void agregarMasDeUnaUnidadAlTablero() {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado();
         Curandero curandero = new Curandero();
@@ -30,7 +30,7 @@ public class TableroTest {
     }
 
     @Test
-    public void agregarUnidadAUnCasilleroOcupadoNoAgregaUnidad(){
+    public void agregarUnidadAUnCasilleroOcupadoNoAgregaUnidad() {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado();
         Curandero curandero = new Curandero();
@@ -40,7 +40,7 @@ public class TableroTest {
     }
 
     @Test
-    public void moverUnidadEfectivamenteMueveUnidad(){
+    public void moverUnidadEfectivamenteMueveUnidad() {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado();
         tablero.moverUnidad(soldado, "1 2");
@@ -51,7 +51,7 @@ public class TableroTest {
     }
 
     @Test
-    public void unaUnidadNoPuedeMoverseAUnCasilleroOcupado(){
+    public void unaUnidadNoPuedeMoverseAUnCasilleroOcupado() {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado();
         Curandero curandero = new Curandero();
@@ -63,4 +63,37 @@ public class TableroTest {
         Assert.assertNotEquals(posicionSoldado, posicionCurandero);
     }
 
+    @Test
+    public void casoBordeAlCrearMoverUnidadFueraDelTablero(){
+        Tablero tablero = new Tablero();
+        Soldado soldado = new Soldado();
+        try {
+            tablero.moverUnidad(soldado, "21 1");
+        }
+        catch (NullPointerException e){
+
+        }
+    }
+
+    @Test
+    public void crearTableroAsignaEquiposALosCasilleros(){
+        Tablero tablero = new Tablero();
+        for(int i = 1; i < 11; i++){
+            for(int j = 1; j < 11; j++){
+                String numi = Integer.toString(i);
+                String numj = Integer.toString(j);
+                String numCasillero = numi + " " + numj;
+                Casillero casilleroActual = tablero.getCasillero(numCasillero);
+                Assert.assertEquals("azul", (String) casilleroActual.get_equipo());
+            }
+        }
+        for(int i = 11; i < 20; i++){
+            for(int j = 11; j < 20; j++){
+                String numi = Integer.toString(i);
+                String numj = Integer.toString(j);
+                String numCasillero = numi + " " + numj;
+                Casillero casilleroActual = tablero.getCasillero(numCasillero);
+                Assert.assertEquals("rojo", (String) casilleroActual.get_equipo());
+            }
+        }
 }

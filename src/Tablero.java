@@ -13,6 +13,7 @@ public class Tablero {
                 String numi = Integer.toString(i);
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
+                this.asignarEquipo(i, j, casillero);
                 this.casilleros.put(numCasillero, casillero);
             }
         }
@@ -41,5 +42,17 @@ public class Tablero {
 
     public Casillero getPosicionDeUnidad(Unidades unidad){
         return((Casillero) posicionDeUnidad.get(unidad));
+    }
+
+    public void asignarEquipo (Integer i, Integer j, Casillero casillero){
+        if (i <= 10 && j <= 10){
+            casillero.asignar_equipo("azul");
+        } else {
+            casillero.asignar_equipo("rojo");
+        }
+    }
+
+    public Casillero getCasillero (String numCasillero){
+        return (Casillero) casilleros.get(numCasillero);
     }
 }
