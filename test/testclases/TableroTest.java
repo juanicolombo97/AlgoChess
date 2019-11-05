@@ -64,22 +64,21 @@ public class TableroTest {
     }
 
     @Test
-    public void casoBordeAlCrearMoverUnidadFueraDelTablero(){
+    public void casoBordeAlCrearMoverUnidadFueraDelTablero() {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado();
         try {
             tablero.moverUnidad(soldado, "21 1");
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
         }
     }
 
     @Test
-    public void crearTableroAsignaEquiposALosCasilleros(){
+    public void crearTableroAsignaEquiposALosCasilleros() {
         Tablero tablero = new Tablero();
-        for(int i = 1; i < 11; i++){
-            for(int j = 1; j < 11; j++){
+        for (int i = 1; i < 11; i++) {
+            for (int j = 1; j < 11; j++) {
                 String numi = Integer.toString(i);
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
@@ -87,8 +86,8 @@ public class TableroTest {
                 Assert.assertEquals("azul", (String) casilleroActual.get_equipo());
             }
         }
-        for(int i = 11; i < 20; i++){
-            for(int j = 11; j < 20; j++){
+        for (int i = 11; i < 20; i++) {
+            for (int j = 11; j < 20; j++) {
                 String numi = Integer.toString(i);
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
@@ -96,4 +95,5 @@ public class TableroTest {
                 Assert.assertEquals("rojo", (String) casilleroActual.get_equipo());
             }
         }
+    }
 }
