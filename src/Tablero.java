@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Tablero {
-    private Dictionary casilleros;
-    private Dictionary posicionDeUnidad;
+    private Hashtable casilleros;
+    private Hashtable posicionDeUnidad;
 
     public Tablero(){
-    /*    this.casilleros = new Hashtable();
+        this.casilleros = new Hashtable();
         this.posicionDeUnidad = new Hashtable();
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
@@ -15,20 +15,31 @@ public class Tablero {
                 String numCasillero = numi + " " + numj;
                 this.casilleros.put(numCasillero, casillero);
             }
-        }*/
+        }
     }
 
     public void moverUnidad(Unidades unidad, String casillero){
-    /*    Casillero celda = this.casilleros.get(casillero);
-        // si la unidad ya está en el tablero la posiciona en el nuevo casillero
-        if(posicionDeUnidad.containsKey(unidad)){
-            Casillero posicion = posicionDeUnidad.get(unidad);
-            posicion.mover_unidad_a(celda);
+        Casillero celda = (Casillero) this.casilleros.get(casillero);
+        if (celda.esta_vacio()) {
+            // si la unidad ya está en el tablero la posiciona en el nuevo casillero
+            if (posicionDeUnidad.containsKey(unidad)) {
+                Casillero posicion = (Casillero) posicionDeUnidad.get(unidad);
+                posicion.mover_unidad_a(celda);
+                posicionDeUnidad.replace(unidad, celda);
+            }
+            //else, la posiciona directamente en el casillero
+            else {
+                celda.recibir_unidad(unidad);
+                posicionDeUnidad.put(unidad, celda);
+            }
         }
-        //else, la posiciona directamente en el casillero
-        else {
-            celda.recibir_unidad(unidad);
-            posicionDeUnidad.put(unidad, celda);
-        }*/
+    }
+
+    public int cantUnidades(){
+        return posicionDeUnidad.size();
+    }
+
+    public Casillero getPosicionDeUnidad(Unidades unidad){
+        return((Casillero) posicionDeUnidad.get(unidad));
     }
 }
