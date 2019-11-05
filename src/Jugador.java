@@ -1,3 +1,4 @@
+import Excepciones.CurarCatapultaException;
 import Excepciones.NoAlcanzanLosPuntosException;
 import Excepciones.NoPuedeAtacarException;
 import excepciones.UnidadInvalidaException;
@@ -28,10 +29,20 @@ public class Jugador {
         return unidadesDisponibles;
     }
 
-    public void atacar(Unidades atacante, Unidades atacado){
-
+    public void atacarDistancia(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
+        Acciones accion = new Acciones();
+        accion.atacarDistancia(atacante,atacado);
     }
 
+    public void atacarCuerpo(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
+        Acciones accion = new Acciones();
+        accion.atacarCuerpo(atacante,atacado);
+    }
+
+    public void curar(Curandero curandero, Unidades unidadACurar) throws CurarCatapultaException {
+        Acciones accion = new Acciones();
+        accion.curarAUnidad(curandero,unidadACurar);
+    }
     public void mover(Unidades unidadAmover){
 
     }
