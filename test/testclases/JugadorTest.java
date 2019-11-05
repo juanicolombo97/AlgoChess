@@ -3,6 +3,11 @@ import excepciones.UnidadInvalidaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+//TODO: si se siguen añadiendo, siguen bajando los puntos, y sigue incrementando cantidad unidades (agrega unidades)
+//TODO: (integracion) si puedo seguir jugando el juego no termina,
+//TODO: si al jugador le quedan unidades, sigue el juego (size != 0)
+//TODO: si se elimina una unidad, el contador de unidades baja
+//TODO: si el jugador se queda sin puntos y quiere agregar unidades, se atrapa a excepcion adecuada
 
 public class JugadorTest {
 

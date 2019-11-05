@@ -68,6 +68,6 @@ public class Jugador {
         }
     }
     public boolean seguirJugando() {
-        return puntosDisponiblesParaJugar != 0;
+        return puntosDisponiblesParaJugar != 0; //Aca no sería return jugador.getUnidades().size() =! 0 ??
     }
 }
