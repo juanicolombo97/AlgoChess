@@ -1,6 +1,5 @@
 public class Casillero {
     private Unidades unidad_actual = null;
-    private String equipo = null;
     public boolean esta_vacio(){
         return (this.unidad_actual == null);
     }
@@ -14,11 +13,5 @@ public class Casillero {
         if (this.esta_vacio()) {
             this.unidad_actual = unidad;
         }
-    }
-    public void asignar_equipo(String equipo){
-        this.equipo = equipo;
-    }
-    public String get_equipo(){
-        return this.equipo;
     }
 }

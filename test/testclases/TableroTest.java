@@ -83,7 +83,8 @@ public class TableroTest {
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
                 Casillero casilleroActual = tablero.getCasillero(numCasillero);
-                Assert.assertEquals("azul", (String) casilleroActual.get_equipo());
+                CasilleroAzul casilleroAzul = new CasilleroAzul();
+                Assert.assertEquals(casilleroAzul.getClass(), casilleroActual.getClass());
             }
         }
         for (int i = 11; i < 20; i++) {
@@ -92,7 +93,8 @@ public class TableroTest {
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
                 Casillero casilleroActual = tablero.getCasillero(numCasillero);
-                Assert.assertEquals("rojo", (String) casilleroActual.get_equipo());
+                CasilleroRojo casilleroRojo = new CasilleroRojo();
+                Assert.assertEquals(casilleroRojo.getClass(), casilleroActual.getClass());
             }
         }
     }

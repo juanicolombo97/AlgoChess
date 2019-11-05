@@ -9,13 +9,20 @@ public class Tablero {
         this.posicionDeUnidad = new Hashtable();
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
-                Casillero casillero = new Casillero();
+                Casillero casillero = this.asignarEquipo(i, j);
                 String numi = Integer.toString(i);
                 String numj = Integer.toString(j);
                 String numCasillero = numi + " " + numj;
-                this.asignarEquipo(i, j, casillero);
                 this.casilleros.put(numCasillero, casillero);
             }
+        }
+    }
+
+    private Casillero asignarEquipo (Integer i, Integer j){
+        if (i <= 10 && j <= 10){
+            return new CasilleroAzul();
+        } else {
+            return new CasilleroRojo();
         }
     }
 
@@ -42,14 +49,6 @@ public class Tablero {
 
     public Casillero getPosicionDeUnidad(Unidades unidad){
         return((Casillero) posicionDeUnidad.get(unidad));
-    }
-
-    public void asignarEquipo (Integer i, Integer j, Casillero casillero){
-        if (i <= 10 && j <= 10){
-            casillero.asignar_equipo("azul");
-        } else {
-            casillero.asignar_equipo("rojo");
-        }
     }
 
     public Casillero getCasillero (String numCasillero){
