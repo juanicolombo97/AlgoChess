@@ -11,7 +11,7 @@ public class Acciones {
     // Tira error si la unidad no puede atacar.
 
     public void atacarCuerpo(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
-        atacante.atacarCuerpo(atacado);
+        atacante.atacar(atacado);
     }
 
     // Funcion igual a la de arriba, solo que est ataca a distancia. Tira error si la Unidad no puede atacar.

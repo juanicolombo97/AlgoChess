@@ -4,21 +4,15 @@ import Excepciones.NoPuedeAtacarException;
 
 public interface Unidades {
 
-    public int getCosto();
+    public boolean estaVivo();
 
-    public int getVida();
-
-    public int getDanio() throws NoPuedeAtacarException;
-
-    public int getDanioDist() throws NoPuedeAtacarException;
-
-    public void recibirDanio(int danio);
-
-    public void curarse(int curacion) throws CurarCatapultaException;
-
-    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException;
+    public void atacar(Unidades atacado) throws NoPuedeAtacarException;
 
     public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException;
 
-    public boolean estaVivo();
+    public void recibirDanio(int danioRecibido);
+
+    public int cuantoCuesta();
+
+    public void curarse(int vidaACurar) throws CurarCatapultaException;
 }

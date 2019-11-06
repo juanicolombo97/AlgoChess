@@ -54,7 +54,7 @@ public class Jugador {
         //Verifica que alcanzen los puntos
         verificarDisponibilidadDePuntos(unidadCreada);
         //Agrega la unidad
-        modificarPuntos(unidadCreada.getCosto());
+        modificarPuntos(unidadCreada.cuantoCuesta());
         unidadesDisponibles.put(unidadCreada,unidadCreada);
     }
     //Devuelve true si tiene puntos y puede seguir poniendo fichas, false caso contrario.
@@ -63,7 +63,7 @@ public class Jugador {
     }
         // Verifica que le alcanzen los puntos, caso de no lanza error.
     public void verificarDisponibilidadDePuntos(Unidades unidad) throws NoAlcanzanLosPuntosException {
-        if((puntos - unidad.getCosto()) < 0 ){
+        if((puntos = unidad.getCosto()) < 0 ){
             throw new NoAlcanzanLosPuntosException("Esta unidad cuesta mas de los puntos que dispone");
         }
     }
