@@ -1,4 +1,4 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 
 //Clase donde se implementa la Unidad Catapulta
@@ -7,52 +7,58 @@ public class Catapulta implements Unidades {
     private static int costoUnidad = 5;
     private int vidaUnidad = 50;
     private static int danioDistancia = 20;
+    private int posicionX, posicionY;
+
+    public Catapulta(int posicionX,int posicionY){
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
+
+    public int getVidaUnidad(){
+        return vidaUnidad;
+    }
+    @Override
+    public boolean estaVivo() {
+        return vidaUnidad != 0;
+    }
 
     @Override
-        // Devuelve el costo de la unidad.
-    public int getCosto() {
+    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
+    }
+
+    @Override
+    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
+    }
+
+    @Override
+    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+        atacado.recibirDanio(danioDistancia);
+    }
+
+    @Override
+    public void recibirDanio(int danioRecibido) {
+        vidaUnidad -= danioRecibido;
+    }
+
+    @Override
+    public int cuantoCuesta() {
         return costoUnidad;
     }
 
     @Override
-        // Devuelve la vida de la unidad.
-    public int getVida() {
-        return vidaUnidad;
+    public void curarse(int vidaACurar) throws CurarException {
+        throw new CurarException("La catapulta no puede ser curada");
     }
     @Override
-        // Genera un error ya que la Catapulta no tiene danio a corta distancia.
-    public int getDanio() throws NoPuedeAtacarException {
-       throw new NoPuedeAtacarException("La catapulta no puede atacar cuerpo a cuerpo");
-    }
-    @Override
-        // Devuelve el danio a distancia de la catapulta.
-    public int getDanioDist() throws NoPuedeAtacarException {
-        return danioDistancia;
-    }
-    @Override
-        // Funcin que modifica la vida de la unidad al ser atacada.
-    public void recibirDanio(int danio) {
-        vidaUnidad-= danio;
+    public int posicionEnX(){
+        return posicionX;
     }
 
     @Override
-        // Devuelve un Error ya que la catapulta no se puede curar.
-    public void curarse(int curacion) throws CurarCatapultaException {
-        throw new CurarCatapultaException("No se puede curar a una catapulta");
+    public int posicionEnY(){
+        return posicionY;
     }
-    @Override
-        // Funcion que recibe una unidad a atacar a corta distancia.
-    public void atacarCuerpo(Unidades atacado) throws NoPuedeAtacarException{
-        atacado.recibirDanio(this.getDanio());
-    }
-    @Override
-        // Funcion que recibe una unidad a atacar a larga distancia.
-    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException{
-        atacado.recibirDanio(this.getDanioDist());
-    }
-    @Override
-        // Funcion que devuelve true si la unidad esta viva y false en caso contrario.
-    public boolean estaVivo(){
-        return vidaUnidad > 0;
-    }
+
 }
