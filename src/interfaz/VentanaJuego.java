@@ -1,22 +1,18 @@
 package interfaz;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 
-import java.awt.*;
+public class VentanaJuego {
 
-public class VentanaQuiereSalir {
+    private static Stage secondStage;
 
     public static void display(String titulo) {
 
         //Configuro el nombre del juego y hago la ventana.
-        Stage secondStage = new Stage();
+        secondStage = new Stage();
         secondStage.setTitle(titulo);
         StackPane layout2 = new StackPane();
 
@@ -29,11 +25,21 @@ public class VentanaQuiereSalir {
 
         //Agrego las imagen y botones ala primaryStage.
         layout2.getChildren().add(imagen);
+        secondStage.setOnCloseRequest( e -> {
+            e.consume();
+            cerrarPrograma();
+
+        });
 
         secondStage.setScene(scene);
         secondStage.setFullScreen(true);
         secondStage.show();
 
 
+    }
+
+    private static void cerrarPrograma() {
+        boolean respuesta = DeseaSalirAlerta.display("AlgoChess","Seguro quiere salir?");
+        if(respuesta){secondStage.close();}
     }
 }

@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class ConfirmBox {
+public class DeseaSalirAlerta {
 
     static boolean respuesta;
 

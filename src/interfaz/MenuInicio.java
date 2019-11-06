@@ -2,16 +2,12 @@ package interfaz;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-
-import java.util.Stack;
 
 
 public class MenuInicio extends Application {
@@ -38,21 +34,28 @@ public class MenuInicio extends Application {
 
 
         // Accion al apretar boton.
-        botonJugar.setOnAction(e ->VentanaQuiereSalir.display("AlgoChess"));
+        botonJugar.setOnAction(e ->VentanaLogear.display("AlgoChess"));
         ventana.setOnCloseRequest( e -> {
             e.consume();
             cerrarPrograma();
 
         });
 
+        botonSalir.setOnAction(e -> {
+            e.consume();
+            cerrarPrograma();
+        });
+
         //Agrego las imagen y botones ala primaryStage.
-        layout.getChildren().addAll(imagen,botonJugar);
+
+        layout.getChildren().addAll(imagen,botonJugar,botonSalir);
+        layout.setAlignment(botonSalir,Pos.BOTTOM_CENTER);
         ventana.setScene(scene);
         ventana.show();
     }
 
     private void cerrarPrograma() {
-        boolean respuesta = ConfirmBox.display("AlgoChess","Seguro quiere salir?");
+        boolean respuesta = DeseaSalirAlerta.display("AlgoChess","Seguro quiere salir?");
         if(respuesta){ventana.close();}
     }
 
