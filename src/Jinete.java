@@ -1,4 +1,4 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 
 public class Jinete implements Unidades {
@@ -6,7 +6,16 @@ public class Jinete implements Unidades {
     private int vidaUnidad = 100;
     private static int danioCuerpo = 5;
     private static int danioDistancia = 15;
+    private int posicionX, posicionY;
 
+    public Jinete(int posicionX,int posicionY){
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
+
+    public int getVidaUnidad(){
+        return vidaUnidad;
+    }
 
     @Override
     public boolean estaVivo() {
@@ -14,13 +23,18 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public void atacar(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioDistancia);
+    }
+
+    @Override
+    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
     }
 
     @Override
@@ -34,7 +48,17 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarCatapultaException {
+    public void curarse(int vidaACurar) throws CurarException {
         vidaUnidad += vidaACurar;
+    }
+
+    @Override
+    public int posicionEnX(){
+        return posicionX;
+    }
+
+    @Override
+    public int posicionEnY(){
+        return posicionY;
     }
 }

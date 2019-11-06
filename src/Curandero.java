@@ -1,25 +1,38 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 
 public class Curandero implements Unidades {
     private static int costoUnidad = 2;
     private int vidaUnidad = 75;
     private static int curacion = 15;
+    private int posicionX, posicionY;
 
+    public Curandero(int posicionX,int posicionY){
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
 
+    public int getVidaUnidad(){
+        return vidaUnidad;
+    }
     @Override
     public boolean estaVivo() {
         return vidaUnidad != 0;
     }
 
     @Override
-    public void atacar(Unidades atacado) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El curandero no puede atacar");
+    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException, CurarException {
+        atacado.curarse(curacion);
     }
 
     @Override
-    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El curandero no puede atacar");
+    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException,CurarException{
+        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
+    }
+
+    @Override
+    public void atacarDistanciaLejana(Unidades atacado) throws CurarException, NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
@@ -33,11 +46,17 @@ public class Curandero implements Unidades {
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarCatapultaException {
+    public void curarse(int vidaACurar) throws CurarException {
         vidaUnidad += vidaACurar;
     }
 
-    public void curar(Unidades unidadACurar) throws CurarCatapultaException {
-        unidadACurar.curarse(curacion);
+    @Override
+    public int posicionEnX(){
+        return posicionX;
+    }
+
+    @Override
+    public int posicionEnY(){
+        return posicionY;
     }
 }

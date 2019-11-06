@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class IniciarJuego {
-
+    /*
     Scanner input = new Scanner(System.in);
 
     public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
@@ -57,4 +57,6 @@ public class IniciarJuego {
             }
         } while (jugador.puedeSeguirColocandoFichas());
     }
+
+     */
 }

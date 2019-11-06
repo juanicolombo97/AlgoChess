@@ -1,73 +1,65 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoAlcanzanLosPuntosException;
 import Excepciones.NoPuedeAtacarException;
 import excepciones.UnidadInvalidaException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Jugador {
 
-    private int puntos = 20;
-    private HashMap unidadesDisponibles = new HashMap();
+    private int puntosColocacionFichas = 20;
+    private ArrayList<Unidades> unidadesDisponibles = new ArrayList();
     private String nombre;
     private int puntosDisponiblesParaJugar = 20;
 
-    public Jugador(String nombre){
+    public Jugador(String nombre) {
         this.nombre = nombre;
     }
+    //Crea una unidad
+    public void crearUnidad(int posicionX,int posicionY, String unidad) throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        UnidadNueva unidadNueva = new UnidadNueva();
+        Unidades unidadCreada = unidadNueva.crearUnidad(unidad,posicionX,posicionY);
 
-    public int getPuntos() {
-        return puntos;
-    }
-
-    public String getNombre(){return nombre;}
-
-    public void modificarPuntos(int puntosASacar){
-        puntos -= puntosASacar;
-    }
-
-    public HashMap getUnidadesCreadas() {
-        return unidadesDisponibles;
-    }
-
-    public void atacarDistancia(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
-        Acciones accion = new Acciones();
-        accion.atacarDistancia(atacante,atacado);
-    }
-
-    public void atacarCuerpo(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException {
-        Acciones accion = new Acciones();
-        accion.atacarCuerpo(atacante,atacado);
-    }
-
-    public void curar(Curandero curandero, Unidades unidadACurar) throws CurarCatapultaException {
-        Acciones accion = new Acciones();
-        accion.curarAUnidad(curandero,unidadACurar);
-    }
-    public void mover(Unidades unidadAmover){
-
-    }
-    public void crearUnidad(String unidadNueva) throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        UnidadNueva unidad = new UnidadNueva();
-        Unidades unidadCreada = unidad.crearUnidad(unidadNueva);
-
-        //Verifica que alcanzen los puntos
-        verificarDisponibilidadDePuntos(unidadCreada);
-        //Agrega la unidad
-        modificarPuntos(unidadCreada.cuantoCuesta());
-        unidadesDisponibles.put(unidadCreada,unidadCreada);
-    }
-    //Devuelve true si tiene puntos y puede seguir poniendo fichas, false caso contrario.
-    public boolean puedeSeguirColocandoFichas(){
-        return puntos != 0;
-    }
-        // Verifica que le alcanzen los puntos, caso de no lanza error.
-    public void verificarDisponibilidadDePuntos(Unidades unidad) throws NoAlcanzanLosPuntosException {
-        if((puntos = unidad.getCosto()) < 0 ){
-            throw new NoAlcanzanLosPuntosException("Esta unidad cuesta mas de los puntos que dispone");
+        // Me fijo que no se exceda de los puntos.
+        try {
+            puntosSuficientes(unidadCreada.cuantoCuesta());
+            agregarUnidad(unidadCreada);
+        } catch (Exception e) {
+            throw new NoAlcanzanLosPuntosException("Puntos insuficientes");
         }
     }
-    public boolean seguirJugando() {
-        return puntosDisponiblesParaJugar != 0; //Aca no sería return jugador.getUnidades().size() =! 0 ??
+
+    public void atacar(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+        AccionJugador accionJugador = new AccionJugador();
+        accionJugador.accionNueva(atacante,atacado);
     }
+
+    public boolean puedeSeguirJugando(){
+        return unidadesDisponibles.size() != 0;
+    }
+
+    private void puntosSuficientes(int costoUnidad) throws Exception {
+        if(puntosDisponiblesParaJugar - costoUnidad < 0){
+            throw new Exception();
+        }
+    }
+    private void agregarUnidad(Unidades unidad){
+        unidadesDisponibles.add(unidad);
+        restarPuntos(unidad.cuantoCuesta());
+    }
+
+    private void restarPuntos(int costoUnidad){
+        puntosColocacionFichas -= costoUnidad;
+    }
+
+    public void revisionUnidades(){
+        for (int iterador = 0; iterador< unidadesDisponibles.size(); iterador++){
+            //Si la unidad no esta viva la elimino
+            if (!(unidadesDisponibles.get(iterador).estaVivo())){
+                unidadesDisponibles.remove(iterador);
+            }
+        }
+    }
+
 }

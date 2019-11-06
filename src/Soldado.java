@@ -1,25 +1,38 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 
 public class Soldado implements Unidades{
     private static int costoUnidad = 1;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 10;
+    private int posicionX, posicionY;
 
+    public Soldado(int posicionX,int posicionY){
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
 
+    public int getVidaUnidad(){
+        return vidaUnidad;
+    }
     @Override
     public boolean estaVivo() {
         return vidaUnidad != 0;
     }
 
     @Override
-    public void atacar(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistancia(Unidades atacado) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El soldado no puede atacar a distancia");
+    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
+    }
+
+    @Override
+    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
@@ -33,8 +46,16 @@ public class Soldado implements Unidades{
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarCatapultaException {
+    public void curarse(int vidaACurar) throws CurarException {
         vidaUnidad += vidaACurar;
+    }
+    @Override
+    public int posicionEnX(){
+        return posicionX;
+    }
+    @Override
+    public int posicionEnY(){
+        return posicionY;
     }
 }
 

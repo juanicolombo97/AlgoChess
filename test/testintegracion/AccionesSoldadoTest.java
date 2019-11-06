@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class AccionesSoldadoAtacarUnidadTest {
+public class AccionesSoldadoTest {
 
 
         // Prueba de Soldado ataca Curandero.

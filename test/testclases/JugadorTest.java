@@ -1,4 +1,6 @@
+import Excepciones.CurarException;
 import Excepciones.NoAlcanzanLosPuntosException;
+import Excepciones.NoPuedeAtacarException;
 import excepciones.UnidadInvalidaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,31 +14,50 @@ import org.junit.jupiter.api.Test;
 public class JugadorTest {
 
     @Test
-        // Creo un jugador y tiene 20 puntos disponibles
-    public void jugadorArrancaConLosPuntosCorrectos() {
-        Jugador jugador = new Jugador("Juan");
-        Assertions.assertEquals(20,jugador.getPuntos());
-    }
-    @Test
-        // Pruebo que un jugador recien creado no tiene unidades
-    public void jugadorNuevoNoTieneUnidades(){
-        Jugador jugador = new Jugador("Juan");
-        Assertions.assertEquals(true,jugador.getUnidadesCreadas().isEmpty());
+        // Creo un jugador y no tiene unidades.
+    void jugadorRecienCreadoPuedeJugar(){
+        Jugador jugador = new Jugador("Juani");
+        Assertions.assertEquals(false,jugador.puedeSeguirJugando());
     }
 
     @Test
-        // jugador crea unidad correctamente.
-    public void jugadorCreaUnidadYPoseeLaUnidadCreada() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        Jugador jugador = new Jugador("Juan");
-        jugador.crearUnidad("Soldado");
-        Assertions.assertEquals(1,jugador.getUnidadesCreadas().size());
+        // Jugador agrega unidad
+
+    void jugadorPuedeAgregarUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException {
+        Jugador jugador = new Jugador("Juani");
+        jugador.crearUnidad(1,1,"soldado");
+        Assertions.assertEquals(true,jugador.puedeSeguirJugando());
     }
 
     @Test
-    // Jugador modifica los puntos correctamente.
-    public void jugadorModificaPuntosYSusPuntosSeModifican(){
-        Jugador jugador = new Jugador("Juan");
-        jugador.modificarPuntos(10);
-        Assertions.assertEquals(10,jugador.getPuntos());
+        //Jugador puede atacar correctamente
+    void jugadorPuedeAtacarCorrectamente() throws NoPuedeAtacarException, CurarException {
+        Jugador jugador = new Jugador("Juani");
+        Soldado soldado = new Soldado(1,1);
+        Curandero curandero = new Curandero(1,1);
+
+        jugador.atacar(soldado,curandero);
+        Assertions.assertEquals(65,curandero.getVidaUnidad());
+    }
+
+    @Test
+        //Se verifica que no puede tomar mas de los puntos que le corresponden
+
+    void crearUnidadesDeMasLanzaError() throws NoAlcanzanLosPuntosException, UnidadInvalidaException {
+        Jugador jugador = new Jugador("Juani");
+        //Agrego 4 catapultas de valor 5, puntos jugador = 20;
+        jugador.crearUnidad(1,1,"catapulta");
+        jugador.crearUnidad(1,1,"catapulta");
+        jugador.crearUnidad(1,1,"catapulta");
+        jugador.crearUnidad(1,1,"catapulta");
+        //Agregar soldado genera error.
+        try {
+            jugador.crearUnidad(1,1,"soldado");
+        }catch (NoAlcanzanLosPuntosException e){
+            Assertions.assertEquals("Puntos insuficientes",e.getMessage());
+        }
+
     }
 }
+
+

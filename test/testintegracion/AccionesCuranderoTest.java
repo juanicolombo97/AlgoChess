@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AccionesCurarTest {
+public class AccionesCuranderoTest {
 
     @Test
         //Curandero cura a soldado a distancia cercana
@@ -49,7 +49,7 @@ public class AccionesCurarTest {
         //El curandero no puede curar a la catapulta.
     void noPuedeCurarALaCatapulta(){
         Catapulta catapulta = new Catapulta(1,1);
-        Curandero curandero = new Curandero(7,7);
+        Curandero curandero = new Curandero(2,2);
         AccionJugador accion = new AccionJugador();
 
         try {
