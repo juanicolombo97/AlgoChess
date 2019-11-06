@@ -8,6 +8,8 @@
         <artifactId>tp2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+
     <name>AlgoChess</name>
     <url>https://github.com/juanicolombo97/AlgoChess</url>
 
