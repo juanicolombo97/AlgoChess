@@ -1,6 +1,7 @@
 package interfaz;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,15 +17,18 @@ import java.util.Stack;
 public class MenuInicio extends Application {
 
     Scene scene;
-
+    Stage ventana;
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         //Configuro el nombre del juego y hago la ventana.
-        primaryStage.setTitle("AlgoChess");
+        ventana = primaryStage;
+        ventana.setTitle("AlgoChess");
         StackPane layout = new StackPane();
+        layout.setPadding(new Insets(25,0,0,0));
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
+
         scene = new Scene(layout, 800,600);
 
         // Creo imagen y la establesco para que se mueva con la ventana.
@@ -35,13 +39,21 @@ public class MenuInicio extends Application {
 
         // Accion al apretar boton.
         botonJugar.setOnAction(e ->VentanaQuiereSalir.display("AlgoChess"));
+        ventana.setOnCloseRequest( e -> {
+            e.consume();
+            cerrarPrograma();
+
+        });
 
         //Agrego las imagen y botones ala primaryStage.
         layout.getChildren().addAll(imagen,botonJugar);
+        ventana.setScene(scene);
+        ventana.show();
+    }
 
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    private void cerrarPrograma() {
+        boolean respuesta = ConfirmBox.display("AlgoChess","Seguro quiere salir?");
+        if(respuesta){ventana.close();}
     }
 
     public static void main(String[] args) {
