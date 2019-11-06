@@ -1,0 +1,2 @@
+public class IniciarAtaque {
+}
