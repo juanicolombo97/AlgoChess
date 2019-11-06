@@ -58,6 +58,28 @@ public class JugadorTest {
         }
 
     }
+    @Test
+        //Jugador con una pieza, al morir la pieza pierde.
+    void jugadorPierdeSiNoTieneFichas() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, NoPuedeAtacarException, CurarException {
+        Jugador jugador = new Jugador("juan");
+        jugador.crearUnidad(1,1,"soldado");
+
+        //Creo catapulta para atacar a soldado y matarlo
+        Catapulta catapulta = new Catapulta(7,7);
+
+        Unidades unidadSoldado = (Unidades) jugador.unidadesDisponibles().get(0);
+        //Ataco 4 veces para matar al soldado.
+        jugador.atacar(catapulta,unidadSoldado);
+        jugador.atacar(catapulta,unidadSoldado);
+        jugador.atacar(catapulta,unidadSoldado);
+        jugador.atacar(catapulta,unidadSoldado);
+        jugador.atacar(catapulta,unidadSoldado);
+        //Actualizador de unidades(modificar una ves echo tablero)
+        jugador.revisionUnidades();
+        Assertions.assertEquals(false,jugador.puedeSeguirJugando());
+
+
+    }
 }
 
 

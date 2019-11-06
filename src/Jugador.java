@@ -16,6 +16,7 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
     }
+
     //Crea una unidad
     public void crearUnidad(int posicionX,int posicionY, String unidad) throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
         UnidadNueva unidadNueva = new UnidadNueva();
@@ -60,6 +61,9 @@ public class Jugador {
                 unidadesDisponibles.remove(iterador);
             }
         }
+    }
+    public ArrayList unidadesDisponibles(){
+        return unidadesDisponibles;
     }
 
 }
