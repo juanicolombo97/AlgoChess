@@ -1,3 +1,4 @@
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,45 +9,41 @@ import org.junit.jupiter.api.Test;
 class JineteTest {
 
     @Test
-    void getCosto() throws Exception{
-      Jinete jinete = new Jinete();
-      Assertions.assertEquals(3,jinete.getCosto());
-    }
-
-    @Test
-    void getVida() throws  Exception{
-        Jinete jinete = new Jinete();
-        Assertions.assertEquals(100,jinete.getVida());
-    }
-
-    @Test
-    void getDanio() throws Exception{
-        Jinete jinete = new Jinete();
-        Assertions.assertEquals(5,jinete.getDanio());
-    }
-
-    @Test
-    void getDanioDist() throws NoPuedeAtacarException {
-        Jinete jinete = new Jinete();
-        Assertions.assertEquals(15,jinete.getDanioDist());
-    }
-
-    @Test
-        // Le saco vida al soldado.
-    void sacarVida() throws  Exception {
-        Soldado solda4 = new Soldado();
-
-        solda4.atacado(10);
-
-        Assertions.assertEquals(90,solda4.getVida());
+        //Jinete recien creado esta vivo.
+    void JineteRecienCreadoEstaVivo(){
+        Jinete jinete = new Jinete(1,1);
+        Assertions.assertEquals(true,jinete.estaVivo());
     }
     @Test
-        // Lo curo al soldado.
-    void sumarVida() throws Exception {
-        Soldado solda5 = new Soldado();
-
-        solda5.curar(10);
-
-        Assertions.assertEquals(110,solda5.getVida());
+        //El jinete puede atacar de cerca.
+    void jinetePuedeAtacarDeCerca() throws NoPuedeAtacarException {
+        Jinete jinete = new Jinete(1,1);
+        jinete.atacarDistanciaCerca(jinete);
+        Assertions.assertEquals(95,jinete.getVidaUnidad());
+    }
+    @Test
+        //El jinete puede atacar a distancia media.
+    void jinetePuedeAtacarDistanciaMediana() throws NoPuedeAtacarException {
+        Jinete jinete = new Jinete(1,1);
+        jinete.atacarDistanciaMediana(jinete);
+        Assertions.assertEquals(85,jinete.getVidaUnidad());
+    }
+    @Test
+        //El jinete no puede atacar a distancia lejana.
+    void jinetePuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
+        Jinete jinete = new Jinete(1,1);
+        try {
+            jinete.atacarDistanciaLejana(jinete);
+        }catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
+        }
+    }
+    @Test
+        //El jinete se cura correctamente
+    void jineteSeCuraCorrectamente() throws CurarException {
+        Jinete jinete = new Jinete(1,1);
+        jinete.curarse(30);
+        Assertions.assertEquals(130,jinete.getVidaUnidad());
     }
 }
+

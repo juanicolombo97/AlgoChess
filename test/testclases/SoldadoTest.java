@@ -1,3 +1,4 @@
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,49 +9,44 @@ import org.junit.jupiter.api.Test;
 class SoldadoTest {
 
     @Test
-    void getCosto() throws Exception{
-        Soldado soldado = new Soldado();
-        Assertions.assertEquals(1,soldado.getCosto());
+        //Soldado recien creado esta vivo.
+    void soldadoRecienCreadoEstaVivo(){
+        Soldado soldado = new Soldado(1,1);
+        Assertions.assertEquals(true,soldado.estaVivo());
     }
-
     @Test
-    void getVida() throws  Exception{
-        Soldado soldado1 = new Soldado();
-        Assertions.assertEquals(100,soldado1.getVida());
+        //El soldado puede atacar de cerca.
+    void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException {
+        Soldado soldado = new Soldado(1,1);
+        soldado.atacarDistanciaCerca(soldado);
+        Assertions.assertEquals(90,soldado.getVidaUnidad());
     }
-
     @Test
-    void getDanio() throws Exception{
-        Soldado soldado2 = new Soldado();
-        Assertions.assertEquals(10,soldado2.getDanio());
-    }
-
-    @Test
-    void getDanioDist() throws NoPuedeAtacarException {
-        Soldado solda3 = new Soldado();
+        //El soldado no puede atacar a distancia media.
+    void soldadoNoPuedeAtacarDistanciaMedia() throws NoPuedeAtacarException {
+        Soldado soldado = new Soldado(1, 1);
         try {
-            solda3.getDanio();
-        }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El soldado solo ataca cuerpo a cuerpo",e.getMessage());
+            soldado.atacarDistanciaLejana(soldado);
+        } catch (NoPuedeAtacarException e) {
+            Assertions.assertEquals("El soldado solo ataca distancia cercana", e.getMessage());
         }
     }
-
     @Test
-        // Le saco vida al soldado.
-    void sacarVida() throws  Exception {
-        Soldado solda4 = new Soldado();
-
-        solda4.atacado(10);
-
-        Assertions.assertEquals(90,solda4.getVida());
+        //El soldado no puede atacar a distancia lejana.
+    void soldadoNoPuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
+        Soldado soldado = new Soldado(1,1);
+        try {
+            soldado.atacarDistanciaLejana(soldado);
+        }catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
+        }
     }
     @Test
-        // Lo curo al soldado.
-    void sumarVida() throws Exception {
-        Soldado solda5 = new Soldado();
-
-        solda5.curar(10);
-
-        Assertions.assertEquals(110,solda5.getVida());
+        //El jinete se cura correctamente
+    void soldadoSeCuraCorrectamente() throws CurarException {
+        Soldado soldado = new Soldado(1,1);
+        soldado.curarse(30);
+        Assertions.assertEquals(130,soldado.getVidaUnidad());
     }
 }
+

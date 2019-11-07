@@ -1,42 +1,67 @@
-import Excepciones.CurarCatapultaException;
+import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 
 public class Curandero implements Unidades {
     private static int costoUnidad = 2;
     private int vidaUnidad = 75;
     private static int curacion = 15;
+    private int posicionX, posicionY;
 
+    public Curandero(int posicionX,int posicionY){
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
+
+    public int getVidaUnidad(){
+        return vidaUnidad;
+    }
+    @Override
+    public boolean estaVivo() {
+        return vidaUnidad != 0;
+    }
 
     @Override
-    public int getCosto() {
+    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException, CurarException {
+        atacado.curarse(curacion);
+    }
+
+    @Override
+    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException,CurarException{
+        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
+    }
+
+    @Override
+    public void atacarDistanciaLejana(Unidades atacado) throws CurarException, NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
+    }
+
+    @Override
+    public void recibirDanio(int danioRecibido) {
+        vidaUnidad -= danioRecibido;
+    }
+
+    @Override
+    public int cuantoCuesta() {
         return costoUnidad;
     }
 
     @Override
-    public int getVida() {
-        return vidaUnidad;
+    public void curarse(int vidaACurar) throws CurarException {
+        vidaUnidad += vidaACurar;
     }
 
     @Override
-    public int getDanio() throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El curandero no puede atacar.");
-    }
-    @Override
-    public int getDanioDist() throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El curandero no puede atacar.");
+    public int posicionEnX(){
+        return posicionX;
     }
 
     @Override
-    public void atacado(int danio) {
-        vidaUnidad -= danio;
-    }
-
-    public int getCuracion(){
-        return curacion;
+    public int posicionEnY(){
+        return posicionY;
     }
 
     @Override
-    public void curar(int curacion) throws CurarCatapultaException {
-        vidaUnidad+= curacion;
+    public String getNombre() {
+        return "curandero";
     }
 }
