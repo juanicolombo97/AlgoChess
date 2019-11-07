@@ -1,5 +1,6 @@
 import Excepciones.NoAlcanzanLosPuntosException;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -54,6 +55,8 @@ public class IniciarJuego {
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
+            }catch (excepciones.UnidadInvalidaException e){
+                System.out.println(e.getMessage()+ ",eliga una unidad correcta.");
             }
         } while (jugador.getPuntos() != 0);
     }
