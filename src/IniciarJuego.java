@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class IniciarJuego {
-    /*
+
     Scanner input = new Scanner(System.in);
 
     public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
@@ -13,7 +13,7 @@ public class IniciarJuego {
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
         inicializacionTurnos(jugador1,jugador2);
-
+        movimientoFichas(jugador1,jugador2);
     }
         //Crea los jugadores del juego.
     public Jugador crearJugador(String msg) {
@@ -50,13 +50,18 @@ public class IniciarJuego {
         do{
             System.out.println("Que unidad quiere crear ?.");
             try {
-                jugador.crearUnidad(input.nextLine());
+                jugador.crearUnidad(1,1,input.nextLine());
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
             }
-        } while (jugador.puedeSeguirColocandoFichas());
+        } while (jugador.getPuntos() != 0);
     }
 
-     */
+    public void movimientoFichas(Jugador jugador1, Jugador jugador2){
+        System.out.println("Comienza el juego. Turno de: " + jugador1.getNombre());
+        System.out.println(jugador1.unidadesDisponibles());
+
+
+    }
 }
