@@ -27,12 +27,12 @@ public class Curandero implements Unidades {
 
     @Override
     public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException,CurarException{
-        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
+        throw new NoPuedeAtacarException("El curandero solo puede atacar a distancia cercana");
     }
 
     @Override
     public void atacarDistanciaLejana(Unidades atacado) throws CurarException, NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
+        throw new NoPuedeAtacarException("El curandero solo puede atacar a distancia cercana");
     }
 
     @Override

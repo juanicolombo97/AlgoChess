@@ -10,7 +10,7 @@ public class IniciarJuego {
 
     Scanner input = new Scanner(System.in);
 
-    public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, NoPuedeAtacarException, CurarException {
+    public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
         System.out.println("Bienvenidos a AlgoChess\n\n");
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
@@ -70,45 +70,69 @@ public class IniciarJuego {
         } while (jugador.getPuntos() != 0);
     }
 
-    private void accionesJuego(Jugador jugador1 ,Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException {
+    private void accionesJuego(Jugador jugador1 ,Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
         while (jugador1.puedeSeguirJugando() && jugador2.puedeSeguirJugando()){
-               accionARealizar(jugador1,jugador2,tablero);
-           }
+            realizarJugadas(jugador1,jugador2,tablero);
+            realizarJugadas(jugador2,jugador1,tablero);
+        }
 
     }
 
-    private void accionARealizar(Jugador jugador1, Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException {
-        System.out.println(jugador1.getNombre() + " desea atacar o mover ficha ?.");
-        String accionDelUsuario = input.nextLine();
-        if (accionDelUsuario.equalsIgnoreCase("atacar")){
-            try {
-                System.out.println("Elija una de sus unidades " + jugador1.getNombre());
-                System.out.println(jugador1.unidadesDisponibles());
-                Unidades unidadeAtacante = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
-                System.out.println("A que unidad enemiga quiere atacar");
-                System.out.println(jugador2.unidadesDisponibles());
-                Unidades unidadAtacado = (Unidades) jugador2.unidadesDisponibles().get(input.nextInt());
-                jugador1.atacar(unidadeAtacante, unidadAtacado);
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-                accionARealizar(jugador1,jugador2,tablero);
-            }
+    private void realizarJugadas(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+        System.out.println("Turno de " + jugador1.getNombre() + " desea atacar, mover o curar una unidad");
+        String accionJugador = input.next();
+        if (accionJugador.equalsIgnoreCase("atacar")){
+            jugadaAtacar(jugador1,jugador2,tablero);
         }
-        else if (accionDelUsuario.equalsIgnoreCase("mover")){
-            try {
-                System.out.println("Elija una unidad a mover");
-                System.out.println(jugador1.unidadesDisponibles());
-                Unidades unidadAMover = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
-                System.out.println("A que posicion quiere mover "+ unidadAMover.getNombre() + " en  X");
-                int posX = input.nextInt();
-                System.out.println("A que posicion quiere mover "+ unidadAMover.getNombre() + " en Y");
-                int posY = input.nextInt();
-                tablero.moverUnidad(unidadAMover.posicionEnX(),unidadAMover.posicionEnY(),posX,posY);
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-                accionARealizar(jugador1,jugador2,tablero);
-            }
+        if (accionJugador.equalsIgnoreCase("mover")){
+            jugadaMover(jugador1,jugador2,tablero);
+        }
+        else if (accionJugador.equalsIgnoreCase("curar")){
+            jugadaCurar(jugador1);
+        }
+    }
 
+    private void jugadaAtacar(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+        System.out.println(jugador1.getNombre() + " elija una unidad para atacar");
+        System.out.println(jugador1.unidadesDisponibles());
+        Unidades unidadAtacante = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+        System.out.println("Elija una unidad a atacar");
+        System.out.println(jugador2.unidadesDisponibles());
+        Unidades unidadAAtacar = (Unidades) jugador2.unidadesDisponibles().get(input.nextInt());
+        try {
+            jugador1.atacar(unidadAtacante, unidadAAtacar);
+        }catch (NoPuedeAtacarException | CurarException e){
+            System.out.println(e.getMessage());
+            realizarJugadas(jugador1,jugador2,tablero);
+        }
+    }
+
+    private void jugadaMover(Jugador jugador1,Jugador jugador2,Tablero tablero) throws CasilleroOcupadoExcenption, NoPuedeAtacarException, CurarException {
+        System.out.println(jugador1.getNombre() + "elija una unidad para mover");
+        System.out.println(jugador1.unidadesDisponibles());
+        Unidades unidadAMover = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+        System.out.println("A que posicion X desea moverla");
+        int movimientoX = input.nextInt();
+        System.out.println("A que posicion en Y desea moverla");
+        int movimientoY = input.nextInt();
+        try {
+            tablero.moverUnidad(unidadAMover.posicionEnX(), unidadAMover.posicionEnY(), movimientoX, movimientoY);
+        }catch (CasilleroOcupadoExcenption e){
+            System.out.println(e.getMessage());
+            realizarJugadas(jugador1,jugador2,tablero);
+        }
+    }
+
+    private void jugadaCurar(Jugador jugador){
+        System.out.println("Seleccione curandero");
+        System.out.println(jugador.unidadesDisponibles());
+        Unidades unidadCurandero = (Unidades) jugador.unidadesDisponibles().get(input.nextInt());
+        System.out.println("Seleccione unidad a curar");
+        Unidades unidadACurar = (Unidades) jugador.unidadesDisponibles().get(input.nextInt());
+        try {
+            jugador.atacar(unidadCurandero,unidadACurar);
+        } catch (CurarException | NoPuedeAtacarException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

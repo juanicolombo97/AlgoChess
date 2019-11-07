@@ -41,4 +41,5 @@ public class Tablero {
     public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoExcenption {
         arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY],posX,posY);
     }
+
 }
