@@ -17,7 +17,7 @@ public class Soldado implements Unidades{
     }
     @Override
     public boolean estaVivo() {
-        return vidaUnidad != 0;
+        return vidaUnidad >= 0;
     }
 
     @Override
@@ -61,6 +61,11 @@ public class Soldado implements Unidades{
     @Override
     public String getNombre() {
         return "soldado";
+    }
+    @Override
+    public void nuevaPosicion(int posx, int posy) {
+        this.posicionX = posx;
+        this.posicionY = posy;
     }
 }
 

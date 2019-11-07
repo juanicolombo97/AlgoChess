@@ -1,6 +1,4 @@
-import Excepciones.CasilleroEnemigoException;
-import Excepciones.CasilleroOcupadoExcenption;
-import Excepciones.NoAlcanzanLosPuntosException;
+import Excepciones.*;
 import excepciones.UnidadInvalidaException;
 
 import java.awt.desktop.SystemSleepEvent;
@@ -12,13 +10,14 @@ public class IniciarJuego {
 
     Scanner input = new Scanner(System.in);
 
-    public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        System.out.println("Bienvenidos a AlgoChess");
+    public void iniciarJuego() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, NoPuedeAtacarException, CurarException {
+        System.out.println("Bienvenidos a AlgoChess\n\n");
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
         Tablero tablero = new Tablero(jugador1,jugador2);
-        inicializacionTurnos(jugador1,jugador2);
-        movimientoFichas(jugador1,jugador2);
+        inicializacionTurnos(jugador1,jugador2,tablero);
+        System.out.println("Comienzan los turnos, arranca: " + jugador1.getNombre());
+        accionesJuego(jugador1,jugador2,tablero);
     }
         //Crea los jugadores del juego.
     public Jugador crearJugador(String msg) {
@@ -27,12 +26,12 @@ public class IniciarJuego {
 
         System.out.println(msg);
         String nombreJugador = input.nextLine();
-        System.out.println("Hola " + nombreJugador);
+        System.out.println("Hola " + nombreJugador + "\n");
         return new Jugador(nombreJugador);
     }
 
         // Decide quien arranca el juego.
-    public void inicializacionTurnos(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public void inicializacionTurnos(Jugador jugador1, Jugador jugador2,Tablero tablero) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         listaJugadores.add(jugador1);
         listaJugadores.add(jugador2);
@@ -41,22 +40,27 @@ public class IniciarJuego {
 
         //Este jugador comienza colocando las fichas
         Jugador jugadorQueArranca = listaJugadores.get(random.nextInt(2));
-        System.out.println("Comienza colocando las fichas: " + jugadorQueArranca.getNombre());
+        System.out.println("Comienza colocando las fichas: " + jugadorQueArranca.getNombre()+"\n");
 
         // Inicia la colocacion de fichas
         listaJugadores.remove(jugadorQueArranca);
-        colocarFichas(jugadorQueArranca);
-        System.out.println("Turno de " + listaJugadores.get(0).getNombre());
-        colocarFichas(listaJugadores.get(0));
+        colocarFichas(jugadorQueArranca,tablero);
+        System.out.println("Turno de " + listaJugadores.get(0).getNombre()+ "\n");
+        colocarFichas(listaJugadores.get(0),tablero);
     }
 
-    public void colocarFichas(Jugador jugador) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public void colocarFichas(Jugador jugador,Tablero tablero) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
         do{
-            System.out.println("Que unidad quiere crear ?. [posx,posy,nombre]");
+            System.out.println("Que unidad quiere crear ?.\n");
+            String nombreJugador = input.next();
+            System.out.println("En que posicion X");
+            int posX = input.nextInt();
+            System.out.println("En que posicion Y");
+            int posY = input.nextInt();
             Casillero casillero =new Casillero();
             try {
-                jugador.crearUnidad(input.nextInt(),input.nextInt(),input.nextLine(),casillero);
+                tablero.crearUnidad(jugador,nombreJugador,posX,posY);
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
@@ -66,11 +70,46 @@ public class IniciarJuego {
         } while (jugador.getPuntos() != 0);
     }
 
-    public void movimientoFichas(Jugador jugador1, Jugador jugador2){
-        System.out.println("Comienza el juego. Turno de: " + jugador1.getNombre());
-        System.out.println(jugador1.unidadesDisponibles());
+    private void accionesJuego(Jugador jugador1 ,Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException {
+        while (jugador1.puedeSeguirJugando() && jugador2.puedeSeguirJugando()){
+               accionARealizar(jugador1,jugador2,tablero);
+           }
 
+    }
 
+    private void accionARealizar(Jugador jugador1, Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException {
+        System.out.println(jugador1.getNombre() + " desea atacar o mover ficha ?.");
+        String accionDelUsuario = input.nextLine();
+        if (accionDelUsuario.equalsIgnoreCase("atacar")){
+            try {
+                System.out.println("Elija una de sus unidades " + jugador1.getNombre());
+                System.out.println(jugador1.unidadesDisponibles());
+                Unidades unidadeAtacante = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+                System.out.println("A que unidad enemiga quiere atacar");
+                System.out.println(jugador2.unidadesDisponibles());
+                Unidades unidadAtacado = (Unidades) jugador2.unidadesDisponibles().get(input.nextInt());
+                jugador1.atacar(unidadeAtacante, unidadAtacado);
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                accionARealizar(jugador1,jugador2,tablero);
+            }
+        }
+        else if (accionDelUsuario.equalsIgnoreCase("mover")){
+            try {
+                System.out.println("Elija una unidad a mover");
+                System.out.println(jugador1.unidadesDisponibles());
+                Unidades unidadAMover = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+                System.out.println("A que posicion quiere mover "+ unidadAMover.getNombre() + " en  X");
+                int posX = input.nextInt();
+                System.out.println("A que posicion quiere mover "+ unidadAMover.getNombre() + " en Y");
+                int posY = input.nextInt();
+                tablero.moverUnidad(unidadAMover.posicionEnX(),unidadAMover.posicionEnY(),posX,posY);
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                accionARealizar(jugador1,jugador2,tablero);
+            }
+
+        }
     }
 }
 

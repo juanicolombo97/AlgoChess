@@ -47,11 +47,11 @@ public class Jugador {
     public void atacar(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
         AccionJugador accionJugador = new AccionJugador();
         accionJugador.accionNueva(atacante,atacado);
+
     }
 
     //Devuelve true si el jugador posee unidades.
     public boolean puedeSeguirJugando(){
-        revisionUnidades();
         return unidadesDisponibles.size() != 0;
     }
     //Lanza error si no alcanzan los puntos para crear ficha.
@@ -84,13 +84,16 @@ public class Jugador {
 
     //Devuelve una lista de las unidades que dispone el jugador.
     public ArrayList unidadesDisponibles(){
+        revisionUnidades();
         return unidadesDisponibles;
     }
 
+    //Agrega un casillero a los casilleros pertenecientes al jugador.
     public void agregarCasillero(Casillero casillero){
         casilleroJugador.put(casillero,casillero);
     }
 
+    // Se fija si el casillero pertenece al jugador.
     public void casilleroPertenceAJugador(Casillero casillero) throws CasilleroEnemigoException {
         if(!casilleroJugador.containsKey(casillero)){
             throw new CasilleroEnemigoException("Este casillero pertence al enemigo");

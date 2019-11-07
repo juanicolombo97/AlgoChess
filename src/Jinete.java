@@ -19,7 +19,7 @@ public class Jinete implements Unidades {
 
     @Override
     public boolean estaVivo() {
-        return vidaUnidad != 0;
+        return vidaUnidad >= 0;
     }
 
     @Override
@@ -66,4 +66,11 @@ public class Jinete implements Unidades {
     public String getNombre() {
         return "jinete";
     }
+
+    @Override
+    public void nuevaPosicion(int posx, int posy) {
+        this.posicionX = posx;
+        this.posicionY = posy;
+    }
+
 }

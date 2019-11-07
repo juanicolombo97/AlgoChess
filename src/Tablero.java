@@ -31,6 +31,7 @@ public class Tablero {
 
     public void crearUnidad(Jugador jugador,String nombreUnidad,int posX,int posY) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         jugador.crearUnidad(posX,posY,nombreUnidad,arrayCasillero[posX][posY]);
+
     }
 
     public Unidades getUnidad(int posX, int posY){
@@ -38,6 +39,6 @@ public class Tablero {
     }
 
     public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoExcenption {
-        arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY]);
+        arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY],posX,posY);
     }
 }

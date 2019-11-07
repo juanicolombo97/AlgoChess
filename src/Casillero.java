@@ -6,8 +6,10 @@ public class Casillero {
     public boolean esta_vacio(){
         return (this.unidad_actual == null);
     }
+
     // Mueve unidad a otro casillero, elimina la guardada en el atributo unidad_actual
-    public void mover_unidad_a(Casillero destino) throws CasilleroOcupadoExcenption {
+    public void mover_unidad_a(Casillero destino, int posicionX,int posicionY) throws CasilleroOcupadoExcenption {
+        unidad_actual.nuevaPosicion(posicionX,posicionY);
         destino.recibir_unidad(this.unidad_actual);
         this.unidad_actual = null;
     }
