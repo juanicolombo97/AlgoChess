@@ -1,7 +1,7 @@
 import Excepciones.NoPuedeAtacarException;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
 
 public class AccionesSoldadoTest {
@@ -17,7 +17,7 @@ public class AccionesSoldadoTest {
 
         accion.accionNueva(soldado,curandero);
         //Compruebo que el curandero se le halla restado la vida correctamente.
-        assertEquals(65,curandero.getVidaUnidad());
+        Assertions.assertEquals(65,curandero.getVidaUnidad());
     }
     @Test
         //Prueba con ataque de distancia media.
@@ -29,7 +29,7 @@ public class AccionesSoldadoTest {
         try {
             accion.accionNueva(soldado,curandero);
         }catch (NoPuedeAtacarException e){
-            assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
+            Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
     }
     @Test
@@ -42,7 +42,7 @@ public class AccionesSoldadoTest {
         try {
             accion.accionNueva(soldado,curandero);
         }catch (NoPuedeAtacarException e){
-            assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
+            Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
     }
 
