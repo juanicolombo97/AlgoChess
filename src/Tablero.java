@@ -1,3 +1,5 @@
+import Excepciones.CasilleroOcupadoExcenption;
+
 import java.util.*;
 
 public class Tablero {
@@ -26,7 +28,7 @@ public class Tablero {
         }
     }
 
-    public void moverUnidad(Unidades unidad, String casillero){
+    public void moverUnidad(Unidades unidad, String casillero) throws CasilleroOcupadoExcenption {
         Casillero celda = (Casillero) this.casilleros.get(casillero);
         if (celda.esta_vacio()) {
             // si la unidad ya está en el tablero la posiciona en el nuevo casillero

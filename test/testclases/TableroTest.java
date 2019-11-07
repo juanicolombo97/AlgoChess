@@ -1,3 +1,4 @@
+import Excepciones.CasilleroOcupadoExcenption;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class TableroTest {
     }
 
     @Test
-    public void agregarUnidadHaceQueTableroNoEsteVacio() {
+    public void agregarUnidadHaceQueTableroNoEsteVacio() throws CasilleroOcupadoExcenption {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(3,3);
         tablero.moverUnidad(soldado, "1 2");
@@ -20,7 +21,7 @@ public class TableroTest {
     }
 
     @Test
-    public void agregarMasDeUnaUnidadAlTablero() {
+    public void agregarMasDeUnaUnidadAlTablero() throws CasilleroOcupadoExcenption{
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(2,2);
         Curandero curandero = new Curandero(3,3);
@@ -30,7 +31,7 @@ public class TableroTest {
     }
 
     @Test
-    public void agregarUnidadAUnCasilleroOcupadoNoAgregaUnidad() {
+    public void agregarUnidadAUnCasilleroOcupadoNoAgregaUnidad() throws CasilleroOcupadoExcenption {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(4,4);
         Curandero curandero = new Curandero(5,5);
@@ -40,7 +41,7 @@ public class TableroTest {
     }
 
     @Test
-    public void moverUnidadEfectivamenteMueveUnidad() {
+    public void moverUnidadEfectivamenteMueveUnidad() throws CasilleroOcupadoExcenption {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(2,2);
         tablero.moverUnidad(soldado, "1 2");
@@ -51,7 +52,7 @@ public class TableroTest {
     }
 
     @Test
-    public void unaUnidadNoPuedeMoverseAUnCasilleroOcupado() {
+    public void unaUnidadNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroOcupadoExcenption {
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(2,2);
         Curandero curandero = new Curandero(1,1);
@@ -64,7 +65,7 @@ public class TableroTest {
     }
 
     @Test
-    public void casoBordeAlCrearMoverUnidadFueraDelTablero() {
+    public void casoBordeAlCrearMoverUnidadFueraDelTablero() throws CasilleroOcupadoExcenption{
         Tablero tablero = new Tablero();
         Soldado soldado = new Soldado(1,1);
         try {

@@ -1,3 +1,4 @@
+import Excepciones.CasilleroOcupadoExcenption;
 import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ class CasilleroTest {
     }
 
     @Test
-    void mover_unidad_a() {
+    void mover_unidad_a() throws CasilleroOcupadoExcenption {
         Soldado soldado = new Soldado(1,1);
         Casillero casilleroorigen = new Casillero();
         Casillero casillerodestino = new Casillero();
@@ -25,10 +26,23 @@ class CasilleroTest {
     }
 
     @Test
-    void recibir_unidad() {
+    void recibir_unidad() throws CasilleroOcupadoExcenption{
         Jinete jinete = new Jinete(1,1);
         Casillero casillero = new Casillero();
         casillero.recibir_unidad(jinete);
         Assertions.assertEquals(false, casillero.esta_vacio());
+    }
+
+    @Test
+        // No se puede mover unidad a casillero ocupado.
+    void noSeMueveUnidadACasilleroOcupado() throws CasilleroOcupadoExcenption {
+        Soldado soldado = new Soldado(1,1);
+        Casillero casilleroorigen = new Casillero();
+        casilleroorigen.recibir_unidad(soldado);
+        try {
+            casilleroorigen.recibir_unidad(soldado);
+        }catch (CasilleroOcupadoExcenption e){
+            Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
+        }
     }
 }
