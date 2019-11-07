@@ -61,4 +61,9 @@ public class Jinete implements Unidades {
     public int posicionEnY(){
         return posicionY;
     }
+
+    @Override
+    public String getNombre() {
+        return "jinete";
+    }
 }

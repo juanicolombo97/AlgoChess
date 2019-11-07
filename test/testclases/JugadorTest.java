@@ -1,6 +1,4 @@
-import Excepciones.CurarException;
-import Excepciones.NoAlcanzanLosPuntosException;
-import Excepciones.NoPuedeAtacarException;
+import Excepciones.*;
 import excepciones.UnidadInvalidaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,9 +21,11 @@ public class JugadorTest {
     @Test
         // Jugador agrega unidad
 
-    void jugadorPuedeAgregarUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException {
+    void jugadorPuedeAgregarUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         Jugador jugador = new Jugador("Juani");
-        jugador.crearUnidad(1,1,"soldado");
+        Casillero casillero = new Casillero();
+        jugador.agregarCasillero(casillero);
+        jugador.crearUnidad(1,1,"soldado",casillero);
         Assertions.assertEquals(true,jugador.puedeSeguirJugando());
     }
 
@@ -43,16 +43,28 @@ public class JugadorTest {
     @Test
         //Se verifica que no puede tomar mas de los puntos que le corresponden
 
-    void crearUnidadesDeMasLanzaError() throws NoAlcanzanLosPuntosException, UnidadInvalidaException {
+    void crearUnidadesDeMasLanzaError() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         Jugador jugador = new Jugador("Juani");
+        Casillero casillero = new Casillero();
+        Casillero casillero2 = new Casillero();
+        Casillero casillero3 = new Casillero();
+        Casillero casillero4= new Casillero();
+        Casillero casillero5= new Casillero();
+
+        jugador.agregarCasillero(casillero);
+        jugador.agregarCasillero(casillero2);
+        jugador.agregarCasillero(casillero3);
+        jugador.agregarCasillero(casillero4);
+        jugador.agregarCasillero(casillero5);
+
         //Agrego 4 catapultas de valor 5, puntos jugador = 20;
-        jugador.crearUnidad(1,1,"catapulta");
-        jugador.crearUnidad(1,1,"catapulta");
-        jugador.crearUnidad(1,1,"catapulta");
-        jugador.crearUnidad(1,1,"catapulta");
+        jugador.crearUnidad(1,1,"catapulta",casillero);
+        jugador.crearUnidad(1,1,"catapulta",casillero2);
+        jugador.crearUnidad(1,1,"catapulta",casillero3);
+        jugador.crearUnidad(1,1,"catapulta",casillero4);
         //Agregar soldado genera error.
         try {
-            jugador.crearUnidad(1,1,"soldado");
+            jugador.crearUnidad(1,1,"soldado",casillero5);
         }catch (NoAlcanzanLosPuntosException e){
             Assertions.assertEquals("Puntos insuficientes",e.getMessage());
         }
@@ -60,9 +72,12 @@ public class JugadorTest {
     }
     @Test
         //Jugador con una pieza, al morir la pieza pierde.
-    void jugadorPierdeSiNoTieneFichas() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, NoPuedeAtacarException, CurarException {
+    void jugadorPierdeSiNoTieneFichas() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, NoPuedeAtacarException, CurarException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         Jugador jugador = new Jugador("juan");
-        jugador.crearUnidad(1,1,"soldado");
+        Casillero casillero = new Casillero();
+
+        jugador.agregarCasillero(casillero);
+        jugador.crearUnidad(1,1,"soldado",casillero);
 
         //Creo catapulta para atacar a soldado y matarlo
         Catapulta catapulta = new Catapulta(7,7);
@@ -81,5 +96,6 @@ public class JugadorTest {
 
     }
 }
+
 
 

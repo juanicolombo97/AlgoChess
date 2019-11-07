@@ -59,4 +59,9 @@ public class Curandero implements Unidades {
     public int posicionEnY(){
         return posicionY;
     }
+
+    @Override
+    public String getNombre() {
+        return "curandero";
+    }
 }

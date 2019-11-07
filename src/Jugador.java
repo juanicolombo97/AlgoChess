@@ -1,10 +1,9 @@
-import Excepciones.CurarException;
-import Excepciones.NoAlcanzanLosPuntosException;
-import Excepciones.NoPuedeAtacarException;
+import Excepciones.*;
 import excepciones.UnidadInvalidaException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 public class Jugador {
 
@@ -12,6 +11,7 @@ public class Jugador {
     private ArrayList<Unidades> unidadesDisponibles = new ArrayList();
     private String nombre;
     private int puntosDisponiblesParaJugar = 20;
+    private Hashtable casilleroJugador = new Hashtable();
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -26,18 +26,23 @@ public class Jugador {
     }
 
     //Crea una unidad
-    void crearUnidad(int posicionX, int posicionY, String unidad) throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    void crearUnidad(int posicionX, int posicionY, String unidad,Casillero casillero) throws UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         UnidadNueva unidadNueva = new UnidadNueva();
         Unidades unidadCreada = unidadNueva.crearUnidad(unidad,posicionX,posicionY);
+        //Me fijo si el casillero pertenece al jugador y sino agrego la unidad.
 
+        casilleroPertenceAJugador(casillero);
+        casillero.recibir_unidad(unidadCreada);
         // Me fijo que no se exceda de los puntos.
         try {
+            casilleroPertenceAJugador(casillero);
             puntosSuficientes(unidadCreada.cuantoCuesta());
             agregarUnidad(unidadCreada);
         } catch (Exception e) {
             throw new NoAlcanzanLosPuntosException("Puntos insuficientes");
         }
     }
+
     // Funcion para atacar unidades.
     public void atacar(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
         AccionJugador accionJugador = new AccionJugador();
@@ -82,4 +87,13 @@ public class Jugador {
         return unidadesDisponibles;
     }
 
+    public void agregarCasillero(Casillero casillero){
+        casilleroJugador.put(casillero,casillero);
+    }
+
+    public void casilleroPertenceAJugador(Casillero casillero) throws CasilleroEnemigoException {
+        if(!casilleroJugador.containsKey(casillero)){
+            throw new CasilleroEnemigoException("Este casillero pertence al enemigo");
+        }
+    }
 }

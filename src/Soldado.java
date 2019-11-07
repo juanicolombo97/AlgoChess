@@ -57,6 +57,11 @@ public class Soldado implements Unidades{
     public int posicionEnY(){
         return posicionY;
     }
+
+    @Override
+    public String getNombre() {
+        return "soldado";
+    }
 }
 
 

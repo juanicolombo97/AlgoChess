@@ -21,4 +21,6 @@ public interface Unidades {
     public int posicionEnX();
 
     public int posicionEnY();
+
+    public String getNombre();
 }

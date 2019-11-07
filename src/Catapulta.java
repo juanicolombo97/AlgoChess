@@ -61,4 +61,9 @@ public class Catapulta implements Unidades {
         return posicionY;
     }
 
+    @Override
+    public String getNombre() {
+        return "catapulta";
+    }
+
 }

@@ -1,102 +1,70 @@
+import Excepciones.CasilleroEnemigoException;
 import Excepciones.CasilleroOcupadoExcenption;
+import Excepciones.NoAlcanzanLosPuntosException;
+import excepciones.UnidadInvalidaException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import static org.junit.Assert.*;
 
 public class TableroTest {
 
     @Test
-    public void tableroVacioDeUnidadesAlCrearTablero() {
-        Tablero tablero = new Tablero();
-        Assert.assertEquals(0, tablero.cantUnidades());
+    //Se crea tablero y ocloca pieza en sector aliado correctamente.
+    public void creoTableroCorrectamentey() throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+        Jugador jugador1 = new Jugador("juani");
+        Jugador jugador2 = new Jugador("carlos");
+        Tablero tablero = new Tablero(jugador1,jugador2);
+        tablero.crearUnidad(jugador1,"soldado",1,1);
+        Assertions.assertEquals("soldado", tablero.getUnidad(1,1).getNombre());
     }
 
     @Test
-    public void agregarUnidadHaceQueTableroNoEsteVacio() throws CasilleroOcupadoExcenption {
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(3,3);
-        tablero.moverUnidad(soldado, "1 2");
-        Assert.assertEquals(1, tablero.cantUnidades());
-    }
+    // El secto del 1-10 pertenece al primer jugador.
+    //Insertar pieza en 11-11 del jugador uno debe generar error.
+    public void agregarUnidadASectorEnemigoLanzaError() throws CasilleroOcupadoExcenption, UnidadInvalidaException {
+        Jugador jugador1 = new Jugador("juani");
+        Jugador jugador2 = new Jugador("carlos");
+        Tablero tablero = new Tablero(jugador1,jugador2);
 
-    @Test
-    public void agregarMasDeUnaUnidadAlTablero() throws CasilleroOcupadoExcenption{
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(2,2);
-        Curandero curandero = new Curandero(3,3);
-        tablero.moverUnidad(soldado, "1 1");
-        tablero.moverUnidad(curandero, "1 2");
-        Assert.assertEquals(2, tablero.cantUnidades());
-    }
-
-    @Test
-    public void agregarUnidadAUnCasilleroOcupadoNoAgregaUnidad() throws CasilleroOcupadoExcenption {
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(4,4);
-        Curandero curandero = new Curandero(5,5);
-        tablero.moverUnidad(soldado, "1 2");
-        tablero.moverUnidad(curandero, "1 2");
-        Assert.assertEquals(1, tablero.cantUnidades());
-    }
-
-    @Test
-    public void moverUnidadEfectivamenteMueveUnidad() throws CasilleroOcupadoExcenption {
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(2,2);
-        tablero.moverUnidad(soldado, "1 2");
-        Casillero posicionSoldadoAnterior = tablero.getPosicionDeUnidad(soldado);
-        tablero.moverUnidad(soldado, "2 2");
-        Casillero posicionSoldadoActual = tablero.getPosicionDeUnidad(soldado);
-        Assert.assertNotEquals(posicionSoldadoAnterior, posicionSoldadoActual);
-    }
-
-    @Test
-    public void unaUnidadNoPuedeMoverseAUnCasilleroOcupado() throws CasilleroOcupadoExcenption {
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(2,2);
-        Curandero curandero = new Curandero(1,1);
-        tablero.moverUnidad(soldado, "1 1");
-        tablero.moverUnidad(curandero, "1 2");
-        tablero.moverUnidad(soldado, "1 2");
-        Casillero posicionSoldado = tablero.getPosicionDeUnidad(soldado);
-        Casillero posicionCurandero = tablero.getPosicionDeUnidad(curandero);
-        Assert.assertNotEquals(posicionSoldado, posicionCurandero);
-    }
-
-    @Test
-    public void casoBordeAlCrearMoverUnidadFueraDelTablero() throws CasilleroOcupadoExcenption{
-        Tablero tablero = new Tablero();
-        Soldado soldado = new Soldado(1,1);
         try {
-            tablero.moverUnidad(soldado, "21 1");
-        } catch (NullPointerException e) {
-
+            tablero.crearUnidad(jugador1,"soldado",11,11);
+        } catch (NoAlcanzanLosPuntosException e) {
+            e.printStackTrace();
+        } catch (CasilleroEnemigoException e) {
+           Assertions.assertEquals("Este casillero pertence al enemigo",e.getMessage());
+        }
+    }
+    @Test
+    public void seVerificaQuePiezaAliadaEnCasilleroOcupadoLanzaError() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador1 = new Jugador("juani");
+        Jugador jugador2 = new Jugador("carlos");
+        Tablero tablero = new Tablero(jugador1,jugador2);
+        tablero.crearUnidad(jugador1,"soldado",1,1);
+        try{
+            tablero.crearUnidad(jugador1,"soldado",1,1);
+        }catch (CasilleroOcupadoExcenption e){
+            Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
     }
 
     @Test
-    public void crearTableroAsignaEquiposALosCasilleros() {
-        Tablero tablero = new Tablero();
-        for (int i = 1; i < 11; i++) {
-            for (int j = 1; j < 11; j++) {
-                String numi = Integer.toString(i);
-                String numj = Integer.toString(j);
-                String numCasillero = numi + " " + numj;
-                Casillero casilleroActual = tablero.getCasillero(numCasillero);
-                CasilleroAzul casilleroAzul = new CasilleroAzul();
-                Assert.assertEquals(casilleroAzul.getClass(), casilleroActual.getClass());
-            }
-        }
-        for (int i = 11; i < 20; i++) {
-            for (int j = 11; j < 20; j++) {
-                String numi = Integer.toString(i);
-                String numj = Integer.toString(j);
-                String numCasillero = numi + " " + numj;
-                Casillero casilleroActual = tablero.getCasillero(numCasillero);
-                CasilleroRojo casilleroRojo = new CasilleroRojo();
-                Assert.assertEquals(casilleroRojo.getClass(), casilleroActual.getClass());
-            }
-        }
+    //una unidad se puede mover en todas las dirrecciones
+    public void moverUnidadTodasDirrecciones() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador1 = new Jugador("juani");
+        Jugador jugador2 = new Jugador("carlos");
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, "soldado", 5, 5);
+
+        //Mover la unidad no lanza error salvo que se mueva a un casillero ocupado.
+        tablero.moverUnidad(5, 5, 4, 4);
+        tablero.moverUnidad(4, 4, 3, 3);
+        tablero.moverUnidad(3, 3, 2, 3);
+        tablero.moverUnidad(2, 3, 1, 1);
+        tablero.moverUnidad(1, 1, 5, 5);
+        tablero.moverUnidad(5, 5, 4, 4);
+
+        Assertions.assertEquals("soldado", tablero.getUnidad(4, 4).getNombre());
     }
 }

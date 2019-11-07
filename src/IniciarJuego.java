@@ -1,4 +1,7 @@
+import Excepciones.CasilleroEnemigoException;
+import Excepciones.CasilleroOcupadoExcenption;
 import Excepciones.NoAlcanzanLosPuntosException;
+import excepciones.UnidadInvalidaException;
 
 import java.awt.desktop.SystemSleepEvent;
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ public class IniciarJuego {
         System.out.println("Bienvenidos a AlgoChess");
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
+        Tablero tablero = new Tablero(jugador1,jugador2);
         inicializacionTurnos(jugador1,jugador2);
         movimientoFichas(jugador1,jugador2);
     }
@@ -49,13 +53,14 @@ public class IniciarJuego {
     public void colocarFichas(Jugador jugador) throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
         do{
-            System.out.println("Que unidad quiere crear ?.");
+            System.out.println("Que unidad quiere crear ?. [posx,posy,nombre]");
+            Casillero casillero =new Casillero();
             try {
-                jugador.crearUnidad(1,1,input.nextLine());
+                jugador.crearUnidad(input.nextInt(),input.nextInt(),input.nextLine(),casillero);
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
-            }catch (excepciones.UnidadInvalidaException e){
+            }catch (UnidadInvalidaException | CasilleroEnemigoException | CasilleroOcupadoExcenption e){
                 System.out.println(e.getMessage()+ ",eliga una unidad correcta.");
             }
         } while (jugador.getPuntos() != 0);
@@ -68,3 +73,4 @@ public class IniciarJuego {
 
     }
 }
+

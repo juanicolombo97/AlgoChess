@@ -1,59 +1,43 @@
+import Excepciones.CasilleroEnemigoException;
 import Excepciones.CasilleroOcupadoExcenption;
+import Excepciones.NoAlcanzanLosPuntosException;
 
 import java.util.*;
 
 public class Tablero {
-    private Hashtable casilleros;
-    private Hashtable posicionDeUnidad;
+    private Casillero[][] arrayCasillero;
 
-    public Tablero(){
-        this.casilleros = new Hashtable();
-        this.posicionDeUnidad = new Hashtable();
+    public Tablero(Jugador jugador1, Jugador jugador2){
+        this.arrayCasillero = new Casillero[21][21];
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
-                Casillero casillero = this.asignarEquipo(i, j);
-                String numi = Integer.toString(i);
-                String numj = Integer.toString(j);
-                String numCasillero = numi + " " + numj;
-                this.casilleros.put(numCasillero, casillero);
+                Casillero casillero = this.asignarEquipo(i, j,jugador1,jugador2);
+                this.arrayCasillero[i][j] = casillero;
             }
         }
     }
 
-    private Casillero asignarEquipo (Integer i, Integer j){
+    private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2){
         if (i <= 10 && j <= 10){
-            return new CasilleroAzul();
+            Casillero casillero = new Casillero();
+;           jugador1.agregarCasillero(casillero);
+            return casillero;
         } else {
-            return new CasilleroRojo();
+            Casillero casillero = new Casillero();
+            jugador2.agregarCasillero(casillero);
+            return casillero;
         }
     }
 
-    public void moverUnidad(Unidades unidad, String casillero) throws CasilleroOcupadoExcenption {
-        Casillero celda = (Casillero) this.casilleros.get(casillero);
-        if (celda.esta_vacio()) {
-            // si la unidad ya está en el tablero la posiciona en el nuevo casillero
-            if (posicionDeUnidad.containsKey(unidad)) {
-                Casillero posicion = (Casillero) posicionDeUnidad.get(unidad);
-                posicion.mover_unidad_a(celda);
-                posicionDeUnidad.replace(unidad, celda);
-            }
-            //else, la posiciona directamente en el casillero
-            else {
-                celda.recibir_unidad(unidad);
-                posicionDeUnidad.put(unidad, celda);
-            }
-        }
+    public void crearUnidad(Jugador jugador,String nombreUnidad,int posX,int posY) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+        jugador.crearUnidad(posX,posY,nombreUnidad,arrayCasillero[posX][posY]);
     }
 
-    public int cantUnidades(){
-        return posicionDeUnidad.size();
+    public Unidades getUnidad(int posX, int posY){
+        return arrayCasillero[posX][posY].getUnidad();
     }
 
-    public Casillero getPosicionDeUnidad(Unidades unidad){
-        return((Casillero) posicionDeUnidad.get(unidad));
-    }
-
-    public Casillero getCasillero (String numCasillero){
-        return (Casillero) casilleros.get(numCasillero);
+    public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoExcenption {
+        arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY]);
     }
 }
