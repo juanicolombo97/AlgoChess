@@ -20,7 +20,7 @@ class CasilleroTest {
         Casillero casilleroorigen = new Casillero();
         Casillero casillerodestino = new Casillero();
         casilleroorigen.recibir_unidad(soldado);
-        casilleroorigen.mover_unidad_a(casillerodestino);
+        casilleroorigen.mover_unidad_a(casillerodestino,2,2);
         Assertions.assertEquals(true, casilleroorigen.esta_vacio());
         Assertions.assertEquals(false, casillerodestino.esta_vacio());
     }

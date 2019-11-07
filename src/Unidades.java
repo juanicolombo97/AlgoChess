@@ -23,4 +23,7 @@ public interface Unidades {
     public int posicionEnY();
 
     public String getNombre();
+
+    public void nuevaPosicion(int posx, int posy);
+
 }

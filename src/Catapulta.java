@@ -19,7 +19,7 @@ public class Catapulta implements Unidades {
     }
     @Override
     public boolean estaVivo() {
-        return vidaUnidad != 0;
+        return vidaUnidad >= 0;
     }
 
     @Override
@@ -65,5 +65,9 @@ public class Catapulta implements Unidades {
     public String getNombre() {
         return "catapulta";
     }
-
+    @Override
+    public void nuevaPosicion(int posx, int posy) {
+        this.posicionX = posx;
+        this.posicionY = posy;
+    }
 }
