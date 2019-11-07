@@ -27,6 +27,7 @@ public class VentanaLogear {
         GridPane.setConstraints(usuarioInput,1,1);
 
         Button botonCrearJugador = new Button("Crear Jugador");
+        botonCrearJugador.setOnAction(e ->VentanaLogear.display("jugador2"));
         GridPane.setConstraints(botonCrearJugador,1,2);
 
         pane.getChildren().addAll(usuario,usuarioInput,botonCrearJugador);

@@ -1,5 +1,7 @@
 import Excepciones.*;
 import excepciones.UnidadInvalidaException;
+import interfaz.MenuInicio;
+import javafx.stage.Stage;
 
 import java.awt.desktop.SystemSleepEvent;
 import java.util.ArrayList;
@@ -14,10 +16,17 @@ public class IniciarJuego {
         System.out.println("Bienvenidos a AlgoChess\n\n");
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo Jugador: ");
+
         Tablero tablero = new Tablero(jugador1,jugador2);
         inicializacionTurnos(jugador1,jugador2,tablero);
         System.out.println("Comienzan los turnos, arranca: " + jugador1.getNombre());
         accionesJuego(jugador1,jugador2,tablero);
+        if (jugador1.puedeSeguirJugando()){
+            System.out.println("Felicitaciones " + jugador1.getNombre() + " has ganado");
+            return;
+        }
+        System.out.println("Felicitaciones " + jugador2.getNombre() + " has ganado");
+
     }
         //Crea los jugadores del juego.
     public Jugador crearJugador(String msg) {
