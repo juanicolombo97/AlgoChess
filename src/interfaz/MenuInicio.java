@@ -34,7 +34,7 @@ public class MenuInicio extends Application {
 
 
         // Accion al apretar boton.
-        botonJugar.setOnAction(e ->VentanaLogear.display("AlgoChess"));
+        botonJugar.setOnAction(e ->VentanaLogear.display("jugador1"));
         ventana.setOnCloseRequest( e -> {
             e.consume();
             cerrarPrograma();
