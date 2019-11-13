@@ -14,6 +14,7 @@ public class MenuInicio extends Application {
 
     Scene scene;
     Stage ventana;
+    JugadoresRegistro jugadores = new JugadoresRegistro();
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -34,7 +35,7 @@ public class MenuInicio extends Application {
 
 
         // Accion al apretar boton.
-        botonJugar.setOnAction(e ->VentanaLogear.display("jugador1"));
+        botonJugar.setOnAction(e ->VentanaLogear.display("jugador1",jugadores));
         ventana.setOnCloseRequest( e -> {
             e.consume();
             cerrarPrograma();
