@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 
 public class AccionMedia {
 
-    public AccionMedia(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public AccionMedia(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException {
         atacante.atacarDistanciaMediana(atacado);
     }
 }

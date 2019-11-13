@@ -3,7 +3,7 @@ package fiuba.algo3.algochess;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 
-public class Jinete implements Unidades {
+public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 5;
@@ -25,17 +25,17 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioDistancia);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
     }
 

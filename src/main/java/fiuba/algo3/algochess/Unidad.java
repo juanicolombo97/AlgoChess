@@ -4,15 +4,15 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 // Interfaz que representa las unidades del juego.
 
-public interface Unidades {
+public interface Unidad {
 
     public boolean estaVivo();
 
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException, CurarException;
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, CurarException;
 
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException, CurarException;
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, CurarException;
 
-    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException, CurarException;
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException, CurarException;
 
     public void recibirDanio(int danioRecibido);
 

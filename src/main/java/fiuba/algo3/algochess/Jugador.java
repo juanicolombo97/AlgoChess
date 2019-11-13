@@ -8,7 +8,7 @@ import java.util.Hashtable;
 public class Jugador {
 
     private int puntosColocacionFichas = 20;
-    private ArrayList<Unidades> unidadesDisponibles = new ArrayList();
+    private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
     private String nombre;
     private int puntosDisponiblesParaJugar = 20;
     private Hashtable casilleroJugador = new Hashtable();
@@ -28,7 +28,7 @@ public class Jugador {
     //Crea una unidad
     public void crearUnidad(int posicionX, int posicionY, String unidad,Casillero casillero) throws UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
         UnidadNueva unidadNueva = new UnidadNueva();
-        Unidades unidadCreada = unidadNueva.crearUnidad(unidad,posicionX,posicionY);
+        Unidad unidadCreada = unidadNueva.crearUnidad(unidad,posicionX,posicionY);
         //Me fijo si el casillero pertenece al jugador y sino agrego la unidad.
 
         casilleroPertenceAJugador(casillero);
@@ -44,7 +44,7 @@ public class Jugador {
     }
 
     // Funcion para atacar unidades.
-    public void atacar(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public void atacar(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException {
         AccionJugador accionJugador = new AccionJugador();
         accionJugador.accionNueva(atacante,atacado);
 
@@ -62,7 +62,7 @@ public class Jugador {
     }
 
     //Agrega una unidad a la lista de unidades
-    private void agregarUnidad(Unidades unidad){
+    private void agregarUnidad(Unidad unidad){
         unidadesDisponibles.add(unidad);
         restarPuntos(unidad.cuantoCuesta());
     }

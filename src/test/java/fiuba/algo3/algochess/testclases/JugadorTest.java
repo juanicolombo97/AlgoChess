@@ -79,7 +79,7 @@ public class JugadorTest {
         //Creo catapulta para atacar a soldado y matarlo
         Catapulta catapulta = new Catapulta(7,7);
 
-        Unidades unidadSoldado = (Unidades) jugador.unidadesDisponibles().get(0);
+        Unidad unidadSoldado = (Unidad) jugador.unidadesDisponibles().get(0);
         //Ataco 4 veces para matar al soldado.
         jugador.atacar(catapulta,unidadSoldado);
         jugador.atacar(catapulta,unidadSoldado);

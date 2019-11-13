@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 
 public class AccionCercana {
 
-    public AccionCercana(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public AccionCercana(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException {
         atacante.atacarDistanciaCerca(atacado);
     }
 }

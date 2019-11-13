@@ -35,7 +35,7 @@ public class Tablero {
 
     }
 
-    public Unidades getUnidad(int posX, int posY){
+    public Unidad getUnidad(int posX, int posY){
         return arrayCasillero[posX][posY].getUnidad();
     }
 

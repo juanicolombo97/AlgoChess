@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 
 public class AccionJugador {
 
-    public void accionNueva(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public void accionNueva(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException {
         //Creo fabrica Acciones.
         AccionesFabrica accionesFabrica = new AccionesFabrica();
 

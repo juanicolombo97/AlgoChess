@@ -6,7 +6,7 @@ public class UnidadesFabrica {
 
     //Fabrica utilizada para crear las unidades del juego.
 
-    public Unidades crearUnidad(String unidad,int posicionX,int posicionY) throws UnidadInvalidaException {
+    public Unidad crearUnidad(String unidad, int posicionX, int posicionY) throws UnidadInvalidaException {
         if(unidad.equalsIgnoreCase("fiuba.algochess.Soldado")){
             return new Soldado(posicionX,posicionY);
         }

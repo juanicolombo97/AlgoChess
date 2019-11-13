@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 
 //Clase donde se implementa la Unidad fiuba.algochess.Catapulta
 
-public class Catapulta implements Unidades {
+public class Catapulta implements Unidad {
     private static int costoUnidad = 5;
     private int vidaUnidad = 50;
     private static int danioDistancia = 20;
@@ -25,17 +25,17 @@ public class Catapulta implements Unidades {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         atacado.recibirDanio(danioDistancia);
     }
 

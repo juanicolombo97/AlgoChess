@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 
 public class AccionesFabrica {
 
-    public void iniciarAccion(int distanciaX,int distanciaY,Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public void iniciarAccion(int distanciaX, int distanciaY, Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException {
 
         if((-2 <= distanciaX && distanciaX <= 2) && (-2 <= distanciaY && distanciaY <= 2)){
             new AccionCercana(atacante,atacado);

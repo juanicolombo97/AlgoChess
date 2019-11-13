@@ -3,7 +3,7 @@ package fiuba.algo3.algochess;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.CurarException;
 
-public class Curandero implements Unidades {
+public class Curandero implements Unidad {
     private static int costoUnidad = 2;
     private int vidaUnidad = 75;
     private static int curacion = 15;
@@ -23,17 +23,17 @@ public class Curandero implements Unidades {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, CurarException {
         atacado.curarse(curacion);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException,CurarException{
         throw new NoPuedeAtacarException("El curandero solo puede atacar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidades atacado) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws CurarException, NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El curandero solo puede atacar a distancia cercana");
     }
 

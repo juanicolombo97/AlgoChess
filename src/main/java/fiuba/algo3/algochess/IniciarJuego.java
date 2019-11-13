@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 
 import java.util.ArrayList;
@@ -104,10 +103,10 @@ public class IniciarJuego {
     private void jugadaAtacar(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
         System.out.println(jugador1.getNombre() + " elija una unidad para atacar");
         System.out.println(jugador1.unidadesDisponibles());
-        Unidades unidadAtacante = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+        Unidad unidadAtacante = (Unidad) jugador1.unidadesDisponibles().get(input.nextInt());
         System.out.println("Elija una unidad a atacar");
         System.out.println(jugador2.unidadesDisponibles());
-        Unidades unidadAAtacar = (Unidades) jugador2.unidadesDisponibles().get(input.nextInt());
+        Unidad unidadAAtacar = (Unidad) jugador2.unidadesDisponibles().get(input.nextInt());
         try {
             jugador1.atacar(unidadAtacante, unidadAAtacar);
         }catch (NoPuedeAtacarException | CurarException e){
@@ -119,7 +118,7 @@ public class IniciarJuego {
     private void jugadaMover(Jugador jugador1,Jugador jugador2,Tablero tablero) throws CasilleroOcupadoExcenption, NoPuedeAtacarException, CurarException {
         System.out.println(jugador1.getNombre() + "elija una unidad para mover");
         System.out.println(jugador1.unidadesDisponibles());
-        Unidades unidadAMover = (Unidades) jugador1.unidadesDisponibles().get(input.nextInt());
+        Unidad unidadAMover = (Unidad) jugador1.unidadesDisponibles().get(input.nextInt());
         System.out.println("A que posicion X desea moverla");
         int movimientoX = input.nextInt();
         System.out.println("A que posicion en Y desea moverla");
@@ -135,9 +134,9 @@ public class IniciarJuego {
     private void jugadaCurar(Jugador jugador){
         System.out.println("Seleccione curandero");
         System.out.println(jugador.unidadesDisponibles());
-        Unidades unidadCurandero = (Unidades) jugador.unidadesDisponibles().get(input.nextInt());
+        Unidad unidadCurandero = (Unidad) jugador.unidadesDisponibles().get(input.nextInt());
         System.out.println("Seleccione unidad a curar");
-        Unidades unidadACurar = (Unidades) jugador.unidadesDisponibles().get(input.nextInt());
+        Unidad unidadACurar = (Unidad) jugador.unidadesDisponibles().get(input.nextInt());
         try {
             jugador.atacar(unidadCurandero,unidadACurar);
         } catch (CurarException | NoPuedeAtacarException e) {
