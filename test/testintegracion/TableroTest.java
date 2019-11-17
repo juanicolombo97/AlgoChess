@@ -1,4 +1,5 @@
 import Excepciones.*;
+import excepciones.UnidadInvalidaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -90,6 +91,36 @@ class TableroTest {
             tablero.moverUnidad(1,1,3,3,jugador2);
         }catch (excepciones.UnidadInvalidaException e){
             Assertions.assertEquals("La unidad pertenece al enemigo",e.getMessage());
+        }
+
+    }
+
+    @Test
+    void moverUnidadDistanciaIncorrecta() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException,UnidadNulaException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        //Creo las unidades
+        tablero.crearUnidad(jugador1,1,1,"soldado");
+        try {
+            tablero.moverUnidad(1,1,3,3,jugador1);
+        }catch (MovimientoInvalidoException e){
+            Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
+        }
+    }
+
+    @Test
+    // Intentar mover una posicion vacia lanza error
+    void moverCasilleroVacio() throws CasilleroOcupadoExcenption, UnidadInvalidaException, MovimientoInvalidoException{
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        try {
+            tablero.moverUnidad(1,1,2,2,jugador1);
+        } catch (UnidadNulaException e) {
+            Assertions.assertEquals("Unidad invalida",e.getMessage());
         }
 
     }

@@ -10,6 +10,7 @@ public class Jugador {
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
     private Hashtable casilleroJugador = new Hashtable();
     private UnidadNueva unidadNueva = new UnidadNueva();
+    private UnidadNula unidadNula = new UnidadNula(0,0);
 
     public void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
@@ -57,7 +58,7 @@ public class Jugador {
     }
 
     public void unidadPerteneceAJugador(Unidad unidad) throws UnidadInvalidaException {
-        if (!unidadesDisponibles.contains(unidad)){
+        if (!unidadesDisponibles.contains(unidad) && !unidad.getClass().equals(unidadNula.getClass())){
             throw new UnidadInvalidaException("La unidad pertenece al enemigo");
         }
     }
