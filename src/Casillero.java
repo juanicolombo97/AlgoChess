@@ -7,12 +7,13 @@ public class Casillero {
     public void guardarUnidad(Unidad unidadNueva) {
         unidad_actual = unidadNueva;
    }
-   public void modificarUnidad(Unidad unidadNueva) throws MovimientoInvalidoException {
+
+    public void modificarUnidad(Unidad unidadNueva) throws CasilleroOcupadoExcenption {
         UnidadNula unidadNula = new UnidadNula(0,0);
 
         //Si la unidad almacenada no es una unidad nula lanza error
         if(!unidad_actual.getClass().equals(unidadNula.getClass())){
-            throw new MovimientoInvalidoException("El casillero esta ocupado");
+            throw new CasilleroOcupadoExcenption("El casillero esta ocupado");
         }
         unidad_actual = unidadNueva;
    }

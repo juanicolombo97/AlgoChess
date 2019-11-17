@@ -45,4 +45,9 @@ public class UnidadNula implements Unidad {
         throw new UnidadNulaException("Unidad invalida");
     }
 
+    @Override
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
 }

@@ -53,4 +53,9 @@ public class Jinete implements Unidad {
         posicion.movimientoNuevo(posicionNuevaX,posicionNuevaY);
     }
 
+    @Override
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
 }

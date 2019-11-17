@@ -52,4 +52,9 @@ public class Catapulta implements Unidad {
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
        throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
+
+    @Override
+    public Posicion getPosicion() {
+        return posicion;
+    }
 }
