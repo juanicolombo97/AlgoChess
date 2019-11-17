@@ -1,5 +1,6 @@
 import Excepciones.CasilleroEnemigoException;
 import Excepciones.CasilleroOcupadoExcenption;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoAlcanzanLosPuntosException;
 
 public class Tablero {
@@ -28,7 +29,9 @@ public class Tablero {
             return casillero;
         }
     }
-    public void crearUnidad(Jugador jugador, int posicionX, int posicionY){
-
+    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, MovimientoInvalidoException {
+        Casillero casillero = arrayCasillero[posicionX][posicionY];
+        Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad);
+        casillero.modificarUnidad(unidadCreada);
     }
 }
