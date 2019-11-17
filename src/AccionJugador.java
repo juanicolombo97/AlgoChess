@@ -1,9 +1,10 @@
 import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 
-public class AccionJugador {
+/*public class AccionJugador {
 
-    public void accionNueva(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public void accionNueva(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         //Creo fabrica Acciones.
         AccionesFabrica accionesFabrica = new AccionesFabrica();
 
@@ -15,3 +16,6 @@ public class AccionJugador {
         accionesFabrica.iniciarAccion(distanciaX,distanciaY,atacante,atacado);
     }
 }
+
+
+ */

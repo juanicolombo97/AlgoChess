@@ -1,37 +1,35 @@
 import Excepciones.CurarException;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
+import javafx.geometry.Pos;
 
-public class Soldado implements Unidades{
+public class Soldado implements Unidad {
     private static int costoUnidad = 1;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 10;
-    private int posicionX, posicionY;
+    private Posicion posicion = new Posicion();
 
     public Soldado(int posicionX,int posicionY){
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+        posicion.posicionNueva(posicionX,posicionY);
     }
 
     public int getVidaUnidad(){
         return vidaUnidad;
     }
-    @Override
-    public boolean estaVivo() {
-        return vidaUnidad >= 0;
-    }
 
     @Override
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
         atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
@@ -49,24 +47,12 @@ public class Soldado implements Unidades{
     public void curarse(int vidaACurar) throws CurarException {
         vidaUnidad += vidaACurar;
     }
-    @Override
-    public int posicionEnX(){
-        return posicionX;
-    }
-    @Override
-    public int posicionEnY(){
-        return posicionY;
-    }
 
     @Override
-    public String getNombre() {
-        return "soldado";
+    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
+        posicion.movimientoNuevo(posicionNuevaX,posicionNuevaY);
     }
-    @Override
-    public void nuevaPosicion(int posx, int posy) {
-        this.posicionX = posx;
-        this.posicionY = posy;
-    }
+
 }
 
 

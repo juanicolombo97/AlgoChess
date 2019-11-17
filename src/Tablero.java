@@ -2,17 +2,17 @@ import Excepciones.CasilleroEnemigoException;
 import Excepciones.CasilleroOcupadoExcenption;
 import Excepciones.NoAlcanzanLosPuntosException;
 
-import java.util.*;
-
 public class Tablero {
     private Casillero[][] arrayCasillero;
+    private UnidadNueva unidad = new UnidadNueva();
 
-    public Tablero(Jugador jugador1, Jugador jugador2){
+    public Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoExcenption {
         this.arrayCasillero = new Casillero[21][21];
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
                 Casillero casillero = this.asignarEquipo(i, j,jugador1,jugador2);
                 this.arrayCasillero[i][j] = casillero;
+                this.arrayCasillero[i][j].guardarUnidad(unidad.crearUnidad("",i,j));
             }
         }
     }
@@ -28,18 +28,7 @@ public class Tablero {
             return casillero;
         }
     }
-
-    public void crearUnidad(Jugador jugador,String nombreUnidad,int posX,int posY) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
-        jugador.crearUnidad(posX,posY,nombreUnidad,arrayCasillero[posX][posY]);
+    public void crearUnidad(Jugador jugador, int posicionX, int posicionY){
 
     }
-
-    public Unidades getUnidad(int posX, int posY){
-        return arrayCasillero[posX][posY].getUnidad();
-    }
-
-    public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoExcenption {
-        arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY],posX,posY);
-    }
-
 }

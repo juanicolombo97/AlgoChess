@@ -1,5 +1,7 @@
 import Excepciones.CurarException;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class CuranderoTest {
 
     @Test
-        //Curandero recien creado esta vivo
-    void curanderoRecienCreadoEstaVivo(){
-        Curandero curandero = new Curandero(1,1);
-        Assertions.assertEquals(true,curandero.estaVivo());
-    }
-    @Test
         //El curandero puede curar de cerca y cura correctamente.
 
-    void curanderoPuedeCurarDeCerca() throws CurarException, NoPuedeAtacarException {
+    void curanderoPuedeCurarDeCerca() throws CurarException, NoPuedeAtacarException, UnidadNulaException {
         Curandero curandero = new Curandero(1,1);
         curandero.atacarDistanciaCerca(curandero);
         Assertions.assertEquals(90,curandero.getVidaUnidad());
@@ -45,5 +41,22 @@ class CuranderoTest {
         }
     }
 
+    @Test
+        // Curandero se puede mover de a un casillero
+    void moverUnCuranderoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
+        Curandero curandero = new Curandero(1,1);
+        curandero.moverUnidad(2,2);
+    }
+
+    @Test
+        // Curandero no se puede mover mas de un casillero
+    void movimientoInvalidoCurandero(){
+        Curandero curandero = new Curandero(1,1);
+        try {
+            curandero.moverUnidad(3,2);
+        } catch (MovimientoInvalidoException | UnidadNulaException e) {
+            Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
+        }
+    }
 }
 
