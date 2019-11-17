@@ -3,7 +3,7 @@ package fiuba.algo3.algochess.testclases;
 import fiuba.algo3.algochess.Casillero;
 import fiuba.algo3.algochess.Jinete;
 import fiuba.algo3.algochess.Soldado;
-import fiuba.algo3.algochess.excepciones.CasilleroOcupadoExcenption;
+import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ class CasilleroTest {
     }
 
     @Test
-    void mover_unidad_a() throws CasilleroOcupadoExcenption {
+    void mover_unidad_a() throws CasilleroOcupadoException {
         Soldado soldado = new Soldado(1,1);
         Casillero casilleroorigen = new Casillero();
         Casillero casillerodestino = new Casillero();
@@ -27,7 +27,7 @@ class CasilleroTest {
     }
 
     @Test
-    void recibir_unidad() throws CasilleroOcupadoExcenption{
+    void recibir_unidad() throws CasilleroOcupadoException {
         Jinete jinete = new Jinete(1,1);
         Casillero casillero = new Casillero();
         casillero.recibir_unidad(jinete);
@@ -36,13 +36,13 @@ class CasilleroTest {
 
     @Test
         // No se puede mover unidad a casillero ocupado.
-    void noSeMueveUnidadACasilleroOcupado() throws CasilleroOcupadoExcenption {
+    void noSeMueveUnidadACasilleroOcupado() throws CasilleroOcupadoException {
         Soldado soldado = new Soldado(1,1);
         Casillero casilleroorigen = new Casillero();
         casilleroorigen.recibir_unidad(soldado);
         try {
             casilleroorigen.recibir_unidad(soldado);
-        }catch (CasilleroOcupadoExcenption e){
+        }catch (CasilleroOcupadoException e){
             Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
     }

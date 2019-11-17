@@ -3,7 +3,7 @@ package fiuba.algo3.algochess.testclases;
 import fiuba.algo3.algochess.Jugador;
 import fiuba.algo3.algochess.Tablero;
 import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.excepciones.CasilleroOcupadoExcenption;
+import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class TableroTest {
 
     @Test
     //Se crea tablero y ocloca pieza en sector aliado correctamente.
-    public void creoTableroCorrectamentey() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    public void creoTableroCorrectamentey() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador1 = new Jugador("juani");
         Jugador jugador2 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -24,7 +24,7 @@ public class TableroTest {
     @Test
     // El secto del 1-10 pertenece al primer jugador.
     //Insertar pieza en 11-11 del jugador uno debe generar error.
-    public void agregarUnidadASectorEnemigoLanzaError() throws CasilleroOcupadoExcenption, UnidadInvalidaException {
+    public void agregarUnidadASectorEnemigoLanzaError() throws CasilleroOcupadoException, UnidadInvalidaException {
         Jugador jugador1 = new Jugador("juani");
         Jugador jugador2 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -38,21 +38,21 @@ public class TableroTest {
         }
     }
     @Test
-    public void seVerificaQuePiezaAliadaEnCasilleroOcupadoLanzaError() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+    public void seVerificaQuePiezaAliadaEnCasilleroOcupadoLanzaError() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
         Jugador jugador1 = new Jugador("juani");
         Jugador jugador2 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador1,jugador2);
         tablero.crearUnidad(jugador1,"soldado",1,1);
         try{
             tablero.crearUnidad(jugador1,"soldado",1,1);
-        }catch (CasilleroOcupadoExcenption e){
+        }catch (CasilleroOcupadoException e){
             Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
     }
 
     @Test
     //una unidad se puede mover en todas las dirrecciones
-    public void moverUnidadTodasDirrecciones() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+    public void moverUnidadTodasDirrecciones() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
         Jugador jugador1 = new Jugador("juani");
         Jugador jugador2 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador1, jugador2);

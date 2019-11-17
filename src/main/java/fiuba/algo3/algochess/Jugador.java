@@ -26,7 +26,7 @@ public class Jugador {
     }
 
     //Crea una unidad
-    public void crearUnidad(int posicionX, int posicionY, String unidad,Casillero casillero) throws UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    public void crearUnidad(int posicionX, int posicionY, String unidad,Casillero casillero) throws UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroOcupadoException {
         UnidadNueva unidadNueva = new UnidadNueva();
         Unidad unidadCreada = unidadNueva.crearUnidad(unidad,posicionX,posicionY);
         //Me fijo si el casillero pertenece al jugador y sino agrego la unidad.

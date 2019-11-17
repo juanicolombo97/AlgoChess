@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.excepciones.CasilleroOcupadoExcenption;
+import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 
@@ -30,7 +30,7 @@ public class Tablero {
         }
     }
 
-    public void crearUnidad(Jugador jugador,String nombreUnidad,int posX,int posY) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    public void crearUnidad(Jugador jugador,String nombreUnidad,int posX,int posY) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         jugador.crearUnidad(posX,posY,nombreUnidad,arrayCasillero[posX][posY]);
 
     }
@@ -39,7 +39,7 @@ public class Tablero {
         return arrayCasillero[posX][posY].getUnidad();
     }
 
-    public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoExcenption {
+    public void moverUnidad(int posXInicial,int posYInicial,int posX,int posY) throws CasilleroOcupadoException {
         arrayCasillero[posXInicial][posYInicial].mover_unidad_a(arrayCasillero[posX][posY],posX,posY);
     }
 

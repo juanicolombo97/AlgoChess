@@ -11,7 +11,7 @@ public class IniciarJuego {
 
     Scanner input = new Scanner(System.in);
 
-    public void iniciarJuego() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+    public void iniciarJuego() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, NoPuedeAtacarException, CurarException, CasilleroOcupadoException {
         System.out.println("Bienvenidos a AlgoChess\n\n");
         Jugador jugador1 = crearJugador("Ingrese el nombre del primer fiuba.algochess.Jugador: ");
         Jugador jugador2 = crearJugador("Ingrese el nombre del segundo fiuba.algochess.Jugador: ");
@@ -72,13 +72,13 @@ public class IniciarJuego {
             }catch (NoAlcanzanLosPuntosException e){
                 System.out.println(e.getMessage());
                 System.out.println("Dispone de " + jugador.getPuntos() + "puntos");
-            }catch (UnidadInvalidaException | CasilleroEnemigoException | CasilleroOcupadoExcenption e){
+            }catch (UnidadInvalidaException | CasilleroEnemigoException | CasilleroOcupadoException e){
                 System.out.println(e.getMessage()+ ",eliga una unidad correcta.");
             }
         } while (jugador.getPuntos() != 0);
     }
 
-    private void accionesJuego(Jugador jugador1 ,Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+    private void accionesJuego(Jugador jugador1 ,Jugador jugador2,Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoException {
         while (jugador1.puedeSeguirJugando() && jugador2.puedeSeguirJugando()){
             realizarJugadas(jugador1,jugador2,tablero);
             realizarJugadas(jugador2,jugador1,tablero);
@@ -86,7 +86,7 @@ public class IniciarJuego {
 
     }
 
-    private void realizarJugadas(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+    private void realizarJugadas(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoException {
         System.out.println("Turno de " + jugador1.getNombre() + " desea atacar, mover o curar una unidad");
         String accionJugador = input.next();
         if (accionJugador.equalsIgnoreCase("atacar")){
@@ -100,7 +100,7 @@ public class IniciarJuego {
         }
     }
 
-    private void jugadaAtacar(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoExcenption {
+    private void jugadaAtacar(Jugador jugador1, Jugador jugador2, Tablero tablero) throws NoPuedeAtacarException, CurarException, CasilleroOcupadoException {
         System.out.println(jugador1.getNombre() + " elija una unidad para atacar");
         System.out.println(jugador1.unidadesDisponibles());
         Unidad unidadAtacante = (Unidad) jugador1.unidadesDisponibles().get(input.nextInt());
@@ -115,7 +115,7 @@ public class IniciarJuego {
         }
     }
 
-    private void jugadaMover(Jugador jugador1,Jugador jugador2,Tablero tablero) throws CasilleroOcupadoExcenption, NoPuedeAtacarException, CurarException {
+    private void jugadaMover(Jugador jugador1,Jugador jugador2,Tablero tablero) throws CasilleroOcupadoException, NoPuedeAtacarException, CurarException {
         System.out.println(jugador1.getNombre() + "elija una unidad para mover");
         System.out.println(jugador1.unidadesDisponibles());
         Unidad unidadAMover = (Unidad) jugador1.unidadesDisponibles().get(input.nextInt());
@@ -125,7 +125,7 @@ public class IniciarJuego {
         int movimientoY = input.nextInt();
         try {
             tablero.moverUnidad(unidadAMover.posicionEnX(), unidadAMover.posicionEnY(), movimientoX, movimientoY);
-        }catch (CasilleroOcupadoExcenption e){
+        }catch (CasilleroOcupadoException e){
             System.out.println(e.getMessage());
             realizarJugadas(jugador1,jugador2,tablero);
         }

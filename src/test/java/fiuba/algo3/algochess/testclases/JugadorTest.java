@@ -18,7 +18,7 @@ public class JugadorTest {
     @Test
         // fiuba.algochess.Jugador agrega unidad
 
-    void jugadorPuedeAgregarUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    void jugadorPuedeAgregarUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador = new Jugador("Juani");
         Casillero casillero = new Casillero();
         jugador.agregarCasillero(casillero);
@@ -40,7 +40,7 @@ public class JugadorTest {
     @Test
         //Se verifica que no puede tomar mas de los puntos que le corresponden
 
-    void crearUnidadesDeMasLanzaError() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    void crearUnidadesDeMasLanzaError() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador = new Jugador("Juani");
         Casillero casillero = new Casillero();
         Casillero casillero2 = new Casillero();
@@ -69,7 +69,7 @@ public class JugadorTest {
     }
     @Test
         //fiuba.algochess.Jugador con una pieza, al morir la pieza pierde.
-    void jugadorPierdeSiNoTieneFichas() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, NoPuedeAtacarException, CurarException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    void jugadorPierdeSiNoTieneFichas() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, NoPuedeAtacarException, CurarException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador = new Jugador("juan");
         Casillero casillero = new Casillero();
 
