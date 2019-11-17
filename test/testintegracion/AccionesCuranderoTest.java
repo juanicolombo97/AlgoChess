@@ -1,5 +1,6 @@
 import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +29,7 @@ public class AccionesCuranderoTest {
 
         try {
             accion.accionNueva(curandero,soldado);
-        } catch (CurarException | NoPuedeAtacarException e) {
+        } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
     }
@@ -41,7 +42,7 @@ public class AccionesCuranderoTest {
 
         try {
             accion.accionNueva(curandero,soldado);
-        } catch (CurarException | NoPuedeAtacarException e) {
+        } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
     }
@@ -54,7 +55,7 @@ public class AccionesCuranderoTest {
 
         try {
             accion.accionNueva(curandero,catapulta);
-        } catch (CurarException | NoPuedeAtacarException e) {
+        } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }
     }

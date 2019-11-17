@@ -1,5 +1,7 @@
 import Excepciones.CurarException;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +11,8 @@ import org.junit.jupiter.api.Test;
 class SoldadoTest {
 
     @Test
-        //Soldado recien creado esta vivo.
-    void soldadoRecienCreadoEstaVivo(){
-        Soldado soldado = new Soldado(1,1);
-        Assertions.assertEquals(true,soldado.estaVivo());
-    }
-    @Test
         //El soldado puede atacar de cerca.
-    void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException {
+    void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Soldado soldado = new Soldado(1,1);
         soldado.atacarDistanciaCerca(soldado);
         Assertions.assertEquals(90,soldado.getVidaUnidad());
@@ -47,6 +43,23 @@ class SoldadoTest {
         Soldado soldado = new Soldado(1,1);
         soldado.curarse(30);
         Assertions.assertEquals(130,soldado.getVidaUnidad());
+    }
+    @Test
+        // Soldado se puede mover de a un casillero
+    void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
+        Soldado soldado = new Soldado(1,1);
+        soldado.moverUnidad(2,2);
+    }
+
+    @Test
+        // Soldado no se puede mover mas de un casillero
+    void movimientoInvalidoSoldado(){
+        Soldado soldado = new Soldado(1,1);
+        try {
+            soldado.moverUnidad(3,2);
+        } catch (MovimientoInvalidoException | UnidadNulaException e) {
+            Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
+        }
     }
 }
 

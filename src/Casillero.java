@@ -1,27 +1,25 @@
 import Excepciones.CasilleroOcupadoExcenption;
+import Excepciones.MovimientoInvalidoException;
 
 public class Casillero {
-    private Unidades unidad_actual = null;
+    private Unidad unidad_actual;
 
-    public boolean esta_vacio(){
-        return (this.unidad_actual == null);
-    }
+    public void guardarUnidad(Unidad unidadNueva) {
+        unidad_actual = unidadNueva;
+   }
 
-    // Mueve unidad a otro casillero, elimina la guardada en el atributo unidad_actual
-    public void mover_unidad_a(Casillero destino, int posicionX,int posicionY) throws CasilleroOcupadoExcenption {
-        unidad_actual.nuevaPosicion(posicionX,posicionY);
-        destino.recibir_unidad(this.unidad_actual);
-        this.unidad_actual = null;
-    }
-    // Recibe unidad de otro casillero
-    public void recibir_unidad(Unidades unidad) throws CasilleroOcupadoExcenption {
-        if (!this.esta_vacio()) {
+    public void modificarUnidad(Unidad unidadNueva) throws CasilleroOcupadoExcenption {
+        UnidadNula unidadNula = new UnidadNula(0,0);
+
+        //Si la unidad almacenada no es una unidad nula lanza error
+        if(!unidad_actual.getClass().equals(unidadNula.getClass())){
             throw new CasilleroOcupadoExcenption("El casillero esta ocupado");
         }
-        unidad_actual = unidad;
-    }
+        unidad_actual = unidadNueva;
+   }
 
-    public Unidades getUnidad(){
-        return unidad_actual;
-    }
+
+   public Unidad getUnidad(){
+       return unidad_actual;
+   }
 }

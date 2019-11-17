@@ -1,9 +1,10 @@
 import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 
 public class AccionCercana {
 
-    public AccionCercana(Unidades atacante, Unidades atacado) throws NoPuedeAtacarException, CurarException {
+    public AccionCercana(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         atacante.atacarDistanciaCerca(atacado);
     }
 }

@@ -1,16 +1,17 @@
 import Excepciones.CurarException;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 
-public class Jinete implements Unidades {
+public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private int vidaUnidad = 100;
     private static int danioCuerpo = 5;
     private static int danioDistancia = 15;
-    private int posicionX, posicionY;
+    private Posicion posicion = new Posicion();
 
     public Jinete(int posicionX,int posicionY){
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+        posicion.posicionNueva(posicionX,posicionY);
     }
 
     public int getVidaUnidad(){
@@ -18,22 +19,17 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public boolean estaVivo() {
-        return vidaUnidad >= 0;
-    }
-
-    @Override
-    public void atacarDistanciaCerca(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
         atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
         atacado.recibirDanio(danioDistancia);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidades atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
     }
 
@@ -53,24 +49,13 @@ public class Jinete implements Unidades {
     }
 
     @Override
-    public int posicionEnX(){
-        return posicionX;
+    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
+        posicion.movimientoNuevo(posicionNuevaX,posicionNuevaY);
     }
 
     @Override
-    public int posicionEnY(){
-        return posicionY;
-    }
-
-    @Override
-    public String getNombre() {
-        return "jinete";
-    }
-
-    @Override
-    public void nuevaPosicion(int posx, int posy) {
-        this.posicionX = posx;
-        this.posicionY = posy;
+    public Posicion getPosicion() {
+        return posicion;
     }
 
 }

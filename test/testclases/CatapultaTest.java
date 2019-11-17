@@ -1,5 +1,7 @@
 import Excepciones.CurarException;
+import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
+import Excepciones.UnidadNulaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,13 +9,6 @@ import org.junit.jupiter.api.Test;
 // Prueba el correcto funcionamiento de los metodos de la  clase Catapulta.
 
 public class CatapultaTest {
-
-    @Test
-        //Pruebo que la catapulta este viva al crearla.
-    void catapultaRecienCreadaEstaViva() {
-        Catapulta catapulta = new Catapulta(0,0);
-        Assertions.assertEquals(true,catapulta.estaVivo());
-    }
 
     @Test
         // La catapulta no puede ser curada
@@ -47,10 +42,22 @@ public class CatapultaTest {
     }
     @Test
         // La catapulta ataca correctamente de lejos.
-    void catapultaAtacaCorrectamenteDeLejos() throws NoPuedeAtacarException {
+    void catapultaAtacaCorrectamenteDeLejos() throws NoPuedeAtacarException, UnidadNulaException {
         Catapulta catapulta = new Catapulta(0, 0);
         catapulta.atacarDistanciaLejana(catapulta);
         Assertions.assertEquals(30,catapulta.getVidaUnidad());
+    }
+
+    @Test
+        // Verifico que la cataputa no se puede mover
+
+    void catapultaNoSePuedeMover(){
+        Catapulta catapulta = new Catapulta(0, 0);
+        try {
+            catapulta.moverUnidad(1,1);
+        } catch (MovimientoInvalidoException | UnidadNulaException e) {
+            Assertions.assertEquals("La catapulta no se puede mover",e.getMessage());
+        }
     }
 }
 
