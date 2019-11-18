@@ -19,10 +19,12 @@ public class UnidadesFabrica {
         Catapulta catapulta = new Catapulta(posX,posY);
         Jinete jinete = new Jinete(posX,posY);
         Curandero curandero = new Curandero(posX,posY);
+        UnidadNula unidadNula = new UnidadNula(posX,posY);
 
         unidades.put("soldado",soldado);
         unidades.put("catapulta",catapulta);
         unidades.put("jinete",jinete);
         unidades.put("curandero",curandero);
+        unidades.put("",unidadNula);
     }
 }
