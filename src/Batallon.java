@@ -11,7 +11,6 @@ public class Batallon {
     public ArrayList moverBatallon(Casillero[][] arrayCasillero, int posicionInicialX, int posicionInicialY) {
         listaUnidades.add(arrayCasillero[posicionInicialX][posicionInicialY].getUnidad());
         while (contador != 3 && listaUnidades.size() != 0){
-            System.out.println(listaUnidades);
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             contador++;
             unidadesAMover.add(unidad);

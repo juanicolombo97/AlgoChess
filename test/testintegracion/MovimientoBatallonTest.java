@@ -12,7 +12,7 @@ public class MovimientoBatallonTest {
         tablero.crearUnidad(jugador1,1,1,"soldado");
         tablero.crearUnidad(jugador1,1,2,"soldado");
         tablero.crearUnidad(jugador1,2,2,"soldado");
-        tablero.crearUnidad(jugador1,3,2,"soldado");
         tablero.moverUnidad(2,2,3,3,jugador1);
+        
     }
 }

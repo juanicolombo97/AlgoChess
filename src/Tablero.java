@@ -39,16 +39,23 @@ public class Tablero {
     }
 
     public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
-        Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
-
         unidadesBatallon =batallon.moverBatallon(arrayCasillero,posicionInicialX,posicionInicialY);
+        int distanciaX = posicionFinalX - posicionInicialX;
+        int distanciaY = posicionFinalY - posicionInicialY;
+        for (int x = 0; x < unidadesBatallon.size(); x++){
+            //verifico que el casillero no este ocupado
+            Unidad unidadAMover = (Unidad) unidadesBatallon.get(x);
 
-        System.out.println(unidadesBatallon);
+            int posicionUnidadX = unidadAMover.getPosicion().getPosicionX();
+            int posicionUnidadY = unidadAMover.getPosicion().getPosicionY();
+            int posX = distanciaX + posicionUnidadX;
+            int posY = distanciaY + posicionUnidadY;
 
-        //verifico que el casillero no este ocupado
-        arrayCasillero[posicionFinalX][posicionFinalY].modificarUnidad(unidadAMover);
+            arrayCasillero[posicionUnidadX][posicionUnidadY].eliminarUnidad();
+            arrayCasillero[posX][posY].modificarUnidad(unidadAMover);
+            jugador.moverUnidad(unidadAMover,distanciaX,distanciaY);
+        }
 
-        jugador.moverUnidad(unidadAMover,posicionFinalX,posicionFinalY);
 
     }
 
