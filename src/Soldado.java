@@ -14,6 +14,7 @@ public class Soldado implements Unidad {
         posicion.posicionNueva(posicionX,posicionY);
     }
 
+
     public int getVidaUnidad(){
         return vidaUnidad;
     }
