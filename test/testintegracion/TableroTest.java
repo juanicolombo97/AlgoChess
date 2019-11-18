@@ -8,7 +8,7 @@ class TableroTest {
     @Test
         // Prueba que se inicializa el tablero y coloca pieza correctamente
 
-    void tableroNuevoAgregoUnidadCorrectamente() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
+    void tableroNuevoAgregoUnidadCorrectamente() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -18,7 +18,7 @@ class TableroTest {
     @Test
         // Prueba que se inicializa el tablero y coloca pieza cen casillero ocupado lanza error
 
-    void colocarPiezaEnCasilleroOcupadoLanzaError() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    void colocarPiezaEnCasilleroOcupadoLanzaError() throws excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -26,14 +26,14 @@ class TableroTest {
         tablero.crearUnidad(jugador1,1,1,"soldado");
         try {
             tablero.crearUnidad(jugador1,1,1,"catapulta");
-        }catch (CasilleroOcupadoExcenption e){
+        }catch (CasilleroOcupadoException e){
             Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
     }
     @Test
         // Prueba que se inicializa el tablero y coloca pieza en sector enemigo lanza excepcion
 
-    void tableroNuevoAgregoUnidadPosicionEnemiga() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
+    void tableroNuevoAgregoUnidadPosicionEnemiga() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -48,7 +48,7 @@ class TableroTest {
 
     @Test
         //Muevo unidad a posicion vacia correctamente y no lanza error.
-    void moverUnidadAPosicionVacia() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadAPosicionVacia() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -62,7 +62,7 @@ class TableroTest {
 
     @Test
         //Muevo unidad a posicion ocupada y  lanza error.
-    void moverUnidadAPosicionOcupada() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadAPosicionOcupada() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -72,7 +72,7 @@ class TableroTest {
         tablero.crearUnidad(jugador1,3,3,"soldado");
         try {
             tablero.moverUnidad(1,1,3,3,jugador1);
-        }catch (CasilleroOcupadoExcenption e){
+        }catch (CasilleroOcupadoException e){
             Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
 
@@ -80,7 +80,7 @@ class TableroTest {
 
     @Test
         //Mover unidad enemigo lanza error
-    void moverUnidadEnemigo() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadEnemigo() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -96,7 +96,7 @@ class TableroTest {
     }
 
     @Test
-    void moverUnidadDistanciaIncorrecta() throws CasilleroOcupadoExcenption, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException,UnidadNulaException {
+    void moverUnidadDistanciaIncorrecta() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException,UnidadNulaException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -112,7 +112,7 @@ class TableroTest {
 
     @Test
     // Intentar mover una posicion vacia lanza error
-    void moverCasilleroVacio() throws CasilleroOcupadoExcenption, UnidadInvalidaException, MovimientoInvalidoException{
+    void moverCasilleroVacio() throws CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException{
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);

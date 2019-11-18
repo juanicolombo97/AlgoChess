@@ -1,5 +1,5 @@
 import Excepciones.CasilleroEnemigoException;
-import Excepciones.CasilleroOcupadoExcenption;
+import Excepciones.CasilleroOcupadoException;
 import Excepciones.NoAlcanzanLosPuntosException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class JugadorTest {
 
     @Test
         //Jugador puede poner hasta 20 puntos
-    void jugadorSoloPuedePoner20Puntos() throws CasilleroOcupadoExcenption, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
+    void jugadorSoloPuedePoner20Puntos() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
         Jugador jugador = new Jugador();
         Tablero tablero = new Tablero(jugador,jugador);
 

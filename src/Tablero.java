@@ -4,7 +4,7 @@ public class Tablero {
     private Casillero[][] arrayCasillero;
     private UnidadNueva unidad = new UnidadNueva();
 
-    public Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoExcenption {
+    public Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
@@ -28,13 +28,13 @@ public class Tablero {
         }
     }
 
-    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoExcenption {
+    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Casillero casillero = arrayCasillero[posicionX][posicionY];
         Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad);
         casillero.modificarUnidad(unidadCreada);
     }
 
-    public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoExcenption {
+    public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
         Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
 
         //verifico que el casillero no este ocupado
