@@ -22,12 +22,13 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    int distanciaXHasta(Posicion posicion){
-        return (this.posicionX - posicion.getPosicionX());
+
+    public int distanciaXHasta(Posicion posicion){
+        return (Math.abs(this.posicionX - posicion.getPosicionX()));
     }
 
-    int distanciaYHasta(Posicion posicion){
-        return (this.posicionY - posicion.getPosicionY());
+    public int distanciaYHasta(Posicion posicion){
+        return (Math.abs(this.posicionY - posicion.getPosicionY()));
     }
 
    /* creo que tener estos métodos rompe el encapsulamiento que se trata de tener con
