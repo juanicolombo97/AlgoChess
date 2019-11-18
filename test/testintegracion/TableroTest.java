@@ -124,5 +124,15 @@ class TableroTest {
         }
 
     }
+    @Test
+        //Prueba de ataque
+    void catapultaAtacaJineteADistancia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador1,1,1,"Catapulta");
+        tablero.crearUnidad(jugador2,11,11,"soldado");
+    }
 
 }

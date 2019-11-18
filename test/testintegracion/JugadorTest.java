@@ -1,6 +1,4 @@
-import Excepciones.CasilleroEnemigoException;
-import Excepciones.CasilleroOcupadoException;
-import Excepciones.NoAlcanzanLosPuntosException;
+import Excepciones.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +28,31 @@ public class JugadorTest {
         }catch (NoAlcanzanLosPuntosException e){
             Assertions.assertEquals("Puntos no disponibles",e.getMessage());
         }
+    }
+
+    @Test
+        // Jugador no puede atacar a unidad aliada, salvo que sea catapulta.
+    void atacarUnidadAliadaError() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
+        Jugador jugador = new Jugador();
+        Tablero tablero = new Tablero(jugador,jugador);
+        tablero.crearUnidad(jugador,1,1,"soldado");
+        tablero.crearUnidad(jugador,2,2,"soldado");
+        try {
+            tablero.atacar(1,1,2,2,jugador);
+        }catch (excepciones.UnidadInvalidaException e){
+            Assertions.assertEquals("La unidad es aliada",e.getMessage());
+        }
+    }
+
+    @Test
+        // La catapulta si puede atacar unidades aliadas y no lanza error.
+    void catapultaAtacaUnidadAliada() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
+        Jugador jugador = new Jugador();
+        Tablero tablero = new Tablero(jugador,jugador);
+        tablero.crearUnidad(jugador,1,1,"catapulta");
+        tablero.crearUnidad(jugador,9,9,"soldado");
+        tablero.atacar(1,1,9,9,jugador);
+
     }
 }
 
