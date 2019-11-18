@@ -4,7 +4,10 @@ import Excepciones.UnidadNulaException;
 
 public class AccionesFabrica {
 
-    public void iniciarAccion(int distanciaX, int distanciaY, Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void iniciarAccion(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+
+        int distanciaX = atacante.getPosicion().distanciaXHasta(atacado.getPosicion());
+        int distanciaY = atacante.getPosicion().distanciaYHasta(atacado.getPosicion());
 
         if((-2 <= distanciaX && distanciaX <= 2) && (-2 <= distanciaY && distanciaY <= 2)){
             new AccionCercana(atacante,atacado);
