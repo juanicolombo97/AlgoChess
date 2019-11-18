@@ -11,18 +11,19 @@ public class Jugador {
     private Hashtable casilleroJugador = new Hashtable();
     private UnidadNueva unidadNueva = new UnidadNueva();
     private UnidadNula unidadNula = new UnidadNula(0,0);
+    private Catapulta catapultaAtacarAliado = new Catapulta(0,0);
 
-    public void agregarCasillero(Casillero casilleroNuevo){
+    void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
     }
 
-    public void casilleroAliado(Casillero casillero) throws CasilleroEnemigoException {
+    private void casilleroAliado(Casillero casillero) throws CasilleroEnemigoException {
         if (!casilleroJugador.containsKey(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
     }
 
-    public Unidad crearUnidad(int posicionX,int posicionY, Casillero casillero,String nombreUnidad) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
         //Llamo para ver si el casillero pertenece al jugador
         casilleroAliado(casillero);
@@ -36,36 +37,40 @@ public class Jugador {
         return unidadCreada;
     }
 
-    public void disponeDePuntos() throws NoAlcanzanLosPuntosException {
+    private void disponeDePuntos() throws NoAlcanzanLosPuntosException {
         if (puntosColocacionFichas <= 0){
             throw new NoAlcanzanLosPuntosException("Puntos no disponibles");
         }
     }
 
-    public void modificarPuntos(Unidad unidad) {
+    private void modificarPuntos(Unidad unidad) {
         puntosColocacionFichas -= unidad.cuantoCuesta();
     }
 
-    public boolean puedeSeguirJugando(){
+    boolean puedeSeguirJugando(){
         return unidadesDisponibles.size() !=0;
     }
 
     public void moverUnidad(Unidad unidadAMover, int posX, int posY) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
         // verifico que pertenesca al jugador la unidad
-        unidadPerteneceAJugador(unidadAMover);
+        unidadPerteneceAJugador(unidadAMover,false,"La unidad pertenece al enemigo");
 
         unidadAMover.moverUnidad(posX,posY);
     }
 
-    public void unidadPerteneceAJugador(Unidad unidad) throws UnidadInvalidaException {
-        if (!unidadesDisponibles.contains(unidad) && !unidad.getClass().equals(unidadNula.getClass())){
-            throw new UnidadInvalidaException("La unidad pertenece al enemigo");
+    private void unidadPerteneceAJugador(Unidad unidad, boolean pertenece, String mensajeError) throws UnidadInvalidaException {
+        if ( pertenece ==unidadesDisponibles.contains(unidad) && !unidad.getClass().equals(unidadNula.getClass())){
+            throw new UnidadInvalidaException(mensajeError);
         }
     }
 
-    public void atacar(Unidad atacante, Unidad atacado) throws CurarException, UnidadNulaException, NoPuedeAtacarException {
+    void atacar(Unidad atacante, Unidad atacado) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
         AccionJugador accion = new AccionJugador();
 
+        //Si la unidad no es una catapulta no puede atacar aliados
+        if (!atacante.getClass().equals(catapultaAtacarAliado.getClass())){
+            unidadPerteneceAJugador(atacado,true,"La unidad es aliada");
+        }
         accion.accionNueva(atacante,atacado);
     }
 }

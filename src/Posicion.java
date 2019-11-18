@@ -3,13 +3,14 @@ import Excepciones.MovimientoInvalidoException;
 public class Posicion {
 
     private int posicionX, posicionY;
-    public void posicionNueva(int posicionX, int posicionY){
+
+    void posicionNueva(int posicionX, int posicionY){
 
         this.posicionX = posicionX;
         this.posicionY = posicionY;
     }
 
-    public void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
+    void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
         int posicionFinalX = this.posicionX - posicionX;
         int posicionFinalY = this.posicionY - posicionY;
 
@@ -21,11 +22,11 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    public int distanciaXHasta(Posicion posicion){
+    int distanciaXHasta(Posicion posicion){
         return (this.posicionX - posicion.getPosicionX());
     }
 
-    public int distanciaYHasta(Posicion posicion){
+    int distanciaYHasta(Posicion posicion){
         return (this.posicionY - posicion.getPosicionY());
     }
 
