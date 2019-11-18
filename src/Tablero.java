@@ -1,8 +1,12 @@
 import Excepciones.*;
 
+import java.util.ArrayList;
+
 public class Tablero {
     private Casillero[][] arrayCasillero;
     private UnidadNueva unidad = new UnidadNueva();
+    private Batallon batallon = new Batallon();
+    private ArrayList unidadesBatallon;
 
     Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
@@ -36,6 +40,10 @@ public class Tablero {
 
     public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
         Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
+
+        unidadesBatallon =batallon.moverBatallon(arrayCasillero,posicionInicialX,posicionInicialY);
+
+        System.out.println(unidadesBatallon);
 
         //verifico que el casillero no este ocupado
         arrayCasillero[posicionFinalX][posicionFinalY].modificarUnidad(unidadAMover);
