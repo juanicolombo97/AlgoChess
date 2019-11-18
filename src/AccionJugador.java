@@ -13,8 +13,8 @@ public class AccionJugador {
         Posicion posicionAtacante = atacante.getPosicion();
         Posicion posicionAtacado = atacado.getPosicion();
 
-        distanciaX = posicionAtacante.getPosicionX() - posicionAtacado.getPosicionX();
-        distanciaY = posicionAtacante.getPosicionY() - posicionAtacado.getPosicionY();
+        distanciaX = posicionAtacante.distanciaXHasta(posicionAtacado);
+        distanciaY = posicionAtacante.distanciaYHasta(posicionAtacado);
 
         accionesFabrica.iniciarAccion(distanciaX,distanciaY,atacante,atacado);
     }

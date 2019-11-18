@@ -1,7 +1,5 @@
 import Excepciones.MovimientoInvalidoException;
 
-import java.util.Hashtable;
-
 public class Posicion {
 
     private int posicionX, posicionY;
@@ -23,7 +21,18 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    public int getPosicionX(){
+    public int distanciaXHasta(Posicion posicion){
+        return (this.posicionX - posicion.getPosicionX());
+    }
+
+    public int distanciaYHasta(Posicion posicion){
+        return (this.posicionY - posicion.getPosicionY());
+    }
+
+   /* creo que tener estos métodos rompe el encapsulamiento que se trata de tener con
+   esta clase */
+
+   public int getPosicionX(){
         return posicionX;
     }
     public int getPosicionY(){
