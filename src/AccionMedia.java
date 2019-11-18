@@ -4,7 +4,7 @@ import Excepciones.UnidadNulaException;
 
 public class AccionMedia {
 
-    public AccionMedia(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
-        atacante.atacarDistanciaMediana(atacado);
+    public AccionMedia(Unidad atacante, Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+        atacante.atacarDistanciaMediana(atacado,danioExtra);
     }
 }

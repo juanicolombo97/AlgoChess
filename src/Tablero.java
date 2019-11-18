@@ -48,6 +48,6 @@ public class Tablero {
         Unidad unidadAtacante = arrayCasillero[posicionAtacanteX][posicionAtacanteY].getUnidad();
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
 
-        jugador.atacar(unidadAtacante,unidadAtacada);
+        jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY]);
     }
 }

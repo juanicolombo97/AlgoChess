@@ -4,7 +4,7 @@ import Excepciones.UnidadNulaException;
 
 public class AccionCercana {
 
-    public AccionCercana(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
-        atacante.atacarDistanciaCerca(atacado);
+    public AccionCercana(Unidad atacante, Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+        atacante.atacarDistanciaCerca(atacado,danioExtra);
     }
 }

@@ -15,7 +15,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         // Curandero cura a Soldado.
-        accion.accionNueva(curandero, soldado);
+        accion.accionNueva(curandero, soldado, 0.05);
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
@@ -28,7 +28,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado);
+            accion.accionNueva(curandero,soldado, 0.05);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -41,7 +41,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado);
+            accion.accionNueva(curandero,soldado, 0.05);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -54,7 +54,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,catapulta);
+            accion.accionNueva(curandero,catapulta, 0.05);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }

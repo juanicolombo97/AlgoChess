@@ -15,7 +15,7 @@ public class AccionesSoldadoTest {
         Curandero curandero = new Curandero(1,1);
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(soldado,curandero);
+        accion.accionNueva(soldado,curandero, 0.05);
         //Compruebo que el curandero se le halla restado la vida correctamente.
         Assertions.assertEquals(65,curandero.getVidaUnidad());
     }
@@ -27,7 +27,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero);
+            accion.accionNueva(soldado,curandero, 0.05);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
@@ -40,7 +40,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero);
+            accion.accionNueva(soldado,curandero, 0.05);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }

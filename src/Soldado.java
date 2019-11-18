@@ -2,12 +2,11 @@ import Excepciones.CurarException;
 import Excepciones.MovimientoInvalidoException;
 import Excepciones.NoPuedeAtacarException;
 import Excepciones.UnidadNulaException;
-import javafx.geometry.Pos;
 
 public class Soldado implements Unidad {
     private static int costoUnidad = 1;
-    private int vidaUnidad = 100;
-    private static int danioCuerpo = 10;
+    private double vidaUnidad = 100;
+    private static double danioCuerpo = 10;
     private Posicion posicion = new Posicion();
 
     public Soldado(int posicionX,int posicionY){
@@ -15,27 +14,27 @@ public class Soldado implements Unidad {
     }
 
 
-    public int getVidaUnidad(){
+    public double getVidaUnidad(){
         return vidaUnidad;
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioCuerpo);
+    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danioCuerpo + (danioCuerpo * danioExtra));
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void recibirDanio(int danioRecibido) {
+    public void recibirDanio(double danioRecibido) {
         vidaUnidad -= danioRecibido;
     }
 

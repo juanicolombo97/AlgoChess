@@ -64,13 +64,22 @@ public class Jugador {
         }
     }
 
-    void atacar(Unidad atacante, Unidad atacado) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
+    void atacar(Unidad atacante, Unidad atacado, Casillero casillero) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
         AccionJugador accion = new AccionJugador();
 
         //Si la unidad no es una catapulta no puede atacar aliados
         if (!atacante.getClass().equals(catapultaAtacarAliado.getClass())){
             unidadPerteneceAJugador(atacado,true,"La unidad es aliada");
         }
-        accion.accionNueva(atacante,atacado);
+        if (casilleroJugador.containsKey(casillero)){
+            accion.accionNueva(atacante,atacado,0.05);
+        }else{
+            accion.accionNueva(atacante,atacado,0);
+        }
+
+    }
+
+    public ArrayList getUnidadesDisponibles(){
+        return unidadesDisponibles;
     }
 }

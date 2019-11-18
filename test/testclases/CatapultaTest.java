@@ -25,7 +25,7 @@ public class CatapultaTest {
     void catapultaNoAtacaDeCerca(){
         Catapulta catapulta = new Catapulta(0,0);
         try {
-            catapulta.atacarDistanciaCerca(catapulta);
+            catapulta.atacarDistanciaCerca(catapulta, 0);
         } catch (NoPuedeAtacarException e) {
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
@@ -35,7 +35,7 @@ public class CatapultaTest {
     void catapultaNoAtacarADistanciaMedia(){
         Catapulta catapulta = new Catapulta(0,0);
         try {
-            catapulta.atacarDistanciaMediana(catapulta);
+            catapulta.atacarDistanciaMediana(catapulta, 0);
         } catch (NoPuedeAtacarException e) {
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
@@ -44,7 +44,7 @@ public class CatapultaTest {
         // La catapulta ataca correctamente de lejos.
     void catapultaAtacaCorrectamenteDeLejos() throws NoPuedeAtacarException, UnidadNulaException {
         Catapulta catapulta = new Catapulta(0, 0);
-        catapulta.atacarDistanciaLejana(catapulta);
+        catapulta.atacarDistanciaLejana(catapulta, 0);
         Assertions.assertEquals(30,catapulta.getVidaUnidad());
     }
 

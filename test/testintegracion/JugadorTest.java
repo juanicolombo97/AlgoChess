@@ -2,6 +2,8 @@ import Excepciones.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class JugadorTest {
 
     @Test
@@ -53,6 +55,24 @@ public class JugadorTest {
         tablero.crearUnidad(jugador,9,9,"soldado");
         tablero.atacar(1,1,9,9,jugador);
 
+    }
+
+    @Test
+        // Atacar unidad enemiga en territorio aliado genera mas danio.
+    void unidadAtacaMasFuerte() throws CasilleroOcupadoException, excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException, MovimientoInvalidoException {
+        Jugador jugador = new Jugador();
+        Jugador jugador1 = new Jugador();
+        Tablero tablero = new Tablero(jugador,jugador1);
+        tablero.crearUnidad(jugador,1,1,"catapulta");
+        tablero.crearUnidad(jugador1,11,11,"soldado");
+
+        tablero.moverUnidad(11,11,10,10,jugador1);
+        tablero.moverUnidad(10,10,9,9,jugador1);
+
+        tablero.atacar(1,1,9,9,jugador);
+        ArrayList unidades = jugador1.getUnidadesDisponibles();
+        Soldado unidad = (Soldado) unidades.get(0);
+        Assertions.assertEquals(79,unidad.getVidaUnidad());
     }
 }
 

@@ -5,8 +5,6 @@ import Excepciones.UnidadNulaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 //Pruebas para el correcto funcionamiento de los metodos de Curandero.
 class CuranderoTest {
@@ -16,7 +14,7 @@ class CuranderoTest {
 
     void curanderoPuedeCurarDeCerca() throws CurarException, NoPuedeAtacarException, UnidadNulaException {
         Curandero curandero = new Curandero(1,1);
-        curandero.atacarDistanciaCerca(curandero);
+        curandero.atacarDistanciaCerca(curandero, 0);
         Assertions.assertEquals(90,curandero.getVidaUnidad());
     }
 
@@ -25,7 +23,7 @@ class CuranderoTest {
     void curanderoNoPuedeCurarDistanciaMedia() throws CurarException{
         Curandero curandero = new Curandero(1,1);
         try {
-            curandero.atacarDistanciaMediana(curandero);
+            curandero.atacarDistanciaMediana(curandero, 0);
         } catch (CurarException | NoPuedeAtacarException e) {
             Assertions.assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -35,7 +33,7 @@ class CuranderoTest {
     void curanderoNoPuedeCurarDistanciaLejana() throws CurarException{
         Curandero curandero = new Curandero(1,1);
         try {
-            curandero.atacarDistanciaLejana(curandero);
+            curandero.atacarDistanciaLejana(curandero, 0);
         } catch (CurarException | NoPuedeAtacarException e) {
             Assertions.assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }

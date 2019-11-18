@@ -14,7 +14,7 @@ class SoldadoTest {
         //El soldado puede atacar de cerca.
     void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Soldado soldado = new Soldado(1,1);
-        soldado.atacarDistanciaCerca(soldado);
+        soldado.atacarDistanciaCerca(soldado, 0);
         Assertions.assertEquals(90,soldado.getVidaUnidad());
     }
     @Test
@@ -22,7 +22,7 @@ class SoldadoTest {
     void soldadoNoPuedeAtacarDistanciaMedia() throws NoPuedeAtacarException {
         Soldado soldado = new Soldado(1, 1);
         try {
-            soldado.atacarDistanciaLejana(soldado);
+            soldado.atacarDistanciaLejana(soldado, 0);
         } catch (NoPuedeAtacarException e) {
             Assertions.assertEquals("El soldado solo ataca distancia cercana", e.getMessage());
         }
@@ -32,7 +32,7 @@ class SoldadoTest {
     void soldadoNoPuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
         Soldado soldado = new Soldado(1,1);
         try {
-            soldado.atacarDistanciaLejana(soldado);
+            soldado.atacarDistanciaLejana(soldado, 0);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }

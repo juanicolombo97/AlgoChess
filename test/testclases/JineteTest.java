@@ -14,14 +14,14 @@ class JineteTest {
         //El jinete puede atacar de cerca.
     void jinetePuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaCerca(jinete);
+        jinete.atacarDistanciaCerca(jinete, 0);
         Assertions.assertEquals(95,jinete.getVidaUnidad());
     }
     @Test
         //El jinete puede atacar a distancia media.
     void jinetePuedeAtacarDistanciaMediana() throws NoPuedeAtacarException, UnidadNulaException {
         Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaMediana(jinete);
+        jinete.atacarDistanciaMediana(jinete, 0);
         Assertions.assertEquals(85,jinete.getVidaUnidad());
     }
     @Test
@@ -29,7 +29,7 @@ class JineteTest {
     void jinetePuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
         Jinete jinete = new Jinete(1,1);
         try {
-            jinete.atacarDistanciaLejana(jinete);
+            jinete.atacarDistanciaLejana(jinete, 0);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
         }
