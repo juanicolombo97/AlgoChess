@@ -6,7 +6,7 @@
 
     <groupId>fiuba.algo3.algochess</groupId>
         <artifactId>AlgoChess</artifactId>
-    <version>5.5.2</version>
+    <version>1.0</version>
 
     <name>AlgoChess</name>
     <url>https://github.com/juanicolombo97/AlgoChess</url>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.5.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
