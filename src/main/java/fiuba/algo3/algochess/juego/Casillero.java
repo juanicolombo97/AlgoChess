@@ -1,6 +1,8 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.unidades.UnidadNula;
 
 public class Casillero {
     private Unidad unidad_actual;

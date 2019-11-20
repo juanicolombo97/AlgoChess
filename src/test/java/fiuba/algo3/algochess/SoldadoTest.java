@@ -4,12 +4,12 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.Soldado;
+import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-//Pruebas realizadas a la clase fiuba.algo3.algochess.Soldado.
+//Pruebas realizadas a la clase fiuba.algo3.algochess.unidades.Soldado.
 
 class SoldadoTest {
 
@@ -48,14 +48,14 @@ class SoldadoTest {
         Assertions.assertEquals(130,soldado.getVidaUnidad());
     }
     @Test
-        // fiuba.algo3.algochess.Soldado se puede mover de a un casillero
+        // fiuba.algo3.algochess.unidades.Soldado se puede mover de a un casillero
     public void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Soldado soldado = new Soldado(1,1);
         soldado.moverUnidad(1,1);
     }
 
     @Test
-        // fiuba.algo3.algochess.Soldado no se puede mover mas de un casillero
+        // fiuba.algo3.algochess.unidades.Soldado no se puede mover mas de un casillero
     public void movimientoInvalidoSoldado(){
         Soldado soldado = new Soldado(1,1);
         try {

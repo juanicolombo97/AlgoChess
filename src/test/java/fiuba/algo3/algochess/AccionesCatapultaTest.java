@@ -1,16 +1,16 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.AccionJugador;
-import fiuba.algo3.algochess.Catapulta;
-import fiuba.algo3.algochess.Curandero;
-import fiuba.algo3.algochess.Soldado;
+import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.unidades.Catapulta;
+import fiuba.algo3.algochess.unidades.Curandero;
+import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccionesCatapultaTest {
-    // Prueba de fiuba.algo3.algochess.Catapulta atacando soldado.
+    // Prueba de fiuba.algo3.algochess.unidades.Catapulta atacando soldado.
 
     @Test
     //Prueba con ataque de cerca.

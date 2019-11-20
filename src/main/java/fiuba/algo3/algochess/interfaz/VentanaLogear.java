@@ -23,10 +23,10 @@ public class VentanaLogear {
         GridPane.setConstraints(usuario,0,1);
 
         TextField usuarioInput = new TextField();
-        usuarioInput.setPromptText("fiuba.algo3.algochess.Jugador");
+        usuarioInput.setPromptText("fiuba.algo3.algochess.juego.Jugador");
         GridPane.setConstraints(usuarioInput,1,1);
 
-        Button botonCrearJugador = new Button("Crear fiuba.algo3.algochess.Jugador");
+        Button botonCrearJugador = new Button("Crear fiuba.algo3.algochess.juego.Jugador");
         botonCrearJugador.setOnAction(e ->VentanaLogear.display("jugador2"));
         GridPane.setConstraints(botonCrearJugador,1,2);
 

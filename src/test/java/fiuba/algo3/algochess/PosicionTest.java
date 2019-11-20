@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.Posicion;
+import fiuba.algo3.algochess.juego.Posicion;
 import org.junit.Assert;
 import org.junit.Test;
 

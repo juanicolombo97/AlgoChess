@@ -1,38 +1,40 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 
-public class Soldado implements Unidad {
-    private static int costoUnidad = 1;
-    private double vidaUnidad = 100;
-    private static double danioCuerpo = 10;
+//Clase donde se implementa la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Catapulta
+
+public class Catapulta implements Unidad {
+    private static int costoUnidad = 5;
+    private double vidaUnidad = 50;
+    private static double danioDistancia = 20;
     private Posicion posicion = new Posicion();
 
-    public Soldado(int posicionX,int posicionY){
+    public Catapulta(int posicionX,int posicionY){
         posicion.posicionNueva(posicionX,posicionY);
     }
-
 
     public double getVidaUnidad(){
         return vidaUnidad;
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioCuerpo + (danioCuerpo * danioExtra));
+    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
     public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
+        throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danioDistancia + (danioExtra * danioDistancia));
     }
 
     @Override
@@ -47,19 +49,15 @@ public class Soldado implements Unidad {
 
     @Override
     public void curarse(int vidaACurar) throws CurarException {
-        vidaUnidad += vidaACurar;
+        throw new CurarException("La catapulta no puede ser curada");
     }
-
     @Override
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.movimientoNuevo(posicionNuevaX,posicionNuevaY);
+       throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 
     @Override
     public Posicion getPosicion() {
         return posicion;
     }
-
 }
-
-

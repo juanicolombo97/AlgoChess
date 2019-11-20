@@ -4,12 +4,12 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.Catapulta;
+import fiuba.algo3.algochess.unidades.Catapulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-// Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.Catapulta.
+// Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.unidades.Catapulta.
 
 public class CatapultaTest {
 

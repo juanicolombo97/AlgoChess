@@ -1,7 +1,12 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.juego;
 
+import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.unidades.Catapulta;
+import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.unidades.UnidadNueva;
+import fiuba.algo3.algochess.unidades.UnidadNula;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

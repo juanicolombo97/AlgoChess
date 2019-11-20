@@ -1,8 +1,8 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.Jugador;
-import fiuba.algo3.algochess.Tablero;
+import fiuba.algo3.algochess.juego.Jugador;
+import fiuba.algo3.algochess.juego.Tablero;
 import org.junit.jupiter.api.Test;
 
 public class MovimientoBatallonTest {

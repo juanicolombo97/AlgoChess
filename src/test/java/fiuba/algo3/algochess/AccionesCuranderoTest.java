@@ -3,10 +3,10 @@ package fiuba.algo3.algochess;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.AccionJugador;
-import fiuba.algo3.algochess.Catapulta;
-import fiuba.algo3.algochess.Curandero;
-import fiuba.algo3.algochess.Soldado;
+import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.unidades.Catapulta;
+import fiuba.algo3.algochess.unidades.Curandero;
+import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AccionesCuranderoTest {
 
     @Test
-        //fiuba.algo3.algochess.Curandero cura a soldado a distancia cercana
+        //fiuba.algo3.algochess.unidades.Curandero cura a soldado a distancia cercana
     public void curanderoCuraSoldado() throws Exception {
         Soldado soldado = new Soldado(1,1);
         Curandero curandero = new Curandero(1,1);
         AccionJugador accion = new AccionJugador();
 
-        // fiuba.algo3.algochess.Curandero cura a fiuba.algo3.algochess.Soldado.
+        // fiuba.algo3.algochess.unidades.Curandero cura a fiuba.algo3.algochess.unidades.Soldado.
         accion.accionNueva(curandero, soldado, 0.05);
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
     }
     @Test
-        //fiuba.algo3.algochess.Curandero no puede curar a soldado a distancia media
+        //fiuba.algo3.algochess.unidades.Curandero no puede curar a soldado a distancia media
     public void curanderoNoCuraUnidadMediaDistancia(){
         Soldado soldado = new Soldado(1,1);
         Curandero curandero = new Curandero(4,4);
@@ -40,7 +40,7 @@ public class AccionesCuranderoTest {
         }
     }
     @Test
-        //fiuba.algo3.algochess.Curandero no puede curar a soldado a distancia lejana
+        //fiuba.algo3.algochess.unidades.Curandero no puede curar a soldado a distancia lejana
     public void curanderoNoCuraUnidadLejanaDistancia(){
         Soldado soldado = new Soldado(1,1);
         Curandero curandero = new Curandero(7,7);

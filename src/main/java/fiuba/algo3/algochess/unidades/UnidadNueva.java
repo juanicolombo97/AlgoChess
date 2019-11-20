@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.unidades;
 
 public class UnidadNueva {
 

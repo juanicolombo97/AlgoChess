@@ -4,12 +4,12 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.Jinete;
+import fiuba.algo3.algochess.unidades.Jinete;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-//Pruebas realizadas a la clase fiuba.algo3.algochess.Soldado.
+//Pruebas realizadas a la clase fiuba.algo3.algochess.unidades.Soldado.
 
 class JineteTest {
 
@@ -45,14 +45,14 @@ class JineteTest {
         Assertions.assertEquals(130,jinete.getVidaUnidad());
     }
     @Test
-        // fiuba.algo3.algochess.Jinete se puede mover de a un casillero
+        // fiuba.algo3.algochess.unidades.Jinete se puede mover de a un casillero
     public void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Jinete jinete = new Jinete(1,1);
         jinete.moverUnidad(1,1);
     }
 
     @Test
-        // fiuba.algo3.algochess.Jinete no se puede mover mas de un casillero
+        // fiuba.algo3.algochess.unidades.Jinete no se puede mover mas de un casillero
     public void movimientoInvalidoJinete(){
         Jinete jinete = new Jinete(1,1);
         try {

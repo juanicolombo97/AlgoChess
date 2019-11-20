@@ -1,9 +1,9 @@
 package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.Jugador;
-import fiuba.algo3.algochess.Soldado;
-import fiuba.algo3.algochess.Tablero;
+import fiuba.algo3.algochess.juego.Jugador;
+import fiuba.algo3.algochess.juego.Tablero;
+import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class JugadorTest {
 
     @Test
-        //fiuba.algo3.algochess.Jugador recien creado no tiene unidades
+        //fiuba.algo3.algochess.juego.Jugador recien creado no tiene unidades
     public void jugadorNoPoseeUnidades(){
         Jugador jugador = new Jugador();
         Assertions.assertEquals(false, jugador.puedeSeguirJugando());
     }
 
     @Test
-        //fiuba.algo3.algochess.Jugador puede poner hasta 20 puntos
+        //fiuba.algo3.algochess.juego.Jugador puede poner hasta 20 puntos
     public void jugadorSoloPuedePoner20Puntos() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
         Jugador jugador = new Jugador();
         Tablero tablero = new Tablero(jugador,jugador);
@@ -38,7 +38,7 @@ public class JugadorTest {
     }
 
     @Test
-        // fiuba.algo3.algochess.Jugador no puede atacar a unidad aliada, salvo que sea catapulta.
+        // fiuba.algo3.algochess.juego.Jugador no puede atacar a unidad aliada, salvo que sea catapulta.
     public void atacarUnidadAliadaError() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
         Jugador jugador = new Jugador();
         Tablero tablero = new Tablero(jugador,jugador);

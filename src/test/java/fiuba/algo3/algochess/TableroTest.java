@@ -2,8 +2,8 @@ package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.Jugador;
-import fiuba.algo3.algochess.Tablero;
+import fiuba.algo3.algochess.juego.Jugador;
+import fiuba.algo3.algochess.juego.Tablero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -124,7 +124,7 @@ public class TableroTest {
         try {
             tablero.moverUnidad(1,1,2,2,jugador1);
         } catch (UnidadNulaException e) {
-            Assertions.assertEquals("fiuba.algo3.algochess.Unidad invalida",e.getMessage());
+            Assertions.assertEquals("fiuba.algo3.algochess.unidades.Unidad invalida",e.getMessage());
         }
 
     }
