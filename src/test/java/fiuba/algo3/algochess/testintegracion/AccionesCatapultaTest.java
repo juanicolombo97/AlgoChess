@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccionesCatapultaTest {
-    // Prueba de fiuba.algo3.algochess.unidades.Catapulta atacando soldado.
+    // Prueba de Catapulta atacando soldado.
 
     @Test
-    //Prueba con ataque de cerca.
-    public void catapultaAtacaDeCerca() throws Exception {
+        //Prueba con ataque de cerca.
+    void catapultaAtacaDeCerca() throws Exception {
         Soldado soldado = new Soldado(1,1);
         Catapulta catapulta = new Catapulta(1,1);
         AccionJugador accion = new AccionJugador();
@@ -26,8 +26,8 @@ public class AccionesCatapultaTest {
 
     }
     @Test
-    //Prueba con ataque distancia media.
-    public void catapultaAtacaDeDistanciaMedia() throws Exception {
+        //Prueba con ataque distancia media.
+    void catapultaAtacaDeDistanciaMedia() throws Exception {
         Soldado soldado = new Soldado(1,1);
         Catapulta catapulta = new Catapulta(4,4);
         AccionJugador accion = new AccionJugador();
@@ -40,7 +40,7 @@ public class AccionesCatapultaTest {
     }
     @Test
         //Prueba con ataque de distancia lejana.
-    public void catapultaAtacaUnidadDeDistanciaLejana() throws Exception {
+    void catapultaAtacaUnidadDeDistanciaLejana() throws Exception {
         Curandero curandero = new Curandero(9,7);
         Catapulta catapulta = new Catapulta(1,1);
         AccionJugador accion = new AccionJugador();

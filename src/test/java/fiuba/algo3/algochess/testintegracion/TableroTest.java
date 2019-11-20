@@ -7,12 +7,12 @@ import fiuba.algo3.algochess.juego.Tablero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TableroTest {
+class TableroTest {
 
     @Test
         // Prueba que se inicializa el tablero y coloca pieza correctamente
 
-    public void tableroNuevoAgregoUnidadCorrectamente() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
+    void tableroNuevoAgregoUnidadCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -22,7 +22,7 @@ public class TableroTest {
     @Test
         // Prueba que se inicializa el tablero y coloca pieza cen casillero ocupado lanza error
 
-    public void colocarPiezaEnCasilleroOcupadoLanzaError() throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException, CasilleroOcupadoException {
+    void colocarPiezaEnCasilleroOcupadoLanzaError() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException, CasilleroOcupadoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -37,7 +37,7 @@ public class TableroTest {
     @Test
         // Prueba que se inicializa el tablero y coloca pieza en sector enemigo lanza excepcion
 
-    public void tableroNuevoAgregoUnidadPosicionEnemiga() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
+    void tableroNuevoAgregoUnidadPosicionEnemiga() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroEnemigoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -52,7 +52,7 @@ public class TableroTest {
 
     @Test
         //Muevo unidad a posicion vacia correctamente y no lanza error.
-    public void moverUnidadAPosicionVacia() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadAPosicionVacia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -66,7 +66,7 @@ public class TableroTest {
 
     @Test
         //Muevo unidad a posicion ocupada y  lanza error.
-    public void moverUnidadAPosicionOcupada() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadAPosicionOcupada() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -84,7 +84,7 @@ public class TableroTest {
 
     @Test
         //Mover unidad enemigo lanza error
-    public void moverUnidadEnemigo() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+    void moverUnidadEnemigo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -93,14 +93,14 @@ public class TableroTest {
         tablero.crearUnidad(jugador1,1,1,"soldado");
         try {
             tablero.moverUnidad(1,1,3,3,jugador2);
-        }catch (fiuba.algo3.algochess.excepciones.UnidadInvalidaException e){
+        }catch (UnidadInvalidaException e){
             Assertions.assertEquals("La unidad pertenece al enemigo",e.getMessage());
         }
 
     }
 
     @Test
-    public void moverUnidadDistanciaIncorrecta() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException,UnidadNulaException {
+    void moverUnidadDistanciaIncorrecta() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException,UnidadNulaException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -115,8 +115,8 @@ public class TableroTest {
     }
 
     @Test
-    // Intentar mover una posicion vacia lanza error
-    public void moverCasilleroVacio() throws CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException{
+        // Intentar mover una posicion vacia lanza error
+    void moverCasilleroVacio() throws CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException{
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -124,18 +124,18 @@ public class TableroTest {
         try {
             tablero.moverUnidad(1,1,2,2,jugador1);
         } catch (UnidadNulaException e) {
-            Assertions.assertEquals("fiuba.algo3.algochess.unidades.Unidad invalida",e.getMessage());
+            Assertions.assertEquals("Unidad invalida",e.getMessage());
         }
 
     }
     @Test
         //Prueba de ataque
-    public void catapultaAtacaJineteADistancia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
+    void catapultaAtacaJineteADistancia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
 
-        tablero.crearUnidad(jugador1,1,1,"catapulta");
+        tablero.crearUnidad(jugador1,1,1,"Catapulta");
         tablero.crearUnidad(jugador2,11,11,"soldado");
     }
 

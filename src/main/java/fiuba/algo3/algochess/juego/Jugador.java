@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Jugador {
-
+    private String nombre;
     private int puntosColocacionFichas = 20;
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
     private Hashtable casilleroJugador = new Hashtable();
@@ -20,7 +20,15 @@ public class Jugador {
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Catapulta catapultaAtacarAliado = new Catapulta(0,0);
 
-    public void agregarCasillero(Casillero casilleroNuevo){
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
     }
 
@@ -54,7 +62,7 @@ public class Jugador {
         puntosColocacionFichas -= unidad.cuantoCuesta();
     }
 
-    public boolean puedeSeguirJugando(){
+    boolean puedeSeguirJugando(){
         return unidadesDisponibles.size() !=0;
     }
 
@@ -71,7 +79,7 @@ public class Jugador {
         }
     }
 
-    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
+    void atacar(Unidad atacante, Unidad atacado, Casillero casillero) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
         AccionJugador accion = new AccionJugador();
 
         //Si la unidad no es una catapulta no puede atacar aliados
