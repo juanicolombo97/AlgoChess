@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess;
+package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.unidades.*;
