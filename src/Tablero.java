@@ -1,35 +1,29 @@
 import Excepciones.*;
-
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Tablero {
-    private Casillero[][] arrayCasillero;
+    private Hashtable tableros = new Hashtable();
     private UnidadNueva unidad = new UnidadNueva();
     private Batallon batallon = new Batallon();
     private ArrayList unidadesBatallon;
 
     Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
-        this.arrayCasillero = new Casillero[21][21];
+        this.tableros.put(jugador1.getNombre(), new Casillero[21][11]);
+        this.tableros.put(jugador2.getNombre(), new Casillero[21][11]);
         for(int i = 1; i < 21; i++){
-            for(int j = 1; j < 21; j++){
-                Casillero casillero = this.asignarEquipo(i, j,jugador1,jugador2);
-                this.arrayCasillero[i][j] = casillero;
+            for(int j = 1; j < 11; j++){
+                Casillero casillero = this.asignarCasilleroAJugador(i, j, jugador1);
+                this.arrayCasillero1[i][j] = casillero;
             }
         }
     }
 
-    private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException {
-        if (i <= 10 && j <= 10){
-            Casillero casillero = new Casillero();
-            casillero.guardarUnidad(unidad.crearUnidad("",i,j));
-;           jugador1.agregarCasillero(casillero);
-            return casillero;
-        } else {
-            Casillero casillero = new Casillero();
-            casillero.guardarUnidad(unidad.crearUnidad("",i,j));
-            jugador2.agregarCasillero(casillero);
-            return casillero;
-        }
+    private Casillero asignarCasilleroAJugador (int i, int j, Jugador jugador) throws excepciones.UnidadInvalidaException {
+        Casillero casillero = new Casillero();
+        casillero.guardarUnidad(unidad.crearUnidad("", i, j));
+        jugador.agregarCasillero(casillero);
+        return casillero;
     }
 
     void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
@@ -65,4 +59,5 @@ public class Tablero {
 
         jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY]);
     }
+
 }

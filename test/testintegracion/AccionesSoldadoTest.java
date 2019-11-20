@@ -1,5 +1,6 @@
 import Excepciones.NoPuedeAtacarException;
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Assertions;
 

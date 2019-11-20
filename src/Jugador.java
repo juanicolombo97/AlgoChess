@@ -4,14 +4,19 @@ import excepciones.UnidadInvalidaException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class Jugador {
-
+public class
+Jugador {
+    private String nombre;
     private int puntosColocacionFichas = 20;
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
     private Hashtable casilleroJugador = new Hashtable();
     private UnidadNueva unidadNueva = new UnidadNueva();
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Catapulta catapultaAtacarAliado = new Catapulta(0,0);
+
+    public String getNombre(){
+        return this.nombre;
+    }
 
     void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());

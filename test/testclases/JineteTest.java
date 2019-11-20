@@ -45,7 +45,7 @@ class JineteTest {
         // Jinete se puede mover de a un casillero
     void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Jinete jinete = new Jinete(1,1);
-        jinete.moverUnidad(2,2);
+        jinete.moverUnidad(-1,-1);
     }
 
     @Test

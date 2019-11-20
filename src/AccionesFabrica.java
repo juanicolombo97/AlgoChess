@@ -18,5 +18,5 @@ public class AccionesFabrica {
         else if((distanciaX >= 6) && (distanciaY >= 6)){
             new AccionLejana(atacante,atacado,danioExtra);
         }
-    }
+        }
 }
