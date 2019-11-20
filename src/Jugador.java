@@ -18,6 +18,10 @@ Jugador {
         return this.nombre;
     }
 
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
     void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
     }
