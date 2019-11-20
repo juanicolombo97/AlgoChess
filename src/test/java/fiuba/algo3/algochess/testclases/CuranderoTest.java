@@ -8,8 +8,7 @@ import fiuba.algo3.algochess.unidades.Curandero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
-//Pruebas para el correcto funcionamiento de los metodos de fiuba.algo3.algochess.unidades.Curandero.
+//Pruebas para el correcto funcionamiento de los metodos de Curandero.
 class CuranderoTest {
 
     @Test
@@ -43,14 +42,14 @@ class CuranderoTest {
     }
 
     @Test
-        // fiuba.algo3.algochess.unidades.Curandero se puede mover de a un casillero
+        // Curandero se puede mover de a un casillero
     void moverUnCuranderoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Curandero curandero = new Curandero(1,1);
         curandero.moverUnidad(1,1);
     }
 
     @Test
-        // fiuba.algo3.algochess.unidades.Curandero no se puede mover mas de un casillero
+        // Curandero no se puede mover mas de un casillero
     void movimientoInvalidoCurandero(){
         Curandero curandero = new Curandero(1,1);
         try {

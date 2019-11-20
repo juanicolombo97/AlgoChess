@@ -8,21 +8,20 @@ import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
-//Pruebas realizadas a la clase fiuba.algo3.algochess.unidades.Soldado.
+//Pruebas realizadas a la clase Soldado.
 
 class SoldadoTest {
 
     @Test
         //El soldado puede atacar de cerca.
-    public void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
+    void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Soldado soldado = new Soldado(1,1);
         soldado.atacarDistanciaCerca(soldado, 0);
         Assertions.assertEquals(90,soldado.getVidaUnidad());
     }
     @Test
         //El soldado no puede atacar a distancia media.
-    public void soldadoNoPuedeAtacarDistanciaMedia() throws NoPuedeAtacarException {
+    void soldadoNoPuedeAtacarDistanciaMedia() throws NoPuedeAtacarException {
         Soldado soldado = new Soldado(1, 1);
         try {
             soldado.atacarDistanciaLejana(soldado, 0);
@@ -32,7 +31,7 @@ class SoldadoTest {
     }
     @Test
         //El soldado no puede atacar a distancia lejana.
-    public void soldadoNoPuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
+    void soldadoNoPuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
         Soldado soldado = new Soldado(1,1);
         try {
             soldado.atacarDistanciaLejana(soldado, 0);
@@ -42,21 +41,21 @@ class SoldadoTest {
     }
     @Test
         //El jinete se cura correctamente
-    public void soldadoSeCuraCorrectamente() throws CurarException {
+    void soldadoSeCuraCorrectamente() throws CurarException {
         Soldado soldado = new Soldado(1,1);
         soldado.curarse(30);
         Assertions.assertEquals(130,soldado.getVidaUnidad());
     }
     @Test
-        // fiuba.algo3.algochess.unidades.Soldado se puede mover de a un casillero
-    public void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
+        // Soldado se puede mover de a un casillero
+    void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Soldado soldado = new Soldado(1,1);
         soldado.moverUnidad(1,1);
     }
 
     @Test
-        // fiuba.algo3.algochess.unidades.Soldado no se puede mover mas de un casillero
-    public void movimientoInvalidoSoldado(){
+        // Soldado no se puede mover mas de un casillero
+    void movimientoInvalidoSoldado(){
         Soldado soldado = new Soldado(1,1);
         try {
             soldado.moverUnidad(3,2);

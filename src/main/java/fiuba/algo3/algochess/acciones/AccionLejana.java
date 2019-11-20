@@ -5,9 +5,10 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 
-public class AccionLejana {
+public class AccionLejana implements Accion{
 
-    public AccionLejana(Unidad atacante, Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
-        atacante.atacarDistanciaLejana(atacado,danioExtra);
+    @Override
+    public void atacar(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+        atacante.atacarDistanciaLejana(atacado);
     }
 }

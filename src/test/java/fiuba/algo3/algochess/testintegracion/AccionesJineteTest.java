@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccionesJineteTest {
 
-    // Prueba de fiuba.algo3.algochess.unidades.Jinete ataca fiuba.algo3.algochess.unidades.Curandero.
+    // Prueba de Jinete ataca Curandero.
     @Test
     //Prueba con ataque de cerca.
-    public void jineteAtacaUnidadDeCerca() throws Exception {
+    void jineteAtacaUnidadDeCerca() throws Exception {
         Jinete jinete = new Jinete(1,1);
         Curandero curandero = new Curandero(1,1);
         AccionJugador accion = new AccionJugador();
@@ -24,7 +24,7 @@ public class AccionesJineteTest {
     }
     @Test
         //Prueba con ataque de distancia media.
-    public void jineteAtacaUnidadDeDistanciaMedia() throws Exception {
+    void jineteAtacaUnidadDeDistanciaMedia() throws Exception {
         Jinete jinete = new Jinete(1,1);
         Curandero curandero = new Curandero(3,4);
         AccionJugador accion = new AccionJugador();
@@ -35,7 +35,7 @@ public class AccionesJineteTest {
     }
     @Test
         //Prueba con ataque de distancia lejana.
-    public void jineteAtacaUnidadDeDistanciaLejana() throws Exception {
+    void jineteAtacaUnidadDeDistanciaLejana() throws Exception {
         Jinete jinete = new Jinete(1,1);
         Curandero curandero = new Curandero(7,7);
         AccionJugador accion = new AccionJugador();
