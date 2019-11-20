@@ -12,15 +12,10 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    public void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
-        //Verifico que no se mueva mas de un lugar.
-        if (posicionX < -1 || posicionX > 1 || posicionY < -1 || posicionY > 1){
-            throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
-        }
+    public void movimientoHacia(Direccion direccion) throws MovimientoInvalidoException {
         this.posicionX = this.posicionX + posicionX;
         this.posicionY = this.posicionY + posicionY;
     }
-
 
     public int distanciaXHasta(Posicion posicion){
         return (Math.abs(this.posicionX - posicion.getPosicionX()));
@@ -33,7 +28,7 @@ public class Posicion {
    /* creo que tener estos métodos rompe el encapsulamiento que se trata de tener con
    esta clase */
 
-   public int getPosicionX(){
+    public int getPosicionX(){
         return posicionX;
     }
     public int getPosicionY(){

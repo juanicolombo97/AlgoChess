@@ -1,12 +1,13 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
+import fiuba.algo3.algochess.juego.Posicion;
 
-//Clase donde se implementa la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Catapulta
+//Clase donde se implementa la Unidad Catapulta
 
 public class Catapulta implements Unidad {
     private static int costoUnidad = 5;
@@ -52,8 +53,8 @@ public class Catapulta implements Unidad {
         throw new CurarException("La catapulta no puede ser curada");
     }
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
-       throw new MovimientoInvalidoException("La catapulta no se puede mover");
+    public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
+        throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 
     @Override

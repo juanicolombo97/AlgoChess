@@ -1,9 +1,10 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
+import fiuba.algo3.algochess.juego.Posicion;
 
 public class UnidadNula implements Unidad {
 
@@ -44,8 +45,8 @@ public class UnidadNula implements Unidad {
     }
 
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException {
-        throw new UnidadNulaException("fiuba.algo3.algochess.unidades.Unidad invalida");
+    public void moverUnidad(Direccion direccion) throws UnidadNulaException {
+        throw new UnidadNulaException("Unidad invalida");
     }
 
     @Override
