@@ -41,7 +41,7 @@ public class UnidadNula implements Unidad {
     }
 
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException {
+    public void moverUnidad(Direccion direccion) throws UnidadNulaException {
         throw new UnidadNulaException("Unidad invalida");
     }
 
