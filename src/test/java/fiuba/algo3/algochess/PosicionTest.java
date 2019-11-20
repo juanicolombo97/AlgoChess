@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.testclases;
+package fiuba.algo3.algochess;
 
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Posicion;
