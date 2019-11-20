@@ -18,7 +18,7 @@ public interface Unidad {
 
     public void curarse(int vidaACurar) throws CurarException, UnidadNulaException;
 
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException;
+    public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException;
 
     public Posicion getPosicion();
 }

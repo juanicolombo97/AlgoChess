@@ -10,11 +10,7 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
-        //Verifico que no se mueva mas de un lugar.
-        if (posicionX < -1 || posicionX > 1 || posicionY < -1 || posicionY > 1){
-            throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
-        }
+    void movimientoNuevo(Direccion direccion) throws MovimientoInvalidoException {
         this.posicionX = this.posicionX + posicionX;
         this.posicionY = this.posicionY + posicionY;
     }

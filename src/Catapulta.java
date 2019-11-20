@@ -49,7 +49,7 @@ public class Catapulta implements Unidad {
         throw new CurarException("La catapulta no puede ser curada");
     }
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
+    public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
        throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 
