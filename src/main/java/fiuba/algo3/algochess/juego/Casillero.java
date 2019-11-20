@@ -5,8 +5,8 @@ import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNula;
 
 public class Casillero {
-    private Unidad unidad_actual;
     private UnidadNula unidadNula = new UnidadNula(0,0);
+    private Unidad unidad_actual = unidadNula;
 
     public void guardarUnidad(Unidad unidadNueva) {
         unidad_actual = unidadNueva;
