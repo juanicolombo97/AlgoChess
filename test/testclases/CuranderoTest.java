@@ -43,7 +43,7 @@ class CuranderoTest {
         // Curandero se puede mover de a un casillero
     void moverUnCuranderoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Curandero curandero = new Curandero(1,1);
-        curandero.moverUnidad(2,2);
+        curandero.moverUnidad(1,1);
     }
 
     @Test

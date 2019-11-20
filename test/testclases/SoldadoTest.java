@@ -48,7 +48,7 @@ class SoldadoTest {
         // Soldado se puede mover de a un casillero
     void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Soldado soldado = new Soldado(1,1);
-        soldado.moverUnidad(2,2);
+        soldado.moverUnidad(1,1);
     }
 
     @Test

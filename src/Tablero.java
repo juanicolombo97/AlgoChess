@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Tablero {
     private Casillero[][] arrayCasillero;
     private UnidadNueva unidad = new UnidadNueva();
-    private Batallon batallon = new Batallon();
-    private ArrayList unidadesBatallon;
+
 
     Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
@@ -39,22 +38,15 @@ public class Tablero {
     }
 
     public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
-        unidadesBatallon =batallon.moverBatallon(arrayCasillero,posicionInicialX,posicionInicialY);
+
         int distanciaX = posicionFinalX - posicionInicialX;
         int distanciaY = posicionFinalY - posicionInicialY;
-        for (int x = 0; x < unidadesBatallon.size(); x++){
-            //verifico que el casillero no este ocupado
-            Unidad unidadAMover = (Unidad) unidadesBatallon.get(x);
+        Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
 
-            int posicionUnidadX = unidadAMover.getPosicion().getPosicionX();
-            int posicionUnidadY = unidadAMover.getPosicion().getPosicionY();
-            int posX = distanciaX + posicionUnidadX;
-            int posY = distanciaY + posicionUnidadY;
+        arrayCasillero[posicionInicialX][posicionInicialY].eliminarUnidad();
+        arrayCasillero[posicionFinalX][posicionFinalY].modificarUnidad(unidadAMover);
 
-            arrayCasillero[posicionUnidadX][posicionUnidadY].eliminarUnidad();
-            arrayCasillero[posX][posY].modificarUnidad(unidadAMover);
-            jugador.moverUnidad(unidadAMover,distanciaX,distanciaY);
-        }
+        jugador.moverUnidad(unidadAMover,distanciaX,distanciaY);
 
 
     }

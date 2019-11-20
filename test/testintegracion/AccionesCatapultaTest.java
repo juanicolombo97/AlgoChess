@@ -40,7 +40,7 @@ public class AccionesCatapultaTest {
         AccionJugador accion = new AccionJugador();
 
         accion.accionNueva(catapulta,curandero, 0.05);
-        assertEquals(55,curandero.getVidaUnidad());
+        assertEquals(54,curandero.getVidaUnidad());
     }
 
 

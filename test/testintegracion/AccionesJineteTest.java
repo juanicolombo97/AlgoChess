@@ -15,7 +15,7 @@ public class AccionesJineteTest {
 
         accion.accionNueva(jinete,curandero, 0.05);
         //Compruebo que el curandero se le halla restado la vida correctamente.
-        assertEquals(70,curandero.getVidaUnidad());
+        assertEquals(69.75,curandero.getVidaUnidad());
     }
     @Test
         //Prueba con ataque de distancia media.
@@ -26,7 +26,7 @@ public class AccionesJineteTest {
 
         accion.accionNueva(jinete,curandero, 0.05);
         //Compruebo que el curandero se le halla restado la vida correctamente.
-        assertEquals(60,curandero.getVidaUnidad());
+        assertEquals(59.25,curandero.getVidaUnidad());
     }
     @Test
         //Prueba con ataque de distancia lejana.
