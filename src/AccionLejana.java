@@ -2,9 +2,10 @@ import Excepciones.CurarException;
 import Excepciones.NoPuedeAtacarException;
 import Excepciones.UnidadNulaException;
 
-public class AccionLejana {
+public class AccionLejana implements Accion{
 
-    public AccionLejana(Unidad atacante, Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
-        atacante.atacarDistanciaLejana(atacado,danioExtra);
+    @Override
+    public atacar(Unidad atacante, Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+        atacante.atacarDistanciaLejana(atacado);
     }
 }

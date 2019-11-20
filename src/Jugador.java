@@ -80,13 +80,15 @@ Jugador {
         if (!atacante.getClass().equals(catapultaAtacarAliado.getClass())){
             unidadPerteneceAJugador(atacado,true,"La unidad es aliada");
         }
+        /*
         //TODO: Esto tiene que validarse en niveles internos
         if (casilleroJugador.containsKey(casillero)){
             accion.accionNueva(atacante,atacado,0.05);
         }else{
             accion.accionNueva(atacante,atacado,0);
         }
-
+        */
+        accion.accionNueva(atacante,atacado);
     }
 
     public ArrayList getUnidadesDisponibles(){
