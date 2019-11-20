@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Tablero {
+    private Casillero[][] arrayCasillero = new Casillero[21][21];
     private Hashtable tableros = new Hashtable();
     private UnidadNueva unidad = new UnidadNueva();
     private Batallon batallon = new Batallon();
@@ -11,16 +12,17 @@ public class Tablero {
     Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
         this.tableros.put(jugador1, new Casillero[21][11]);
         this.tableros.put(jugador2, new Casillero[21][11]);
-        asignarCasillerosAJugador(jugador1);
-        asignarCasillerosAJugador(jugador2);
+        asignarCasillerosAJugador(jugador1, 0);
+        asignarCasillerosAJugador(jugador2, 10);
     }
 
-    private void asignarCasillerosAJugador (Jugador jugador) throws excepciones.UnidadInvalidaException {
-        Casillero[][] casillerosJugador = (Casillero[][]) this.tableros.get(jugador));
+    private void asignarCasillerosAJugador (Jugador jugador, int k) throws excepciones.UnidadInvalidaException {
+        Casillero[][] casillerosJugador = (Casillero[][]) this.tableros.get(jugador);
         for(int i = 1; i < 21; i++) {
             for (int j = 1; j < 11; j++) {
                 Casillero casillero = new Casillero();
                 casillero.guardarUnidad(unidad.crearUnidad("", i, j));
+                this.arrayCasillero[i][k+j] = casillero;
                 jugador.agregarCasillero(casillero);
                 casillerosJugador[i][j] = casillero;
             }
