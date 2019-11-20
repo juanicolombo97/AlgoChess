@@ -50,7 +50,7 @@ public class Jinete implements Unidad {
 
     @Override
     public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.movimientoNuevo(direccion);
+        posicion.movimientoHacia(direccion);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    void movimientoNuevo(Direccion direccion) throws MovimientoInvalidoException {
+    void movimientoHacia(Direccion direccion) throws MovimientoInvalidoException {
         this.posicionX = this.posicionX + posicionX;
         this.posicionY = this.posicionY + posicionY;
     }

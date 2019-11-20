@@ -49,7 +49,7 @@ public class Curandero implements Unidad {
 
     @Override
     public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.movimientoNuevo(direccion);
+        posicion.movimientoHacia(direccion);
     }
 
     @Override
