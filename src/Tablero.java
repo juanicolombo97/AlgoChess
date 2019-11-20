@@ -9,19 +9,20 @@ public class Tablero {
     private ArrayList unidadesBatallon;
 
     Tablero(Jugador jugador1, Jugador jugador2) throws excepciones.UnidadInvalidaException, CasilleroOcupadoException {
-        this.tableros.put(jugador1.getNombre(), new Casillero[21][11]);
-        this.tableros.put(jugador2.getNombre(), new Casillero[21][11]);
+        this.tableros.put(jugador1, new Casillero[21][11]);
+        this.tableros.put(jugador2, new Casillero[21][11]);
         asignarCasillerosAJugador(jugador1);
         asignarCasillerosAJugador(jugador2);
     }
 
     private void asignarCasillerosAJugador (Jugador jugador) throws excepciones.UnidadInvalidaException {
+        Casillero[][] casillerosJugador = (Casillero[][]) this.tableros.get(jugador));
         for(int i = 1; i < 21; i++) {
             for (int j = 1; j < 11; j++) {
                 Casillero casillero = new Casillero();
                 casillero.guardarUnidad(unidad.crearUnidad("", i, j));
                 jugador.agregarCasillero(casillero);
-                this.tableros.get(jugador.getNombre())[i][j] = casillero;
+                casillerosJugador[i][j] = casillero;
             }
         }
     }
