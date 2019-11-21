@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class BatallonTest {
 
     @Test
-    void pruebasBatallon() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
+    void pruebasBatallonCatapultaAtacaTodasUnidades() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -21,14 +21,13 @@ public class BatallonTest {
         tablero.crearUnidad(jugador1,2,1,"soldado");
         tablero.crearUnidad(jugador1,3,1,"soldado");
         tablero.crearUnidad(jugador1,4,1,"soldado");
-        tablero.crearUnidad(jugador1,4,2,"soldado");
-        tablero.crearUnidad(jugador1,4,3,"soldado");
-        tablero.crearUnidad(jugador1,5,4,"soldado");
+        tablero.crearUnidad(jugador1,5,1,"soldado");
 
 
-        tablero.crearUnidad(jugador2,11,11,"catapulta");
 
-        tablero.atacar(11,11,2,1,jugador2);
+        tablero.crearUnidad(jugador2,20,20,"catapulta");
+
+        tablero.atacar(20,20,2,1,jugador2);
 
         //Verifico que se le saca el danio a las undiades
 
@@ -39,4 +38,32 @@ public class BatallonTest {
             Assertions.assertEquals(80,unidad.getVidaUnidad());
         }
     }
+    @Test
+    void catapultaAtacaUnidadesCercanasAliadasTambien() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador2,12,12,"soldado");
+        tablero.crearUnidad(jugador2,13,11,"soldado");
+        tablero.crearUnidad(jugador2,12,10,"soldado");
+        tablero.crearUnidad(jugador2,11,10,"soldado");
+        tablero.crearUnidad(jugador2,11,11,"soldado");
+
+
+
+        tablero.crearUnidad(jugador2,20,20,"catapulta");
+
+        tablero.atacar(20,20,12,11,jugador2);
+
+        //Verifico que se le saca el danio a las undiades
+
+        ArrayList listaUnidades = jugador2.getUnidadesDisponibles();
+
+        for (int x = 0; x< listaUnidades.size() ; x++){
+            Unidad unidad = (Unidad) listaUnidades.get(x);
+            Assertions.assertEquals(true,unidad.getVidaUnidad() < 100);
+        }
+    }
+
 }
