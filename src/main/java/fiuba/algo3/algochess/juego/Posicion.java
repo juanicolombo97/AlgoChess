@@ -7,14 +7,13 @@ public class Posicion {
     private int posicionX, posicionY;
 
     public void posicionNueva(int posicionX, int posicionY){
-
         this.posicionX = posicionX;
         this.posicionY = posicionY;
     }
 
     public void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
         //Verifico que no se mueva mas de un lugar.
-        if (posicionX < -1 || posicionX > 1 || posicionY < -1 || posicionY > 1){
+        if (Math.abs(posicionX) > 1 || Math.abs(posicionY) > 1){
             throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
         }
         this.posicionX = this.posicionX + posicionX;

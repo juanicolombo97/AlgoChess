@@ -10,7 +10,7 @@ public class Tablero {
     private UnidadNueva unidad = new UnidadNueva();
     private Batallon batallon = new Batallon();
 
-    public Tablero(Jugador jugador1, Jugador jugador2) throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException, CasilleroOcupadoException {
+    public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
         for(int i = 1; i < 21; i++){
             for(int j = 1; j < 21; j++){
@@ -20,7 +20,7 @@ public class Tablero {
         }
     }
 
-    private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException {
+    private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
         if (i <= 10 && j <= 10){
             Casillero casillero = new Casillero();
             casillero.guardarUnidad(unidad.crearUnidad("",i,j));
@@ -34,7 +34,7 @@ public class Tablero {
         }
     }
 
-    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
+    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Casillero casillero = arrayCasillero[posicionX][posicionY];
         Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad);
         casillero.modificarUnidad(unidadCreada);
@@ -54,7 +54,7 @@ public class Tablero {
 
     }
 
-    public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException {
+    public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException {
         Unidad unidadAtacante = arrayCasillero[posicionAtacanteX][posicionAtacanteY].getUnidad();
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
 
