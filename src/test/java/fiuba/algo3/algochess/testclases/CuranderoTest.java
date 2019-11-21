@@ -50,7 +50,7 @@ class CuranderoTest {
         Direccion direccion = new Direccion(1, 1);
         curandero.moverUnidad(direccion);
     }
-
+/*
     @Test
         // fiuba.algo3.algochess.unidades.Curandero no se puede mover mas de un casillero
     void movimientoInvalidoCurandero(){
@@ -61,6 +61,6 @@ class CuranderoTest {
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
-    }
+    }POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
 }
 

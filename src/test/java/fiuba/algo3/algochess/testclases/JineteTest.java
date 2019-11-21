@@ -52,7 +52,7 @@ class JineteTest {
         jinete.moverUnidad(direccion);
     }
 
-    @Test
+/*    @Test
         // Jinete no se puede mover mas de un casillero
     void movimientoInvalidoJinete(){
         Jinete jinete = new Jinete(1,1);
@@ -62,7 +62,7 @@ class JineteTest {
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
-    }
+    }POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
 }
 
 
