@@ -48,21 +48,34 @@ class JineteTest {
         // Jinete se puede mover de a un casillero
     void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Jinete jinete = new Jinete(1,1);
+<<<<<<< HEAD
         Direccion direccionNorte = new Direccion("norte");
         jinete.moverUnidad(direccionNorte);
         jinete.moverUnidad(direccionNorte);
     }
 
     /*@Test
+=======
+        Direccion direccion = new Direccion(-1,-1);
+        jinete.moverUnidad(direccion);
+    }
+
+/*    @Test
+>>>>>>> TableroRefactorDirectorios
         // Jinete no se puede mover mas de un casillero
     void movimientoInvalidoJinete(){
         Jinete jinete = new Jinete(1,1);
         try {
-            jinete.moverUnidad(3,2);
+            Direccion direccion = new Direccion(3,2);
+            jinete.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
+<<<<<<< HEAD
     }*/
+=======
+    }POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
+>>>>>>> TableroRefactorDirectorios
 }
 
 

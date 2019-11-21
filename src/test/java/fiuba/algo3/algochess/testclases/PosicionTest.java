@@ -17,24 +17,35 @@ public class PosicionTest {
     }
 
     @Test
-    public void movimientoNuevo() throws MovimientoInvalidoException {
+    public void movimientoHacia() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         Direccion direccion = new Direccion("sureste");
         posicion.posicionNueva(2, 2);
+<<<<<<< HEAD
         posicion.movimientoHacia(direccion);
         Assert.assertEquals(3, posicion.getPosicionX());
         Assert.assertEquals(1, posicion.getPosicionY());
+=======
+        Direccion direccion = new Direccion("sureste");
+        try {
+            posicion.movimientoHacia(direccion);
+        }
+        catch (MovimientoInvalidoException e){
+
+        }
+>>>>>>> TableroRefactorDirectorios
     }
 
-    @Test
+/*    @Test
     public void movimientoInvalidoAlMoverseMasDeUnCasillero() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
+        Direccion direccion = new Direccion(2, -1);
         try {
-            posicion.movimientoNuevo(2, -1);
+            posicion.movimientoHacia(direccion);
         } catch (MovimientoInvalidoException e) {
         }
-    }
+    } POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
 
     @Test
     public void distanciaXHasta() {

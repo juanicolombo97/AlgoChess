@@ -6,7 +6,7 @@ import fiuba.algo3.algochess.juego.Direccion;
 import java.util.ArrayList;
 
 public class UnidadesCercanas {
-    private Direccion direcciones = new Direccion(0,0);
+    private Direccion direcciones = new Direccion("nula");
     private ArrayList listaDirecciones = direcciones.direccionesMovimiento();
     private UnidadNula unidadNula = new UnidadNula(0,0);
 

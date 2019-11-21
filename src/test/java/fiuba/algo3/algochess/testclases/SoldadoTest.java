@@ -51,6 +51,7 @@ class SoldadoTest {
         // Soldado se puede mover de a un casillero
     void moverUnSoldadoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Soldado soldado = new Soldado(1,1);
+<<<<<<< HEAD
         Direccion direccion= new Direccion("noreste");
         soldado.moverUnidad(direccion);
     }
@@ -58,12 +59,26 @@ class SoldadoTest {
     /*@Test
         // Soldado no se puede mover mas de un casillero
     void movimientoInvalidoSoldado(){
+=======
+        Direccion direccion = new Direccion("norte");
+        soldado.moverUnidad(direccion);
+    }
+/*
+    @Test
+        // fiuba.algo3.algochess.unidades.Soldado no se puede mover mas de un casillero
+    public void movimientoInvalidoSoldado(){
+>>>>>>> TableroRefactorDirectorios
         Soldado soldado = new Soldado(1,1);
+        Direccion direccion = new Direccion(3, 2);
         try {
-            soldado.moverUnidad(3,2);
+            soldado.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
+<<<<<<< HEAD
     }*/
+=======
+    }POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
+>>>>>>> TableroRefactorDirectorios
 }
 

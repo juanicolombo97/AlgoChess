@@ -12,6 +12,7 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
+<<<<<<< HEAD
     public void movimientoHacia(int posicionX, int posicionY) throws MovimientoInvalidoException {
         //Verifico que no se mueva mas de un lugar.
         if (Math.abs(posicionX) > 1 || Math.abs(posicionY) > 1){
@@ -19,6 +20,11 @@ public class Posicion {
         }
         this.posicionX = this.posicionX + posicionX;
         this.posicionY = this.posicionY + posicionY;
+=======
+    public void movimientoHacia(Direccion direccion) throws MovimientoInvalidoException {
+        this.posicionX = this.posicionX + direccion.getX();
+        this.posicionY = this.posicionY + direccion.getY();
+>>>>>>> TableroRefactorDirectorios
     }
 
 

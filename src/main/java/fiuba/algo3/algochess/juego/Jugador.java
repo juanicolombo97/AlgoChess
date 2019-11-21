@@ -62,14 +62,17 @@ public class Jugador {
         puntosColocacionFichas -= unidad.cuantoCuesta();
     }
 
-    boolean puedeSeguirJugando(){
+    public boolean puedeSeguirJugando(){
         return unidadesDisponibles.size() !=0;
     }
 
     public void moverUnidad(Unidad unidadAMover, Direccion direccion) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
         // verifico que pertenesca al jugador la unidad
         unidadPerteneceAJugador(unidadAMover,false,"La unidad pertenece al enemigo");
+<<<<<<< HEAD
 
+=======
+>>>>>>> TableroRefactorDirectorios
         unidadAMover.moverUnidad(direccion);
     }
 

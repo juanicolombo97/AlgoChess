@@ -64,7 +64,7 @@ public class JugadorTest {
 
     @Test
         // Atacar unidad enemiga en territorio aliado genera mas danio.
-    public void unidadAtacaMasFuerte() throws CasilleroOcupadoException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void unidadAtacaMasFuerte() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException, MovimientoInvalidoException {
         Jugador jugador = new Jugador();
         Jugador jugador1 = new Jugador();
         Tablero tablero = new Tablero(jugador,jugador1);

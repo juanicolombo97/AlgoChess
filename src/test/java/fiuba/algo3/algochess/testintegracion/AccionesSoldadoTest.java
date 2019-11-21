@@ -6,6 +6,10 @@ import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
+=======
+
+>>>>>>> TableroRefactorDirectorios
 public class AccionesSoldadoTest {
 
 
@@ -19,7 +23,7 @@ public class AccionesSoldadoTest {
 
         accion.accionNueva(soldado,curandero);
         //Compruebo que el curandero se le halla restado la vida correctamente.
-        Assertions.assertEquals(65,curandero.getVidaUnidad());
+        Assertions.assertEquals(64.5,curandero.getVidaUnidad());
     }
     @Test
         //Prueba con ataque de distancia media.

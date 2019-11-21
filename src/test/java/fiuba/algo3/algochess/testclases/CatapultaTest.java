@@ -59,6 +59,10 @@ public class CatapultaTest {
         Catapulta catapulta = new Catapulta(0, 0);
         Direccion direccion = new Direccion("norte");
         try {
+<<<<<<< HEAD
+=======
+            Direccion direccion = new Direccion(1,1);
+>>>>>>> TableroRefactorDirectorios
             catapulta.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La catapulta no se puede mover",e.getMessage());
