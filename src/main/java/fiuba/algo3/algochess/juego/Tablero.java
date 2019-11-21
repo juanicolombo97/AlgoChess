@@ -1,13 +1,14 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.unidades.Batallon;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNueva;
 
 public class Tablero {
     private Casillero[][] arrayCasillero;
     private UnidadNueva unidad = new UnidadNueva();
-
+    private Batallon batallon = new Batallon();
 
     public Tablero(Jugador jugador1, Jugador jugador2) throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
@@ -45,8 +46,8 @@ public class Tablero {
         int distanciaY = posicionFinalY - posicionInicialY;
         Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
 
-        arrayCasillero[posicionInicialX][posicionInicialY].eliminarUnidad();
         arrayCasillero[posicionFinalX][posicionFinalY].modificarUnidad(unidadAMover);
+        arrayCasillero[posicionInicialX][posicionInicialY].eliminarUnidad();
 
         jugador.moverUnidad(unidadAMover,distanciaX,distanciaY);
 
@@ -56,6 +57,8 @@ public class Tablero {
     public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException {
         Unidad unidadAtacante = arrayCasillero[posicionAtacanteX][posicionAtacanteY].getUnidad();
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
+
+        batallon.calcularBatallon(unidadAtacada,arrayCasillero);
 
         jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY]);
     }

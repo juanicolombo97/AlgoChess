@@ -89,4 +89,9 @@ public class Jugador {
     public ArrayList getUnidadesDisponibles(){
         return unidadesDisponibles;
     }
+
+
+    public boolean unidadAliada(Unidad unidad){
+        return unidadesDisponibles.contains(unidad);
+    }
 }
