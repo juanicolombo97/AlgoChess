@@ -1,9 +1,10 @@
 package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Jugador;
 import fiuba.algo3.algochess.juego.Tablero;
+import fiuba.algo3.algochess.unidades.Soldado;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -139,4 +140,20 @@ public class TableroTest {
         tablero.crearUnidad(jugador2,11,11,"soldado");
     }
 
+    @Test
+    public void unidadesCercanas() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException{
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+        tablero.crearUnidad(jugador1,4,6,"soldado");
+        tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        tablero.moverUnidad(11,11,10,10,jugador2);
+        tablero.moverUnidad(10,10,9,9,jugador2);
+        tablero.moverUnidad(9,9,8,8,jugador2);
+        tablero.moverUnidad(8,8,7,7,jugador2);
+        tablero.moverUnidad(7,7,6,6,jugador2);
+        tablero.moverUnidad(6,6,5,5,jugador2);
+        Soldado soldado = jugador1.getUnidadesDisponibles().get(1);
+        tablero.unidadesCercanas(soldado);
+    }
 }

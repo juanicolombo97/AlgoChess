@@ -3,6 +3,9 @@ package fiuba.algo3.algochess.juego;
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNueva;
+import fiuba.algo3.algochess.unidades.UnidadNula;
+
+import java.util.ArrayList;
 
 public class Tablero {
     private Casillero[][] arrayCasillero;
@@ -58,5 +61,21 @@ public class Tablero {
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
 
         jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY]);
+    }
+
+    public ArrayList unidadesCercanas(Unidad unidad){
+        ArrayList<Unidad> unidadesCercanasArray = new ArrayList<>();
+        Posicion posicionUnidad = unidad.getPosicion();
+        Direccion direccion = new Direccion(0,0);
+        for(int i = 1; i < direccion.direccionesMovimiento().size(); i++){
+            Direccion direccionActual = (Direccion) direccion.direccionesMovimiento().get(i);
+            int x = posicionUnidad.getPosicionX() + direccionActual.getX();
+            int y = posicionUnidad.getPosicionY() + direccionActual.getY();
+            Unidad unidadActual = arrayCasillero[x][y].getUnidad();
+            if (unidadActual.getClass().equals(UnidadNula.class)){
+                unidadesCercanasArray.add(unidadActual);
+            }
+        }
+        return unidadesCercanasArray;
     }
 }
