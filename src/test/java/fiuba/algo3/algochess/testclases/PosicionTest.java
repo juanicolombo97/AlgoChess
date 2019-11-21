@@ -20,7 +20,7 @@ public class PosicionTest {
     public void movimientoHacia() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
-        Direccion direccion = new Direccion(1, -1);
+        Direccion direccion = new Direccion("sureste");
         try {
             posicion.movimientoHacia(direccion);
         }
@@ -29,7 +29,7 @@ public class PosicionTest {
         }
     }
 
-    @Test
+/*    @Test
     public void movimientoInvalidoAlMoverseMasDeUnCasillero() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
@@ -38,7 +38,7 @@ public class PosicionTest {
             posicion.movimientoHacia(direccion);
         } catch (MovimientoInvalidoException e) {
         }
-    }
+    } POR NUEVA IMPLEMENTACIÓN DE DIRECCION NO HAY FORMA DE INICIALIZAR UNA DIRECCIÓN DE MOVIMIENTO INVÁLIDA*/
 
     @Test
     public void distanciaXHasta() {
