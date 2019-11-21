@@ -1,12 +1,11 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
-import org.testng.annotations.Test;
-
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AccionesSoldadoTest {
 
