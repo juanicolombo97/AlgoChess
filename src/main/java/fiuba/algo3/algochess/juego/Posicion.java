@@ -7,7 +7,6 @@ public class Posicion {
     private int posicionX, posicionY;
 
     public void posicionNueva(int posicionX, int posicionY){
-
         this.posicionX = posicionX;
         this.posicionY = posicionY;
     }
