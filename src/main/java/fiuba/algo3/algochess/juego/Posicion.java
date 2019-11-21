@@ -13,9 +13,6 @@ public class Posicion {
     }
 
     public void movimientoHacia(Direccion direccion) throws MovimientoInvalidoException {
-        if (Math.abs(direccion.getX()) > 1 || Math.abs(direccion.getY()) > 1){
-            throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
-        }
         this.posicionX = this.posicionX + direccion.getX();
         this.posicionY = this.posicionY + direccion.getY();
     }
