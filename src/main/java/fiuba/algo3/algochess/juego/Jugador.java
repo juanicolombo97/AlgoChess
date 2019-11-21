@@ -66,10 +66,9 @@ public class Jugador {
         return unidadesDisponibles.size() !=0;
     }
 
-    public void moverUnidad(Unidad unidadAMover, int posX, int posY) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
+    public void moverUnidad(Unidad unidadAMover, Direccion direccion) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
         // verifico que pertenesca al jugador la unidad
         unidadPerteneceAJugador(unidadAMover,false,"La unidad pertenece al enemigo");
-        Direccion direccion = new Direccion(posX, posY);
         unidadAMover.moverUnidad(direccion);
     }
 
