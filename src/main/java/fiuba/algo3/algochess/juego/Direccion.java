@@ -1,41 +1,57 @@
 package fiuba.algo3.algochess.juego;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Direccion {
 
     private int x;
     private int y;
-
-    private static Direccion norte;
-    private static Direccion sur;
-    private static Direccion este;
-    private static Direccion oeste;
-    private static Direccion noroeste;
-    private static Direccion suroeste;
-    private static Direccion sureste;
-    private static Direccion noreste;
-
-    static {
-        norte = new Direccion(0, 1);
-        sur = new Direccion(0, -1);
-        este = new Direccion(1, 0);
-        oeste = new Direccion(-1, 0);
-        noreste = new Direccion(1,1);
-        noroeste = new Direccion(-1,1);
-        sureste = new Direccion(1,-1);
-        suroeste = new Direccion(-1,-1);
+    private HashMap puntosCardinales = new HashMap();
 
 
+
+    public Direccion(String coordenada){
+        establecerCoordenadas();
+        String puntoCardinal = coordenada.toLowerCase();
+        int[] puntos = (int[]) this.puntosCardinales.get(puntoCardinal);
+        this.x = puntos[0];
+        this.y = puntos[1];
     }
-    public Direccion(int x, int y){
-        this.x = x;
-        this.y = y;
 
+    private void establecerCoordenadas() {
+        int[] nula = {0, 0};
+        int[] norte = {0, 1};
+        int[] noreste = {1, 1};
+        int[] este = {1, 0};
+        int[] sureste = {1, -1};
+        int[] sur = {0, -1};
+        int[] suroeste = {-1, -1};
+        int[] oeste = {-1, 0};
+        int[] noroeste = {-1, 1};
+
+        this.puntosCardinales.put("nula", nula);
+        this.puntosCardinales.put("norte", norte);
+        this.puntosCardinales.put("noreste", noreste);
+        this.puntosCardinales.put("este", este);
+        this.puntosCardinales.put("sureste", sureste);
+        this.puntosCardinales.put("sur", sur);
+        this.puntosCardinales.put("suroeste", suroeste);
+        this.puntosCardinales.put("oeste", oeste);
+        this.puntosCardinales.put("noroeste", noroeste);
     }
 
     public ArrayList direccionesMovimiento(){
         ArrayList listaDirecciones = new ArrayList();
+
+        Direccion norte = new Direccion("norte");
+        Direccion sur = new Direccion("sur");
+        Direccion este = new Direccion("este");
+        Direccion oeste = new Direccion("oeste");
+        Direccion noreste = new Direccion("noreste");
+        Direccion noroeste = new Direccion("noroeste");
+        Direccion sureste = new Direccion("sureste");
+        Direccion suroeste = new Direccion("suroeste");
 
         listaDirecciones.add(norte);
         listaDirecciones.add(sur);
