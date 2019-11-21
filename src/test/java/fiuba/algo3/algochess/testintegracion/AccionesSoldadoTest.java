@@ -20,7 +20,7 @@ public class AccionesSoldadoTest {
 
         accion.accionNueva(soldado,curandero, 0.05);
         //Compruebo que el curandero se le halla restado la vida correctamente.
-        Assertions.assertEquals(65,curandero.getVidaUnidad());
+        Assertions.assertEquals(64.5,curandero.getVidaUnidad());
     }
     @Test
         //Prueba con ataque de distancia media.
