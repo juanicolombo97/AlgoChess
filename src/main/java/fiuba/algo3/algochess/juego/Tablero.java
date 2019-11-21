@@ -13,7 +13,7 @@ public class Tablero {
     private Batallon batallon = new Batallon();
     private ArrayList unidadesBatallon;
 
-    Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
+    public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.tableros.put(jugador1, new Casillero[21][11]);
         this.tableros.put(jugador2, new Casillero[21][11]);
         asignarCasillerosAJugador(jugador1, 0);

@@ -62,15 +62,15 @@ public class Jugador {
         puntosColocacionFichas -= unidad.cuantoCuesta();
     }
 
-    boolean puedeSeguirJugando(){
+    public boolean puedeSeguirJugando(){
         return unidadesDisponibles.size() !=0;
     }
 
     public void moverUnidad(Unidad unidadAMover, int posX, int posY) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
         // verifico que pertenesca al jugador la unidad
         unidadPerteneceAJugador(unidadAMover,false,"La unidad pertenece al enemigo");
-
-        unidadAMover.moverUnidad(posX,posY);
+        Direccion direccion = new Direccion(posX, posY);
+        unidadAMover.moverUnidad(direccion);
     }
 
     private void unidadPerteneceAJugador(Unidad unidad, boolean pertenece, String mensajeError) throws UnidadInvalidaException {

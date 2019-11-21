@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
 import fiuba.algo3.algochess.unidades.Catapulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,8 @@ public class CatapultaTest {
     public void catapultaNoSePuedeMover(){
         Catapulta catapulta = new Catapulta(0, 0);
         try {
-            catapulta.moverUnidad(1,1);
+            Direccion direccion = new Direccion(1,1);
+            catapulta.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La catapulta no se puede mover",e.getMessage());
         }

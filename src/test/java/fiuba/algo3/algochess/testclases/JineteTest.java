@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
 import fiuba.algo3.algochess.unidades.Jinete;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,8 @@ class JineteTest {
         // Jinete se puede mover de a un casillero
     void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Jinete jinete = new Jinete(1,1);
-        jinete.moverUnidad(-1,-1);
+        Direccion direccion = new Direccion(-1,-1);
+        jinete.moverUnidad(direccion);
     }
 
     @Test
@@ -55,7 +57,8 @@ class JineteTest {
     void movimientoInvalidoJinete(){
         Jinete jinete = new Jinete(1,1);
         try {
-            jinete.moverUnidad(3,2);
+            Direccion direccion = new Direccion(3,2);
+            jinete.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }

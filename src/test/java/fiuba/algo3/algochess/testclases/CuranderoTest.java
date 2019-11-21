@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
 import fiuba.algo3.algochess.unidades.Curandero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -46,15 +47,17 @@ class CuranderoTest {
         // fiuba.algo3.algochess.unidades.Curandero se puede mover de a un casillero
     void moverUnCuranderoNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Curandero curandero = new Curandero(1,1);
-        curandero.moverUnidad(1,1);
+        Direccion direccion = new Direccion(1, 1);
+        curandero.moverUnidad(direccion);
     }
 
     @Test
         // fiuba.algo3.algochess.unidades.Curandero no se puede mover mas de un casillero
     void movimientoInvalidoCurandero(){
         Curandero curandero = new Curandero(1,1);
+        Direccion direccion = new Direccion(3, 2);
         try {
-            curandero.moverUnidad(3,2);
+            curandero.moverUnidad(direccion);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
