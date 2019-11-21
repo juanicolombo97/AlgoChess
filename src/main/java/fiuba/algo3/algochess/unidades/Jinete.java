@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
@@ -32,7 +33,7 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
     }
 

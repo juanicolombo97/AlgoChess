@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.testng.annotations.Test;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class AccionesSoldadoTest {
 
+    private Casillero[][] arrayCasillero;
     // Prueba de fiuba.algo3.algochess.unidades.Soldado ataca fiuba.algo3.algochess.unidades.Curandero.
     @Test
     //Prueba con ataque de cerca.
@@ -19,7 +21,7 @@ public class AccionesSoldadoTest {
         Curandero curandero = new Curandero(1,1);
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(soldado,curandero, 0.05);
+        accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
         //Compruebo que el curandero se le haya restado la vida correctamente.
         Assertions.assertEquals(64.5,curandero.getVidaUnidad());
     }
@@ -31,7 +33,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero, 0.05);
+            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
@@ -44,7 +46,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero, 0.05);
+            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }

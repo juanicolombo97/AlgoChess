@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AccionesCuranderoTest {
-
+    private Casillero[][] arrayCasillero;
     @Test
         //fiuba.algo3.algochess.unidades.Curandero cura a soldado a distancia cercana
     public void curanderoCuraSoldado() throws Exception {
@@ -21,7 +22,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         // fiuba.algo3.algochess.unidades.Curandero cura a fiuba.algo3.algochess.unidades.Soldado.
-        accion.accionNueva(curandero, soldado, 0.05);
+        accion.accionNueva(curandero, soldado, 0.05, arrayCasillero);
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
@@ -34,7 +35,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05);
+            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -47,7 +48,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05);
+            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -60,7 +61,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,catapulta, 0.05);
+            accion.accionNueva(curandero,catapulta, 0.05, arrayCasillero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }

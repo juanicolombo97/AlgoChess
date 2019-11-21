@@ -4,14 +4,19 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 
 // Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.unidades.Catapulta.
 
 public class CatapultaTest {
+
+    private Casillero[][] arrayCasillero;
 
     @Test
         // La catapulta no puede ser curada
@@ -43,13 +48,7 @@ public class CatapultaTest {
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
     }
-    @Test
-        // La catapulta ataca correctamente de lejos.
-    public void catapultaAtacaCorrectamenteDeLejos() throws NoPuedeAtacarException, UnidadNulaException {
-        Catapulta catapulta = new Catapulta(0, 0);
-        catapulta.atacarDistanciaLejana(catapulta, 0);
-        Assertions.assertEquals(30,catapulta.getVidaUnidad());
-    }
+
 
     @Test
         // Verifico que la cataputa no se puede mover

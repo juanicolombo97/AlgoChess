@@ -8,7 +8,6 @@ import fiuba.algo3.algochess.unidades.UnidadNueva;
 public class Tablero {
     private Casillero[][] arrayCasillero;
     private UnidadNueva unidad = new UnidadNueva();
-    private Batallon batallon = new Batallon();
 
     public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.arrayCasillero = new Casillero[21][21];
@@ -58,8 +57,6 @@ public class Tablero {
         Unidad unidadAtacante = arrayCasillero[posicionAtacanteX][posicionAtacanteY].getUnidad();
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
 
-        batallon.calcularBatallon(unidadAtacada,arrayCasillero);
-
-        jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY]);
+        jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY],arrayCasillero);
     }
 }

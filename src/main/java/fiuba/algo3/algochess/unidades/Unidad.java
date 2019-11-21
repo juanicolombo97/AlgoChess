@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
@@ -13,7 +14,7 @@ public interface Unidad {
 
     public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
 
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
 
     public void recibirDanio(double danioRecibido) throws UnidadNulaException;
 
@@ -24,4 +25,6 @@ public interface Unidad {
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException;
 
     public Posicion getPosicion();
+
+    public double getVidaUnidad();
 }

@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
@@ -31,7 +32,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws CurarException, NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 

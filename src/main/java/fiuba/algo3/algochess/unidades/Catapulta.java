@@ -1,10 +1,13 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+
+import java.util.ArrayList;
 
 //Clase donde se implementa la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Catapulta
 
@@ -13,6 +16,7 @@ public class Catapulta implements Unidad {
     private double vidaUnidad = 50;
     private static double danioDistancia = 20;
     private Posicion posicion = new Posicion();
+    private Batallon batallon = new Batallon();
 
     public Catapulta(int posicionX,int posicionY){
         posicion.posicionNueva(posicionX,posicionY);
@@ -33,8 +37,11 @@ public class Catapulta implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioDistancia + (danioExtra * danioDistancia));
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException, UnidadNulaException {
+        ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,arrayCasillero);
+        for (int x = 0 ; x < unidadesAAtacar.size() ; x++){
+            ((Unidad) unidadesAAtacar.get(x)).recibirDanio(danioDistancia + (danioExtra * danioDistancia));
+        }
     }
 
     @Override

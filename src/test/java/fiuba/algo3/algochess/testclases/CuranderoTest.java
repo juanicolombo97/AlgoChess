@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 //Pruebas para el correcto funcionamiento de los metodos de fiuba.algo3.algochess.unidades.Curandero.
 class CuranderoTest {
 
+    private Casillero[][] arrayCasillero;
     @Test
         //El curandero puede curar de cerca y cura correctamente.
 
@@ -36,7 +38,7 @@ class CuranderoTest {
     void curanderoNoPuedeCurarDistanciaLejana() throws CurarException{
         Curandero curandero = new Curandero(1,1);
         try {
-            curandero.atacarDistanciaLejana(curandero, 0);
+            curandero.atacarDistanciaLejana(curandero, 0, arrayCasillero);
         } catch (CurarException | NoPuedeAtacarException e) {
             Assertions.assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }

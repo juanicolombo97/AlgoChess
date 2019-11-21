@@ -10,22 +10,30 @@ public class UnidadesCercanas {
 
     private Direccion direccion = new Direccion(0,0);
     private ArrayList listaDirecciones = direccion.direccionesMovimiento();
+    private ArrayList batallonUnidades = new ArrayList();
     private UnidadNula unidadNula = new UnidadNula(0,0);
     int posicionX;
     int posicionY;
 
-    public ArrayList unidadesCercanas(Casillero[][] casilleros, ArrayList listaUnidades, Posicion posicion){
-        for (int x = 0; x < listaDirecciones.size(); x++) {
-            posicionX = posicion.getPosicionX() + ((Direccion) listaDirecciones.get(x)).getX();
-            posicionY = posicion.getPosicionY() + ((Direccion) listaDirecciones.get(x)).getY();
-            if (posicionX != 0 && posicionY != 0) {
-                Unidad unidadCercana = casilleros[posicionX][posicionY].getUnidad();
-                if (!esUnidadNula(unidadCercana) && !listaUnidades.contains(unidadCercana)) {
-                    listaUnidades.add(unidadCercana);
+    public ArrayList unidadesCercanas(Casillero[][] casilleros, ArrayList listaUnidades, Unidad unidadAtacada){
+        listaUnidades.add(unidadAtacada);
+
+        while (listaUnidades.size()!= 0){
+            Unidad unidad = (Unidad) listaUnidades.remove(0);
+            for (int x = 0; x < listaDirecciones.size();x++){
+                posicionX = unidad.getPosicion().getPosicionX() + ((Direccion)listaDirecciones.get(x)).getX();
+                posicionY = unidad.getPosicion().getPosicionY() + ((Direccion)listaDirecciones.get(x)).getY();
+                if (posicionX != 0 && posicionY != 0){
+                    Unidad unidadNueva = casilleros[posicionX][posicionY].getUnidad();
+                    if (!esUnidadNula(unidadNueva) && !batallonUnidades.contains(unidadNueva)){
+                        batallonUnidades.add(unidadNueva);
+                        listaUnidades.add(unidadNueva);
+                    }
+
                 }
             }
         }
-        return listaUnidades;
+        return batallonUnidades;
     }
     private boolean esUnidadNula(Unidad unidad){
         return unidad.getClass().isInstance(unidadNula);

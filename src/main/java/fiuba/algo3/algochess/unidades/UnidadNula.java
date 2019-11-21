@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
@@ -24,7 +25,7 @@ public class UnidadNula implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         throw new UnidadNulaException("No se encuentra una unidad");
     }
 
@@ -51,6 +52,11 @@ public class UnidadNula implements Unidad {
     @Override
     public Posicion getPosicion() {
         return posicion;
+    }
+
+    @Override
+    public double getVidaUnidad() {
+        return 0;
     }
 
 }

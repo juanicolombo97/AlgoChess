@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Jinete;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class JineteTest {
 
+    private Casillero[][] arrayCasillero;
     @Test
         //El jinete puede atacar de cerca.
     public void jinetePuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
@@ -32,7 +34,7 @@ class JineteTest {
     public void jinetePuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
         Jinete jinete = new Jinete(1,1);
         try {
-            jinete.atacarDistanciaLejana(jinete, 0);
+            jinete.atacarDistanciaLejana(jinete, 0, arrayCasillero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
         }
