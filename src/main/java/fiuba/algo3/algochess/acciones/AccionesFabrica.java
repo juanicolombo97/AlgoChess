@@ -16,7 +16,7 @@ public class AccionesFabrica {
         double moduloDistancia = Math.sqrt((distanciaX * distanciaX) + (distanciaY * distanciaY));
 
         establecerAcciones(atacante, atacado);
-        Accion nuevaAccion = (acciones.get(moduloDistancia).getClass()) acciones.get(moduloDistancia); //Quiero CASTEAR LA ACCION, nose si es correcto esto
+        Accion nuevaAccion = (Accion) acciones.get(moduloDistancia); //Quiero CASTEAR LA ACCION, nose si es correcto esto
         nuevaAccion.atacar(atacante,atacado);
     }
 
@@ -24,28 +24,26 @@ public class AccionesFabrica {
         for (int distX = 0; distX <= 2; distX++) {
             for (int distY = 0; distY <= 2; distY++) {
                 double moduloAux = Math.sqrt((distX * distX) + (distY * distY));
-                AccionCercana accionCercana = new AccionCercana(atacante, atacado);
-                acciones.put(moduloAux, accionCercana);
+                AccionCercana accionCercana = new AccionCercana();
+                this.acciones.put(moduloAux, accionCercana);
             }
         }
         for (int distX = 2; distX <= 5; distX++) {
             for (int distY = 3; distY <= 5; distY++) {
                 double moduloAux = Math.sqrt((distX * distX) + (distY * distY));
-                AccionMedia accionMedia = new AccionMedia(atacante, atacado);
-                acciones.put(moduloAux, accionMedia);
+                AccionMedia accionMedia = new AccionMedia();
+                this.acciones.put(moduloAux, accionMedia);
             }
         }
         for (int distX = 5; distX <= 5; distX++) {
             for (int distY = 6; distY <= 20; distY++) {
                 double moduloAux = Math.sqrt((distX * distX) + (distY * distY));
-                AccionLejana accionLejana = new AccionLejana(atacante, atacado);
-                acciones.put(moduloAux, accionLejana);
+                AccionLejana accionLejana = new AccionLejana();
+                this.acciones.put(moduloAux, accionLejana);
             }
         }
     }
 }
-
-
 
         /*
         if((distanciaX <= 2) && (distanciaY <= 2)){
@@ -58,5 +56,3 @@ public class AccionesFabrica {
             new AccionLejana(atacante,atacado,danioExtra);
         }
         */
-    }
-            }
