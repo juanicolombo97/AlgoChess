@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.juego.Direccion;
 import fiuba.algo3.algochess.juego.Posicion;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,8 +19,9 @@ public class PosicionTest {
     @Test
     public void movimientoNuevo() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
+        Direccion direccion = new Direccion("sureste");
         posicion.posicionNueva(2, 2);
-        posicion.movimientoNuevo(1, -1);
+        posicion.movimientoHacia(direccion);
         Assert.assertEquals(3, posicion.getPosicionX());
         Assert.assertEquals(1, posicion.getPosicionY());
     }

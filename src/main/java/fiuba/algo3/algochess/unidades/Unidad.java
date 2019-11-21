@@ -10,11 +10,11 @@ import fiuba.algo3.algochess.juego.Posicion;
 
 public interface Unidad {
 
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
 
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
 
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
 
     public void recibirDanio(double danioRecibido) throws UnidadNulaException;
 

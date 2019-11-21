@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.juego.Direccion;
 import fiuba.algo3.algochess.unidades.Jinete;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,14 +17,14 @@ class JineteTest {
         //El jinete puede atacar de cerca.
     void jinetePuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaCerca(jinete, 0);
+        jinete.atacarDistanciaCerca(jinete);
         Assertions.assertEquals(95,jinete.getVidaUnidad());
     }
     @Test
         //El jinete puede atacar a distancia media.
     void jinetePuedeAtacarDistanciaMediana() throws NoPuedeAtacarException, UnidadNulaException {
         Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaMediana(jinete, 0);
+        jinete.atacarDistanciaMediana(jinete);
         Assertions.assertEquals(85,jinete.getVidaUnidad());
     }
     @Test
@@ -31,7 +32,7 @@ class JineteTest {
     void jinetePuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
         Jinete jinete = new Jinete(1,1);
         try {
-            jinete.atacarDistanciaLejana(jinete, 0);
+            jinete.atacarDistanciaLejana(jinete);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
         }
@@ -47,14 +48,12 @@ class JineteTest {
         // Jinete se puede mover de a un casillero
     void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
         Jinete jinete = new Jinete(1,1);
-<<<<<<< Updated upstream
-        jinete.moverUnidad(-1,-1);
-=======
-        jinete.moverUnidad(1,1);
->>>>>>> Stashed changes
+        Direccion direccionNorte = new Direccion("norte");
+        jinete.moverUnidad(direccionNorte);
+        jinete.moverUnidad(direccionNorte);
     }
 
-    @Test
+    /*@Test
         // Jinete no se puede mover mas de un casillero
     void movimientoInvalidoJinete(){
         Jinete jinete = new Jinete(1,1);
@@ -63,7 +62,7 @@ class JineteTest {
         } catch (MovimientoInvalidoException | UnidadNulaException e) {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
-    }
+    }*/
 }
 
 

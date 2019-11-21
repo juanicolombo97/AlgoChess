@@ -21,7 +21,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         // fiuba.algo3.algochess.unidades.Curandero cura a fiuba.algo3.algochess.unidades.Soldado.
-        accion.accionNueva(curandero, soldado, 0.05);
+        accion.accionNueva(curandero, soldado);
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
@@ -34,7 +34,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05);
+            accion.accionNueva(curandero,soldado);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -47,7 +47,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05);
+            accion.accionNueva(curandero,soldado);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -60,7 +60,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,catapulta, 0.05);
+            accion.accionNueva(curandero,catapulta);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }

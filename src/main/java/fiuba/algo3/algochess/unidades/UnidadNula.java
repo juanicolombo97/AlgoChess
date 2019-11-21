@@ -15,17 +15,17 @@ public class UnidadNula implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         throw new UnidadNulaException("No se encuentra una unidad");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         throw new UnidadNulaException("No se encuentra una unidad");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         throw new UnidadNulaException("No se encuentra una unidad");
     }
 

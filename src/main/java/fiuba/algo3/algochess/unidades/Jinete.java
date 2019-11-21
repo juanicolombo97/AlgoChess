@@ -23,17 +23,17 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioCuerpo + (danioExtra * danioCuerpo));
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danioCuerpo);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioDistancia + (danioExtra * danioDistancia));
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danioDistancia);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
     }
 
@@ -54,7 +54,7 @@ public class Jinete implements Unidad {
 
     @Override
     public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.movimientoHacia(direccion.getX(), direccion.getY());
+        posicion.movimientoHacia(direccion.getX(),direccion.getY());
     }
 
     @Override

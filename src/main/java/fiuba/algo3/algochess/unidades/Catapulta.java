@@ -24,18 +24,18 @@ public class Catapulta implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioDistancia + (danioExtra * danioDistancia));
+    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danioDistancia);
     }
 
     @Override

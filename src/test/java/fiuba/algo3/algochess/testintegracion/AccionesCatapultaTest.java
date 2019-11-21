@@ -19,7 +19,7 @@ public class AccionesCatapultaTest {
         Catapulta catapulta = new Catapulta(1,1);
         AccionJugador accion = new AccionJugador();
         try {
-            accion.accionNueva(catapulta,soldado, 0.05);
+            accion.accionNueva(catapulta,soldado);
         }catch (NoPuedeAtacarException e){
             assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
@@ -32,7 +32,7 @@ public class AccionesCatapultaTest {
         Catapulta catapulta = new Catapulta(4,4);
         AccionJugador accion = new AccionJugador();
         try {
-            accion.accionNueva(catapulta,soldado, 0.05);
+            accion.accionNueva(catapulta,soldado);
         }catch (NoPuedeAtacarException e){
             assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
@@ -45,9 +45,8 @@ public class AccionesCatapultaTest {
         Catapulta catapulta = new Catapulta(1,1);
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(catapulta,curandero, 0.05);
-        assertEquals(54,curandero.getVidaUnidad());
+        accion.accionNueva(catapulta,curandero);
+        assertEquals(55,curandero.getVidaUnidad());
     }
-
 
 }

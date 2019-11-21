@@ -22,17 +22,17 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         atacado.curarse(curacion);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException,CurarException{
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) throws CurarException, NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
@@ -53,7 +53,7 @@ public class Curandero implements Unidad {
 
     @Override
     public void moverUnidad(Direccion direccion) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.movimientoHacia(direccion);
+        posicion.movimientoHacia(direccion.getX(),direccion.getY());
     }
 
     @Override
