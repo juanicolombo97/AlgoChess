@@ -3,6 +3,7 @@ package fiuba.algo3.algochess.unidades;
 import fiuba.algo3.algochess.juego.Casillero;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Batallon {
 
@@ -13,6 +14,5 @@ public class Batallon {
         ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(arrayCasillero,unidades,unidadAtacada);
         return listaUnidades;
     }
-
 }
 

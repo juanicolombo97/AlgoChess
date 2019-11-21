@@ -17,7 +17,7 @@ public class UnidadesCercanas {
 
     public ArrayList unidadesCercanas(Casillero[][] casilleros, ArrayList listaUnidades, Unidad unidadAtacada){
         listaUnidades.add(unidadAtacada);
-
+        batallonUnidades.add(unidadAtacada);
         while (listaUnidades.size()!= 0){
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (int x = 0; x < listaDirecciones.size();x++){
