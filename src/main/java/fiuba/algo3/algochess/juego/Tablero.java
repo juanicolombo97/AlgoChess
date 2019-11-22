@@ -21,13 +21,11 @@ public class Tablero {
 
     private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
         if (i <= 10 && j <= 10){
-            Casillero casillero = new Casillero();
-            casillero.guardarUnidad(unidad.crearUnidad("",i,j));
+            Casillero casillero = new Casillero(i,j);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero();
-            casillero.guardarUnidad(unidad.crearUnidad("",i,j));
+            Casillero casillero = new Casillero(i,j);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }
@@ -41,16 +39,9 @@ public class Tablero {
 
     public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
 
-        int distanciaX = posicionFinalX - posicionInicialX;
-        int distanciaY = posicionFinalY - posicionInicialY;
-        Unidad unidadAMover = arrayCasillero[posicionInicialX][posicionInicialY].getUnidad();
-
-        arrayCasillero[posicionFinalX][posicionFinalY].modificarUnidad(unidadAMover);
-        arrayCasillero[posicionInicialX][posicionInicialY].eliminarUnidad();
-
-        jugador.moverUnidad(unidadAMover,distanciaX,distanciaY);
-
-
+        Casillero casilleroInicial = arrayCasillero[posicionInicialX][posicionInicialY];
+        Casillero casilleroDestino = arrayCasillero[posicionFinalX][posicionFinalY];
+        casilleroInicial.moverUnidad(casilleroDestino);
     }
 
     public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException {

@@ -3,10 +3,19 @@ package fiuba.algo3.algochess.juego;
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNula;
+import javafx.css.CssMetaData;
 
 public class Casillero {
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Unidad unidad_actual = unidadNula;
+    private int posicionX;
+    private int posicionY;
+
+    public Casillero(int posInicialX,int posInicialY){
+        this.posicionX = posInicialX;
+        this.posicionY = posInicialY;
+        unidad_actual = unidadNula;
+    }
 
     public void guardarUnidad(Unidad unidadNueva) {
         unidad_actual = unidadNueva;
@@ -18,14 +27,16 @@ public class Casillero {
             throw new CasilleroOcupadoException("El casillero esta ocupado");
         }
         unidad_actual = unidadNueva;
+        unidadNueva.getPosicion().posicionNueva(posicionX,posicionY);
    }
 
+   public void moverUnidad(Casillero casilleroDestino) throws CasilleroOcupadoException {
+        casilleroDestino.modificarUnidad(unidad_actual);
 
+        unidad_actual = unidadNula;
+   }
    public Unidad getUnidad(){
        return unidad_actual;
    }
 
-   public void eliminarUnidad(){
-        unidad_actual = unidadNula;
-   }
 }
