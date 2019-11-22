@@ -29,8 +29,7 @@ public class Casillero {
 
     public void modificarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, UnidadNulaException, MovimientoInvalidoException {
         unidadNueva.moverUnidad(posicionX,posicionY);
-        unidadNueva.getPosicion().posicionNueva(posicionX,posicionY);
-        unidad_actual = unidadNueva;
+        guardarUnidad(unidadNueva);
 
    }
 

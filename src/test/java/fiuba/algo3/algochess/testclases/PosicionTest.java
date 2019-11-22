@@ -19,7 +19,7 @@ public class PosicionTest {
     public void movimientoNuevo() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
-        posicion.movimientoNuevo(3, 3);
+        posicion.posicionNueva(3, 3);
         Assert.assertEquals(3, posicion.getPosicionX());
         Assert.assertEquals(3, posicion.getPosicionY());
     }
@@ -29,7 +29,7 @@ public class PosicionTest {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
         try {
-            posicion.movimientoNuevo(2, -1);
+            posicion.posicionValida(2, -1);
         } catch (MovimientoInvalidoException e) {
         }
     }

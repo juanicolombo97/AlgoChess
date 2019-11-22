@@ -11,15 +11,6 @@ public class Posicion {
         this.posicionY = posicionY;
     }
 
-    public void movimientoNuevo(int posicionX, int posicionY) throws MovimientoInvalidoException {
-        //Verifico que no se mueva mas de un lugar.
-        if (Math.abs(this.posicionX -posicionX) > 1 || Math.abs(this.posicionY-posicionY) > 1){
-            throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
-        }
-        this.posicionX =posicionX;
-        this.posicionY =posicionY;
-    }
-
 
     public int distanciaXHasta(Posicion posicion){
         return (Math.abs(this.posicionX - posicion.getPosicionX()));
@@ -37,6 +28,12 @@ public class Posicion {
     }
     public int getPosicionY(){
         return posicionY;
+    }
+
+    public void posicionValida(int posicionX, int posicionY) throws MovimientoInvalidoException {
+        if (Math.abs(this.posicionX -posicionX) > 1 || Math.abs(this.posicionY-posicionY) > 1){
+            throw new MovimientoInvalidoException("La unidad solo se mueve de a un casillero");
+        }
     }
 
 }
