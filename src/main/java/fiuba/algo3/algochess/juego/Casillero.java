@@ -26,8 +26,9 @@ public class Casillero {
         if(!unidad_actual.getClass().equals(unidadNula.getClass())){
             throw new CasilleroOcupadoException("El casillero esta ocupado");
         }
-        unidad_actual = unidadNueva;
         unidadNueva.getPosicion().posicionNueva(posicionX,posicionY);
+        unidad_actual = unidadNueva;
+
    }
 
    public void moverUnidad(Casillero casilleroDestino) throws CasilleroOcupadoException {
