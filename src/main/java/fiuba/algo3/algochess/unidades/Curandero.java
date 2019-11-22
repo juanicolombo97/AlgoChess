@@ -55,6 +55,10 @@ public class Curandero implements Unidad {
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
         posicion.posicionValida(posicionNuevaX,posicionNuevaY);
     }
+    @Override
+    public void modificarPosicion(int posicionX, int posicionY) {
+        posicion.posicionNueva(posicionX,posicionY);
+    }
 
     @Override
     public Posicion getPosicion() {

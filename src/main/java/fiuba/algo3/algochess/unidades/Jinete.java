@@ -21,6 +21,10 @@ public class Jinete implements Unidad {
     public double getVidaUnidad(){
         return vidaUnidad;
     }
+    @Override
+    public void modificarPosicion(int posicionX, int posicionY) {
+        posicion.posicionNueva(posicionX,posicionY);
+    }
 
     @Override
     public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {

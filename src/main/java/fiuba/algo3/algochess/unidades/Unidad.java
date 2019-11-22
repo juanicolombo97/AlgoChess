@@ -27,4 +27,6 @@ public interface Unidad {
     public Posicion getPosicion();
 
     public double getVidaUnidad();
+
+    public void modificarPosicion(int posicionX, int posicionY);
 }

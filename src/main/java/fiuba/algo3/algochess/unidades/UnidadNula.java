@@ -48,6 +48,10 @@ public class UnidadNula implements Unidad {
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException {
         throw new UnidadNulaException("fiuba.algo3.algochess.unidades.Unidad invalida");
     }
+    @Override
+    public void modificarPosicion(int posicionX, int posicionY) {
+        posicion.posicionNueva(posicionX,posicionY);
+    }
 
     @Override
     public Posicion getPosicion() {

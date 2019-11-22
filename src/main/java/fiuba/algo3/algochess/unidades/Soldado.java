@@ -23,6 +23,11 @@ public class Soldado implements Unidad {
     }
 
     @Override
+    public void modificarPosicion(int posicionX, int posicionY) {
+        posicion.posicionNueva(posicionX,posicionY);
+    }
+
+    @Override
     public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
         atacado.recibirDanio(danioCuerpo + (danioCuerpo * danioExtra));
     }
