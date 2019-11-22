@@ -19,9 +19,9 @@ public class PosicionTest {
     public void movimientoNuevo() throws MovimientoInvalidoException {
         Posicion posicion = new Posicion();
         posicion.posicionNueva(2, 2);
-        posicion.movimientoNuevo(1, -1);
+        posicion.movimientoNuevo(3, 3);
         Assert.assertEquals(3, posicion.getPosicionX());
-        Assert.assertEquals(1, posicion.getPosicionY());
+        Assert.assertEquals(3, posicion.getPosicionY());
     }
 
     @Test

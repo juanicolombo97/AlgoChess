@@ -4,8 +4,11 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Jugador;
 import fiuba.algo3.algochess.juego.Tablero;
+import fiuba.algo3.algochess.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class TableroTest {
 
@@ -73,9 +76,9 @@ public class TableroTest {
 
         //Creo las unidades
         tablero.crearUnidad(jugador1,1,1,"soldado");
-        tablero.crearUnidad(jugador1,3,3,"soldado");
+        tablero.crearUnidad(jugador1,2,2,"soldado");
         try {
-            tablero.moverUnidad(1,1,3,3,jugador1);
+            tablero.moverUnidad(1,1,2,2,jugador1);
         }catch (CasilleroOcupadoException e){
             Assertions.assertEquals("El casillero esta ocupado",e.getMessage());
         }
@@ -92,7 +95,7 @@ public class TableroTest {
         //Creo las unidades
         tablero.crearUnidad(jugador1,1,1,"soldado");
         try {
-            tablero.moverUnidad(1,1,3,3,jugador2);
+            tablero.moverUnidad(1,1,2,2,jugador2);
         }catch (fiuba.algo3.algochess.excepciones.UnidadInvalidaException e){
             Assertions.assertEquals("La unidad pertenece al enemigo",e.getMessage());
         }
@@ -137,6 +140,35 @@ public class TableroTest {
 
         tablero.crearUnidad(jugador1,1,1,"catapulta");
         tablero.crearUnidad(jugador2,11,11,"soldado");
+    }
+    @Test
+    void moverCatapultaError() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador1,1,1,"catapulta");
+        try {
+            tablero.moverUnidad(1,1,2,2,jugador1);
+        }catch (MovimientoInvalidoException e){
+            Assertions.assertEquals("La catapulta no se puede mover",e.getMessage());
+        }
+
+    }
+    @Test
+     void moverSoldadoAPosicionCorrecta() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador1,1,1,"soldado");
+        tablero.moverUnidad(1,1,2,2,jugador1);
+
+        ArrayList listaUnidades = jugador1.getUnidadesDisponibles();
+        Unidad unidad = (Unidad) listaUnidades.get(0);
+
+        Assertions.assertEquals(2,unidad.getPosicion().getPosicionX());
+        Assertions.assertEquals(2,unidad.getPosicion().getPosicionY());
     }
 
 }

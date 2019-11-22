@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Soldado;
 import fiuba.algo3.algochess.unidades.UnidadNula;
@@ -15,7 +17,7 @@ public class CasilleroTest {
     }
 
     @Test
-    public void guardarUnidad() {
+    public void guardarUnidad() throws CasilleroOcupadoException {
         Casillero casillero = new Casillero(1,2);
         Soldado soldado = new Soldado(1, 2);
         casillero.guardarUnidad(soldado);
@@ -23,7 +25,7 @@ public class CasilleroTest {
     }
 
     @Test
-    public void eliminarUnidad() throws CasilleroOcupadoException {
+    public void eliminarUnidad() throws CasilleroOcupadoException, UnidadNulaException, MovimientoInvalidoException {
         Casillero casillero = new Casillero(1,2);
         Casillero casilleroDestino = new Casillero(1,3);
         Soldado soldado1 = new Soldado(1,2);
