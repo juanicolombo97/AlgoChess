@@ -30,6 +30,7 @@ public class Casillero {
     public void modificarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, UnidadNulaException, MovimientoInvalidoException {
         unidadNueva.moverUnidad(posicionX,posicionY);
         guardarUnidad(unidadNueva);
+        unidadNueva.getPosicion().posicionNueva(posicionX,posicionY);
 
    }
 

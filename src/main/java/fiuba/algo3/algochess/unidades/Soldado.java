@@ -55,9 +55,7 @@ public class Soldado implements Unidad {
     @Override
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
         posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-        posicion.posicionNueva(posicionNuevaX,posicionNuevaY);
     }
-
     @Override
     public Posicion getPosicion() {
         return posicion;
