@@ -6,6 +6,7 @@ import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,5 +40,14 @@ public class AccionesCatapultaTest {
             assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
 
+    }
+    @Test
+    //Prueba con ataque distancia media.
+    public void catapultaAtacaDeDistanciaLejana(){
+        Soldado soldado = new Soldado(1,1);
+        Catapulta catapulta = new Catapulta(4,4);
+        AccionJugador accion = new AccionJugador();
+        accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero);
+        Assertions.assertEquals(80, soldado.getVidaUnidad());
     }
 }

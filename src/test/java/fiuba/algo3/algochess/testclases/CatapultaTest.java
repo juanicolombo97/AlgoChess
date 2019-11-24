@@ -48,7 +48,13 @@ public class CatapultaTest {
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
     }
-
+    @Test
+        // La catapulta ataca de manera exitosa a distancia larga.
+    public void catapultaAtacaADistanciaLarga(){
+        Catapulta catapulta = new Catapulta(0, 0);
+        catapulta.atacarDistanciaLejana(catapulta, 0);
+        Assertions.assertEquals(30, catapulta.getVidaUnidad());
+    }
 
     @Test
         // Verifico que la cataputa no se puede mover
