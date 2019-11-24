@@ -5,8 +5,7 @@ import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Soldado;
-import org.testng.annotations.Test;
-
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 
