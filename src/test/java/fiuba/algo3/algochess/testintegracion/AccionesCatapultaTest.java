@@ -18,7 +18,7 @@ public class AccionesCatapultaTest {
     //Prueba con ataque de cerca.
     public void catapultaAtacaDeCerca() throws Exception {
         Soldado soldado = new Soldado(1,1);
-        Catapulta catapulta = new Catapulta(1,1);
+        Catapulta catapulta = new Catapulta(2,2);
         AccionJugador accion = new AccionJugador();
         try {
             accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero);
