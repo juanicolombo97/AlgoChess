@@ -3,6 +3,7 @@ package fiuba.algo3.algochess.testintegracion;
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Jugador;
+import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.juego.Tablero;
 import fiuba.algo3.algochess.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
@@ -62,9 +63,14 @@ public class TableroTest {
 
         //Creo las unidades
         tablero.crearUnidad(jugador1,1,1,"soldado");
-
+        ArrayList unidadesj1 = jugador1.getUnidadesDisponibles();
+        Unidad soldado = (Unidad) unidadesj1.get(0);
+        Posicion posSoldado = soldado.getPosicion();
         tablero.moverUnidad(1,1,2,2,jugador1);
-
+        int x = posSoldado.getPosicionX();
+        int y = posSoldado.getPosicionY();
+        Assertions.assertEquals(x, 2);
+        Assertions.assertEquals(y, 2);
     }
 
     @Test
@@ -133,13 +139,30 @@ public class TableroTest {
     }
     @Test
         //Prueba de ataque
-    public void catapultaAtacaJineteADistancia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
+    public void catapultaAtacaJineteADistancia() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CurarException, UnidadNulaException, NoPuedeAtacarException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1,jugador2);
 
         tablero.crearUnidad(jugador1,1,1,"catapulta");
-        tablero.crearUnidad(jugador2,11,11,"soldado");
+        tablero.crearUnidad(jugador2,11,11,"jinete");
+
+        //obtengo posiciones
+        ArrayList unidadesJ1 = jugador1.getUnidadesDisponibles();
+        ArrayList unidadesJ2 = jugador2.getUnidadesDisponibles();
+        Unidad catapulta = (Unidad) unidadesJ1.get(0);
+        Unidad jinete = (Unidad) unidadesJ2.get(0);
+        Posicion posCatapulta = catapulta.getPosicion();
+        Posicion posJinete = jinete.getPosicion();
+
+        //ataco
+        tablero.atacar(posCatapulta.getPosicionX(), posCatapulta.getPosicionY(), posJinete.getPosicionX(), posJinete.getPosicionY(), jugador1);
+
+        //assert
+        double vidaCatapulta = catapulta.getVidaUnidad();
+        double vidaJinete = jinete.getVidaUnidad();
+        Assertions.assertEquals(100, vidaCatapulta);
+        Assertions.assertEquals(50, vidaJinete);
     }
     @Test
     void moverCatapultaError() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
