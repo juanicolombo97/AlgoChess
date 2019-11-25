@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -23,6 +24,7 @@ public class VentanaLogear {
     public static String display(String titulo) {
         Stage ventana = new Stage();
         ventana.setTitle(titulo);
+        ventana.initModality(Modality.APPLICATION_MODAL);
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10,10,10,10));
         pane.setVgap(8);

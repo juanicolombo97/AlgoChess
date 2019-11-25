@@ -32,6 +32,7 @@ public class MenuInicio extends Application {
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
         ventana.setTitle("AlgoChess");
+
         mediaMenuIncio.setAutoPlay(true);
         VBox layout = new VBox();
         layout.setPadding(new Insets(25,0,0,0));
