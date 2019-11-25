@@ -15,8 +15,9 @@ public class AccionesJineteTest {
     // Prueba de fiuba.algo3.algochess.unidades.Jinete ataca fiuba.algo3.algochess.unidades.Curandero.
     @Test
     //Prueba con ataque de cerca.
-    public void jineteAtacaUnidadDeCerca() throws Exception {
+    public void jineteEspadachinAtacaUnidadDeCerca() throws Exception {
         Jinete jinete = new Jinete(1,1);
+        jinete.setEstadoJinete("espadachin");
         Curandero curandero = new Curandero(1,1);
         AccionJugador accion = new AccionJugador();
 
@@ -24,10 +25,57 @@ public class AccionesJineteTest {
         //Compruebo que el curandero se le halla restado la vida correctamente.
         assertEquals(69.75,curandero.getVidaUnidad());
     }
+
     @Test
-        //Prueba con ataque de distancia media.
-    public void jineteAtacaUnidadDeDistanciaMedia() throws Exception {
+    //Prueba con ataque de distancia media.
+    public void jineteEspadachinAtacaUnidadDeDistanciaMedia() throws Exception {
         Jinete jinete = new Jinete(1,1);
+        jinete.setEstadoJinete("espadachin");
+        Curandero curandero = new Curandero(3,4);
+        AccionJugador accion = new AccionJugador();
+
+        try {
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+        } catch (NoPuedeAtacarException e) {
+            assertEquals("El jinete espadachin no puede atacar a distancias medianas", e.getMessage());
+        }
+    }
+
+    @Test
+        //Prueba con ataque de distancia lejana.
+    public void jineteEspadachinAtacaUnidadDeDistanciaLejana() throws Exception {
+        Jinete jinete = new Jinete(1, 1);
+        jinete.setEstadoJinete("espadachin");
+        Curandero curandero = new Curandero(7, 7);
+        AccionJugador accion = new AccionJugador();
+
+        try {
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+        } catch (NoPuedeAtacarException e) {
+            assertEquals("El jinete espadachin no puede atacar a distancias lejanas", e.getMessage());
+        }
+    }
+
+    @Test
+    //Prueba con ataque de cerca.
+    public void jineteArqueroAtacaUnidadDeCerca() throws Exception {
+        Jinete jinete = new Jinete(1, 1);
+        jinete.setEstadoJinete("arquero");
+        Curandero curandero = new Curandero(1, 1);
+        AccionJugador accion = new AccionJugador();
+
+        try {
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+        } catch (NoPuedeAtacarException e) {
+            assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
+        }
+    }
+
+    @Test
+    //Prueba con ataque de distancia media.
+    public void jineteArqueroAtacaUnidadDeDistanciaMedia() throws Exception {
+        Jinete jinete = new Jinete(1,1);
+        jinete.setEstadoJinete("arquero");
         Curandero curandero = new Curandero(3,4);
         AccionJugador accion = new AccionJugador();
 
@@ -35,17 +83,19 @@ public class AccionesJineteTest {
         //Compruebo que el curandero se le halla restado la vida correctamente.
         assertEquals(59.25,curandero.getVidaUnidad());
     }
+
     @Test
-        //Prueba con ataque de distancia lejana.
-    public void jineteAtacaUnidadDeDistanciaLejana() throws Exception {
-        Jinete jinete = new Jinete(1,1);
-        Curandero curandero = new Curandero(7,7);
+    //Prueba con ataque de distancia lejana.
+    public void jineteArqueroAtacaUnidadDeDistanciaLejana() throws Exception {
+        Jinete jinete = new Jinete(1, 1);
+        jinete.setEstadoJinete("arquero");
+        Curandero curandero = new Curandero(7, 7);
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(jinete,curandero, 0.05, arrayCasillero);
-        }catch (NoPuedeAtacarException e){
-            assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+        } catch (NoPuedeAtacarException e) {
+            assertEquals("El jinete arquero no puede atacar a distancias lejanas", e.getMessage());
         }
     }
 

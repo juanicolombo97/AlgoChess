@@ -34,9 +34,9 @@ class JineteTest {
         jinete.setEstadoJinete("espadachin");
         Soldado soldadoEnemigo = new Soldado(4, 4);
         try {
-            jinete.atacarDistanciaLejana(soldadoEnemigo, 0, arrayCasillero);
+            jinete.atacarDistanciaMediana(soldadoEnemigo, 0);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar distancias medianas",e.getMessage());
+            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias medianas",e.getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class JineteTest {
         try {
             jinete.atacarDistanciaLejana(soldadoEnemigo, 0, arrayCasillero);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar distancias lejanas",e.getMessage());
+            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias lejanas",e.getMessage());
         }
     }
 
@@ -60,9 +60,9 @@ class JineteTest {
         jinete.setEstadoJinete("arquero");
         Soldado soldadoEnemigo = new Soldado(2, 1);
         try{
-            jinete.atacarDistanciaMediana(soldadoEnemigo,0);
+            jinete.atacarDistanciaCerca(soldadoEnemigo,0);
         }catch (NoPuedeAtacarException e) {
-            Assertions.assertEquals("El jinete arquero no puede atacar distancias cortas", e.getMessage());
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ class JineteTest {
         try {
             jinete.atacarDistanciaLejana(soldadoEnemigo, 0, arrayCasillero);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete arquero no puede atacar distancias lejanas",e.getMessage());
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias lejanas",e.getMessage());
         }
     }
 
