@@ -113,33 +113,41 @@ class JineteTest {
             Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
         }
     }
+
+    @Test
+    //Jinete sin aliados ni enemigos cerca se le acerca un Soldado aliado y su estado sigue siendo Arquero
+    public void AJineteSeLeAcercaSoldadoAliadoSinEnemigosCercaYSuEstadoSigueSiendoArquero() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Si a un jinete, por mas que tenga enemigos cerca, se le acerca un Soldado Aliado, se vuelve Arquero
+    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() throws NoPuedeAtacarException, UnidadNulaException{
+
+    }
+
+    @Test
+    //Si a un jinete arquero sin aliados cerca, se le acerca un enemigo, se convierte en Espadachin
+    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
+    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //SI a un jinete arquero, se la acerca un enemigo, teniendo aliados NO Soldados cerca, cambia de estado a Espadachin
+    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Si a un jinete espadachin, se le acercan Aliados no Soldados, no cambian su estado
+    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstadoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+    
 }
-
-
-
-/*
-    @Test
-        //El jinete puede atacar de cerca.
-    public void jinetePuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
-        Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaCerca(jinete, 0);
-        Assertions.assertEquals(95,jinete.getVidaUnidad());
-    }
-    @Test
-        //El jinete puede atacar a distancia media.
-    public void jinetePuedeAtacarDistanciaMediana() throws NoPuedeAtacarException, UnidadNulaException {
-        Jinete jinete = new Jinete(1,1);
-        jinete.atacarDistanciaMediana(jinete, 0);
-        Assertions.assertEquals(85,jinete.getVidaUnidad());
-    }
-    @Test
-        //El jinete no puede atacar a distancia lejana.
-    public void jinetePuedeAtacarDistanciaLejana() throws NoPuedeAtacarException {
-        Jinete jinete = new Jinete(1,1);
-        try {
-            jinete.atacarDistanciaLejana(jinete, 0, arrayCasillero);
-        }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete no puede atacar distancias lejanas",e.getMessage());
-        }
-    }
-    */

@@ -1,7 +1,8 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
+import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
+import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
 import fiuba.algo3.algochess.unidades.Jinete;
@@ -97,6 +98,18 @@ public class AccionesJineteTest {
         } catch (NoPuedeAtacarException e) {
             assertEquals("El jinete arquero no puede atacar a distancias lejanas", e.getMessage());
         }
+    }
+
+    @Test
+    //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, pudiendo atacar a distancia corta
+    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException{
+
+    }
+
+    @Test
+    //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
+    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException {
+
     }
 
 }

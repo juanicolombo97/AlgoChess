@@ -9,8 +9,6 @@ import fiuba.algo3.algochess.unidades.Catapulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 
 // Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.unidades.Catapulta.
 
