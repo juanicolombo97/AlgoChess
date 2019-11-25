@@ -41,7 +41,7 @@ public class Tablero {
 
         Casillero casilleroInicial = arrayCasillero[posicionInicialX][posicionInicialY];
         Casillero casilleroDestino = arrayCasillero[posicionFinalX][posicionFinalY];
-        casilleroInicial.moverUnidad(casilleroDestino);
+        casilleroInicial.moverUnidad(casilleroDestino,arrayCasillero);
     }
 
     public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException {

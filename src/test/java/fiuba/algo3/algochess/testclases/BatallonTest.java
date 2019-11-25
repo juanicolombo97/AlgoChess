@@ -66,4 +66,101 @@ public class BatallonTest {
         }
     }
 
+    @Test
+    void moverBatallonSoldados() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador2,12,12,"soldado");
+        tablero.crearUnidad(jugador2,13,13,"soldado");
+        tablero.crearUnidad(jugador2,11,11,"soldado");
+
+        tablero.moverUnidad(12,12,13,13,jugador2);
+
+        ArrayList unidades = jugador2.getUnidadesDisponibles();
+
+        // La unidad 2 de la lista es la de la pos 13,13 y al mover el batallon debe terminar en 14,14.
+
+        Unidad unidad = (Unidad) unidades.get(1);
+
+        Assertions.assertEquals(14,unidad.getPosicion().getPosicionX());
+        Assertions.assertEquals(14,unidad.getPosicion().getPosicionY());
+    }
+    @Test
+    void moverBatallonSoldadosConObstaculo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador2,12,12,"soldado");
+        tablero.crearUnidad(jugador2,13,12,"soldado");
+        tablero.crearUnidad(jugador2,11,11,"soldado");
+        tablero.crearUnidad(jugador2,14,13,"catapulta");
+
+        tablero.moverUnidad(12,12,13,13,jugador2);
+
+        // La unidad de la pos 13 , 12 se quedo ahi debido al obstaculo esta esta en la pos 1 de la lista unidades.
+        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        Unidad unidad = (Unidad) unidades.get(1);
+
+        Assertions.assertEquals(13,unidad.getPosicion().getPosicionX());
+        Assertions.assertEquals(12,unidad.getPosicion().getPosicionY());
+    }
+
+    @Test
+    void seDisuelveBatallonCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1,jugador2);
+
+        tablero.crearUnidad(jugador2,15,15,"soldado");
+        tablero.crearUnidad(jugador2,14,14,"soldado");
+        tablero.crearUnidad(jugador2,14,13,"soldado");
+        tablero.crearUnidad(jugador2,15,14,"catapulta");
+
+        //Muevo la unidad y un objetivo bloquea a el soldado de 14,13.
+
+        tablero.moverUnidad(15,15,16,16,jugador2);
+        tablero.moverUnidad(16,16,17,17,jugador2);
+
+        //Ahora al mover la unidad en 17,17 la de 16,16 no se deberia mover ya que se disolvio el batallon
+
+        tablero.moverUnidad(17,17,18,18,jugador2);
+
+        ArrayList unidades = jugador2.getUnidadesDisponibles();
+
+        // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
+        Unidad unidad = (Unidad) unidades.get(1);
+
+        Assertions.assertEquals(16,unidad.getPosicion().getPosicionX());
+        Assertions.assertEquals(16,unidad.getPosicion().getPosicionY());
+
+
+    }
+
+    @Test
+    void moverBatallonDe4SoloMueve3Unidades() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+
+        tablero.crearUnidad(jugador2, 15, 15, "soldado");
+        tablero.crearUnidad(jugador2, 14, 14, "soldado");
+        tablero.crearUnidad(jugador2, 13, 13, "soldado");
+        tablero.crearUnidad(jugador2, 12, 12, "soldado");
+
+        tablero.moverUnidad(15, 15, 16, 16, jugador2);
+
+        //La unidad de la pos 12,12 al ser la mas lejana y ya haber 3 soldados no se mueve
+
+        ArrayList unidades = jugador2.getUnidadesDisponibles();
+
+        // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
+        Unidad unidad = (Unidad) unidades.get(3);
+
+        Assertions.assertEquals(12, unidad.getPosicion().getPosicionX());
+        Assertions.assertEquals(12, unidad.getPosicion().getPosicionY());
+    }
+
 }
