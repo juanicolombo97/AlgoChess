@@ -3,12 +3,13 @@ package fiuba.algo3.algochess.interfaz;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class VentanaJuego {
 
     private static Stage secondStage;
-
+    static MediaPlayer mediaPlayer;
     public static void display(String titulo) {
 
         //Configuro el nombre del juego y hago la ventana.

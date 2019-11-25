@@ -4,14 +4,23 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 
 public class VentanaLogear {
 
-    public static void display(String titulo) {
+    static String nombreJugador;
+    static Media media = new Media(new File("/Users/juanicolombo/Desktop/GitHub/AlgoChess/src/main/java/fiuba/algo3/algochess/sonidos/Click2-Sebastian-759472264.wav").toURI().toString());
+    static MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+    public static String display(String titulo) {
         Stage ventana = new Stage();
         ventana.setTitle(titulo);
         GridPane pane = new GridPane();
@@ -26,8 +35,22 @@ public class VentanaLogear {
         usuarioInput.setPromptText("Jugador");
         GridPane.setConstraints(usuarioInput,1,1);
 
+
         Button botonCrearJugador = new Button("Crear Jugador");
-        botonCrearJugador.setOnAction(e ->VentanaLogear.display("jugador2"));
+        botonCrearJugador.setOnAction(e -> {
+            nombreJugador = usuarioInput.getText();
+            mediaPlayer.setAutoPlay(true);
+            ventana.close();
+
+        });
+        //Caso de que le de a enter
+        usuarioInput.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                nombreJugador = usuarioInput.getText();
+                mediaPlayer.setAutoPlay(true);
+                ventana.close();
+            }
+        });
         GridPane.setConstraints(botonCrearJugador,1,2);
 
         ventana.setOnCloseRequest( e -> {
@@ -40,8 +63,8 @@ public class VentanaLogear {
 
         Scene scene = new Scene(pane,300,100);
         ventana.setScene(scene);
-        ventana.show();
-
+        ventana.showAndWait();
+        return nombreJugador;
 
     }
     private static void cerrarPrograma(Stage ventana) {

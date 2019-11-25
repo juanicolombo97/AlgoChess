@@ -19,6 +19,15 @@ public class Jugador {
     private UnidadNueva unidadNueva = new UnidadNueva();
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Catapulta catapultaAtacarAliado = new Catapulta(0,0);
+    private String nombreJugador;
+
+    public void setNombreJugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
+    }
+
+    public String getNombreJugador() {
+        return nombreJugador;
+    }
 
     public void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
