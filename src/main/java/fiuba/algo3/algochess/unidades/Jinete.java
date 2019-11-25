@@ -10,8 +10,7 @@ import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
-    private static double danioCuerpo = 5;
-    private static double danioDistancia = 15;
+    private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion = new Posicion();
 
     public Jinete(int posicionX,int posicionY){
@@ -21,6 +20,11 @@ public class Jinete implements Unidad {
     public double getVidaUnidad(){
         return vidaUnidad;
     }
+
+    public void setEstadoJinete(String estado){
+        estadoJinete = estadoJinete.cambiarEstadoJinete(estado);
+    }
+
     @Override
     public void modificarPosicion(int posicionX, int posicionY) {
         posicion.posicionNueva(posicionX,posicionY);
