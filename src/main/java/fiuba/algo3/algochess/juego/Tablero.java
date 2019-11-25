@@ -1,9 +1,11 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.unidades.Batallon;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNueva;
+import fiuba.algo3.algochess.unidades.UnidadesCercanas;
+
+import java.util.ArrayList;
 
 public class Tablero {
     private Casillero[][] arrayCasillero;
@@ -49,5 +51,17 @@ public class Tablero {
         Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
 
         jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY],arrayCasillero);
+    }
+
+    public void notificar (Unidad deUnidad) {
+        UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
+        ArrayList listaDeUnidades = new ArrayList();
+        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, deUnidad, 1);
+        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, deUnidad, 2);
+        unidadesCercanasADistancia1.addAll(unidadesCercanasADistancia2);
+        for(int i = 1; i < unidadesCercanasADistancia1.size(); i++){
+            Unidad unidadActual = (Unidad) unidadesCercanasADistancia1.get(i);
+            unidadActual.notificar();
+        }
     }
 }

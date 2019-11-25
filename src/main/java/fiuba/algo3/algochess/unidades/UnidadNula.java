@@ -63,4 +63,8 @@ public class UnidadNula implements Unidad {
         return 0;
     }
 
+    @Override
+    public void notificar(){
+
+    }
 }

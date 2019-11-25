@@ -68,6 +68,10 @@ public class Soldado implements Unidad {
         return posicion;
     }
 
+    @Override
+    public void notificar() {
+
+    }
 }
 
 
