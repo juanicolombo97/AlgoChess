@@ -17,10 +17,11 @@ import java.util.ArrayList;
 public class TableroInterfaz {
 
     private Tablero tablero;
-    private static final int tamanioCasillero = 50;
-    private static final int filas = 10;
-    private static final int columnas = 10;
+    private static final int tamanioCasillero = 35;
+    private static final int filas = 20;
+    private static final int columnas = 20;
     private Group grupoCasillero = new Group();
+    private Stage ventana;
 
     public void crearTablero(ArrayList listaJugadores) throws CasilleroOcupadoException, UnidadInvalidaException {
         Pane tableroInterfaz = new Pane();
@@ -32,7 +33,7 @@ public class TableroInterfaz {
         agregarCasilleros(listaJugadores);
         tableroInterfaz.getChildren().addAll(grupoCasillero);
         mostrarTablero(tableroInterfaz);
-
+        iniciarAgregadoDeFichas(listaJugadores);
 
     }
 
@@ -41,8 +42,6 @@ public class TableroInterfaz {
             Jugador jugador = (Jugador) listaJugadores.get(x);
             ArrayList listaCasilleros = jugador.casilleroJugador;
             for (int y = 0; y < listaCasilleros.size(); y++) {
-                System.out.println(listaCasilleros.get(y));
-                System.out.println(((Casillero)listaCasilleros.get(y)).posicionX);
                 grupoCasillero.getChildren().add((Casillero)listaCasilleros.get(y));
             }
         }
@@ -50,11 +49,25 @@ public class TableroInterfaz {
 
     private void mostrarTablero(Pane tablero) {
         Scene scene = new Scene(tablero);
-        Stage ventana = new Stage();
+        ventana = new Stage();
         ventana.setTitle("AlgoChess");
-        ventana.setFullScreen(true);
         ventana.setScene(scene);
         ventana.show();
+    }
+
+    private void iniciarAgregadoDeFichas(ArrayList listaJugadores){
+
+        for (int x = 0; x < listaJugadores.size(); x++){
+            Jugador jugadorActual = (Jugador) listaJugadores.get(x);
+            ventana.setTitle("Turno de : " + jugadorActual.getNombreJugador());
+            /*
+            while (jugadorActual.puedeSeguirJugando()){
+
+            }
+            
+             */
+
+        }
     }
 }
 

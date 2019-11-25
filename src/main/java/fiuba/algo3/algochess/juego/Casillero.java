@@ -26,10 +26,10 @@ public class Casillero extends Rectangle {
         this.posicionY = posInicialY;
         unidad_actual = unidadNula;
         //Establesco los formatos del casillero.
-        setWidth(50);
-        setHeight(50);
+        setWidth(35);
+        setHeight(35);
         setStroke(Color.BLACK);
-        relocate(posInicialX * 50, posInicialY * 50);
+        relocate(posInicialX * 35, posInicialY * 35);
         setFill(light ? Color.valueOf("#feb") : Color.valueOf("#582"));
     }
 
