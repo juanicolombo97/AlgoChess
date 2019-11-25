@@ -7,7 +7,7 @@ public class EmisarioNulo implements Emisario {
     private Tablero tablero;
 
     @Override
-    public void notificar(int posicionXCentral, int PosicionYCentral) throws MovimientoInvalidoException {
+    public void notificar(Unidad unidad) throws MovimientoInvalidoException {
 
     }
 }

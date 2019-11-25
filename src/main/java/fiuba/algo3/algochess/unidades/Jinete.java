@@ -72,4 +72,9 @@ public class Jinete implements Unidad {
         return posicion;
     }
 
+    @Override
+    public void recibirNotificacion() {
+
+    }
+
 }

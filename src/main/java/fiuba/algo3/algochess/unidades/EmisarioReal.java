@@ -11,7 +11,7 @@ public class EmisarioReal implements Emisario {
     }
 
     @Override
-    public void notificar(int posicionXCentral, int PosicionYCentral) throws MovimientoInvalidoException {
-        this.tablero
+    public void notificar(Unidad unidad) throws MovimientoInvalidoException {
+        this.tablero.notificar(unidad);
     }
 }

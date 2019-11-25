@@ -14,14 +14,14 @@ public class UnidadesCercanas {
     int posicionX;
     int posicionY;
 
-    public ArrayList unidadesCercanas(Casillero[][] casilleros, ArrayList listaUnidades, Unidad unidadAtacada){
+    public ArrayList unidadesCercanas(Casillero[][] casilleros, ArrayList listaUnidades, Unidad unidadAtacada, int aDistancia){
         listaUnidades.add(unidadAtacada);
         batallonUnidades.add(unidadAtacada);
         while (listaUnidades.size()!= 0){
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (int x = 0; x < listaDirecciones.size();x++){
-                posicionX = unidad.getPosicion().getPosicionX() + ((Direccion)listaDirecciones.get(x)).getX();
-                posicionY = unidad.getPosicion().getPosicionY() + ((Direccion)listaDirecciones.get(x)).getY();
+                posicionX = unidad.getPosicion().getPosicionX() + Math.abs(aDistancia) * ((Direccion)listaDirecciones.get(x)).getX();
+                posicionY = unidad.getPosicion().getPosicionY() + Math.abs(aDistancia) * ((Direccion)listaDirecciones.get(x)).getY();
                 if (posicionX != 0 && posicionY != 0){
                     Unidad unidadNueva = casilleros[posicionX][posicionY].getUnidad();
                     if (!esUnidadNula(unidadNueva) && !batallonUnidades.contains(unidadNueva)){

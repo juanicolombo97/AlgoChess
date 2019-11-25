@@ -29,6 +29,7 @@ public class Soldado implements Unidad {
         posicion.posicionNueva(posicionX,posicionY);
     }
 
+
     @Override
     public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
         atacado.recibirDanio(danioCuerpo + (danioCuerpo * danioExtra));
@@ -62,11 +63,16 @@ public class Soldado implements Unidad {
     @Override
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
         posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-        emisario.notificar(posicionNuevaX,posicionNuevaY);
+        emisario.notificar(this);
     }
     @Override
     public Posicion getPosicion() {
         return posicion;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 
 }

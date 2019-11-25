@@ -67,4 +67,9 @@ public class Curandero implements Unidad {
         return posicion;
     }
 
+    @Override
+    public void recibirNotificacion() {
+
+    }
+
 }

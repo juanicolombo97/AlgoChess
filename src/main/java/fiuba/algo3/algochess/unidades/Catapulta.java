@@ -72,4 +72,9 @@ public class Catapulta implements Unidad {
     public Posicion getPosicion() {
         return posicion;
     }
+
+    @Override
+    public void recibirNotificacion() {
+
+    }
 }

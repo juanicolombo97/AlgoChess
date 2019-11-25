@@ -11,12 +11,12 @@ public class Batallon {
     private Soldado soldado = new Soldado(0,0, new EmisarioNulo());
 
     public ArrayList calcularBatallon(Unidad unidadAtacada, Casillero[][] arrayCasillero) {
-        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(arrayCasillero,unidades,unidadAtacada);
+        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(arrayCasillero,unidades,unidadAtacada,1);
         return listaUnidades;
     }
 
     public ArrayList calcularBatallonDeSoldados(Unidad unidadAMover,Casillero[][] casilleros){
-        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(casilleros,unidades,unidadAMover);
+        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(casilleros,unidades,unidadAMover,1);
         ArrayList batallonSoldado = new ArrayList();
         for (int x = 0; x < listaUnidades.size();x++){
             Unidad unidad = (Unidad) listaUnidades.get(x);
