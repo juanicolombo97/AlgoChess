@@ -28,7 +28,7 @@ public class AccionesCuranderoTest {
     }
     @Test
     // El curandero cura correctamente a un Jinete
-    public void curanderoCuraJinete(){
+    public void curanderoCuraJinete() throws CurarException, UnidadNulaException, NoPuedeAtacarException {
         Jinete jinete = new Jinete(1, 1);
         Curandero curandero = new Curandero(2, 2);
         AccionJugador accion = new AccionJugador();
@@ -37,7 +37,7 @@ public class AccionesCuranderoTest {
     }
     @Test
     // El curandero cura correctamente a un Jinete
-    public void curanderoCuraJinete(){
+    public void curanderoCuraCurandero() throws CurarException, UnidadNulaException, NoPuedeAtacarException {
         Curandero curandero1 = new Curandero(1, 1);
         Curandero curandero2 = new Curandero(2, 2);
         AccionJugador accion = new AccionJugador();
@@ -91,7 +91,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
         try {
             accion.accionNueva(curandero, unidadNula, 0, arrayCasillero);
-        } catch(UnidadNulaException e) {
+        } catch(UnidadNulaException | NoPuedeAtacarException | CurarException e) {
             assertEquals("No se encuentra una unidad", e.getMessage());
         }
     }
