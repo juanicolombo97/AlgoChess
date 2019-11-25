@@ -19,7 +19,7 @@ class JineteTest {
 
     @Test
     //Cuando el jinete tiene enemigos cerca se vuelve espadachin y ataca de cerca
-    public void JineteEspadachinPuedeAtacarADistanciaCorta() throws NoPuedeAtacarException, UnidadNulaException{
+    public void JineteEspadachinPuedeAtacarADistanciaCortaYOcasionaElDañoCorrespondiente() throws NoPuedeAtacarException, UnidadNulaException{
         Jinete jinete = new Jinete(1,1);
         jinete.setEstadoJinete("espadachin");
         Soldado soldadoEnemigo = new Soldado(1,2);
@@ -68,7 +68,7 @@ class JineteTest {
 
     @Test
     //Cuando el jinete tiene aliados cerca, y no enemigos, es Jinete Arquero, y puede atacar a distancia media
-    public void JineteArqueroPuedeAtacarADistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException{
+    public void JineteArqueroPuedeAtacarADistanciaMediaYOcasionaElDañoCorrespondiente() throws NoPuedeAtacarException, UnidadNulaException{
         Jinete jinete = new Jinete(1,1);
         jinete.setEstadoJinete("arquero");
         Soldado soldadoEnemigo = new Soldado(4, 4);
