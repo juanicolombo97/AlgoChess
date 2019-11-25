@@ -10,8 +10,7 @@ import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
-    private static double danioCuerpo = 5;
-    private static double danioDistancia = 15;
+    private EstadoJinete estadoJinete = new JineteArquero(); //default
     private Posicion posicion = new Posicion();
 
     public Jinete(int posicionX,int posicionY){
@@ -21,6 +20,11 @@ public class Jinete implements Unidad {
     public double getVidaUnidad(){
         return vidaUnidad;
     }
+
+    public void setEstadoJinete(String estado){
+        estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
+    }
+
     @Override
     public void modificarPosicion(int posicionX, int posicionY) {
         posicion.posicionNueva(posicionX,posicionY);
@@ -28,17 +32,17 @@ public class Jinete implements Unidad {
 
     @Override
     public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioCuerpo + (danioExtra * danioCuerpo));
+        estadoJinete.atacarDistanciaCerca(atacado,danioExtra);
     }
 
     @Override
     public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioDistancia + (danioExtra * danioDistancia));
+        estadoJinete.atacarDistanciaMediana(atacado,danioExtra);
     }
 
     @Override
     public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El jinete no puede atacar distancias lejanas");
+        estadoJinete.atacarDistanciaLejana(atacado,danioExtra,arrayCasillero);
     }
 
     @Override
