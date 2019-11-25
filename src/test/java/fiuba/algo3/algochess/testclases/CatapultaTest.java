@@ -9,8 +9,6 @@ import fiuba.algo3.algochess.unidades.Catapulta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 
 // Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.unidades.Catapulta.
 
@@ -50,10 +48,11 @@ public class CatapultaTest {
     }
     @Test
         // La catapulta ataca de manera exitosa a distancia larga.
-    public void catapultaAtacaADistanciaLarga(){
-        Catapulta catapulta = new Catapulta(0, 0);
-        catapulta.atacarDistanciaLejana(catapulta, 0);
-        Assertions.assertEquals(30, catapulta.getVidaUnidad());
+    public void catapultaAtacaADistanciaLarga() throws NoPuedeAtacarException, UnidadNulaException {
+        Catapulta catapulta = new Catapulta(1, 1);
+        Catapulta catapultaEnemiga = new Catapulta(19,19);
+        catapulta.atacarDistanciaLejana(catapultaEnemiga, 0,arrayCasillero);
+        Assertions.assertEquals(30, catapultaEnemiga.getVidaUnidad());
     }
 
     @Test
