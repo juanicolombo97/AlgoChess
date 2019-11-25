@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -32,7 +33,7 @@ public class MenuInicio extends Application {
         ventana = primaryStage;
         ventana.setTitle("AlgoChess");
         mediaMenuIncio.setAutoPlay(true);
-        StackPane layout = new StackPane();
+        VBox layout = new VBox();
         layout.setPadding(new Insets(25,0,0,0));
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
@@ -49,7 +50,8 @@ public class MenuInicio extends Application {
 
         botonJugar.setOnAction(e -> {
             mediaPlayer.setAutoPlay(true);
-            iniciarJuego.comenzarJuego();
+            iniciarJuego.comenzarJuego(mediaMenuIncio);
+
         });
 
         ventana.setOnCloseRequest( e -> {
@@ -66,7 +68,7 @@ public class MenuInicio extends Application {
         //Agrego las imagen y botones ala primaryStage.
 
         layout.getChildren().addAll(imagen,botonJugar,botonSalir);
-        layout.setAlignment(botonSalir,Pos.BOTTOM_CENTER);
+        layout.setAlignment(Pos.CENTER);
         ventana.setScene(scene);
         ventana.show();
     }
