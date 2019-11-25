@@ -3,15 +3,21 @@ package fiuba.algo3.algochess.juego;
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.unidades.Batallon;
+import fiuba.algo3.algochess.unidades.Soldado;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNula;
-import javafx.css.CssMetaData;
+
+import java.util.ArrayList;
 
 public class Casillero {
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Unidad unidad_actual;
     private int posicionX;
     private int posicionY;
+    private Soldado soldado = new Soldado(0,0);
+    private Batallon batallon = new Batallon();
+    private int contador = 0;
 
     public Casillero(int posInicialX,int posInicialY){
         this.posicionX = posInicialX;
@@ -34,13 +40,54 @@ public class Casillero {
 
    }
 
-   public void moverUnidad(Casillero casilleroDestino) throws CasilleroOcupadoException, UnidadNulaException, MovimientoInvalidoException {
-        casilleroDestino.modificarUnidad(unidad_actual);
+   public void moverUnidad(Casillero casilleroDestino, Casillero[][] arrayCasillero) throws CasilleroOcupadoException, UnidadNulaException, MovimientoInvalidoException {
+        if (unidad_actual.getClass().equals(soldado.getClass())){
+            int distanciaX = casilleroDestino.posicionX - posicionX;
+            int distanciaY = casilleroDestino.posicionY - posicionY;
+            moverBatallon(distanciaX,distanciaY,arrayCasillero);
+        }
+        else {
+            moverUnidadSolitaria(casilleroDestino.posicionX,casilleroDestino.posicionY,arrayCasillero);
+        }
 
-        unidad_actual = unidadNula;
    }
+
    public Unidad getUnidad(){
        return unidad_actual;
+   }
+
+   private void moverBatallon(int distanciaX,int distanciaY,Casillero[][] casilleros) throws UnidadNulaException, CasilleroOcupadoException, MovimientoInvalidoException {
+       ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad_actual,casilleros);
+       if (listaUnidades.size() < 3){
+           int posX = posicionX + distanciaX;
+           int posY = posicionY + distanciaY;
+           moverUnidadSolitaria(posX,posY,casilleros);
+       }else {
+           while (listaUnidades.size() != 0 && contador !=3){
+               Soldado soldado = (Soldado) listaUnidades.remove(0);
+               int posicionSoldadoX = soldado.getPosicion().getPosicionX();
+               int posicionSoldadoY = soldado.getPosicion().getPosicionY();
+               try {
+                   casilleros[posicionSoldadoX + distanciaX][posicionSoldadoY + distanciaY].modificarUnidad(soldado);
+                   casilleros[posicionSoldadoX][posicionSoldadoY].eliminatUnidad();
+                   contador++;
+               }catch (CasilleroOcupadoException e){
+                   Unidad unidadDeCasillero =casilleros[posicionSoldadoX + distanciaX][posicionSoldadoY + distanciaY].getUnidad();
+                   if (listaUnidades.contains(unidadDeCasillero)){
+                       listaUnidades.add(soldado);
+                   }
+               }
+           }
+       }
+   }
+
+   private void moverUnidadSolitaria(int posX, int posY, Casillero[][] casilleros) throws UnidadNulaException, CasilleroOcupadoException, MovimientoInvalidoException {
+        casilleros[posX][posY].modificarUnidad(unidad_actual);
+        eliminatUnidad();
+   }
+
+   private void eliminatUnidad(){
+        unidad_actual = unidadNula;
    }
 
 }
