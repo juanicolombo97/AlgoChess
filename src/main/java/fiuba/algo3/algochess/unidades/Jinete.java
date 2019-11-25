@@ -12,9 +12,11 @@ public class Jinete implements Unidad {
     private double vidaUnidad = 100;
     private EstadoJinete estadoJinete = new JineteArquero(); //default
     private Posicion posicion = new Posicion();
+    private Emisario emisario;
 
-    public Jinete(int posicionX,int posicionY){
+    public Jinete(int posicionX,int posicionY, Emisario emisario){
         posicion.posicionNueva(posicionX,posicionY);
+        this.emisario = emisario;
     }
 
     public double getVidaUnidad(){

@@ -12,10 +12,11 @@ public class Soldado implements Unidad {
     private double vidaUnidad = 100;
     private static double danioCuerpo = 10;
     private Posicion posicion = new Posicion();
-    private Emisario emisarioSoldado = new EmisarioSoldado();
+    private Emisario emisario;
 
-    public Soldado(int posicionX,int posicionY){
+    public Soldado(int posicionX,int posicionY, Emisario emisario){
         posicion.posicionNueva(posicionX,posicionY);
+        this.emisario = emisario;
     }
 
 
@@ -61,7 +62,7 @@ public class Soldado implements Unidad {
     @Override
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
         posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-        emisarioSoldado.notificar(posicionNuevaX,posicionNuevaY);
+        emisario.notificar(posicionNuevaX,posicionNuevaY);
     }
     @Override
     public Posicion getPosicion() {

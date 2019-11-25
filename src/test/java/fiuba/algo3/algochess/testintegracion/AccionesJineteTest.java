@@ -5,6 +5,7 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
+import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Jinete;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +18,9 @@ public class AccionesJineteTest {
     @Test
     //Prueba con ataque de cerca.
     public void jineteEspadachinAtacaUnidadDeCerca() throws Exception {
-        Jinete jinete = new Jinete(1,1);
+        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
-        Curandero curandero = new Curandero(1,1);
+        Curandero curandero = new Curandero(1,1, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         accion.accionNueva(jinete,curandero, 0.05, arrayCasillero);
@@ -30,9 +31,9 @@ public class AccionesJineteTest {
     @Test
     //Prueba con ataque de distancia media.
     public void jineteEspadachinAtacaUnidadDeDistanciaMedia() throws Exception {
-        Jinete jinete = new Jinete(1,1);
+        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
-        Curandero curandero = new Curandero(3,4);
+        Curandero curandero = new Curandero(3,4, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {
@@ -45,9 +46,9 @@ public class AccionesJineteTest {
     @Test
         //Prueba con ataque de distancia lejana.
     public void jineteEspadachinAtacaUnidadDeDistanciaLejana() throws Exception {
-        Jinete jinete = new Jinete(1, 1);
+        Jinete jinete = new Jinete(1, 1, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
-        Curandero curandero = new Curandero(7, 7);
+        Curandero curandero = new Curandero(7, 7, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {
@@ -60,9 +61,9 @@ public class AccionesJineteTest {
     @Test
     //Prueba con ataque de cerca.
     public void jineteArqueroAtacaUnidadDeCerca() throws Exception {
-        Jinete jinete = new Jinete(1, 1);
+        Jinete jinete = new Jinete(1, 1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Curandero curandero = new Curandero(1, 1);
+        Curandero curandero = new Curandero(1, 1, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {
@@ -75,9 +76,9 @@ public class AccionesJineteTest {
     @Test
     //Prueba con ataque de distancia media.
     public void jineteArqueroAtacaUnidadDeDistanciaMedia() throws Exception {
-        Jinete jinete = new Jinete(1,1);
+        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Curandero curandero = new Curandero(3,4);
+        Curandero curandero = new Curandero(3,4, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         accion.accionNueva(jinete,curandero, 0.05, arrayCasillero);
@@ -88,9 +89,9 @@ public class AccionesJineteTest {
     @Test
     //Prueba con ataque de distancia lejana.
     public void jineteArqueroAtacaUnidadDeDistanciaLejana() throws Exception {
-        Jinete jinete = new Jinete(1, 1);
+        Jinete jinete = new Jinete(1, 1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Curandero curandero = new Curandero(7, 7);
+        Curandero curandero = new Curandero(7, 7, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {

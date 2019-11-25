@@ -6,6 +6,7 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
+import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class CatapultaTest {
     @Test
         // La catapulta no puede ser curada
     public void catapultaNoPuedeSerCurada() throws CurarException {
-        Catapulta catapulta = new Catapulta(0,0);
+        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
         try {
             catapulta.curarse(10);
         }catch (CurarException e){
@@ -29,7 +30,7 @@ public class CatapultaTest {
     @Test
         // La catapulta no puede atacar de cerca.
     public void catapultaNoAtacaDeCerca(){
-        Catapulta catapulta = new Catapulta(0,0);
+        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
         try {
             catapulta.atacarDistanciaCerca(catapulta, 0);
         } catch (NoPuedeAtacarException e) {
@@ -39,7 +40,7 @@ public class CatapultaTest {
     @Test
         // La catapulta no puede atacar a distancia media.
     public void catapultaNoAtacarADistanciaMedia(){
-        Catapulta catapulta = new Catapulta(0,0);
+        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
         try {
             catapulta.atacarDistanciaMediana(catapulta, 0);
         } catch (NoPuedeAtacarException e) {
@@ -52,7 +53,7 @@ public class CatapultaTest {
         // Verifico que la cataputa no se puede mover
 
     public void catapultaNoSePuedeMover(){
-        Catapulta catapulta = new Catapulta(0, 0);
+        Catapulta catapulta = new Catapulta(0, 0, new EmisarioNulo());
         try {
             catapulta.moverUnidad(1,1);
         } catch (MovimientoInvalidoException | UnidadNulaException e) {

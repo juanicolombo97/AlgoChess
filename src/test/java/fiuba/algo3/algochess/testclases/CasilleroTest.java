@@ -1,17 +1,13 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.juego.Jugador;
-import fiuba.algo3.algochess.juego.Tablero;
-import fiuba.algo3.algochess.unidades.Curandero;
+import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import fiuba.algo3.algochess.unidades.UnidadNula;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
-import java.util.ArrayList;
 
 public class CasilleroTest {
     @Test
@@ -23,7 +19,7 @@ public class CasilleroTest {
     @Test
     public void guardarUnidad() throws CasilleroOcupadoException {
         Casillero casillero = new Casillero(1,2);
-        Soldado soldado = new Soldado(1, 2);
+        Soldado soldado = new Soldado(1, 2, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
         Assert.assertEquals(soldado, casillero.getUnidad());
     }
@@ -31,8 +27,8 @@ public class CasilleroTest {
     @Test
     public void guardarUnidadCasilleroOcupadoError() throws CasilleroOcupadoException {
         Casillero casillero = new Casillero(1,1);
-        Soldado soldado = new Soldado(1,1);
-        Soldado soldado2 = new Soldado(2,2);
+        Soldado soldado = new Soldado(1,1, new EmisarioNulo());
+        Soldado soldado2 = new Soldado(2,2, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
 
         try {

@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.unidades.Batallon;
+import fiuba.algo3.algochess.unidades.EmisarioReal;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNueva;
 
@@ -33,7 +33,8 @@ public class Tablero {
 
     public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
         Casillero casillero = arrayCasillero[posicionX][posicionY];
-        Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad);
+        EmisarioReal emisario = new EmisarioReal(this);
+        Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad, emisario);
         casillero.guardarUnidad(unidadCreada);
     }
 

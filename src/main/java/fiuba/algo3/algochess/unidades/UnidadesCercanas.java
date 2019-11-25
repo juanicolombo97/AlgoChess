@@ -2,7 +2,6 @@ package fiuba.algo3.algochess.unidades;
 
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Direccion;
-import fiuba.algo3.algochess.juego.Posicion;
 
 import java.util.ArrayList;
 
@@ -11,7 +10,7 @@ public class UnidadesCercanas {
     private Direccion direccion = new Direccion(0,0);
     private ArrayList listaDirecciones = direccion.direccionesMovimiento();
     private ArrayList batallonUnidades = new ArrayList();
-    private UnidadNula unidadNula = new UnidadNula(0,0);
+    private UnidadNula unidadNula = new UnidadNula(0,0, new EmisarioNulo());
     int posicionX;
     int posicionY;
 

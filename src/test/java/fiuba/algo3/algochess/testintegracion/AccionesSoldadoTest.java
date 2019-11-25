@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
+import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -16,8 +17,8 @@ public class AccionesSoldadoTest {
     @Test
     //Prueba con ataque de cerca.
     public void soldadoAtacaUnidadDeCerca() throws Exception {
-        Soldado soldado = new Soldado(1,1);
-        Curandero curandero = new Curandero(1,1);
+        Soldado soldado = new Soldado(1,1, new EmisarioNulo());
+        Curandero curandero = new Curandero(1,1, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
@@ -27,8 +28,8 @@ public class AccionesSoldadoTest {
     @Test
         //Prueba con ataque de distancia media.
     public void soldadoAtacaUnidadDeDistanciaMedia() throws Exception {
-        Soldado soldado = new Soldado(1,1);
-        Curandero curandero = new Curandero(4,4);
+        Soldado soldado = new Soldado(1,1, new EmisarioNulo());
+        Curandero curandero = new Curandero(4,4, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {
@@ -40,8 +41,8 @@ public class AccionesSoldadoTest {
     @Test
         //Prueba con ataque de distancia lejana.
     public void soldadoAtacaUnidadDeDistanciaLejana() throws Exception {
-        Soldado soldado = new Soldado(1,1);
-        Curandero curandero = new Curandero(7,7);
+        Soldado soldado = new Soldado(1,1, new EmisarioNulo());
+        Curandero curandero = new Curandero(7,7, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
         try {
