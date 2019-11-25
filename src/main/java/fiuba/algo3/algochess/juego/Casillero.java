@@ -7,22 +7,30 @@ import fiuba.algo3.algochess.unidades.Batallon;
 import fiuba.algo3.algochess.unidades.Soldado;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadNula;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import java.awt.*;
 import java.util.ArrayList;
 
-public class Casillero {
+public class Casillero extends Rectangle {
     private UnidadNula unidadNula = new UnidadNula(0,0);
     private Unidad unidad_actual;
-    private int posicionX;
+    public int posicionX;
     private int posicionY;
     private Soldado soldado = new Soldado(0,0);
     private Batallon batallon = new Batallon();
     private int contador = 0;
 
-    public Casillero(int posInicialX,int posInicialY){
+    public Casillero(boolean light,int posInicialX,int posInicialY){
         this.posicionX = posInicialX;
         this.posicionY = posInicialY;
         unidad_actual = unidadNula;
+        //Establesco los formatos del casillero.
+        setWidth(50);
+        setHeight(50);
+        setStroke(Color.BLACK);
+        relocate(posInicialX * 50, posInicialY * 50);
+        setFill(light ? Color.valueOf("#feb") : Color.valueOf("#582"));
     }
 
     public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException {

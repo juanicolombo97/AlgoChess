@@ -25,9 +25,9 @@ public class BatallonTest {
 
 
 
-        tablero.crearUnidad(jugador2,20,20,"catapulta");
+        tablero.crearUnidad(jugador2,19,19,"catapulta");
 
-        tablero.atacar(20,20,2,1,jugador2);
+        tablero.atacar(19,19,2,1,jugador2);
 
         //Verifico que se le saca el danio a las undiades
 
@@ -52,9 +52,9 @@ public class BatallonTest {
 
 
 
-        tablero.crearUnidad(jugador2,20,20,"catapulta");
+        tablero.crearUnidad(jugador2,19,19,"catapulta");
 
-        tablero.atacar(20,20,12,12,jugador2);
+        tablero.atacar(19,19,12,12,jugador2);
 
         //Verifico que se le saca el danio a las undiades
 

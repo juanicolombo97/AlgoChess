@@ -36,7 +36,7 @@ public class MenuInicio extends Application {
         mediaMenuIncio.setAutoPlay(true);
         StackPane stackPane = new StackPane();
 
-        VBox layout = new VBox(10);
+        VBox layout = new VBox(40);
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
 
