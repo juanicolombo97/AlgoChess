@@ -5,9 +5,8 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.Catapulta;
-import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.Soldado;
+import fiuba.algo3.algochess.unidades.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,6 +25,24 @@ public class AccionesCuranderoTest {
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
+    }
+    @Test
+    // El curandero cura correctamente a un Jinete
+    public void curanderoCuraJinete(){
+        Jinete jinete = new Jinete(1, 1);
+        Curandero curandero = new Curandero(2, 2);
+        AccionJugador accion = new AccionJugador();
+        accion.accionNueva(curandero, jinete, 0, arrayCasillero);
+        Assertions.assertEquals(115, jinete.getVidaUnidad());
+    }
+    @Test
+    // El curandero cura correctamente a un Jinete
+    public void curanderoCuraJinete(){
+        Curandero curandero1 = new Curandero(1, 1);
+        Curandero curandero2 = new Curandero(2, 2);
+        AccionJugador accion = new AccionJugador();
+        accion.accionNueva(curandero1, curandero2, 0, arrayCasillero);
+        Assertions.assertEquals(115, curandero2.getVidaUnidad());
     }
     @Test
         //fiuba.algo3.algochess.unidades.Curandero no puede curar a soldado a distancia media
@@ -66,6 +83,17 @@ public class AccionesCuranderoTest {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }
     }
-
+    @Test
+        // El curandero no puede curar a una UnidadNula
+    public void noPuedeCurarAUnidadNula(){
+        UnidadNula unidadNula = new UnidadNula(1, 1);
+        Curandero curandero = new Curandero(2, 2);
+        AccionJugador accion = new AccionJugador();
+        try {
+            accion.accionNueva(curandero, unidadNula, 0, arrayCasillero);
+        } catch(UnidadNulaException e) {
+            assertEquals("No se encuentra una unidad", e.getMessage());
+        }
+    }
 }
 
