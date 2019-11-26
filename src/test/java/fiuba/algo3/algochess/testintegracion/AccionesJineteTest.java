@@ -140,7 +140,9 @@ public class AccionesJineteTest {
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1, jugador2);
         tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador1, 1, 1, "soldado");
         tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        // Acerco el soldado enemigo a nuestro jinete
         tablero.moverUnidad(11,11,10,10, jugador2);
         tablero.moverUnidad(10,10,9,9, jugador2);
         tablero.moverUnidad(9,9,8,8, jugador2);
@@ -148,7 +150,16 @@ public class AccionesJineteTest {
         tablero.moverUnidad(7,7,6,6, jugador2);
         tablero.moverUnidad(6,6,6,5, jugador2);
         tablero.moverUnidad(6,5,6,4, jugador2);
-        tablero.atacar(4,4,6,4,jugador1);
+        // Acerco el soldado aliado a nuestro jinete
+        tablero.moverUnidad(1,1,2,2, jugador1);
+        tablero.moverUnidad(2,2,3,2, jugador1);
+        tablero.moverUnidad(3,2,4,2, jugador1);
+        // Pruebo si el jinete está en modo arquero
+        try{
+            tablero.atacar(4,4,6,4, jugador1);
+        } catch (NoPuedeAtacarException e){
+            e.printStackTrace();
+        }
     }
 
     @Test
