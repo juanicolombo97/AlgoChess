@@ -64,7 +64,11 @@ public class Tablero {
         ArrayList listaDeUnidades = new ArrayList();
         ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 1);
         ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 2);
-        unidadesCercanasADistancia1.addAll(unidadesCercanasADistancia2);
+        for(Object unidadActual : unidadesCercanasADistancia2){
+            if (!unidadesCercanasADistancia1.contains(unidadActual)){
+                unidadesCercanasADistancia1.add(unidadActual);
+            }
+        }
         return unidadesCercanasADistancia1;
     }
 

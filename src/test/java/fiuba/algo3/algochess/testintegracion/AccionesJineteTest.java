@@ -135,7 +135,7 @@ public class AccionesJineteTest {
 
     @Test
     //Si a un jinete, por mas que tenga enemigos cerca, se le acerca un Soldado Aliado, se vuelve Arquero
-    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException {
+    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CurarException {
         Jugador jugador1 = new Jugador();
         Jugador jugador2 = new Jugador();
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -148,10 +148,7 @@ public class AccionesJineteTest {
         tablero.moverUnidad(7,7,6,6, jugador2);
         tablero.moverUnidad(6,6,6,5, jugador2);
         tablero.moverUnidad(6,5,6,4, jugador2);
-        ArrayList unidadesJugador1 = jugador1.getUnidadesDisponibles();
-        Jinete jinete = (Jinete) unidadesJugador1.get(0);
-        JineteEspadachin estadoEspadachin = new JineteEspadachin();
-        Assert.assertEquals(estadoEspadachin.getClass(), jinete.getEstado().getClass());
+        tablero.atacar(4,4,6,4,jugador1);
     }
 
     @Test
