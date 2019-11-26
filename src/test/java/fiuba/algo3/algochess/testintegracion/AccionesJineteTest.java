@@ -164,7 +164,21 @@ public class AccionesJineteTest {
 
     @Test
     //Si a un jinete arquero sin aliados cerca, se le acerca un enemigo, se convierte en Espadachin
-    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador2, 11, 11, "curandero");
+        // Acerco el curandero enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        tablero.atacar(4,4,6,4,jugador1);
 
     }
 
