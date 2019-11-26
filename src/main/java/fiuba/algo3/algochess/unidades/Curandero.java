@@ -12,9 +12,11 @@ public class Curandero implements Unidad {
     private double vidaUnidad = 75;
     private static int curacion = 15;
     private Posicion posicion = new Posicion();
+    private Emisario emisario;
 
-    public Curandero(int posicionX,int posicionY){
+    public Curandero(int posicionX,int posicionY, Emisario emisario){
         posicion.posicionNueva(posicionX,posicionY);
+        this.emisario = emisario;
     }
 
     public double getVidaUnidad(){
@@ -54,6 +56,7 @@ public class Curandero implements Unidad {
     @Override
     public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
         posicion.posicionValida(posicionNuevaX,posicionNuevaY);
+        emisario.notificar(this);
     }
     @Override
     public void modificarPosicion(int posicionX, int posicionY) {
@@ -63,6 +66,11 @@ public class Curandero implements Unidad {
     @Override
     public Posicion getPosicion() {
         return posicion;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 
 }

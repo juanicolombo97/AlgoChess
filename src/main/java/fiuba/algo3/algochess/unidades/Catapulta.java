@@ -20,10 +20,11 @@ public class Catapulta implements Unidad{
     private static double danioDistancia = 20;
     private Posicion posicion = new Posicion();
     private Batallon batallon = new Batallon();
+    private Emisario emisario;
 
-
-    public Catapulta(int posicionX,int posicionY){
+    public Catapulta(int posicionX,int posicionY, Emisario emisario) {
         posicion.posicionNueva(posicionX,posicionY);
+        this.emisario = emisario;
     }
 
     public double getVidaUnidad(){
@@ -73,5 +74,10 @@ public class Catapulta implements Unidad{
     @Override
     public Posicion getPosicion() {
         return posicion;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 }
