@@ -69,6 +69,9 @@ public class Tablero {
                 unidadesCercanasADistancia1.add(unidadActual);
             }
         }
+        if (unidadesCercanasADistancia1.contains(unaUnidad)){
+            unidadesCercanasADistancia1.remove(unaUnidad);
+        }
         return unidadesCercanasADistancia1;
     }
 
