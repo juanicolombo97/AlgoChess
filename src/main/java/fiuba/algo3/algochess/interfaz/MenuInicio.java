@@ -34,15 +34,16 @@ public class MenuInicio extends Application {
         ventana.setTitle("AlgoChess");
 
         mediaMenuIncio.setAutoPlay(true);
-        VBox layout = new VBox();
-        layout.setPadding(new Insets(25,0,0,0));
+        StackPane stackPane = new StackPane();
+
+        VBox layout = new VBox(40);
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
 
         //Setteo sonido click.
 
 
-        scene = new Scene(layout, 800,600);
+        scene = new Scene(stackPane, 800,600);
        // Creo imagen y la establesco para que se mueva con la ventana.
         final ImageView imagen = new ImageView("fiuba/algo3/algochess/imagenes/fondomenu.jpg");
         imagen.fitHeightProperty().bind(ventana.heightProperty());
@@ -68,8 +69,9 @@ public class MenuInicio extends Application {
 
         //Agrego las imagen y botones ala primaryStage.
 
-        layout.getChildren().addAll(imagen,botonJugar,botonSalir);
+        layout.getChildren().addAll(botonJugar,botonSalir);
         layout.setAlignment(Pos.CENTER);
+        stackPane.getChildren().addAll(imagen,layout);
         ventana.setScene(scene);
         ventana.show();
     }
