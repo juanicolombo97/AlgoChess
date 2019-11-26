@@ -22,7 +22,7 @@ public class UnidadesCercanas {
             for (int x = 0; x < listaDirecciones.size();x++){
                 posicionX = unidad.getPosicion().getPosicionX() + Math.abs(aDistancia) * ((Direccion)listaDirecciones.get(x)).getX();
                 posicionY = unidad.getPosicion().getPosicionY() + Math.abs(aDistancia) * ((Direccion)listaDirecciones.get(x)).getY();
-                if (posicionX != 0 && posicionY != 0){
+                if (posicionX > 0 && posicionY > 0){
                     Unidad unidadNueva = casilleros[posicionX][posicionY].getUnidad();
                     if (!esUnidadNula(unidadNueva) && !batallonUnidades.contains(unidadNueva)){
                         batallonUnidades.add(unidadNueva);

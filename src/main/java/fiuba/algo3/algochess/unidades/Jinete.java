@@ -80,4 +80,7 @@ public class Jinete implements Unidad {
             setEstadoJinete("arquero");
     }
 
+    public EstadoJinete getEstado(){
+        return estadoJinete;
+    }
 }

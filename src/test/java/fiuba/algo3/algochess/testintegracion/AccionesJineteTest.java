@@ -1,13 +1,15 @@
 package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.acciones.AccionJugador;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
-import fiuba.algo3.algochess.unidades.Jinete;
+import fiuba.algo3.algochess.juego.Jugador;
+import fiuba.algo3.algochess.juego.Tablero;
+import fiuba.algo3.algochess.unidades.*;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -110,6 +112,69 @@ public class AccionesJineteTest {
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
     public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Jinete sin aliados ni enemigos cerca se le acerca un Soldado aliado y su estado sigue siendo Arquero
+    public void AJineteSeLeAcercaSoldadoAliadoSinEnemigosCercaYSuEstadoSigueSiendoArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador1, 4, 1, "soldado");
+        ArrayList unidadesJugador1 = jugador1.getUnidadesDisponibles();
+        Jinete jinete = (Jinete) unidadesJugador1.get(0);
+        JineteArquero estadoArquero = new JineteArquero();
+        Assert.assertEquals(estadoArquero.getClass(), jinete.getEstado().getClass());
+        tablero.moverUnidad(4,1,4,2,jugador1);
+        Assert.assertEquals(estadoArquero.getClass(), jinete.getEstado().getClass());
+        tablero.moverUnidad(4,2,4,3,jugador1);
+        Assert.assertEquals(estadoArquero.getClass(), jinete.getEstado().getClass());
+    }
+
+    @Test
+    //Si a un jinete, por mas que tenga enemigos cerca, se le acerca un Soldado Aliado, se vuelve Arquero
+    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        ArrayList unidadesJugador1 = jugador1.getUnidadesDisponibles();
+        Jinete jinete = (Jinete) unidadesJugador1.get(0);
+        JineteEspadachin estadoEspadachin = new JineteEspadachin();
+        Assert.assertEquals(estadoEspadachin.getClass(), jinete.getEstado().getClass());
+    }
+
+    @Test
+    //Si a un jinete arquero sin aliados cerca, se le acerca un enemigo, se convierte en Espadachin
+    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
+    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //SI a un jinete arquero, se la acerca un enemigo, teniendo aliados NO Soldados cerca, cambia de estado a Espadachin
+    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
+
+    }
+
+    @Test
+    //Si a un jinete espadachin, se le acercan Aliados no Soldados, no cambian su estado
+    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstadoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
 
     }
 
