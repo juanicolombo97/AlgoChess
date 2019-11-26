@@ -15,12 +15,15 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 
-import java.awt.*;
+
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TableroInterfaz {
 
@@ -73,40 +76,24 @@ public class TableroInterfaz {
     }
 
     private void ventanaCrearFichas(String nombreJugador){
+        Stage ventana = new Stage();
+        ventana.setTitle("Turno de " + nombreJugador);
 
-        final ImageView imagenSoldado = new ImageView("fiuba/algo3/algochess/imagenes/soldado4.jpg");
-        final ImageView imagenCatapulta = new ImageView("fiuba/algo3/algochess/imagenes/catapultaladoder.jpg");
-        final ImageView imagenCurandero = new ImageView("fiuba/algo3/algochess/imagenes/curandero.png");
-        final ImageView imagenJinete = new ImageView("fiuba/algo3/algochess/imagenes/jinete3der.jpg");
+        CheckBox soldado = new CheckBox("Soldado");
+        CheckBox jinete = new CheckBox("Jinete");
+        CheckBox catapulta = new CheckBox("Catapulta");
+        CheckBox curandero = new CheckBox("Curandero");
 
-
-        Stage ventanaFichas = new Stage();
-
-        ventanaFichas.setTitle("Turno de " + nombreJugador);
-        ventanaFichas.initModality(Modality.APPLICATION_MODAL);
+        Button crearUnidad = new Button("Crear Unidad");
 
 
-        HBox layout = new HBox();
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.getChildren().add(crearUnidad);
 
-        //Botones
-        Button botonSoldado = new Button();
-        botonSoldado.setGraphic(imagenSoldado);
-        Button botonCatapulta = new Button();
-        botonCatapulta.setGraphic(imagenCatapulta);
-        Button botonJinete = new Button();
-        botonJinete.setGraphic(imagenJinete);
-        Button botonCurandero = new Button();
-        botonCurandero.setGraphic(imagenCurandero);
 
-        layout.getChildren().addAll(botonCatapulta,botonCurandero,botonJinete,botonSoldado);
-        GridPane pane = new GridPane();
-        pane.setPadding(new Insets(10,10,10,10));
-        pane.setVgap(8);
-        pane.setHgap(10);
-        pane.getChildren().add(layout);
-        Scene scene = new Scene(pane,300,100);
-        ventanaFichas.centerOnScreen();
-        ventanaFichas.show();
+
+
 
     }
 }

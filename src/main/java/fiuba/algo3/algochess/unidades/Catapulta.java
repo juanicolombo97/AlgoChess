@@ -6,17 +6,21 @@ import fiuba.algo3.algochess.excepciones.CurarException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
 
 import java.util.ArrayList;
 
 //Clase donde se implementa la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Catapulta
 
-public class Catapulta implements Unidad {
+public class Catapulta implements Unidad{
     private static int costoUnidad = 5;
     private double vidaUnidad = 50;
     private static double danioDistancia = 20;
     private Posicion posicion = new Posicion();
     private Batallon batallon = new Batallon();
+
 
     public Catapulta(int posicionX,int posicionY){
         posicion.posicionNueva(posicionX,posicionY);
