@@ -23,6 +23,10 @@ public class EmisarioReal implements Emisario {
     }
 
     @Override
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) { return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
+    }
+
+    @Override
     public ArrayList unidadesEnemigasCercanas(Unidad unidad){
         return this.tablero.unidadesEnemigasCercanas(unidad);
     }

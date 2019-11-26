@@ -105,14 +105,55 @@ public class AccionesJineteTest {
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, pudiendo atacar a distancia corta
-    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException{
-
+    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        // Acerco el soldado enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        // Pruebo que ataque con espada (distancia cercana) exitosamente
+        tablero.atacar(4,4,6,4, jugador1);
     }
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
-    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException {
-
+    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException, NoAlcanzanLosPuntosException, CasilleroEnemigoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        tablero.crearUnidad(jugador2, 11, 1, "curandero");
+        // Acerco el soldado enemigo a nuestro jinete a distancia cercana
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        // Acerco el curandero enemigo a nuestro jinete a distancia media
+        tablero.moverUnidad(11,1,10,1, jugador2);
+        tablero.moverUnidad(10,1,9,1, jugador2);
+        tablero.moverUnidad(9,1,8,1, jugador2);
+        tablero.moverUnidad(8,1,7,1, jugador2);
+        tablero.moverUnidad(7,1,6,1, jugador2);
+        tablero.moverUnidad(6,1,5,1, jugador2);
+        tablero.moverUnidad(5,1,4,1, jugador2);
+        // Intento atacar al curandero enemigo a distancia media
+        try{
+            tablero.atacar(4,4,4,1, jugador1);
+        } catch (NoPuedeAtacarException | CurarException e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -179,25 +220,76 @@ public class AccionesJineteTest {
         tablero.moverUnidad(6,6,6,5, jugador2);
         tablero.moverUnidad(6,5,6,4, jugador2);
         tablero.atacar(4,4,6,4,jugador1);
-
     }
 
     @Test
     //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
-    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException {
-
+    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador1, 4, 2, "soldado");
+        tablero.crearUnidad(jugador2, 11, 11, "curandero");
+        // Acerco el soldado enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        // Pruebo si el jinete está en modo arquero
+        try{
+            tablero.atacar(4,4,6,4, jugador1);
+        } catch (NoPuedeAtacarException | CurarException e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     //SI a un jinete arquero, se la acerca un enemigo, teniendo aliados NO Soldados cerca, cambia de estado a Espadachin
-    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
-
+    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador1, 4, 2, "curandero");
+        tablero.crearUnidad(jugador2, 11, 11, "curandero");
+        // Acerco el soldado enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        // Pruebo si el jinete está en modo espadachin
+        tablero.atacar(4,4,6,4, jugador1);
     }
 
     @Test
     //Si a un jinete espadachin, se le acercan Aliados no Soldados, no cambian su estado
-    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstadoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException {
-
+    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException {
+        Jugador jugador1 = new Jugador();
+        Jugador jugador2 = new Jugador();
+        Tablero tablero = new Tablero(jugador1, jugador2);
+        tablero.crearUnidad(jugador1, 4,4, "jinete");
+        tablero.crearUnidad(jugador1, 1, 1, "curandero");
+        tablero.crearUnidad(jugador2, 11, 11, "soldado");
+        // Acerco el soldado enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10, jugador2);
+        tablero.moverUnidad(10,10,9,9, jugador2);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+        // Acerco el soldado aliado a nuestro jinete
+        tablero.moverUnidad(1,1,2,2, jugador1);
+        tablero.moverUnidad(2,2,3,2, jugador1);
+        tablero.moverUnidad(3,2,4,2, jugador1);
+        // Pruebo si el jinete sigue en modo espadachin
+        tablero.atacar(4,4,6,4, jugador1);
     }
-
 }

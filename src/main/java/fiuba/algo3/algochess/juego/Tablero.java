@@ -1,10 +1,7 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.unidades.EmisarioReal;
-import fiuba.algo3.algochess.unidades.Unidad;
-import fiuba.algo3.algochess.unidades.UnidadNueva;
-import fiuba.algo3.algochess.unidades.UnidadesCercanas;
+import fiuba.algo3.algochess.unidades.*;
 
 import java.util.ArrayList;
 
@@ -101,6 +98,17 @@ public class Tablero {
             unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         }
         return unidadesAliadasCercanasAUnidad;
+    }
+
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad){
+        ArrayList soldadosAliadosCercanos = new ArrayList();
+        ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
+        for (Object unidadActual: unidadesAliadasCercanasAUnidad){
+            if (unidadActual.getClass().equals(Soldado.class)){
+                soldadosAliadosCercanos.add(unidadActual);
+            }
+        }
+        return soldadosAliadosCercanos.size();
     }
 
     public ArrayList unidadesEnemigasCercanas(Unidad unidad) {

@@ -74,9 +74,9 @@ public class Jinete implements Unidad {
 
     @Override
     public void recibirNotificacion() {
-        if (emisario.unidadesAliadasCercanas(this).size() == 0 && emisario.unidadesEnemigasCercanas(this).size() > 0){
+        if (emisario.cantidadSoldadosAliadosCercanos(this) == 0 && emisario.unidadesEnemigasCercanas(this).size() > 0){
             setEstadoJinete("espadachin");
-        } else if (emisario.unidadesAliadasCercanas(this).size() > 0 || emisario.unidadesEnemigasCercanas(this).size() == 0)
+        } else if (emisario.cantidadSoldadosAliadosCercanos(this) > 0 || emisario.unidadesEnemigasCercanas(this).size() == 0)
             setEstadoJinete("arquero");
 
     }
