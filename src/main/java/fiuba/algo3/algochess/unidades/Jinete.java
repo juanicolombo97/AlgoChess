@@ -74,7 +74,7 @@ public class Jinete implements Unidad {
 
     @Override
     public void recibirNotificacion() {
-
+        emisario.unidadesAliadasCercanas(this);
     }
 
 }
