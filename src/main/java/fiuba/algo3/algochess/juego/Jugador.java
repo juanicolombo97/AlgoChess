@@ -11,17 +11,26 @@ public class Jugador {
 
     private int puntosColocacionFichas = 20;
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
-    private Hashtable casilleroJugador = new Hashtable();
+    public ArrayList casilleroJugador = new ArrayList();
     private UnidadNueva unidadNueva = new UnidadNueva();
     private UnidadNula unidadNula = new UnidadNula(0,0, new EmisarioNulo());
     private Catapulta catapultaAtacarAliado = new Catapulta(0,0, new EmisarioNulo());
+    private String nombreJugador;
+
+    public void setNombreJugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
+    }
+
+    public String getNombreJugador() {
+        return nombreJugador;
+    }
 
     public void agregarCasillero(Casillero casilleroNuevo){
-        casilleroJugador.put(casilleroNuevo,casilleroNuevo.getUnidad());
+        casilleroJugador.add(casilleroNuevo);
     }
 
     private void casilleroAliado(Casillero casillero) throws CasilleroEnemigoException {
-        if (!casilleroJugador.containsKey(casillero)){
+        if (!casilleroJugador.contains(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
     }
@@ -74,7 +83,7 @@ public class Jugador {
         if (!atacante.getClass().equals(catapultaAtacarAliado.getClass())){
             unidadPerteneceAJugador(atacado,true,"La unidad es aliada");
         }
-        if (casilleroJugador.containsKey(casillero)){
+        if (casilleroJugador.contains(casillero)){
             accion.accionNueva(atacante,atacado,0.05,arrayCasillero);
         }else{
             accion.accionNueva(atacante,atacado,0, arrayCasillero);

@@ -14,9 +14,9 @@ public class Tablero {
     public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
-        this.arrayCasillero = new Casillero[21][21];
-        for(int i = 1; i < 21; i++){
-            for(int j = 1; j < 21; j++){
+        this.arrayCasillero = new Casillero[20][20];
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
                 Casillero casillero = this.asignarEquipo(i, j,jugador1,jugador2);
                 this.arrayCasillero[i][j] = casillero;
             }
@@ -24,12 +24,12 @@ public class Tablero {
     }
 
     private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
-        if (i <= 10 && j <= 10){
-            Casillero casillero = new Casillero(i,j);
+        if (i < 10){
+            Casillero casillero = new Casillero(true,i,j);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero(i,j);
+            Casillero casillero = new Casillero(false,i,j);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }

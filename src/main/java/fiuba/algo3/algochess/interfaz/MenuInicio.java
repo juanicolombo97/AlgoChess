@@ -6,37 +6,56 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+
+import java.io.File;
 
 
 public class MenuInicio extends Application {
 
     Scene scene;
     Stage ventana;
+    //Sonidos
+    static Media media = new Media(new File("/Users/juanicolombo/Desktop/GitHub/AlgoChess/src/main/java/fiuba/algo3/algochess/sonidos/Click2-Sebastian-759472264.wav").toURI().toString());
+    static MediaPlayer mediaPlayer = new MediaPlayer(media);
+    static Media menuInicioMusica = new Media(new File("/Users/juanicolombo/Desktop/GitHub/AlgoChess/src/main/java/fiuba/algo3/algochess/sonidos/_Game Menu_Looping.mp3").toURI().toString());
+    static MediaPlayer mediaMenuIncio = new MediaPlayer(menuInicioMusica);
+    static InicioJuego iniciarJuego = new InicioJuego();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
         ventana.setTitle("AlgoChess");
-        StackPane layout = new StackPane();
-        layout.setPadding(new Insets(25,0,0,0));
+
+        mediaMenuIncio.setAutoPlay(true);
+        StackPane stackPane = new StackPane();
+
+        VBox layout = new VBox(40);
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
 
-        scene = new Scene(layout, 800,600);
-
-        /*// Creo imagen y la establesco para que se mueva con la ventana.
-        final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
-        imagen.fitHeightProperty().bind(scene.heightProperty());
-        imagen.fitWidthProperty().bind(scene.widthProperty());
+        //Setteo sonido click.
 
 
-         */
+        scene = new Scene(stackPane, 800,600);
+       // Creo imagen y la establesco para que se mueva con la ventana.
+        final ImageView imagen = new ImageView("fiuba/algo3/algochess/imagenes/fondomenu.jpg");
+        imagen.fitHeightProperty().bind(ventana.heightProperty());
+        imagen.fitWidthProperty().bind(ventana.widthProperty());
 
-        // Accion al apretar boton.
-        botonJugar.setOnAction(e -> VentanaLogear.display("jugador1"));
+
+        botonJugar.setOnAction(e -> {
+            mediaPlayer.setAutoPlay(true);
+            iniciarJuego.comenzarJuego(mediaMenuIncio);
+
+        });
+
         ventana.setOnCloseRequest( e -> {
             e.consume();
             cerrarPrograma();
@@ -51,7 +70,8 @@ public class MenuInicio extends Application {
         //Agrego las imagen y botones ala primaryStage.
 
         layout.getChildren().addAll(botonJugar,botonSalir);
-        layout.setAlignment(botonSalir,Pos.BOTTOM_CENTER);
+        layout.setAlignment(Pos.CENTER);
+        stackPane.getChildren().addAll(imagen,layout);
         ventana.setScene(scene);
         ventana.show();
     }

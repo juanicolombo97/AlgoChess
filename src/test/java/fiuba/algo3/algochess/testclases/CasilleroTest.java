@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Assertions;
 public class CasilleroTest {
     @Test
     public void casilleroEstaVacioAlSerCreado(){
-        Casillero casillero = new Casillero(1,1);
+        Casillero casillero = new Casillero(true,1,1);
         Assert.assertEquals(casillero.getUnidad().getClass(), UnidadNula.class);
     }
 
     @Test
     public void guardarUnidad() throws CasilleroOcupadoException {
-        Casillero casillero = new Casillero(1,2);
+        Casillero casillero = new Casillero(true,1,2);
         Soldado soldado = new Soldado(1, 2, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
         Assert.assertEquals(soldado, casillero.getUnidad());
@@ -26,7 +26,7 @@ public class CasilleroTest {
 
     @Test
     public void guardarUnidadCasilleroOcupadoError() throws CasilleroOcupadoException {
-        Casillero casillero = new Casillero(1,1);
+        Casillero casillero = new Casillero(true,1,1);
         Soldado soldado = new Soldado(1,1, new EmisarioNulo());
         Soldado soldado2 = new Soldado(2,2, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
