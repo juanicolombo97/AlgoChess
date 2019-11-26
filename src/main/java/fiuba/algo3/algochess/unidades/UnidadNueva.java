@@ -3,9 +3,9 @@ package fiuba.algo3.algochess.unidades;
 public class UnidadNueva {
 
     //Creo una fabrica de unidades.
-    public Unidad crearUnidad(String unidad, int posicionX, int posicionY) throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException {
+    public Unidad crearUnidad(String unidad, int posicionX, int posicionY, Emisario emisario) throws fiuba.algo3.algochess.excepciones.UnidadInvalidaException {
         UnidadesFabrica unidadesFabrica = new UnidadesFabrica();
-        Unidad unidadNueva = unidadesFabrica.crearUnidad(unidad,posicionX,posicionY);
+        Unidad unidadNueva = unidadesFabrica.crearUnidad(unidad,posicionX,posicionY, emisario);
         return unidadNueva;
     }
 }

@@ -9,9 +9,11 @@ import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 public class UnidadNula implements Unidad {
 
     private Posicion posicion = new Posicion();
+    private Emisario emisario;
 
-    public UnidadNula(int posicionX,int posicionY){
+    public UnidadNula(int posicionX,int posicionY, Emisario emisario){
         posicion.posicionNueva(posicionX,posicionY);
+        this.emisario = emisario;
     }
 
     @Override
@@ -61,6 +63,11 @@ public class UnidadNula implements Unidad {
     @Override
     public double getVidaUnidad() {
         return 0;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 
 }

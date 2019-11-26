@@ -2,11 +2,7 @@ package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.unidades.Catapulta;
-import fiuba.algo3.algochess.unidades.Unidad;
-import fiuba.algo3.algochess.unidades.UnidadNueva;
-import fiuba.algo3.algochess.unidades.UnidadNula;
+import fiuba.algo3.algochess.unidades.*;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -17,8 +13,8 @@ public class Jugador {
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
     public ArrayList casilleroJugador = new ArrayList();
     private UnidadNueva unidadNueva = new UnidadNueva();
-    private UnidadNula unidadNula = new UnidadNula(0,0);
-    private Catapulta catapultaAtacarAliado = new Catapulta(0,0);
+    private UnidadNula unidadNula = new UnidadNula(0,0, new EmisarioNulo());
+    private Catapulta catapultaAtacarAliado = new Catapulta(0,0, new EmisarioNulo());
     private String nombreJugador;
 
     public void setNombreJugador(String nombreJugador) {
@@ -39,14 +35,14 @@ public class Jugador {
         }
     }
 
-    Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad, Emisario emisario) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
         //Llamo para ver si el casillero pertenece al jugador
         casilleroAliado(casillero);
         disponeDePuntos();
 
         //Creo la unidad y cambio los puntos disponibles del jugador
-        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,posicionX,posicionY);
+        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,posicionX,posicionY, emisario);
         modificarPuntos(unidadCreada);
         unidadesDisponibles.add(unidadCreada);
 

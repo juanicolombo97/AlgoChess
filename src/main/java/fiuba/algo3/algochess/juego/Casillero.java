@@ -3,21 +3,18 @@ package fiuba.algo3.algochess.juego;
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.unidades.Batallon;
-import fiuba.algo3.algochess.unidades.Soldado;
-import fiuba.algo3.algochess.unidades.Unidad;
-import fiuba.algo3.algochess.unidades.UnidadNula;
+import fiuba.algo3.algochess.unidades.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Casillero extends Rectangle {
-    private UnidadNula unidadNula = new UnidadNula(0,0);
+    private UnidadNula unidadNula = new UnidadNula(0,0, new EmisarioNulo());
     private Unidad unidad_actual;
     public int posicionX;
     private int posicionY;
-    private Soldado soldado = new Soldado(0,0);
+    private Soldado soldado = new Soldado(0,0, new EmisarioNulo());
     private Batallon batallon = new Batallon();
     private int contador = 0;
 
