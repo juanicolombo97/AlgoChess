@@ -1,5 +1,7 @@
 package fiuba.algo3.algochess.interfaz;
 
+import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,7 +29,7 @@ public class MenuInicio extends Application {
     static InicioJuego iniciarJuego = new InicioJuego();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws UnidadInvalidaException,CasilleroOcupadoException {
 
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
@@ -52,7 +54,12 @@ public class MenuInicio extends Application {
 
         botonJugar.setOnAction(e -> {
             mediaPlayer.setAutoPlay(true);
-            iniciarJuego.comenzarJuego(mediaMenuIncio);
+            try {
+                iniciarJuego.comenzarJuego(mediaMenuIncio);
+            } catch (CasilleroOcupadoException | UnidadInvalidaException error) {
+
+            }
+
 
         });
 

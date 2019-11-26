@@ -96,7 +96,7 @@ public class Jugador {
     }
 
 
-    public boolean unidadAliada(Unidad unidad){
-        return unidadesDisponibles.contains(unidad);
+    public int puntosDisponibles(){
+        return puntosColocacionFichas;
     }
 }
