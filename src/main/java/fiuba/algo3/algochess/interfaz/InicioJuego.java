@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class InicioJuego {
 
     static ArrayList listaJugadores = new ArrayList();
-    public void comenzarJuego(MediaPlayer mediaMenuIncio)  {
+    public void comenzarJuego(MediaPlayer mediaMenuIncio) throws CasilleroOcupadoException, UnidadInvalidaException {
 
         String nombreJugador1 = VentanaLogear.display("Jugador1");
         String nombreJugador2 = VentanaLogear.display("Jugador2");
@@ -24,11 +24,8 @@ public class InicioJuego {
         listaJugadores.add(jugador2);
         mediaMenuIncio.pause();
         TableroInterfaz interfazJuego = new TableroInterfaz();
-        try {
-            interfazJuego.crearTablero(listaJugadores);
-        }catch (CasilleroOcupadoException | UnidadInvalidaException e){
+        interfazJuego.crearTablero(listaJugadores);
 
-        }
 
     }
 }

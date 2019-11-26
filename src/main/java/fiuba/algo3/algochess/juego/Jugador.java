@@ -39,7 +39,7 @@ public class Jugador {
         }
     }
 
-    Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
         //Llamo para ver si el casillero pertenece al jugador
         casilleroAliado(casillero);
@@ -100,7 +100,7 @@ public class Jugador {
     }
 
 
-    public boolean unidadAliada(Unidad unidad){
-        return unidadesDisponibles.contains(unidad);
+    public int puntosDisponibles(){
+        return puntosColocacionFichas;
     }
 }

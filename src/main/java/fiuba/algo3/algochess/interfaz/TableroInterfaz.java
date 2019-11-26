@@ -1,29 +1,33 @@
 package fiuba.algo3.algochess.interfaz;
 
+import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Jugador;
 import fiuba.algo3.algochess.juego.Tablero;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Node;
+
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 public class TableroInterfaz {
 
@@ -33,6 +37,9 @@ public class TableroInterfaz {
     private static final int columnas = 20;
     private Group grupoCasillero = new Group();
     private Stage ventana;
+    static Media media = new Media(new File("/Users/juanicolombo/Desktop/GitHub/AlgoChess/src/main/java/fiuba/algo3/algochess/sonidos/Click2-Sebastian-759472264.wav").toURI().toString());
+    static MediaPlayer mediaPlayer = new MediaPlayer(media);
+
 
     public void crearTablero(ArrayList listaJugadores) throws CasilleroOcupadoException, UnidadInvalidaException {
         Pane tableroInterfaz = new Pane();
@@ -66,35 +73,68 @@ public class TableroInterfaz {
         ventana.show();
     }
 
-    private void iniciarAgregadoDeFichas(ArrayList listaJugadores){
+    private void iniciarAgregadoDeFichas(ArrayList listaJugadores) {
 
         for (int x = 0; x < listaJugadores.size(); x++){
             Jugador jugadorActual = (Jugador) listaJugadores.get(x);
-            ventanaCrearFichas(jugadorActual.getNombreJugador());
+            ventanaCrearFichas(jugadorActual);
 
         }
     }
 
-    private void ventanaCrearFichas(String nombreJugador){
+    private void ventanaCrearFichas(Jugador jugador){
         Stage ventana = new Stage();
-        ventana.setTitle("Turno de " + nombreJugador);
+        ventana.setTitle("Turno de " + jugador.getNombreJugador());
+        StackPane pane = new StackPane();
 
-        CheckBox soldado = new CheckBox("Soldado");
-        CheckBox jinete = new CheckBox("Jinete");
-        CheckBox catapulta = new CheckBox("Catapulta");
-        CheckBox curandero = new CheckBox("Curandero");
+        CheckBox soldado = new CheckBox("Soldado -- 1 Pto");
+        CheckBox jinete = new CheckBox("Jinete -- 3 Ptos");
+        CheckBox catapulta = new CheckBox("Catapulta -- 5 Ptos");
+        CheckBox curandero = new CheckBox("Curandero -- 2 Ptos");
 
         Button crearUnidad = new Button("Crear Unidad");
 
+        Label posicionX = new Label("Posicion X: ");
+        TextField usuarioInputX = new TextField();
+        usuarioInputX.setPromptText("posicion X");
 
+        Label posicionY = new Label("Posicion Y: ");
+        TextField usuarioInputY = new TextField();
+        usuarioInputY.setPromptText("posicion Y");
+
+        int puntos = jugador.puntosDisponibles();
+        Label puntosDisponibles = new Label("Puntos disponibles: " + puntos);
+
+        crearUnidad.setOnAction(e -> {
+            manejoOpciones(soldado,catapulta,curandero,jinete,usuarioInputX.getText(),usuarioInputY.getText(),puntos);
+            mediaPlayer.setAutoPlay(true);
+        });
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().add(crearUnidad);
+        layout.getChildren().addAll(soldado,curandero,jinete,catapulta,posicionX,usuarioInputX,posicionY,usuarioInputY,crearUnidad);
+
+        VBox layout2 = new VBox(10);
+        layout2.setPadding(new Insets(20,20,20,150));
 
 
+        layout2.getChildren().add(puntosDisponibles);
+        pane.getChildren().addAll(layout2,layout);
+        Scene scene = new Scene(pane,300,300);
+        ventana.setScene(scene);
+        ventana.show();
 
 
 
     }
+
+    public void manejoOpciones(CheckBox soldado, CheckBox catapulta, CheckBox curandero, CheckBox jinete,String posicionX, String posicionY,int puntos){
+        if (soldado.isSelected()){
+            //Crear unidad soldado
+
+            puntos = puntos -1;
+        }
+    }
+
+
 }
 
