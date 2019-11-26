@@ -5,13 +5,21 @@ import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Jugador;
 import fiuba.algo3.algochess.juego.Tablero;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class TableroInterfaz {
@@ -59,15 +67,47 @@ public class TableroInterfaz {
 
         for (int x = 0; x < listaJugadores.size(); x++){
             Jugador jugadorActual = (Jugador) listaJugadores.get(x);
-            ventana.setTitle("Turno de : " + jugadorActual.getNombreJugador());
-            /*
-            while (jugadorActual.puedeSeguirJugando()){
-
-            }
-            
-             */
+            ventanaCrearFichas(jugadorActual.getNombreJugador());
 
         }
+    }
+
+    private void ventanaCrearFichas(String nombreJugador){
+
+        final ImageView imagenSoldado = new ImageView("fiuba/algo3/algochess/imagenes/soldado4.jpg");
+        final ImageView imagenCatapulta = new ImageView("fiuba/algo3/algochess/imagenes/catapultaladoder.jpg");
+        final ImageView imagenCurandero = new ImageView("fiuba/algo3/algochess/imagenes/curandero.png");
+        final ImageView imagenJinete = new ImageView("fiuba/algo3/algochess/imagenes/jinete3der.jpg");
+
+
+        Stage ventanaFichas = new Stage();
+
+        ventanaFichas.setTitle("Turno de " + nombreJugador);
+        ventanaFichas.initModality(Modality.APPLICATION_MODAL);
+
+
+        HBox layout = new HBox();
+
+        //Botones
+        Button botonSoldado = new Button();
+        botonSoldado.setGraphic(imagenSoldado);
+        Button botonCatapulta = new Button();
+        botonCatapulta.setGraphic(imagenCatapulta);
+        Button botonJinete = new Button();
+        botonJinete.setGraphic(imagenJinete);
+        Button botonCurandero = new Button();
+        botonCurandero.setGraphic(imagenCurandero);
+
+        layout.getChildren().addAll(botonCatapulta,botonCurandero,botonJinete,botonSoldado);
+        GridPane pane = new GridPane();
+        pane.setPadding(new Insets(10,10,10,10));
+        pane.setVgap(8);
+        pane.setHgap(10);
+        pane.getChildren().add(layout);
+        Scene scene = new Scene(pane,300,100);
+        ventanaFichas.centerOnScreen();
+        ventanaFichas.show();
+
     }
 }
 
