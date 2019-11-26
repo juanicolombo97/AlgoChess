@@ -4,7 +4,6 @@ jdk:
 dist: trusty
 
 script: 
-- mvn cobertura:cobertura
 - mvn test
 
 after_success:
