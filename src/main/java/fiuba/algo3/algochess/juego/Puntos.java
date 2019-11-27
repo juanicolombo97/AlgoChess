@@ -4,7 +4,7 @@ import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
 
 public class Puntos {
 
-    private int puntosDisponibles;
+    public int puntosDisponibles;
 
     public Puntos(int puntos){
         puntosDisponibles = puntos;
