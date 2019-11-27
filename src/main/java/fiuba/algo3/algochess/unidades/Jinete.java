@@ -9,7 +9,8 @@ import java.util.HashMap;
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
-    private EstadoJinete estadoJinete = new JineteArquero(); //default
+    private int danioCercano = 5;
+    private int danioMediano = 15;
     private Posicion posicion;
 
     public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
@@ -31,9 +32,7 @@ public class Jinete implements Unidad {
         this.posicion = posicion;
     }
 
-    public void setEstadoJinete(String estado){
-        estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
-    }
+
 
 
     @Override
@@ -41,7 +40,7 @@ public class Jinete implements Unidad {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        estadoJinete.atacarDistanciaCerca(atacado);
+       atacado.recibirDanio(danioCercano);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class Jinete implements Unidad {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        estadoJinete.atacarDistanciaMediana(atacado);
+        atacado.recibirDanio(danioMediano);
     }
 
     @Override
@@ -78,7 +77,4 @@ public class Jinete implements Unidad {
     }
 
 
-    public EstadoJinete getEstado(){
-        return estadoJinete;
-    }
 }
