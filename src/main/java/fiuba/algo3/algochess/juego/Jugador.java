@@ -99,4 +99,8 @@ public class Jugador {
     public int puntosDisponibles(){
         return puntosColocacionFichas;
     }
+
+    public boolean unidadAliada(Unidad unidad){
+        return unidadesDisponibles.contains(unidad);
+    }
 }
