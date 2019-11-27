@@ -7,26 +7,28 @@ import java.util.Hashtable;
 public class UnidadesFabrica {
 
     //Fabrica utilizada para crear las unidades del juego.
-    private Hashtable unidades = new Hashtable();
+    private Unidad unidadACrear;
 
     public Unidad crearUnidad(String unidad, int posicionX, int posicionY, Emisario emisario) throws UnidadInvalidaException {
-        // establesco las unidades posibles
-        establecerUnidades(posicionX,posicionY, emisario);
-        return (Unidad) unidades.get(unidad.toLowerCase());
+        switch (unidad) {
 
-    }
-
-    public void establecerUnidades(int posX, int posY, Emisario emisario){
-        Soldado soldado = new Soldado(posX,posY, emisario);
-        Catapulta catapulta = new Catapulta(posX,posY, emisario);
-        Jinete jinete = new Jinete(posX,posY, emisario);
-        Curandero curandero = new Curandero(posX,posY, emisario);
-        UnidadNula unidadNula = new UnidadNula(posX,posY, emisario);
-
-        unidades.put("soldado",soldado);
-        unidades.put("catapulta",catapulta);
-        unidades.put("jinete",jinete);
-        unidades.put("curandero",curandero);
-        unidades.put("",unidadNula);
+            case "soldado": {
+                unidadACrear = new Soldado(posicionX,posicionY,emisario);
+                break;
+            }
+            case "jinete": {
+                unidadACrear = new Jinete(posicionX,posicionY,emisario);
+                break;
+            }
+            case "curandero": {
+                unidadACrear = new Curandero(posicionX,posicionY,emisario);
+                break;
+            }
+            case "catapulta": {
+                unidadACrear = new Catapulta(posicionX,posicionY,emisario);
+                break;
+            }
+        }
+        return unidadACrear;
     }
 }
