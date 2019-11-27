@@ -32,6 +32,11 @@ public class Catapulta implements Unidad{
     }
 
     @Override
+    public void modificarPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean danioExtra, HashMap tablero) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }

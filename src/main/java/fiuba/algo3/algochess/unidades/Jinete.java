@@ -26,6 +26,11 @@ public class Jinete implements Unidad {
         return posicion;
     }
 
+    @Override
+    public void modificarPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
     public void setEstadoJinete(String estado){
         estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
     }

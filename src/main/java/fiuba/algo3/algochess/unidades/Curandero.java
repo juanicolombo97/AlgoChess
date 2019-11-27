@@ -27,6 +27,11 @@ public class Curandero implements Unidad {
     }
 
     @Override
+    public void modificarPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         atacado.curarse(curacion);
     }

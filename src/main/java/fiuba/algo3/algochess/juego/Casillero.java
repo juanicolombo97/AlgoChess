@@ -22,6 +22,7 @@ public class Casillero extends Rectangle {
 
     public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
+        unidadNueva.modificarPosicion(posicionCasillero);
    }
    public void eliminarUnidad() throws CasilleroVacioExcepcion {
         estadoCasillero = estadoCasillero.eliminarUnidad();

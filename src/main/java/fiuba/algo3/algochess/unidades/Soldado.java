@@ -28,6 +28,11 @@ public class Soldado implements Unidad {
     }
 
     @Override
+    public void modificarPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
