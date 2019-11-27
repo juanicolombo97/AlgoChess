@@ -84,5 +84,5 @@ public class CuranderoTest {
             Assertions.assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
     }
-    
+
 }
