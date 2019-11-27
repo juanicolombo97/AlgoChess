@@ -5,20 +5,19 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.unidades.*;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class Jugador {
 
     private int puntosColocacionFichas = 20;
-    private ArrayList<Unidad> unidadesDisponibles = new ArrayList();
-    public ArrayList casilleroJugador = new ArrayList();
-    private UnidadNueva unidadNueva = new UnidadNueva();
-    private UnidadNula unidadNula = new UnidadNula(0,0, new EmisarioNulo());
-    private Catapulta catapultaAtacarAliado = new Catapulta(0,0, new EmisarioNulo());
+    private ArrayList<Unidad> unidadesDisponibles = new ArrayList<>();
+    public ArrayList<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
+    private Puntos puntosJugador;
 
-    public void setNombreJugador(String nombreJugador) {
+    public Jugador(String  nombreJugador){
         this.nombreJugador = nombreJugador;
+        puntosJugador = new Puntos(puntosColocacionFichas);
     }
 
     public String getNombreJugador() {
@@ -35,69 +34,39 @@ public class Jugador {
         }
     }
 
-    Unidad crearUnidad(int posicionX, int posicionY, Casillero casillero, String nombreUnidad, Emisario emisario) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
 
-        //Llamo para ver si el casillero pertenece al jugador
+        //Llamo para ver si el casillero pertenece al jugador.
         casilleroAliado(casillero);
-        disponeDePuntos();
-
         //Creo la unidad y cambio los puntos disponibles del jugador
-        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,posicionX,posicionY, emisario);
-        modificarPuntos(unidadCreada);
-        unidadesDisponibles.add(unidadCreada);
-
+        UnidadNueva unidadNueva = new UnidadNueva();
+        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion);
         return unidadCreada;
     }
 
-    private void disponeDePuntos() throws NoAlcanzanLosPuntosException {
-        if (puntosColocacionFichas <= 0){
-            throw new NoAlcanzanLosPuntosException("Puntos no disponibles");
-        }
-    }
-
-    private void modificarPuntos(Unidad unidad) {
-        puntosColocacionFichas -= unidad.cuantoCuesta();
+    public void guardarUnidad(Unidad unidadNueva){
+        unidadesDisponibles.add(unidadNueva);
     }
 
     public boolean puedeSeguirJugando(){
         return unidadesDisponibles.size() !=0;
     }
 
-    public void moverUnidad(Unidad unidadAMover, int posX, int posY) throws UnidadInvalidaException, UnidadNulaException, MovimientoInvalidoException {
-        // verifico que pertenesca al jugador la unidad
-        unidadPerteneceAJugador(unidadAMover,false,"La unidad pertenece al enemigo");
-
-        unidadAMover.moverUnidad(posX,posY);
-    }
-
-    private void unidadPerteneceAJugador(Unidad unidad, boolean pertenece, String mensajeError) throws UnidadInvalidaException {
-        if ( pertenece ==unidadesDisponibles.contains(unidad) && !unidad.getClass().equals(unidadNula.getClass())){
-            throw new UnidadInvalidaException(mensajeError);
+    public void unidadPerteneceAJugador(Unidad unidad) throws UnidadInvalidaException {
+        if (!unidadesDisponibles.contains(unidad)){
+            throw new UnidadInvalidaException("Unidad pertenece al enemigo");
         }
     }
 
-    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Casillero[][] arrayCasillero) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
+    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CasilleroVacioExcepcion {
         AccionJugador accion = new AccionJugador();
-
+        boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
-        if (!atacante.getClass().equals(catapultaAtacarAliado.getClass())){
-            unidadPerteneceAJugador(atacado,true,"La unidad es aliada");
-        }
-        if (casilleroJugador.contains(casillero)){
-            accion.accionNueva(atacante,atacado,0.05,arrayCasillero);
-        }else{
-            accion.accionNueva(atacante,atacado,0, arrayCasillero);
-        }
-
+        accion.accionNueva(atacante,atacado,tablero,esUnidadAliada,distancia,tablero);
     }
 
-    public ArrayList getUnidadesDisponibles(){
+    public ArrayList<Unidad> getUnidadesDisponibles(){
         return unidadesDisponibles;
-    }
-
-
-    public int puntosDisponibles(){
-        return puntosColocacionFichas;
     }
 
     public boolean unidadAliada(Unidad unidad){

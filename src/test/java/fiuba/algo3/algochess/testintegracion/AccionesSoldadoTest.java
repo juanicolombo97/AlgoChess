@@ -4,7 +4,6 @@ import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +20,7 @@ public class AccionesSoldadoTest {
         Curandero curandero = new Curandero(1,1, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
+        accion.accionNueva(soldado,curandero, 0.05, arrayCasillero, distancia, tablero);
         //Compruebo que el curandero se le haya restado la vida correctamente.
         Assertions.assertEquals(64.5,curandero.getVidaUnidad());
     }
@@ -33,7 +32,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
+            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero, distancia, tablero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
@@ -46,7 +45,7 @@ public class AccionesSoldadoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero);
+            accion.accionNueva(soldado,curandero, 0.05, arrayCasillero, distancia, tablero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }

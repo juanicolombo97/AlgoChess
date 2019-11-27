@@ -1,31 +1,32 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-
-import java.util.Hashtable;
+import fiuba.algo3.algochess.juego.Puntos;
+import fiuba.algo3.algochess.juego.Posicion;
 
 public class UnidadesFabrica {
 
     //Fabrica utilizada para crear las unidades del juego.
     private Unidad unidadACrear;
 
-    public Unidad crearUnidad(String unidad, int posicionX, int posicionY, Emisario emisario) throws UnidadInvalidaException {
+    public Unidad crearUnidad(String unidad, Puntos puntosJugador, Posicion posicion) throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
         switch (unidad) {
 
             case "soldado": {
-                unidadACrear = new Soldado(posicionX,posicionY,emisario);
+                unidadACrear = new Soldado(puntosJugador,posicion);
                 break;
             }
             case "jinete": {
-                unidadACrear = new Jinete(posicionX,posicionY,emisario);
+                unidadACrear = new Jinete(puntosJugador,posicion);
                 break;
             }
             case "curandero": {
-                unidadACrear = new Curandero(posicionX,posicionY,emisario);
+                unidadACrear = new Curandero(puntosJugador,posicion);
                 break;
             }
             case "catapulta": {
-                unidadACrear = new Catapulta(posicionX,posicionY,emisario);
+                unidadACrear = new Catapulta(puntosJugador,posicion);
                 break;
             }
         }

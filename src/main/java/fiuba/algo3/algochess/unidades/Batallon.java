@@ -1,30 +1,31 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.juego.Casillero;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Batallon {
 
     private UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
     private ArrayList unidades = new ArrayList();
-    private Soldado soldado = new Soldado(0,0, new EmisarioNulo());
 
-    public ArrayList calcularBatallon(Unidad unidadAtacada, Casillero[][] arrayCasillero) {
-        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(arrayCasillero,unidades,unidadAtacada,1);
-        return listaUnidades;
+    public ArrayList calcularBatallon(Unidad unidadAtacada, HashMap tablero) throws CasilleroVacioExcepcion {
+        return  unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAtacada);
     }
 
-    public ArrayList calcularBatallonDeSoldados(Unidad unidadAMover,Casillero[][] casilleros){
-        ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(casilleros,unidades,unidadAMover,1);
-        ArrayList batallonSoldado = new ArrayList();
-        for (int x = 0; x < listaUnidades.size();x++){
-            Unidad unidad = (Unidad) listaUnidades.get(x);
-            if (unidad.getClass().equals(soldado.getClass())){
-                batallonSoldado.add(unidad);
-            }
+    public ArrayList calcularBatallonDeSoldados(Unidad unidadAMover,HashMap tablero) throws CasilleroVacioExcepcion {
+       ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAMover);
+       return listaSoldados(listaUnidades);
+    }
+
+    public ArrayList listaSoldados(ArrayList listaUnidades){
+        ArrayList<Soldado> listaSoldados = new ArrayList<>();
+        for (int x = 0; x < listaUnidades.size(); x++){
+            listaSoldados.add((Soldado) listaUnidades.get(x));
         }
-        return batallonSoldado;
+        return listaSoldados;
     }
 }
 

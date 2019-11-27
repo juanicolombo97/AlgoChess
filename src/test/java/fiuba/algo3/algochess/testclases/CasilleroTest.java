@@ -1,10 +1,10 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
+import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.unidades.Soldado;
-import fiuba.algo3.algochess.unidades.UnidadNula;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -12,8 +12,14 @@ import org.junit.jupiter.api.Assertions;
 public class CasilleroTest {
     @Test
     public void casilleroEstaVacioAlSerCreado(){
-        Casillero casillero = new Casillero(true,1,1);
-        Assert.assertEquals(casillero.getUnidad().getClass(), UnidadNula.class);
+        Posicion posicionNueva = new Posicion(1,1);
+        Casillero casillero = new Casillero(posicionNueva);
+        try {
+            casillero.obtenerUnidad();
+        } catch (CasilleroVacioExcepcion e) {
+            Assertions.assertEquals("El casillero esta vacio",e.getMessage());
+        }
+
     }
 
     @Test

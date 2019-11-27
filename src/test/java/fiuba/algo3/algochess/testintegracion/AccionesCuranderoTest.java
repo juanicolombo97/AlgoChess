@@ -7,7 +7,6 @@ import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
 import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         // fiuba.algo3.algochess.unidades.Curandero cura a fiuba.algo3.algochess.unidades.Soldado.
-        accion.accionNueva(curandero, soldado, 0.05, arrayCasillero);
+        accion.accionNueva(curandero, soldado, 0.05, arrayCasillero, distancia, tablero);
 
         // Curacion curandero: 15 ---  Vida soldado: 100 // VidaFinalSoldado: 115
         assertEquals(115, soldado.getVidaUnidad());
@@ -36,7 +35,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero);
+            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero, distancia, tablero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -49,7 +48,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero);
+            accion.accionNueva(curandero,soldado, 0.05, arrayCasillero, distancia, tablero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
@@ -62,7 +61,7 @@ public class AccionesCuranderoTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(curandero,catapulta, 0.05, arrayCasillero);
+            accion.accionNueva(curandero,catapulta, 0.05, arrayCasillero, distancia, tablero);
         } catch (CurarException | NoPuedeAtacarException | UnidadNulaException e) {
             assertEquals("La catapulta no puede ser curada",e.getMessage());
         }

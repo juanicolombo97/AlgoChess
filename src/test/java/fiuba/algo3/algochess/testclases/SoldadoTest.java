@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ class SoldadoTest {
         //El soldado puede atacar de cerca.
     public void soldadoPuedeAtacarDeCerca() throws NoPuedeAtacarException, UnidadNulaException {
         Soldado soldado = new Soldado(1,1, new EmisarioNulo());
-        soldado.atacarDistanciaCerca(soldado, 0);
+        soldado.atacarDistanciaCerca(soldado, 0, tablero);
         Assertions.assertEquals(90,soldado.getVidaUnidad());
     }
     @Test

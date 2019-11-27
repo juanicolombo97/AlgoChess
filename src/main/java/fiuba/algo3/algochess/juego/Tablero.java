@@ -2,124 +2,70 @@ package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.unidades.*;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tablero {
-    private Casillero[][] arrayCasillero;
-    private UnidadNueva unidad = new UnidadNueva();
+    private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
 
     public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
-        this.arrayCasillero = new Casillero[20][20];
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
-                Casillero casillero = this.asignarEquipo(i, j,jugador1,jugador2);
-                this.arrayCasillero[i][j] = casillero;
+                Posicion posicion = new Posicion(i,j);
+                Casillero casillero = this.asignarEquipo(posicion,jugador1,jugador2);
+                tablero.put(posicion,casillero);
             }
         }
     }
 
-    private Casillero asignarEquipo (int i, int j,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
-        if (i < 10){
-            Casillero casillero = new Casillero(true,i,j);
+    private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
+        if (posicion.getPosicionX()< 10){
+            Casillero casillero = new Casillero(posicion);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero(false,i,j);
+            Casillero casillero = new Casillero(posicion);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }
     }
 
-    public void crearUnidad(Jugador jugador, int posicionX, int posicionY, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
-        Casillero casillero = arrayCasillero[posicionX][posicionY];
-        EmisarioReal emisario = new EmisarioReal(this);
-        Unidad unidadCreada = jugador.crearUnidad(posicionX,posicionY,casillero,nombreUnidad, emisario);
-        casillero.guardarUnidad(unidadCreada);
+    public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
+        Casillero casilleroDestino = tablero.get(posicion);
+        Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion);
+        casilleroDestino.guardarUnidad(unidadCreada);
+        jugador.guardarUnidad(unidadCreada);
+        return unidadCreada;
     }
 
-    public void moverUnidad(int posicionInicialX, int posicionInicialY, int posicionFinalX, int posicionFinalY,Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException {
+    public void moverUnidad(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion {
 
-        Casillero casilleroInicial = arrayCasillero[posicionInicialX][posicionInicialY];
-        Casillero casilleroDestino = arrayCasillero[posicionFinalX][posicionFinalY];
-        casilleroInicial.moverUnidad(casilleroDestino,arrayCasillero);
+        Casillero casilleroInicial = tablero.get(posicionInicial);
+        Casillero casilleroDestino = tablero.get(posicionFinal);
+        //Veo que la distancia sea correcta.
+        casilleroInicial.movimientoValido(casilleroDestino);
+        //Verifico que la unidad se peuda mover y que sea del jugador.
+        Unidad unidadAMover = casilleroInicial.obtenerUnidad();
+
+        jugador.unidadPerteneceAJugador(unidadAMover);
+        unidadAMover.habilidadMoverse();
+
+        casilleroDestino.guardarUnidad(unidadAMover);
+        casilleroInicial.eliminarUnidad();
     }
 
-    public void atacar(int posicionAtacanteX, int posicionAtacanteY, int posicionAtacadoX, int posicionAtacadoY, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException {
-        Unidad unidadAtacante = arrayCasillero[posicionAtacanteX][posicionAtacanteY].getUnidad();
-        Unidad unidadAtacada = arrayCasillero[posicionAtacadoX][posicionAtacadoY].getUnidad();
-
-        jugador.atacar(unidadAtacante,unidadAtacada,arrayCasillero[posicionAtacadoX][posicionAtacadoY],arrayCasillero);
-    }
-
-    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad){
-        UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-        ArrayList listaDeUnidades = new ArrayList();
-        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 1);
-        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 2);
-        for(Object unidadActual : unidadesCercanasADistancia2){
-            if (!unidadesCercanasADistancia1.contains(unidadActual)){
-                unidadesCercanasADistancia1.add(unidadActual);
-            }
-        }
-        if (unidadesCercanasADistancia1.contains(unaUnidad)){
-            unidadesCercanasADistancia1.remove(unaUnidad);
-        }
-        return unidadesCercanasADistancia1;
-    }
-
-    public void notificar(Unidad unidadEmisora) {
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
-        for(int i = 1; i < unidadesCercanas.size(); i++){
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
-            unidadActual.recibirNotificacion();
-        }
-    }
-
-    public void unidadesAliadasCercanasPorJugador(Unidad unidad, Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
-        for(int i = 1; i < unidadesCercanas.size(); i++){
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
-            if (jugador.unidadAliada(unidadActual)){
-                unidadesAliadasCercanas.add(unidadActual);
-            }
-        }
-    }
-
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) {
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
-        ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(unidad, jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        }
-        return unidadesAliadasCercanasAUnidad;
-    }
-
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad){
-        ArrayList soldadosAliadosCercanos = new ArrayList();
-        ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
-        for (Object unidadActual: unidadesAliadasCercanasAUnidad){
-            if (unidadActual.getClass().equals(Soldado.class)){
-                soldadosAliadosCercanos.add(unidadActual);
-            }
-        }
-        return soldadosAliadosCercanos.size();
-    }
-
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
-        ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(unidad, jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        }
-        return unidadesEnemigasCercanasAUnidad;
+    public void atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException, CasilleroVacioExcepcion {
+        Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
+        Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
+        Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
+        jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
     }
 
 

@@ -1,50 +1,55 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Casillero;
+import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+
+import java.util.HashMap;
 
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
     private EstadoJinete estadoJinete = new JineteArquero(); //default
-    private Posicion posicion = new Posicion();
-    private Emisario emisario;
+    private Posicion posicion;
 
-    public Jinete(int posicionX,int posicionY, Emisario emisario){
-        posicion.posicionNueva(posicionX,posicionY);
-        this.emisario = emisario;
+    public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+        puntosJugador.puntosSuficientes(costoUnidad);
+        this.posicion = posicion;
     }
 
     public double getVidaUnidad(){
         return vidaUnidad;
     }
 
+    @Override
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
     public void setEstadoJinete(String estado){
         estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
     }
 
+
     @Override
-    public void modificarPosicion(int posicionX, int posicionY) {
-        posicion.posicionNueva(posicionX,posicionY);
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+        if (esUnidadAliada){
+            throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
+        }
+        estadoJinete.atacarDistanciaCerca(atacado);
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        estadoJinete.atacarDistanciaCerca(atacado,danioExtra);
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+        if (esUnidadAliada){
+            throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
+        }
+        estadoJinete.atacarDistanciaMediana(atacado);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        estadoJinete.atacarDistanciaMediana(atacado,danioExtra);
-    }
-
-    @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException {
-        estadoJinete.atacarDistanciaLejana(atacado,danioExtra,arrayCasillero);
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+        throw new NoPuedeAtacarException("El jinete arquero no puede atacar a distancias lejanas");
     }
 
     @Override
@@ -63,23 +68,10 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-    }
-
-    @Override
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
-    @Override
-    public void recibirNotificacion() {
-        if (emisario.cantidadSoldadosAliadosCercanos(this) == 0 && emisario.unidadesEnemigasCercanas(this).size() > 0){
-            setEstadoJinete("espadachin");
-        } else if (emisario.cantidadSoldadosAliadosCercanos(this) > 0 || emisario.unidadesEnemigasCercanas(this).size() == 0)
-            setEstadoJinete("arquero");
+    public void habilidadMoverse() {
 
     }
+
 
     public EstadoJinete getEstado(){
         return estadoJinete;

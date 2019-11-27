@@ -24,17 +24,13 @@ public class JineteEspadachin implements EstadoJinete {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danio + (danioExtra * danio));
+    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+        atacado.recibirDanio(danio );
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
+    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
         throw new NoPuedeAtacarException("El jinete espadachin no puede atacar a distancias medianas");
     }
 
-    @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El jinete espadachin no puede atacar a distancias lejanas");
-    }
 }

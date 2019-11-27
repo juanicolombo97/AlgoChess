@@ -48,17 +48,7 @@ public class UnidadesFabricaTest {
         mismaClase = catapulta1.getClass().equals(catapulta.getClass());
         assertEquals(true,mismaClase);
     }
-    @Test
-    // Pruebo que si intento crear una unidad invalida me da Excepcion.
-    public void creoUnidadInvalida() throws UnidadInvalidaException {
-        UnidadesFabrica fabrica = new UnidadesFabrica();
-        // codigo.fiuba.algo3.algochess.unidades.Curandero no puede curar a codigo.fiuba.algo3.algochess.unidades.Catapulta.
-        try{
-            fabrica.crearUnidad("Minion",1,1, new EmisarioNulo());
-        }catch (UnidadInvalidaException e){
-            assertEquals("La unidad es invalida",e.getMessage());
-        }
-    }
+
 }
 
 

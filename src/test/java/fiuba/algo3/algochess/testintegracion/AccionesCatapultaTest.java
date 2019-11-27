@@ -4,7 +4,6 @@ import fiuba.algo3.algochess.acciones.AccionJugador;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.unidades.Catapulta;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ public class AccionesCatapultaTest {
         Catapulta catapulta = new Catapulta(2,2, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
         try {
-            accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero);
+            accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero, distancia, tablero);
         }catch (NoPuedeAtacarException e){
             assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
@@ -34,7 +33,7 @@ public class AccionesCatapultaTest {
         Catapulta catapulta = new Catapulta(4,4, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
         try {
-            accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero);
+            accion.accionNueva(catapulta,soldado, 0.05, arrayCasillero, distancia, tablero);
         }catch (NoPuedeAtacarException e){
             assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }

@@ -1,22 +1,20 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Casillero;
+import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+
+import java.util.HashMap;
 
 public class Curandero implements Unidad {
     private static int costoUnidad = 2;
     private double vidaUnidad = 75;
     private static int curacion = 15;
-    private Posicion posicion = new Posicion();
-    private Emisario emisario;
+    private Posicion posicion;
 
-    public Curandero(int posicionX,int posicionY, Emisario emisario){
-        posicion.posicionNueva(posicionX,posicionY);
-        this.emisario = emisario;
+    public Curandero( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+        puntosJugador.puntosSuficientes(costoUnidad);
+        this.posicion = posicion;
     }
 
     public double getVidaUnidad(){
@@ -24,17 +22,22 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    @Override
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         atacado.curarse(curacion);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException,CurarException{
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws CurarException, NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
@@ -54,23 +57,9 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-        emisario.notificar(this);
-    }
-    @Override
-    public void modificarPosicion(int posicionX, int posicionY) {
-        posicion.posicionNueva(posicionX,posicionY);
-    }
-
-    @Override
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
-    @Override
-    public void recibirNotificacion() {
+    public void habilidadMoverse() throws MovimientoInvalidoException {
 
     }
+
 
 }

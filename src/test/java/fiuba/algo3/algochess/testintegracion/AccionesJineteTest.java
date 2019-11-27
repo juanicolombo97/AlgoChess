@@ -25,7 +25,7 @@ public class AccionesJineteTest {
         Curandero curandero = new Curandero(1,1, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(jinete,curandero, 0.05, arrayCasillero);
+        accion.accionNueva(jinete,curandero, 0.05, arrayCasillero, distancia, tablero);
         //Compruebo que el curandero se le halla restado la vida correctamente.
         assertEquals(69.75,curandero.getVidaUnidad());
     }
@@ -39,7 +39,7 @@ public class AccionesJineteTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero, distancia, tablero);
         } catch (NoPuedeAtacarException e) {
             assertEquals("El jinete espadachin no puede atacar a distancias medianas", e.getMessage());
         }
@@ -54,7 +54,7 @@ public class AccionesJineteTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero, distancia, tablero);
         } catch (NoPuedeAtacarException e) {
             assertEquals("El jinete espadachin no puede atacar a distancias lejanas", e.getMessage());
         }
@@ -69,7 +69,7 @@ public class AccionesJineteTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero, distancia, tablero);
         } catch (NoPuedeAtacarException e) {
             assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
         }
@@ -83,7 +83,7 @@ public class AccionesJineteTest {
         Curandero curandero = new Curandero(3,4, new EmisarioNulo());
         AccionJugador accion = new AccionJugador();
 
-        accion.accionNueva(jinete,curandero, 0.05, arrayCasillero);
+        accion.accionNueva(jinete,curandero, 0.05, arrayCasillero, distancia, tablero);
         //Compruebo que el curandero se le halla restado la vida correctamente.
         assertEquals(59.25,curandero.getVidaUnidad());
     }
@@ -97,7 +97,7 @@ public class AccionesJineteTest {
         AccionJugador accion = new AccionJugador();
 
         try {
-            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero);
+            accion.accionNueva(jinete, curandero, 0.05, arrayCasillero, distancia, tablero);
         } catch (NoPuedeAtacarException e) {
             assertEquals("El jinete arquero no puede atacar a distancias lejanas", e.getMessage());
         }

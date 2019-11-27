@@ -1,22 +1,20 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Casillero;
+import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+
+import java.util.HashMap;
 
 public class Soldado implements Unidad {
     private static int costoUnidad = 1;
     private double vidaUnidad = 100;
     private static double danioCuerpo = 10;
-    private Posicion posicion = new Posicion();
-    private Emisario emisario;
+    private Posicion posicion;
 
-    public Soldado(int posicionX,int posicionY, Emisario emisario){
-        posicion.posicionNueva(posicionX,posicionY);
-        this.emisario = emisario;
+    public Soldado(Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+        puntosJugador.puntosSuficientes(costoUnidad);
+        this.posicion = posicion;
     }
 
 
@@ -25,23 +23,25 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(int posicionX, int posicionY) {
-        posicion.posicionNueva(posicionX,posicionY);
-    }
-
-
-    @Override
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, UnidadNulaException {
-        atacado.recibirDanio(danioCuerpo + (danioCuerpo * danioExtra));
+    public Posicion getPosicion() {
+        return posicion;
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+        if (esUnidadAliada){
+            throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
+        }
+        atacado.recibirDanio(danioCuerpo);
+    }
+
+    @Override
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
@@ -61,19 +61,10 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException {
-        posicion.posicionValida(posicionNuevaX,posicionNuevaY);
-        emisario.notificar(this);
-    }
-    @Override
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
-    @Override
-    public void recibirNotificacion() {
+    public void habilidadMoverse() {
 
     }
+
 
 }
 

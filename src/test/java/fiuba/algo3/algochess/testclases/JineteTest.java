@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.unidades.Jinete;
 import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
@@ -24,7 +23,7 @@ class JineteTest {
         Jinete jinete = new Jinete(1,1, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
         Soldado soldadoEnemigo = new Soldado(1,2, new EmisarioNulo());
-        jinete.atacarDistanciaCerca(soldadoEnemigo, 0);
+        jinete.atacarDistanciaCerca(soldadoEnemigo, 0, tablero);
         Assertions.assertEquals(95,soldadoEnemigo.getVidaUnidad());
     }
 
@@ -35,7 +34,7 @@ class JineteTest {
         jinete.setEstadoJinete("espadachin");
         Soldado soldadoEnemigo = new Soldado(4, 4, new EmisarioNulo());
         try {
-            jinete.atacarDistanciaMediana(soldadoEnemigo, 0);
+            jinete.atacarDistanciaMediana(soldadoEnemigo, 0, tablero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete espadachin no puede atacar a distancias medianas",e.getMessage());
         }
@@ -61,7 +60,7 @@ class JineteTest {
         jinete.setEstadoJinete("arquero");
         Soldado soldadoEnemigo = new Soldado(2, 1, new EmisarioNulo());
         try{
-            jinete.atacarDistanciaCerca(soldadoEnemigo,0);
+            jinete.atacarDistanciaCerca(soldadoEnemigo,0, tablero);
         }catch (NoPuedeAtacarException e) {
             Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
         }
@@ -73,7 +72,7 @@ class JineteTest {
         Jinete jinete = new Jinete(1,1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
         Soldado soldadoEnemigo = new Soldado(4, 4, new EmisarioNulo());
-        jinete.atacarDistanciaMediana(soldadoEnemigo,0);
+        jinete.atacarDistanciaMediana(soldadoEnemigo,0, tablero);
         Assertions.assertEquals(85,soldadoEnemigo.getVidaUnidad());
     }
 

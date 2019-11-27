@@ -1,20 +1,18 @@
 package fiuba.algo3.algochess.unidades;
 
-import fiuba.algo3.algochess.juego.Casillero;
+import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
+
+import java.util.HashMap;
 // Interfaz que representa las unidades del juego.
 
 public interface Unidad {
 
-    public void atacarDistanciaCerca(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
 
-    public void atacarDistanciaMediana(Unidad atacado, double danioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
 
-    public void atacarDistanciaLejana(Unidad atacado, double danioExtra, Casillero[][] arrayCasillero) throws NoPuedeAtacarException, CurarException, UnidadNulaException;
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion;
 
     public void recibirDanio(double danioRecibido) throws UnidadNulaException;
 
@@ -22,13 +20,10 @@ public interface Unidad {
 
     public void curarse(int vidaACurar) throws CurarException, UnidadNulaException;
 
-    public void moverUnidad(int posicionNuevaX, int posicionNuevaY) throws UnidadNulaException, MovimientoInvalidoException;
-
-    public Posicion getPosicion();
+    public void habilidadMoverse() throws MovimientoInvalidoException;
 
     public double getVidaUnidad();
 
-    public void modificarPosicion(int posicionX, int posicionY);
+    public Posicion getPosicion();
 
-    public void recibirNotificacion();
 }
