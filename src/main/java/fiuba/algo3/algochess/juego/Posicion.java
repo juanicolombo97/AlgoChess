@@ -21,9 +21,9 @@ public class Posicion {
     }
 
     private Distancia distanciaValidaHasta(int posicionX, int posicionY) throws MovimientoInvalidoException {
-        int distanciaX = this.posicionX - posicionX;
-        int distanciaY = this.posicionY - posicionY;
-        if (Math.abs(distanciaX) > 1 && Math.abs(distanciaY) > 1){
+        int distanciaX = Math.abs(this.posicionX - posicionX);
+        int distanciaY = Math.abs(this.posicionY - posicionY);
+        if (distanciaX > 1 && distanciaY > 1){
             throw new MovimientoInvalidoException("Solo se mueve de a 1 casillero");
         }
         return new Distancia(distanciaX,distanciaY);
@@ -42,8 +42,8 @@ public class Posicion {
     }
 
     public Distancia calcularDistancia(int posicionX, int posicionY){
-        int distanciaX = this.posicionX - posicionX;
-        int distanciaY = this.posicionY - posicionY;
+        int distanciaX = Math.abs(this.posicionX - posicionX);
+        int distanciaY = Math.abs(this.posicionY - posicionY);
         return new Distancia(distanciaX,distanciaY);
     }
 

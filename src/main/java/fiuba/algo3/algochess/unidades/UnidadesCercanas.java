@@ -19,11 +19,11 @@ public class UnidadesCercanas {
         batallonUnidades.add(unidadAtacada);
         while (listaUnidades.size()!= 0){
             Unidad unidad = (Unidad) listaUnidades.remove(0);
-            for (int x = 0; x < listaDirecciones.size();x++){
-                Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) listaDirecciones.get(x));
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0){
-                    Unidad unidadNueva = ((Casillero)tablero.get(posicionNueva)).obtenerUnidad();
-                    if (!batallonUnidades.contains(unidadNueva)){
+            for (Object direccionActual : listaDirecciones) {
+                Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
+                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
+                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                    if (!batallonUnidades.contains(unidadNueva)) {
                         batallonUnidades.add(unidadNueva);
                         listaUnidades.add(unidadNueva);
                     }
