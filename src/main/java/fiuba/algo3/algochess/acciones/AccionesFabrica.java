@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class AccionesFabrica {
 
-    public void iniciarAccion(Unidad atacante, Unidad atacado, HashMap tablero, boolean esUnidadAliada, Distancia distancia, HashMap hashMap) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException, CasilleroVacioExcepcion {
+    public void iniciarAccion(Unidad atacante, Unidad atacado, HashMap tablero, boolean esUnidadAliada, Distancia distancia) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException, CasilleroVacioExcepcion {
 
         int distanciaX = distancia.getDistanciaX();
         int distanciaY = distancia.getDistanciaY();
