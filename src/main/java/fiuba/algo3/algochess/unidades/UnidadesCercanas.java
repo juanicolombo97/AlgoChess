@@ -29,7 +29,7 @@ public class UnidadesCercanas {
                             batallonUnidades.add(unidadNueva);
                             listaUnidades.add(unidadNueva);
                         }
-                    }catch (CasilleroVacioExcepcion e){
+                    }catch (CasilleroVacioExcepcion | NullPointerException e){
 
                     }
                 }
