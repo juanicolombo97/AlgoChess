@@ -3,6 +3,7 @@ package fiuba.algo3.algochess.unidades;
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Posicion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 // Interfaz que representa las unidades del juego.
 
@@ -20,7 +21,7 @@ public interface Unidad {
 
     public void curarse(int vidaACurar) throws CurarException, UnidadNulaException;
 
-    public void habilidadMoverse() throws MovimientoInvalidoException;
+    public ArrayList habilidadMoverse(Unidad unidadAMover,HashMap tablero,ArrayList unidadesAliadas) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
 
     public double getVidaUnidad();
 

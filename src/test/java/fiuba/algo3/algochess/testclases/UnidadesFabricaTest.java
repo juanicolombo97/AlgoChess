@@ -5,6 +5,7 @@ import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.unidades.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +23,7 @@ public class UnidadesFabricaTest {
         Unidad soldado = fabrica.crearUnidad("soldado",puntos,posicion);
         Soldado soldado1 = new Soldado(puntos,posicion);
         mismaClase = soldado1.getClass().equals(soldado.getClass());
-        assertEquals(true,mismaClase);
+        assertEquals(100,soldado1.getVidaUnidad());
     }
     @Test
     //Pruebo que la fabrica genere correctamente al fiuba.algo3.algochess.unidades.Jinete.
@@ -32,8 +33,7 @@ public class UnidadesFabricaTest {
         UnidadesFabrica fabrica = new UnidadesFabrica();
         Unidad jinete = fabrica.crearUnidad("jinete",puntos,posicion);
         Jinete jinete1 = new Jinete(puntos,posicion);
-        mismaClase = jinete1.getClass().equals(jinete.getClass());
-        assertEquals(true,mismaClase);
+        assertEquals(100,jinete1.getVidaUnidad());
     }
 
     @Test
@@ -44,8 +44,7 @@ public class UnidadesFabricaTest {
         UnidadesFabrica fabrica = new UnidadesFabrica();
         Unidad curandero = fabrica.crearUnidad("curandero",puntos,posicion);
         Curandero curandero1 = new Curandero(puntos,posicion);
-        mismaClase = curandero1.getClass().equals(curandero.getClass());
-        assertEquals(true,mismaClase);
+        assertEquals(75,curandero1.getVidaUnidad());
     }
 
     @Test
@@ -56,8 +55,21 @@ public class UnidadesFabricaTest {
         UnidadesFabrica fabrica = new UnidadesFabrica();
         Unidad catapulta = fabrica.crearUnidad("catapulta",puntos,posicion);
         Catapulta catapulta1 = new Catapulta(puntos,posicion);
-        mismaClase = catapulta1.getClass().equals(catapulta.getClass());
-        assertEquals(true,mismaClase);
+        assertEquals(50,catapulta1.getVidaUnidad());
+    }
+
+    @Test
+    public void unidarInvalidaLanzaExcepcion() throws NoAlcanzanLosPuntosException, UnidadInvalidaException {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        UnidadesFabrica fabrica = new UnidadesFabrica();
+        try {
+            Unidad catapulta = fabrica.crearUnidad("",puntos,posicion);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("La unidad es invalida",e.getMessage());
+        }
+
+
     }
 
 }

@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Soldado implements Unidad {
@@ -66,9 +67,20 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void habilidadMoverse() {
-
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Batallon batallon = new Batallon();
+        ArrayList batallonSoldados = batallon.calcularBatallonDeSoldados(unidadAMover,tablero,unidadesAliadas);
+        if (batallonSoldados.size() < 3){
+            ArrayList listaUnidad = new ArrayList();
+            listaUnidad.add(this);
+            return listaUnidad;
+        }
+        else {
+            return  batallonSoldados;
+        }
     }
+
+
 
 
 }

@@ -29,6 +29,8 @@ public class UnidadesFabrica {
                 unidadACrear = new Catapulta(puntosJugador,posicion);
                 break;
             }
+            default:
+                throw new UnidadInvalidaException("La unidad es invalida");
         }
         return unidadACrear;
     }

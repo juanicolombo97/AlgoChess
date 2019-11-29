@@ -68,8 +68,9 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void habilidadMoverse() throws MovimientoInvalidoException {
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
         throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
+
 
 }

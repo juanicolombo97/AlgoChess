@@ -5,9 +5,11 @@ import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Distancia;
 import fiuba.algo3.algochess.unidades.Unidad;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AccionesFabrica {
+
 
     public void iniciarAccion(Unidad atacante, Unidad atacado, HashMap tablero, boolean esUnidadAliada, Distancia distancia) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException, CasilleroVacioExcepcion {
 
@@ -24,4 +26,6 @@ public class AccionesFabrica {
             new AccionLejana(atacante,atacado,esUnidadAliada,tablero);
         }
     }
+
+
 }

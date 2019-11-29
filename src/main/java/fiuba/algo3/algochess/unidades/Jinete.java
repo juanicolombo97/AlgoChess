@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Jinete implements Unidad {
@@ -72,8 +73,10 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void habilidadMoverse() {
-
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
+        ArrayList listaUnidadesAMover = new ArrayList();
+        listaUnidadesAMover.add(this);
+        return listaUnidadesAMover;
     }
 
 

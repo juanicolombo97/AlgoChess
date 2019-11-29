@@ -47,18 +47,29 @@ public class Tablero {
 
     public void moverUnidad(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion {
 
+        int contador = 0;
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
+        Distancia distancia = posicionInicial.calcularDistancia(posicionFinal);
+        Direccion direccionMovimiento = new Direccion(distancia.getDistanciaX(),distancia.getDistanciaY());
+
         //Veo que la distancia sea correcta.
         casilleroInicial.movimientoValido(casilleroDestino);
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
+        ArrayList listaUnidadesAliadas = jugador.getUnidadesDisponibles();
+        ArrayList listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, (HashMap) tablero,listaUnidadesAliadas);
+        while (contador != 3 && listaUnidadesAMover.size() != 0){
+            Unidad unidad = (Unidad) listaUnidadesAMover.remove(0);
+            jugador.unidadPerteneceAJugador(unidad);
+            Posicion posicion = unidad.getPosicion();
+            Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
+            Casillero casilleroInicio = tablero.get(posicion);
+            Casillero casilleroFin = tablero.get(posicionDestino);
+            casilleroFin.guardarUnidad(unidad);
+            casilleroInicio.eliminarUnidad();
+        }
 
-        jugador.unidadPerteneceAJugador(unidadAMover);
-        unidadAMover.habilidadMoverse();
-
-        casilleroDestino.guardarUnidad(unidadAMover);
-        casilleroInicial.eliminarUnidad();
     }
 
     public void atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException, CasilleroVacioExcepcion {

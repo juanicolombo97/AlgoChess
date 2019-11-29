@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.juego.Posicion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Curandero implements Unidad {
@@ -65,9 +66,12 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void habilidadMoverse() throws MovimientoInvalidoException {
-
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
+        ArrayList listaUnidadesAMover = new ArrayList();
+        listaUnidadesAMover.add(this);
+        return listaUnidadesAMover;
     }
+
 
 
 }
