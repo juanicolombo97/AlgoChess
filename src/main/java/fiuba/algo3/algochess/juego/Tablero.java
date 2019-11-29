@@ -79,12 +79,13 @@ public class Tablero {
             moverUnidadSolitaria(posicionInicial, posicionFinal, jugador);
         } else {
             int contador = 0;
-            while (listaUnidades.size() > 0 && contador < 3){
+            while (listaUnidades.size() != 0 && contador != 3){
                 Soldado soldado = (Soldado) listaUnidades.remove(0);
                 Posicion posicionSoldado = soldado.getPosicion();
                 Distancia distancia = posicionSoldado.calcularDistancia(posicionFinal);
                 Posicion posicionNueva = posicionSoldado.posicionNuevaPorDistancia(distancia);
                 try {
+                    soldado.habilidadMoverse();
                     tablero.get(posicionNueva).guardarUnidad(soldado);
                     tablero.get(posicionSoldado).eliminarUnidad();
                     contador++;

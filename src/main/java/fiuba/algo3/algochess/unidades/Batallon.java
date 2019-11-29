@@ -26,7 +26,10 @@ public class Batallon {
     public ArrayList listaSoldados(ArrayList listaUnidades){
         ArrayList<Soldado> listaSoldados = new ArrayList<>();
         for (Object unidadActual : listaUnidades) {
-            listaSoldados.add((Soldado) unidadActual);
+            Unidad unidad = (Unidad) unidadActual;
+            if (unidad.sosSoldado()) {
+                listaSoldados.add((Soldado) unidad);
+            }
         }
         return listaSoldados;
     }
