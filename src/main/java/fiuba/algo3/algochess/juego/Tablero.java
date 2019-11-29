@@ -1,10 +1,8 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.unidades.*;
-import javafx.geometry.Pos;
+import fiuba.algo3.algochess.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,7 +63,7 @@ public class Tablero {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
         Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
-        jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
+        jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero, distancia);
     }
 
 
