@@ -151,7 +151,7 @@ public class Tablero {
         ArrayList soldadosAliadosCercanos = new ArrayList();
         ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
         for (Object unidadActual: unidadesAliadasCercanasAUnidad){
-            if (unidadActual.getClass().equals(Soldado.class)){
+            if (((Unidad)unidadActual).sosSoldado()){
                 soldadosAliadosCercanos.add(unidadActual);
             }
         }
