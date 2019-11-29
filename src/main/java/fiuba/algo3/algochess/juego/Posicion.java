@@ -51,6 +51,7 @@ public class Posicion {
         return direccion.posicionNueva(posicionX,posicionY);
     }
 
+    public Posicion posicionNuevaPorDistancia(Distancia distancia){ return distancia.posicionNueva(posicionX, posicionY);}
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

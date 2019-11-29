@@ -25,13 +25,10 @@ public class Direccion {
         noroeste = new Direccion(-1,1);
         sureste = new Direccion(1,-1);
         suroeste = new Direccion(-1,-1);
-
-
     }
     public Direccion(int x, int y){
         this.x = x;
         this.y = y;
-
     }
 
     public ArrayList direccionesMovimiento(){

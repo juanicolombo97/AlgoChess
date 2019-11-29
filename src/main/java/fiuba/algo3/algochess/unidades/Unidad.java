@@ -28,4 +28,6 @@ public interface Unidad {
 
     public void modificarPosicion(Posicion posicion);
 
+    public boolean sosSoldado();
+
 }

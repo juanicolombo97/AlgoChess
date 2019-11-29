@@ -74,4 +74,8 @@ public class Catapulta implements Unidad{
         throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 
+    @Override
+    public boolean sosSoldado(){
+        return false;
+    }
 }

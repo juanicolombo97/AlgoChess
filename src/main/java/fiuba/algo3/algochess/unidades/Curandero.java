@@ -69,5 +69,9 @@ public class Curandero implements Unidad {
 
     }
 
+    @Override
+    public boolean sosSoldado(){
+        return false;
+    }
 
 }

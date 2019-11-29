@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
+import fiuba.algo3.algochess.unidades.Batallon;
+import fiuba.algo3.algochess.unidades.Soldado;
 import fiuba.algo3.algochess.unidades.Unidad;
 import fiuba.algo3.algochess.unidades.UnidadesCercanas;
 
@@ -45,7 +47,16 @@ public class Tablero {
         return unidadCreada;
     }
 
-    public void moverUnidad(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion {
+    public void moverUnidad(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion{
+        Unidad unidadAMover = tablero.get(posicionInicial).obtenerUnidad();
+        if (esSoldado(unidadAMover)){
+            moverBatallon(unidadAMover, posicionFinal, jugador);
+        } else {
+            moverUnidadSolitaria(posicionInicial, posicionFinal, jugador);
+        }
+    }
+
+    private void moverUnidadSolitaria(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion {
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
         //Veo que la distancia sea correcta.
@@ -60,6 +71,33 @@ public class Tablero {
         casilleroInicial.eliminarUnidad();
     }
 
+    private void moverBatallon(Unidad unidadAMover, Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion, UnidadInvalidaException {
+        Batallon batallon = new Batallon();
+        ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidadAMover, (HashMap) tablero);
+        if (listaUnidades.size() < 3){
+            Posicion posicionInicial = unidadAMover.getPosicion();
+            moverUnidadSolitaria(posicionInicial, posicionFinal, jugador);
+        } else {
+            int contador = 0;
+            while (listaUnidades.size() > 0 && contador < 3){
+                Soldado soldado = (Soldado) listaUnidades.remove(0);
+                Posicion posicionSoldado = soldado.getPosicion();
+                Distancia distancia = posicionSoldado.calcularDistancia(posicionFinal);
+                Posicion posicionNueva = posicionSoldado.posicionNuevaPorDistancia(distancia);
+                try {
+                    tablero.get(posicionNueva).guardarUnidad(soldado);
+                    tablero.get(posicionSoldado).eliminarUnidad();
+                    contador++;
+                }catch (CasilleroOcupadoException e){
+                    Unidad unidadEnElCasillero = tablero.get(posicionNueva).obtenerUnidad();
+                    if (listaUnidades.contains(unidadEnElCasillero)){
+                        listaUnidades.add(soldado);
+                    }
+                }
+            }
+        }
+    }
+
     public void atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException, CasilleroVacioExcepcion {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
@@ -71,5 +109,9 @@ public class Tablero {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
         ArrayList listaDeUnidades = new ArrayList();
         return unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unidad);
+    }
+
+    private boolean esSoldado(Unidad unidad){
+       return unidad.sosSoldado();
     }
 }

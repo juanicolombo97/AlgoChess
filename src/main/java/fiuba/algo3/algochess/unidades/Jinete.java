@@ -76,5 +76,9 @@ public class Jinete implements Unidad {
 
     }
 
+    @Override
+    public boolean sosSoldado(){
+        return false;
+    }
 
 }

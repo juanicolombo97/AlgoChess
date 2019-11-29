@@ -4,7 +4,6 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.juego.Puntos;
 import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -84,5 +83,6 @@ public class CuranderoTest {
             Assertions.assertEquals("El curandero solo puede curar a distancia cercana",e.getMessage());
         }
     }
+
 
 }

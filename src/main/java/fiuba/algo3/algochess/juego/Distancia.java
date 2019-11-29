@@ -9,6 +9,9 @@ public class Distancia {
         this.distanciaY = distanciaY;
     }
 
+    public Posicion posicionNueva(int posicionX, int posicionY){
+        return new Posicion(posicionX + distanciaX, posicionY + distanciaY);
+    }
 
     public int getDistanciaX(){
         return this.distanciaX;

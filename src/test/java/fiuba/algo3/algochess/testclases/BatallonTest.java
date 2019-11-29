@@ -140,7 +140,7 @@ public class BatallonTest {
         tablero.moverUnidad(posicionSoldado1, posicion1616, jugador2);
         tablero.moverUnidad(posicion1616, posicion1717, jugador2);
 
-        // Ahora al mover la unidad en 17,17 la de 16,16 no se deberia mover ya que se disolvio el batallon
+        // Ahora al mover la unidad en 17,17 la de 16,16 no se deberia mover ya que se disolvió el batallon
 
         tablero.moverUnidad(posicion1717, posicion1818, jugador2);
 

@@ -17,7 +17,6 @@ public class Soldado implements Unidad {
         this.posicion = posicion;
     }
 
-
     public double getVidaUnidad(){
         return vidaUnidad;
     }
@@ -70,6 +69,10 @@ public class Soldado implements Unidad {
 
     }
 
+    @Override
+    public boolean sosSoldado(){
+        return true;
+    }
 
 }
 
