@@ -30,4 +30,5 @@ public interface Unidad {
 
     public boolean sosSoldado();
 
+    public void recibirNotificacion();
 }

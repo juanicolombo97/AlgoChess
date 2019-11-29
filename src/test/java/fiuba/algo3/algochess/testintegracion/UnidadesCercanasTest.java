@@ -50,7 +50,7 @@ public class UnidadesCercanasTest {
         Soldado soldado3 = (Soldado) jugador1.getUnidadesDisponibles().get(2);
         ArrayList posiblesUnidadesCercanas = new ArrayList();
         posiblesUnidadesCercanas.add(soldado2);
-        for (Object unidadActual: tablero.unidadesCercanasA(soldado1)){
+        for (Object unidadActual: tablero.unidadesCercanasADistancia1y2(soldado1)){
             Unidad unidad = (Unidad) unidadActual;
             System.out.print(unidad.getPosicion().getPosicionY());
         }

@@ -106,10 +106,67 @@ public class Tablero {
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero, distancia);
     }
 
-    public ArrayList unidadesCercanasA(Unidad unidad) throws CasilleroVacioExcepcion {
+    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) throws CasilleroVacioExcepcion {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
         ArrayList listaDeUnidades = new ArrayList();
-        return unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unidad);
+        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad, 1);
+        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad, 2);
+        for(Object unidadActual : unidadesCercanasADistancia2){
+            if (!unidadesCercanasADistancia1.contains(unidadActual)){
+                unidadesCercanasADistancia1.add(unidadActual);
+            }
+        }
+        return unidadesCercanasADistancia1;
+    }
+
+    public void notificar(Unidad unidadEmisora) throws CasilleroVacioExcepcion {
+        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
+        for(Object unidadActual : unidadesCercanas){
+            Unidad unidad = (Unidad) unidadActual;
+            unidad.recibirNotificacion();
+        }
+    }
+
+    public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
+        for(Object unidad : unidadesCercanas){
+            Unidad unidadActual = (Unidad) unidad;
+            if (jugador.unidadAliada(unidadActual)){
+                unidadesAliadasCercanas.add(unidadActual);
+            }
+        }
+    }
+
+    public ArrayList unidadesAliadasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
+        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
+        ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
+        if (this.jugador1.unidadAliada(unidad)){
+            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        } else {
+            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        }
+        return unidadesAliadasCercanasAUnidad;
+    }
+
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion {
+        ArrayList soldadosAliadosCercanos = new ArrayList();
+        ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
+        for (Object unidadActual: unidadesAliadasCercanasAUnidad){
+            if (unidadActual.getClass().equals(Soldado.class)){
+                soldadosAliadosCercanos.add(unidadActual);
+            }
+        }
+        return soldadosAliadosCercanos.size();
+    }
+
+    public ArrayList unidadesEnemigasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
+        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
+        ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
+        if (this.jugador1.unidadAliada(unidad)){
+            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        } else {
+            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        }
+        return unidadesEnemigasCercanasAUnidad;
     }
 
     private boolean esSoldado(Unidad unidad){

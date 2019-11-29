@@ -73,5 +73,6 @@ public class Curandero implements Unidad {
     public boolean sosSoldado(){
         return false;
     }
-
+    @Override
+    public void recibirNotificacion(){}
 }

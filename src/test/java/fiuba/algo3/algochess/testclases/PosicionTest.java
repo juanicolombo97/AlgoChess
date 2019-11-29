@@ -37,9 +37,22 @@ public class PosicionTest {
 
         Direccion direccion = new Direccion(1,1);
 
-        Posicion posicionNueva = posicion.posicionNueva(direccion);
+        Posicion posicionNueva = posicion.posicionNueva(direccion, 1);
 
         Assertions.assertEquals(2,posicionNueva.getPosicionX());
+
+    }
+
+    @Test
+    public void calcularPosicionNuevaCorrectamenteDistancia2(){
+        Posicion posicion = new Posicion(1,1);
+
+        Direccion direccion = new Direccion(1,1);
+
+        Posicion posicionNueva = posicion.posicionNueva(direccion, 2);
+
+        Assertions.assertEquals(3,posicionNueva.getPosicionX());
+        Assertions.assertEquals(3,posicionNueva.getPosicionY());
 
     }
 }

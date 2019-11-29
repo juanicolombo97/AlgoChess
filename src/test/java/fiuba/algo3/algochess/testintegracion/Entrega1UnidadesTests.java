@@ -23,7 +23,7 @@ public class Entrega1UnidadesTests {
             Direccion direccion1 = (Direccion) listaDirecciones.get(x);
             Unidad unidad = jugador.getUnidadesDisponibles().get(0);
             Posicion posicion1 = unidad.getPosicion();
-            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccion1),jugador);
+            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccion1, 1),jugador);
         }
 
     }

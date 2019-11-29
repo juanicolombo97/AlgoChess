@@ -14,17 +14,21 @@ public class UnidadesCercanas {
     private ArrayList listaDirecciones = direccion.direccionesMovimiento();
     private ArrayList batallonUnidades = new ArrayList();
 
-    public ArrayList unidadesCercanasBatallon(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada) throws CasilleroVacioExcepcion {
+
+    public ArrayList unidadesCercanasBatallon(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada, int aDistancia) throws CasilleroVacioExcepcion {
         listaUnidades.add(unidadAtacada);
         batallonUnidades.add(unidadAtacada);
         while (listaUnidades.size()!= 0){
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
-                Unidad unidadNueva;
-                Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
-                    try{unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();}
-                    catch(CasilleroVacioExcepcion | NullPointerException e){continue;}
+                Direccion direccion = (Direccion) direccionActual;
+                Posicion posicionUnidad = unidad.getPosicion();
+                Posicion posicionNueva = posicionUnidad.posicionNueva(direccion, aDistancia);
+                if (posicionNueva.getPosicionX() > 0 && posicionNueva.getPosicionY() > 0) {
+                     Casillero casilleroNuevo = (Casillero) tablero.get(posicionNueva);
+                     Unidad unidadNueva;
+                     try{unidadNueva = casilleroNuevo.obtenerUnidad();}
+                     catch(CasilleroVacioExcepcion | NullPointerException e){continue;}
                     if (!batallonUnidades.contains(unidadNueva)) {
                         batallonUnidades.add(unidadNueva);
                         listaUnidades.add(unidadNueva);
@@ -36,26 +40,14 @@ public class UnidadesCercanas {
         return batallonUnidades;
     }
 
-    public ArrayList unidadesCercanas(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada) throws CasilleroVacioExcepcion {
-        listaUnidades.add(unidadAtacada);
-        batallonUnidades.add(unidadAtacada);
-        while (listaUnidades.size()!= 0){
-            Unidad unidad = (Unidad) listaUnidades.remove(0);
-            for (Object direccionActual : listaDirecciones) {
-                Unidad unidadNueva;
-                Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
-                    try{unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();}
-                    catch(CasilleroVacioExcepcion | NullPointerException e){continue;}
-                    if (!batallonUnidades.contains(unidadNueva)) {
-                        batallonUnidades.add(unidadNueva);
-                        listaUnidades.add(unidadNueva);
-                    }
-
-                }
-            }
-        }
-        batallonUnidades.remove(unidadAtacada);
-        return batallonUnidades;
+    public ArrayList unidadesCercanas(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada, int aDistancia) throws CasilleroVacioExcepcion {
+        ArrayList listaUnidadesCercanas = unidadesCercanasBatallon(tablero, listaUnidades, unidadAtacada, aDistancia);
+        listaUnidadesCercanas.remove(unidadAtacada);
+        return listaUnidadesCercanas;
     }
+
 }
+
+
+
+

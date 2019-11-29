@@ -54,7 +54,7 @@ public class Direccion {
         return y;
     }
 
-    public Posicion posicionNueva(int posicionX,int posicionY){
-        return new Posicion(posicionX + this.x,posicionY + this.y);
+    public Posicion posicionNueva(int posicionX,int posicionY, int aDistancia){
+        return new Posicion(posicionX + Math.abs(aDistancia) * this.x,posicionY + Math.abs(aDistancia) * this.y);
     }
 }

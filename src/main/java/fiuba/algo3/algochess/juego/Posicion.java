@@ -47,11 +47,12 @@ public class Posicion {
         return new Distancia(distanciaX,distanciaY);
     }
 
-    public Posicion posicionNueva(Direccion direccion){
-        return direccion.posicionNueva(posicionX,posicionY);
+    public Posicion posicionNueva(Direccion direccion, int aDistancia){
+        return direccion.posicionNueva(posicionX,posicionY, aDistancia);
     }
 
     public Posicion posicionNuevaPorDistancia(Distancia distancia){ return distancia.posicionNueva(posicionX, posicionY);}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -73,7 +73,8 @@ public class Soldado implements Unidad {
     public boolean sosSoldado(){
         return true;
     }
-
+    @Override
+    public void recibirNotificacion(){}
 }
 
 
