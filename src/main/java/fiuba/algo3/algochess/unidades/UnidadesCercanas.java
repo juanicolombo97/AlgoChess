@@ -20,9 +20,11 @@ public class UnidadesCercanas {
         while (listaUnidades.size()!= 0){
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
+                Unidad unidadNueva;
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
-                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                    try{unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();}
+                    catch(CasilleroVacioExcepcion e){continue;}
                     if (!batallonUnidades.contains(unidadNueva)) {
                         batallonUnidades.add(unidadNueva);
                         listaUnidades.add(unidadNueva);
@@ -31,6 +33,7 @@ public class UnidadesCercanas {
                 }
             }
         }
+        batallonUnidades.remove(unidadAtacada);
         return batallonUnidades;
     }
 }

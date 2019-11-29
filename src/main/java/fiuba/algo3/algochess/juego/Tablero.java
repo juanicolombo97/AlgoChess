@@ -2,7 +2,9 @@ package fiuba.algo3.algochess.juego;
 
 import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.unidades.UnidadesCercanas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +46,6 @@ public class Tablero {
     }
 
     public void moverUnidad(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) throws UnidadNulaException, fiuba.algo3.algochess.excepciones.UnidadInvalidaException, MovimientoInvalidoException, CasilleroOcupadoException, CasilleroVacioExcepcion {
-
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
         //Veo que la distancia sea correcta.
@@ -66,5 +67,9 @@ public class Tablero {
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero, distancia);
     }
 
-
+    public ArrayList unidadesCercanasA(Unidad unidad) throws CasilleroVacioExcepcion {
+        UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
+        ArrayList listaDeUnidades = new ArrayList();
+        return unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unidad);
+    }
 }
