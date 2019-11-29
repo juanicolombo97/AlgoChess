@@ -68,5 +68,8 @@ public class Tablero {
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
     }
 
+    public HashMap getTablero(){
+        return (HashMap) tablero;
+    }
 
 }

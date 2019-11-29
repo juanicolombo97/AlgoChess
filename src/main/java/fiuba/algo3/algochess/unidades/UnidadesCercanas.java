@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.unidades;
 
+import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
 import fiuba.algo3.algochess.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.juego.Casillero;
 import fiuba.algo3.algochess.juego.Direccion;
@@ -22,12 +23,15 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
-                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
-                    if (!batallonUnidades.contains(unidadNueva)) {
-                        batallonUnidades.add(unidadNueva);
-                        listaUnidades.add(unidadNueva);
-                    }
+                    try{
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                        if (!batallonUnidades.contains(unidadNueva)) {
+                            batallonUnidades.add(unidadNueva);
+                            listaUnidades.add(unidadNueva);
+                        }
+                    }catch (CasilleroVacioExcepcion e){
 
+                    }
                 }
             }
         }
