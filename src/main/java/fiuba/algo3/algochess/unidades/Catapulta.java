@@ -48,8 +48,11 @@ public class Catapulta implements Unidad{
 
     @Override
     public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, CasilleroVacioExcepcion {
-        //ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
-        atacado.recibirDanio(danioDistancia);
+        Batallon batallon = new Batallon();
+        ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
+        for (Object unidad : unidadesAAtacar){
+            ( (Unidad) unidad).recibirDanio(danioDistancia);
+        }
     }
 
     @Override
