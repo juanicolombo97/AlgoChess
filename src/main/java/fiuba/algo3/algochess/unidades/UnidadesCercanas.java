@@ -14,6 +14,28 @@ public class UnidadesCercanas {
     private ArrayList listaDirecciones = direccion.direccionesMovimiento();
     private ArrayList batallonUnidades = new ArrayList();
 
+    public ArrayList unidadesCercanasBatallon(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada) throws CasilleroVacioExcepcion {
+        listaUnidades.add(unidadAtacada);
+        batallonUnidades.add(unidadAtacada);
+        while (listaUnidades.size()!= 0){
+            Unidad unidad = (Unidad) listaUnidades.remove(0);
+            for (Object direccionActual : listaDirecciones) {
+                Unidad unidadNueva;
+                Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
+                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
+                    try{unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();}
+                    catch(CasilleroVacioExcepcion | NullPointerException e){continue;}
+                    if (!batallonUnidades.contains(unidadNueva)) {
+                        batallonUnidades.add(unidadNueva);
+                        listaUnidades.add(unidadNueva);
+                    }
+
+                }
+            }
+        }
+        return batallonUnidades;
+    }
+
     public ArrayList unidadesCercanas(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada) throws CasilleroVacioExcepcion {
         listaUnidades.add(unidadAtacada);
         batallonUnidades.add(unidadAtacada);
@@ -24,7 +46,7 @@ public class UnidadesCercanas {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
                     try{unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();}
-                    catch(CasilleroVacioExcepcion e){continue;}
+                    catch(CasilleroVacioExcepcion | NullPointerException e){continue;}
                     if (!batallonUnidades.contains(unidadNueva)) {
                         batallonUnidades.add(unidadNueva);
                         listaUnidades.add(unidadNueva);

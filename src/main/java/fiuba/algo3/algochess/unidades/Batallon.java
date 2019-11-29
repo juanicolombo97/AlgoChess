@@ -11,10 +11,7 @@ public class Batallon {
     private ArrayList unidades = new ArrayList();
 
     public ArrayList calcularBatallon(Unidad unidadAtacada, HashMap tablero) throws CasilleroVacioExcepcion {
-        ArrayList batallon = unidadesCercanas.unidadesCercanas(tablero, unidades, unidadAtacada);
-        if (unidadAtacada.sosSoldado()){
-            batallon.add(unidadAtacada);
-        }
+        ArrayList batallon = unidadesCercanas.unidadesCercanasBatallon(tablero, unidades, unidadAtacada);
         return batallon;
     }
 

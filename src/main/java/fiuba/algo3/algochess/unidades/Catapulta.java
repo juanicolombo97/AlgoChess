@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.excepciones.*;
 import fiuba.algo3.algochess.juego.Posicion;
 import fiuba.algo3.algochess.juego.Puntos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //Clase donde se implementa la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Catapulta
@@ -47,11 +48,10 @@ public class Catapulta implements Unidad{
 
     @Override
     public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, CasilleroVacioExcepcion {
-        /*ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado, tablero);
+        ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado, tablero);
         for (Object unidadActual : unidadesAAtacar) {
             ((Unidad) unidadActual).recibirDanio(danioDistancia);
-        }*/
-       atacado.recibirDanio(danioDistancia);
+        }
     }
 
     @Override
