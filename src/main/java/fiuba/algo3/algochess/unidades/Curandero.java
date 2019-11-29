@@ -33,6 +33,9 @@ public class Curandero implements Unidad {
 
     @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+        if (!esUnidadAliada){
+            throw new CurarException("No se puede curar un enemigo");
+        }
         atacado.curarse(curacion);
     }
 

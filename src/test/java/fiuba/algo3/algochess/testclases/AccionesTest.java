@@ -77,7 +77,7 @@ public class AccionesTest {
         Soldado soldado1 = new Soldado(puntos,posicion);
 
         AccionJugador accion = new AccionJugador();
-        accion.accionNueva(curandero,soldado1,tablero,false,distancia);
+        accion.accionNueva(curandero,soldado1,tablero,true,distancia);
 
         Assertions.assertEquals(115, soldado1.getVidaUnidad());
 

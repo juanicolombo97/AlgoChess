@@ -52,7 +52,7 @@ public class CuranderoTest {
         Posicion posicion1 = new Posicion(2,2);
         Curandero curandero = new Curandero(puntos,posicion);
         Curandero curandero1 = new Curandero(puntos,posicion1);
-        curandero.atacarDistanciaCerca(curandero1,false,tablero);
+        curandero.atacarDistanciaCerca(curandero1,true,tablero);
         Assertions.assertEquals(90,curandero1.getVidaUnidad());
     }
     @Test
