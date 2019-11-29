@@ -66,10 +66,13 @@ public class Tablero {
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
-            casilleroFin.guardarUnidad(unidad);
-            casilleroInicio.eliminarUnidad();
+            try {
+                casilleroFin.guardarUnidad(unidad);
+                casilleroInicio.eliminarUnidad();
+                contador++;
+            }catch (CasilleroOcupadoException e){
+            }
         }
-
     }
 
     public void atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) throws NoPuedeAtacarException, UnidadNulaException, CurarException, UnidadInvalidaException, CasilleroVacioExcepcion {
