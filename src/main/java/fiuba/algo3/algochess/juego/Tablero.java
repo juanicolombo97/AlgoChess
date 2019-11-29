@@ -12,6 +12,8 @@ public class Tablero {
     private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
+    private boolean casilleroAliado = true;
+    private boolean casilleroEnemigo = false;
 
     public Tablero(Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException, CasilleroOcupadoException {
         this.jugador1 = jugador1;
@@ -27,11 +29,11 @@ public class Tablero {
 
     private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
         if (posicion.getPosicionX()< 10){
-            Casillero casillero = new Casillero(posicion);
+            Casillero casillero = new Casillero(posicion,casilleroAliado);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero(posicion);
+            Casillero casillero = new Casillero(posicion,casilleroEnemigo);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }

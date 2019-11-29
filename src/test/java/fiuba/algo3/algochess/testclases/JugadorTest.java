@@ -22,7 +22,7 @@ public class JugadorTest {
     public void jugadorPuedeCrearUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException {
         Jugador jugador = new Jugador("juani");
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
         jugador.agregarCasillero(casillero);
         Unidad unidad = jugador.crearUnidad(casillero,"soldado",posicion);
 
@@ -34,7 +34,7 @@ public class JugadorTest {
         Posicion posicion1 = new Posicion(1,1);
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
         Jugador jugador = new Jugador("juani");
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);

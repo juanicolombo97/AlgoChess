@@ -5,19 +5,22 @@ import fiuba.algo3.algochess.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.unidades.*;
+import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 
 import javax.print.DocFlavor;
 import java.util.ArrayList;
 
-public class Casillero extends Rectangle {
+public class Casillero{
 
     private final Posicion posicionCasillero;
     private EstadoCasillero estadoCasillero;
+    public boolean casilleroAliado;
 
-    public Casillero(Posicion posicion){
+    public Casillero(Posicion posicion,boolean casilleroAliado){
         this.posicionCasillero = posicion;
         estadoCasillero = new EstadoCasilleroVacio();
+        this.casilleroAliado = casilleroAliado;
     }
 
     public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException {

@@ -15,7 +15,7 @@ public class CasilleroTest {
     @Test
     public void seCrearCasilleroVacioCorrectamente(){
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
         try {
             casillero.obtenerUnidad();
         } catch (CasilleroVacioExcepcion e) {
@@ -25,7 +25,7 @@ public class CasilleroTest {
     @Test
     public void seCreaCasilleroYSeAgregaUnidadCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion {
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion);
         casillero.guardarUnidad(soldado);
@@ -36,7 +36,7 @@ public class CasilleroTest {
     public void seQuiereAgregarUnidadACasilleroOcupado() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException {
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion);
         Soldado soldado1 = new Soldado(puntos,posicion1);
@@ -50,7 +50,7 @@ public class CasilleroTest {
     @Test
     public void eliminarUnidadDeCasilleroFuncionaCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion {
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion);
+        Casillero casillero = new Casillero(posicion,true);
 
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion);
