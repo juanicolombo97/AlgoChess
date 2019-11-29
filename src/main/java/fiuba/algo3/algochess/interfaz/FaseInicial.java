@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FaseInicial {
-    public static int tamanioCasillero = 25;
+    public static int tamanioCasillero = 35;
     public static int filas = 20;
     public static int columnas = 20;
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
@@ -38,7 +38,7 @@ public class FaseInicial {
 
         borderPane.setCenter(pane);
 
-        Scene scene = new Scene(borderPane,800,800);
+        Scene scene = new Scene(borderPane);
         ventana.setScene(scene);
         ventana.show();
     }

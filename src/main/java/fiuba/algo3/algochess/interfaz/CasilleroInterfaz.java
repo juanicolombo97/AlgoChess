@@ -18,6 +18,7 @@ public class CasilleroInterfaz extends Rectangle {
 
         setWidth(FaseInicial.tamanioCasillero);
         setHeight(FaseInicial.tamanioCasillero);
+        setStroke(Color.BLACK);
         relocate(posicion.getPosicionX() * FaseInicial.tamanioCasillero,posicion.getPosicionY() * FaseInicial.tamanioCasillero);
         setFill(color ? Color.valueOf("#feb") : Color.valueOf("#582"));
     }
