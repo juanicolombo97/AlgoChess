@@ -72,4 +72,8 @@ public class Jugador {
     public boolean unidadAliada(Unidad unidad){
         return unidadesDisponibles.contains(unidad);
     }
+
+    public int getPuntosDisponibles(){
+        return puntosJugador.puntosDisponibles;
+    }
 }
