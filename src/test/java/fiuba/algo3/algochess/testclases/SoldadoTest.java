@@ -1,10 +1,9 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.juego.Puntos;
-import fiuba.algo3.algochess.unidades.Jinete;
-import fiuba.algo3.algochess.unidades.Soldado;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

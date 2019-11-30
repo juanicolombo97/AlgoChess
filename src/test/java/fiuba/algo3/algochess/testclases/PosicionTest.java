@@ -1,9 +1,9 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.juego.Direccion;
-import fiuba.algo3.algochess.juego.Distancia;
-import fiuba.algo3.algochess.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
+import fiuba.algo3.algochess.Modelo.juego.Distancia;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

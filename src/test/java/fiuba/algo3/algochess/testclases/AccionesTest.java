@@ -1,15 +1,14 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.acciones.AccionJugador;
-import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.juego.Distancia;
-import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.juego.Puntos;
-import fiuba.algo3.algochess.juego.Tablero;
-import fiuba.algo3.algochess.unidades.Catapulta;
-import fiuba.algo3.algochess.unidades.Curandero;
-import fiuba.algo3.algochess.unidades.Jinete;
-import fiuba.algo3.algochess.unidades.Soldado;
+import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Distancia;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.Catapulta;
+import fiuba.algo3.algochess.Modelo.unidades.Curandero;
+import fiuba.algo3.algochess.Modelo.unidades.Jinete;
+import fiuba.algo3.algochess.Modelo.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

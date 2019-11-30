@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

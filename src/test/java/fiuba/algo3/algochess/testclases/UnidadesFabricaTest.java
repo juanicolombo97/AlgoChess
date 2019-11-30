@@ -1,10 +1,10 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.juego.Puntos;
-import fiuba.algo3.algochess.unidades.*;
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class UnidadesFabricaTest {
     boolean mismaClase;
 
     @Test
-    //Pruebo que genere correctamente a la fiuba.algo3.algochess.unidades.Unidad fiuba.algo3.algochess.unidades.Soldado.
+    //Pruebo que genere correctamente a la fiuba.algo3.algochess.Modelo.unidades.Unidad fiuba.algo3.algochess.Modelo.unidades.Soldado.
     public void creoUnidadesSoldado() throws UnidadInvalidaException , NoAlcanzanLosPuntosException {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -26,7 +26,7 @@ public class UnidadesFabricaTest {
         assertEquals(100,soldado1.getVidaUnidad());
     }
     @Test
-    //Pruebo que la fabrica genere correctamente al fiuba.algo3.algochess.unidades.Jinete.
+    //Pruebo que la fabrica genere correctamente al fiuba.algo3.algochess.Modelo.unidades.Jinete.
     public void creoUnidadesJinete() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -37,7 +37,7 @@ public class UnidadesFabricaTest {
     }
 
     @Test
-    // Pruebo que se pueda crear correctamente el fiuba.algo3.algochess.unidades.Curandero.
+    // Pruebo que se pueda crear correctamente el fiuba.algo3.algochess.Modelo.unidades.Curandero.
     public void creoUnidadesCurandero() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -48,7 +48,7 @@ public class UnidadesFabricaTest {
     }
 
     @Test
-    // Pruebo que se pueda crear la fiuba.algo3.algochess.unidades.Catapulta.
+    // Pruebo que se pueda crear la fiuba.algo3.algochess.Modelo.unidades.Catapulta.
     public void creoUnidadesCatapulta() throws UnidadInvalidaException, NoAlcanzanLosPuntosException {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);

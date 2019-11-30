@@ -1,13 +1,12 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.juego.*;
-import fiuba.algo3.algochess.unidades.Soldado;
-import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.*;
+import fiuba.algo3.algochess.Modelo.unidades.Soldado;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.print.attribute.HashAttributeSet;
 import java.util.HashMap;
 
 public class JugadorTest {

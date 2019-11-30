@@ -1,13 +1,12 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.acciones.AccionJugador;
-import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.juego.Jugador;
-import fiuba.algo3.algochess.juego.Posicion;
-import fiuba.algo3.algochess.juego.Tablero;
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroEnemigoException;
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Modelo.juego.Jugador;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

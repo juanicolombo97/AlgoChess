@@ -1,8 +1,8 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.juego.*;
-import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.*;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
