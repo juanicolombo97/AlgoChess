@@ -36,8 +36,8 @@ public class FaseInicial {
             while (jugadorActual.getPuntosDisponibles() != 0){
 
                 VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
-                VBox ladoDer = TiendaUnidades.crearUnidades();
-                Pane tableroInterfaz = TableroInterfaz.crearTablero(tablero.getTablero());
+                GridPane tableroInterfaz = TableroInterfaz.crearTablero(tablero.getTablero());
+                VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual,tableroInterfaz);
 
                 BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz,ladoIzq,ladoDer);
 

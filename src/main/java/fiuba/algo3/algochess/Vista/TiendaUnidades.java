@@ -4,13 +4,16 @@ import fiuba.algo3.algochess.Controlador.CrearCatapulta;
 import fiuba.algo3.algochess.Controlador.CrearCurandero;
 import fiuba.algo3.algochess.Controlador.CrearJinete;
 import fiuba.algo3.algochess.Controlador.CrearSoldado;
+import fiuba.algo3.algochess.Modelo.juego.Jugador;
+import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class TiendaUnidades {
 
-    public static VBox crearUnidades(){
+    public static VBox crearUnidades(Jugador jugador, GridPane tablero){
         VBox vBox = new VBox(20);
 
         Label unidades = new Label("Unidades disponibles");
@@ -19,10 +22,10 @@ public class TiendaUnidades {
         Button botonCatapulta = new Button("Crear Catapulta");
         Button botonCurandero = new Button("Crear Curandero");
 
-        botonSoldado.setOnAction(e -> CrearSoldado.crear());
-        botonJinete.setOnAction(e -> CrearJinete.crear());
-        botonCurandero.setOnAction(e -> CrearCurandero.crear());
-        botonCatapulta.setOnAction(e -> CrearCatapulta.crear());
+        botonSoldado.setOnAction(e -> CrearSoldado.crear(jugador,tablero));
+        botonJinete.setOnAction(e -> CrearJinete.crear(jugador,tablero));
+        botonCurandero.setOnAction(e -> CrearCurandero.crear(jugador,tablero));
+        botonCatapulta.setOnAction(e -> CrearCatapulta.crear(jugador,tablero));
 
 
         vBox.getChildren().addAll(unidades,botonSoldado,botonCurandero,botonJinete,botonCatapulta);
