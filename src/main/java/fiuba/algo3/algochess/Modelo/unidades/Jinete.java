@@ -10,18 +10,22 @@ import java.util.HashMap;
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
-    private int danioCercano = 5;
-    private int danioMediano = 15;
+    private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion;
 
 
     public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
+    //TODO: cuando se instancia un jinete validar sus unidades cercanas para ver si se cambia su estado
     }
 
     public double getVidaUnidad(){
         return vidaUnidad;
+    }
+
+    public void setEstadoJinete(String estado){
+        estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
     }
 
     @Override
@@ -34,15 +38,12 @@ public class Jinete implements Unidad {
         this.posicion = posicion;
     }
 
-
-
-
     @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-       atacado.recibirDanio(danioCercano);
+        estadoJinete.atacarDistanciaCerca(atacado);
     }
 
     @Override
@@ -50,12 +51,12 @@ public class Jinete implements Unidad {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        atacado.recibirDanio(danioMediano);
+        estadoJinete.atacarDistanciaMediana(atacado);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El jinete arquero no puede atacar a distancias lejanas");
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadInvalidaException {
+        estadoJinete.atacarDistanciaLejana(atacado);
     }
 
     @Override

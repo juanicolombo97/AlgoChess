@@ -65,14 +65,14 @@ public class Entrega1UnidadesTests {
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(9,9);
-        Posicion posicion2 = new Posicion(10,10);
+        Posicion posicion2 = new Posicion(13,13);
         tablero.crearUnidad(jugador,posicion,"soldado");
         tablero.crearUnidad(jugador2,posicion2,"jinete");
         tablero.atacar(posicion2,posicion,jugador2);
 
         Unidad unidadAtacada = jugador.getUnidadesDisponibles().get(0);
 
-        Assertions.assertEquals(95,unidadAtacada.getVidaUnidad());
+        Assertions.assertEquals(85,unidadAtacada.getVidaUnidad());
 
     }
     @Test
