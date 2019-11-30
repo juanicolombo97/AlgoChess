@@ -1,11 +1,9 @@
-package fiuba.algo3.algochess.acciones;
+package fiuba.algo3.algochess.Modelo.acciones;
 
-import fiuba.algo3.algochess.excepciones.*;
-import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.juego.Distancia;
-import fiuba.algo3.algochess.unidades.Unidad;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Distancia;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AccionesFabrica {

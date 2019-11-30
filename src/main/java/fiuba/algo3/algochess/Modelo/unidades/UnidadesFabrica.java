@@ -1,9 +1,9 @@
-package fiuba.algo3.algochess.unidades;
+package fiuba.algo3.algochess.Modelo.unidades;
 
-import fiuba.algo3.algochess.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.juego.Puntos;
-import fiuba.algo3.algochess.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 public class UnidadesFabrica {
 

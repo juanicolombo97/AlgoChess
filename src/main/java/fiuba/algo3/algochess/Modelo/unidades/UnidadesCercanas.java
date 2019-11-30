@@ -1,10 +1,9 @@
-package fiuba.algo3.algochess.unidades;
+package fiuba.algo3.algochess.Modelo.unidades;
 
-import fiuba.algo3.algochess.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.excepciones.CasilleroVacioExcepcion;
-import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.juego.Direccion;
-import fiuba.algo3.algochess.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
