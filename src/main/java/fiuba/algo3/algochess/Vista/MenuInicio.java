@@ -18,13 +18,13 @@ public class MenuInicio extends Application {
     Scene scene;
     Stage ventana;
 
+
     @Override
     public void start(Stage primaryStage) throws UnidadInvalidaException,CasilleroOcupadoException {
 
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
         ventana.setTitle("AlgoChess");
-
         StackPane stackPane = new StackPane();
 
         VBox layout = new VBox(40);
@@ -36,7 +36,7 @@ public class MenuInicio extends Application {
 
         scene = new Scene(stackPane, 800,600);
        // Creo imagen y la establesco para que se mueva con la ventana.
-        final ImageView imagen = new ImageView("fiuba/algo3/algochess/imagenes/fondomenu.jpg");
+        final ImageView imagen = new ImageView("fiuba/algo3/algochess/Vista/imagenes/fondomenu.jpg");
         imagen.fitHeightProperty().bind(ventana.heightProperty());
         imagen.fitWidthProperty().bind(ventana.widthProperty());
 
