@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 
@@ -13,21 +14,21 @@ public class EmisarioActivo implements Emisario{
     }
 
     @Override
-    public void notificar(Unidad unidad) throws MovimientoInvalidoException {
+    public void notificar(Unidad unidad) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.tablero.notificar(unidad);
     }
 
     @Override
-    public ArrayList unidadesAliadasCercanas(Unidad unidad){
+    public ArrayList unidadesAliadasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
         return this.tablero.unidadesAliadasCercanas(unidad);
     }
 
     @Override
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad) { return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion { return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
     }
 
     @Override
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad){
+    public ArrayList unidadesEnemigasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
         return this.tablero.unidadesEnemigasCercanas(unidad);
     }
 }

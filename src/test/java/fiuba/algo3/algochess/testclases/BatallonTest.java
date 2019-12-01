@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class BatallonTest {
 
     @Test
-    public void seFormaBatallonDeUnidadesCercanasCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion {
+    public void seFormaBatallonDeUnidadesCercanasCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -39,7 +39,7 @@ public class BatallonTest {
     }
 
     @Test
-    public void seFormaBatallonConUnidadesEnemigasTambien() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion {
+    public void seFormaBatallonConUnidadesEnemigasTambien() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -63,7 +63,7 @@ public class BatallonTest {
     }
 
     @Test
-    public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion {
+    public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -86,7 +86,7 @@ public class BatallonTest {
     }
 
     @Test
-    public void seFormaBatallonSoloDeSoldados() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion {
+    public void seFormaBatallonSoloDeSoldados() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador1,jugador1);
 

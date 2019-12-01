@@ -27,7 +27,7 @@ public interface Unidad {
 
     public Posicion getPosicion();
 
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException;
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
 
-    public void recibirNotificacion();
+    public void recibirNotificacion() throws CasilleroVacioExcepcion;
 }

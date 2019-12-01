@@ -81,7 +81,7 @@ public class Jinete implements Unidad {
         return listaUnidadesAMover;
     }
 
-    public void recibirNotificacion() {
+    public void recibirNotificacion() throws CasilleroVacioExcepcion {
         if (emisario.cantidadSoldadosAliadosCercanos(this) == 0 && emisario.unidadesEnemigasCercanas(this).size() > 0){
             setEstadoJinete("espadachin");
         } else if (emisario.cantidadSoldadosAliadosCercanos(this) > 0 || emisario.unidadesEnemigasCercanas(this).size() == 0)

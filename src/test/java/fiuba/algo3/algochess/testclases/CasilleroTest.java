@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
+import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
@@ -23,7 +24,7 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion {
+    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true);
         Puntos puntos = new Puntos(20);
@@ -33,7 +34,7 @@ public class CasilleroTest {
         Assertions.assertEquals(soldado.getPosicion(),soldado2.getPosicion());
     }
     @Test
-    public void seQuiereAgregarUnidadACasilleroOcupado() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException {
+    public void seQuiereAgregarUnidadACasilleroOcupado() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Casillero casillero = new Casillero(posicion,true);
@@ -48,7 +49,7 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion {
+    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true);
 

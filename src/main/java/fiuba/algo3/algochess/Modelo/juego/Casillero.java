@@ -17,7 +17,7 @@ public class Casillero{
         this.casilleroAliado = casilleroAliado;
     }
 
-    public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException {
+    public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
         unidadNueva.modificarPosicion(posicionCasillero);
    }

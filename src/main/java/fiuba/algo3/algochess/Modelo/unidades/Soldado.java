@@ -30,9 +30,8 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
-        emisario.notificar(this);
     }
 
     @Override

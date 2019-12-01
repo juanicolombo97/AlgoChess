@@ -38,7 +38,7 @@ public class Tablero {
         }
     }
 
-    public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException {
+    public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Casillero casilleroDestino = tablero.get(posicion);
         Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion);
         casilleroDestino.guardarUnidad(unidadCreada);
@@ -87,19 +87,24 @@ public class Tablero {
         return (HashMap) tablero;
     }
 
-    public void notificar(Unidad unidadEmisora) {
+
+
+    public void notificar(Unidad unidadEmisora) throws CasilleroVacioExcepcion {
+        /*
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
         for(int i = 1; i < unidadesCercanas.size(); i++){
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             unidadActual.recibirNotificacion();
         }
+        */
     }
 
-    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad){
+    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) throws CasilleroVacioExcepcion {
+        /*
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
         ArrayList listaDeUnidades = new ArrayList();
-        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 1);
-        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas(arrayCasillero, listaDeUnidades, unaUnidad, 2);
+        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad);
+        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad);
         for(Object unidadActual : unidadesCercanasADistancia2){
             if (!unidadesCercanasADistancia1.contains(unidadActual)){
                 unidadesCercanasADistancia1.add(unidadActual);
@@ -109,18 +114,23 @@ public class Tablero {
             unidadesCercanasADistancia1.remove(unaUnidad);
         }
         return unidadesCercanasADistancia1;
+        */
+        return new ArrayList(); //temp
     }
 
     public void unidadesAliadasCercanasPorJugador(Unidad unidad, Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
+        /*
         for(int i = 1; i < unidadesCercanas.size(); i++){
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             if (jugador.unidadAliada(unidadActual)){
                 unidadesAliadasCercanas.add(unidadActual);
             }
         }
+        */
     }
 
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) {
+    public ArrayList unidadesAliadasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
+        /*
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
         if (this.jugador1.unidadAliada(unidad)){
@@ -129,9 +139,12 @@ public class Tablero {
             unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         }
         return unidadesAliadasCercanasAUnidad;
+        */
+        return new ArrayList();
     }
 
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad){
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion {
+        /*
         ArrayList soldadosAliadosCercanos = new ArrayList();
         ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
         for (Object unidadActual: unidadesAliadasCercanasAUnidad){
@@ -140,9 +153,12 @@ public class Tablero {
             }
         }
         return soldadosAliadosCercanos.size();
+        */
+        return 0; //temp
     }
 
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
+    public ArrayList unidadesEnemigasCercanas(Unidad unidad) throws CasilleroVacioExcepcion {
+        /*
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
         if (this.jugador1.unidadAliada(unidad)){
@@ -151,6 +167,7 @@ public class Tablero {
             unidadesAliadasCercanasPorJugador(unidad, jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         }
         return unidadesEnemigasCercanasAUnidad;
+        */
+        return new ArrayList();
     }
-
 }
