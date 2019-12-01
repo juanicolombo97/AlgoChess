@@ -12,6 +12,7 @@ public class Soldado implements Unidad {
     private double vidaUnidad = 100;
     private static double danioCuerpo = 10;
     private Posicion posicion;
+    private Emisario emisario;
 
     public Soldado(Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
         puntosJugador.puntosSuficientes(costoUnidad);
@@ -29,8 +30,9 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException {
         this.posicion = posicion;
+        emisario.notificar(this);
     }
 
     @Override
@@ -80,9 +82,10 @@ public class Soldado implements Unidad {
         }
     }
 
+    @Override
+    public void recibirNotificacion() {
 
-
-
+    }
 }
 
 

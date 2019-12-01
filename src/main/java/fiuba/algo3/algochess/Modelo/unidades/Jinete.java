@@ -12,7 +12,7 @@ public class Jinete implements Unidad {
     private double vidaUnidad = 100;
     private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion;
-
+    private Emisario emisario;
 
     public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
         puntosJugador.puntosSuficientes(costoUnidad);
@@ -81,5 +81,16 @@ public class Jinete implements Unidad {
         return listaUnidadesAMover;
     }
 
+    public void recibirNotificacion() {
+        if (emisario.cantidadSoldadosAliadosCercanos(this) == 0 && emisario.unidadesEnemigasCercanas(this).size() > 0){
+            setEstadoJinete("espadachin");
+        } else if (emisario.cantidadSoldadosAliadosCercanos(this) > 0 || emisario.unidadesEnemigasCercanas(this).size() == 0)
+            setEstadoJinete("arquero");
+
+    }
+
+    public EstadoJinete getEstado(){
+        return estadoJinete;
+    }
 
 }

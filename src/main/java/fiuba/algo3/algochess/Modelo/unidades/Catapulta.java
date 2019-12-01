@@ -15,6 +15,7 @@ public class Catapulta implements Unidad{
     private static double danioDistancia = 20;
     private Batallon batallon = new Batallon();
     private Posicion posicion;
+    private Emisario emisario;
 
 
     public Catapulta(Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
@@ -35,6 +36,11 @@ public class Catapulta implements Unidad{
     @Override
     public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 
     @Override

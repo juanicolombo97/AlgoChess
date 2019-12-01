@@ -12,6 +12,8 @@ public class Curandero implements Unidad {
     private double vidaUnidad = 75;
     private static int curacion = 15;
     private Posicion posicion;
+    private Emisario emisario;
+
 
     public Curandero( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
         puntosJugador.puntosSuficientes(costoUnidad);
@@ -30,6 +32,11 @@ public class Curandero implements Unidad {
     @Override
     public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
+    }
+
+    @Override
+    public void recibirNotificacion() {
+
     }
 
     @Override

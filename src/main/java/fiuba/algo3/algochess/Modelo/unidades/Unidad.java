@@ -27,6 +27,7 @@ public interface Unidad {
 
     public Posicion getPosicion();
 
-    public void modificarPosicion(Posicion posicion);
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException;
 
+    public void recibirNotificacion();
 }
