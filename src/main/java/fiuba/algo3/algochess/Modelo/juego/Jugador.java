@@ -34,13 +34,13 @@ public class Jugador {
         }
     }
 
-    public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
 
         //Llamo para ver si el casillero pertenece al jugador.
         casilleroAliado(casillero);
         //Creo la unidad y cambio los puntos disponibles del jugador
         UnidadNueva unidadNueva = new UnidadNueva();
-        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion);
+        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion,emisario);
         return unidadCreada;
     }
 

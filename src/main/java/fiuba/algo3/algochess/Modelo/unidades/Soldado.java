@@ -14,9 +14,11 @@ public class Soldado implements Unidad {
     private Posicion posicion;
     private Emisario emisario;
 
-    public Soldado(Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+    public Soldado(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
+        this.emisario = emisario;
+        this.emisario.notificar(this);
     }
 
 
@@ -32,6 +34,7 @@ public class Soldado implements Unidad {
     @Override
     public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
+        this.emisario.notificar(this);
     }
 
     @Override

@@ -15,9 +15,11 @@ public class Curandero implements Unidad {
     private Emisario emisario;
 
 
-    public Curandero( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
+        this.emisario = emisario;
+        this.emisario.notificar(this);
     }
 
     public double getVidaUnidad(){
@@ -30,8 +32,9 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
+        this.emisario.notificar(this);
     }
 
     @Override

@@ -14,10 +14,10 @@ public class Jinete implements Unidad {
     private Posicion posicion;
     private Emisario emisario;
 
-    public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+    public Jinete( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
-    //TODO: cuando se instancia un jinete validar sus unidades cercanas para ver si se cambia su estado
+        this.emisario.notificar(this);
     }
 
     public double getVidaUnidad(){
@@ -34,8 +34,9 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
+        this.emisario.notificar(this);
     }
 
     @Override
