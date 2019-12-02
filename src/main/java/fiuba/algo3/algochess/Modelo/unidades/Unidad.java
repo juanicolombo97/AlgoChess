@@ -13,7 +13,7 @@ public interface Unidad {
 
     public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
 
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion;
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException;
 
     public void recibirDanio(double danioRecibido) throws UnidadNulaException;
 
@@ -27,6 +27,9 @@ public interface Unidad {
 
     public Posicion getPosicion();
 
-    public void modificarPosicion(Posicion posicion);
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
 
+    public void recibirNotificacion() throws CasilleroVacioExcepcion;
+
+    public boolean esSoldado();
 }

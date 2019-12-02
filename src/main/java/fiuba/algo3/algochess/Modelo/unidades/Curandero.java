@@ -12,10 +12,13 @@ public class Curandero implements Unidad {
     private double vidaUnidad = 75;
     private static int curacion = 15;
     private Posicion posicion;
+    private Emisario emisario;
 
-    public Curandero( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+
+    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
+        this.emisario = emisario;
     }
 
     public double getVidaUnidad(){
@@ -28,8 +31,13 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
+        this.emisario.notificar(this);
+    }
+
+    @Override
+    public void recibirNotificacion() {
     }
 
     @Override
@@ -72,6 +80,7 @@ public class Curandero implements Unidad {
         return listaUnidadesAMover;
     }
 
-
+    @Override
+    public boolean esSoldado(){ return false; }
 
 }

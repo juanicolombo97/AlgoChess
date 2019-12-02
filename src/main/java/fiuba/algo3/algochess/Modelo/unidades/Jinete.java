@@ -10,18 +10,23 @@ import java.util.HashMap;
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
     private double vidaUnidad = 100;
-    private int danioCercano = 5;
-    private int danioMediano = 15;
+    private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion;
+    private Emisario emisario;
 
-
-    public Jinete( Puntos puntosJugador, Posicion posicion) throws NoAlcanzanLosPuntosException {
+    public Jinete( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
+        this.emisario = emisario;
+        recibirNotificacion();
     }
 
     public double getVidaUnidad(){
         return vidaUnidad;
+    }
+
+    public void setEstadoJinete(String estado){
+        estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
     }
 
     @Override
@@ -30,19 +35,17 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) {
+    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
+        this.emisario.notificar(this);
     }
-
-
-
 
     @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-       atacado.recibirDanio(danioCercano);
+        estadoJinete.atacarDistanciaCerca(atacado);
     }
 
     @Override
@@ -50,12 +53,12 @@ public class Jinete implements Unidad {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        atacado.recibirDanio(danioMediano);
+        estadoJinete.atacarDistanciaMediana(atacado);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
-        throw new NoPuedeAtacarException("El jinete arquero no puede atacar a distancias lejanas");
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadInvalidaException {
+        estadoJinete.atacarDistanciaLejana(atacado);
     }
 
     @Override
@@ -80,5 +83,21 @@ public class Jinete implements Unidad {
         return listaUnidadesAMover;
     }
 
+    @Override
+    public void recibirNotificacion() throws CasilleroVacioExcepcion {
+        if (this.emisario.cantidadSoldadosAliadosCercanos(this) == 0 && this.emisario.unidadesEnemigasCercanas(this).size() > 0){
+            setEstadoJinete("espadachin");
+        }
+        else if (this.emisario.cantidadSoldadosAliadosCercanos(this) > 0 || this.emisario.unidadesEnemigasCercanas(this).size() == 0){
+            setEstadoJinete("arquero");
+        }
+    }
+
+    public EstadoJinete getEstado(){
+        return estadoJinete;
+    }
+
+    @Override
+    public boolean esSoldado(){ return false; }
 
 }

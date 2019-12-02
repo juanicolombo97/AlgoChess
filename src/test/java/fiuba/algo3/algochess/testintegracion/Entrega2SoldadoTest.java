@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class Entrega2SoldadoTests {
+public class Entrega2SoldadoTest {
 
     @Test
     public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {

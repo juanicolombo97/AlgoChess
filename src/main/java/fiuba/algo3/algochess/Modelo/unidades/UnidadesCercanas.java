@@ -36,4 +36,28 @@ public class UnidadesCercanas {
         }
         return batallonUnidades;
     }
+
+    public ArrayList unidadesCercanasADistancia(int distanciaLimite, HashMap tablero, Unidad unidadCentral){
+        ArrayList unidadesADistanciaCercana = new ArrayList();
+        for (int counter = 0; counter < distanciaLimite; counter++){
+            for (Object direccionActual : listaDirecciones) {
+                Posicion posicionNueva = unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual);
+                if (counter == 1) {
+                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionX() + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionY() + ((Direccion) direccionActual).getY());
+                }
+                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
+                    try{
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                        if (!unidadesADistanciaCercana.contains(unidadNueva)) {
+                            unidadesADistanciaCercana.add(unidadNueva);
+                        }
+                    }catch (CasilleroVacioExcepcion | NullPointerException e){
+
+                    }
+                }
+            }
+        }
+        return unidadesADistanciaCercana;
+    }
+
 }
