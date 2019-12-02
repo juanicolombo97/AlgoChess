@@ -199,8 +199,7 @@ public class Entrega2JineteTest {
         // Intento atacar al curandero enemigo a distancia media
         try{
             tablero.atacar(posicionJinete, posicion0401, jugador1);
-        } catch (NoPuedeAtacarException | CurarException e){
-            e.printStackTrace();
+        } catch (NoPuedeAtacarException | CurarException ignored){
         }
     }
 
@@ -261,8 +260,7 @@ public class Entrega2JineteTest {
         // Pruebo si el jinete está en modo arquero
         try{
             tablero.atacar(posicionJinete, posicion0604, jugador1);
-        } catch (NoPuedeAtacarException e){
-            e.printStackTrace();
+        } catch (NoPuedeAtacarException ignored){
         }
     }
 
@@ -323,8 +321,7 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         try{
             tablero.atacar(posicionJinete, posicion0604, jugador1);
-        } catch (NoPuedeAtacarException | CurarException e){
-            e.printStackTrace();
+        } catch (NoPuedeAtacarException | CurarException ignored){
         }
     }
 
