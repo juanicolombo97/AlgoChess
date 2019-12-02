@@ -100,9 +100,8 @@ public class Tablero {
 
     public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) throws CasilleroVacioExcepcion {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-        ArrayList listaDeUnidades = new ArrayList();
-        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad);
-        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanas((HashMap) tablero, listaDeUnidades, unaUnidad);
+        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanasADistancia(1,(HashMap) tablero, unaUnidad);
+        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
         for(Object unidadActual : unidadesCercanasADistancia2){
             if (!unidadesCercanasADistancia1.contains(unidadActual)){
                 unidadesCercanasADistancia1.add(unidadActual);

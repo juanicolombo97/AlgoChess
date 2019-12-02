@@ -39,7 +39,6 @@ public class Curandero implements Unidad {
 
     @Override
     public void recibirNotificacion() {
-
     }
 
     @Override
