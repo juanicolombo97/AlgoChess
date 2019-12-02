@@ -59,10 +59,38 @@ public class UnidadesCercanasTest {
     }
 
     @Test
-    public void cantidadSoldadosAliadosCercanos() {
+    public void cantidadSoldadosAliadosCercanos() throws CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
+        Tablero tablero = new Tablero(jugador, jugador2);
+        Posicion posicionSoldado1 = new Posicion(9,9);
+        Posicion posicionCurandero = new Posicion(9,8);
+        Posicion posicionSoldado2 = new Posicion(9,7);
+        Posicion posicionJineteEnemigo = new Posicion(10,10); // unidad enemiga
+        Posicion posicionSoldadoEnemigo = new Posicion(11,11); // unidad enemiga
+        tablero.crearUnidad(jugador, posicionSoldado1, "soldado");
+        tablero.crearUnidad(jugador, posicionCurandero, "curandero");
+        tablero.crearUnidad(jugador, posicionSoldado2, "soldado");
+        tablero.crearUnidad(jugador2, posicionJineteEnemigo, "jinete"); // unidad enemiga
+        tablero.crearUnidad(jugador2, posicionSoldadoEnemigo, "soldado"); // unidad enemiga
+        Soldado soldado1 = (Soldado) jugador.getUnidadesDisponibles().get(0);
+        Assertions.assertEquals(1, tablero.cantidadSoldadosAliadosCercanos(soldado1));
     }
 
     @Test
-    public void unidadesEnemigasCercanas() {
+    public void unidadesEnemigasCercanas() throws CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
+        Tablero tablero = new Tablero(jugador, jugador2);
+        Posicion posicionSoldado1 = new Posicion(9,9);
+        Posicion posicionSoldado2 = new Posicion(9,8); // unidad aliada
+        Posicion posicionSoldadoEnemigo1 = new Posicion(10,10);
+        Posicion posicionSoldadoEnemigo2 = new Posicion(11,11);
+        tablero.crearUnidad(jugador, posicionSoldado1, "soldado");
+        tablero.crearUnidad(jugador, posicionSoldado2, "soldado"); // unidad aliada
+        tablero.crearUnidad(jugador2, posicionSoldadoEnemigo1, "soldado");
+        tablero.crearUnidad(jugador2, posicionSoldadoEnemigo2, "soldado");
+        Soldado soldado1 = (Soldado) jugador.getUnidadesDisponibles().get(0);
+        Assertions.assertEquals(2, tablero.unidadesEnemigasCercanas(soldado1).size());
     }
 }
