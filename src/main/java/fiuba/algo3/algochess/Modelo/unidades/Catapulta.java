@@ -22,7 +22,6 @@ public class Catapulta implements Unidad{
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
-        this.emisario.notificar(this);
     }
 
     public double getVidaUnidad(){

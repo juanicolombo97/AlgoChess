@@ -21,7 +21,6 @@ public class Entrega2JineteTest {
         Posicion posicion = new Posicion(9, 9);
         Posicion posicionEnemiga = new Posicion(11, 11);
         tablero.crearUnidad(jugador, posicion, "jinete");
-        Jinete jinete = (Jinete) jugador.getUnidadesDisponibles().get(0);
         tablero.crearUnidad(jugadorEnemigo, posicionEnemiga, "soldado");
         tablero.atacar(posicion, posicionEnemiga, jugador);
 

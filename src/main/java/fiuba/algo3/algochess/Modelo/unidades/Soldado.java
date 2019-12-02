@@ -18,7 +18,6 @@ public class Soldado implements Unidad {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
-        this.emisario.notificar(this);
     }
 
 

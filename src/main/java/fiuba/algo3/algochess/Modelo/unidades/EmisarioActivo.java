@@ -1,7 +1,6 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
-import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class EmisarioActivo implements Emisario{
     }
 
     @Override
-    public void notificar(Unidad unidad) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void notificar(Unidad unidad) throws CasilleroVacioExcepcion {
         this.tablero.notificar(unidad);
     }
 

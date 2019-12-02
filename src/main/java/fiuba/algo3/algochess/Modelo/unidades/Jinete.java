@@ -18,7 +18,6 @@ public class Jinete implements Unidad {
         puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
-        this.emisario.notificar(this);
         recibirNotificacion();
     }
 
@@ -88,8 +87,10 @@ public class Jinete implements Unidad {
     public void recibirNotificacion() throws CasilleroVacioExcepcion {
         if (this.emisario.cantidadSoldadosAliadosCercanos(this) == 0 && this.emisario.unidadesEnemigasCercanas(this).size() > 0){
             setEstadoJinete("espadachin");
-        } else if (this.emisario.cantidadSoldadosAliadosCercanos(this) > 0 || this.emisario.unidadesEnemigasCercanas(this).size() == 0)
+        }
+        else if (this.emisario.cantidadSoldadosAliadosCercanos(this) > 0 || this.emisario.unidadesEnemigasCercanas(this).size() == 0){
             setEstadoJinete("arquero");
+        }
     }
 
     public EstadoJinete getEstado(){
