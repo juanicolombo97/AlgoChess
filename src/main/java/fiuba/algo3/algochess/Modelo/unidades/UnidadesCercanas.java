@@ -42,7 +42,7 @@ public class UnidadesCercanas {
         for (int counter = 0; counter < distanciaLimite; counter++){
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidadAtacada.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (counter) {
+                if (counter > 0) {
                     posicionNueva = unidadAtacada.getPosicion().posicionNueva((Direccion) direccionActual);
                 }
                 if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
