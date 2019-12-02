@@ -52,7 +52,7 @@ public class Tablero {
         int contador = 0;
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
-        Distancia distancia = posicionInicial.calcularDistancia(posicionFinal);
+        Distancia distancia = posicionInicial.calcularDistanciaConDireccion(posicionFinal);
         Direccion direccionMovimiento = new Direccion(distancia.getDistanciaX(),distancia.getDistanciaY());
 
         //Veo que la distancia sea correcta.

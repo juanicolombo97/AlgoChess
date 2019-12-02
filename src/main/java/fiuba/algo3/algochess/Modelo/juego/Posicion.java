@@ -47,6 +47,16 @@ public class Posicion {
         return new Distancia(distanciaX,distanciaY);
     }
 
+    public Distancia calcularDistanciaConDireccion(Posicion posicionFinal){
+        return posicionFinal.calcularDistanciaConDireccion(this.posicionX,this.posicionY);
+    }
+
+    public Distancia calcularDistanciaConDireccion(int posicionX, int posicionY){
+        int distanciaX = this.posicionX - posicionX;
+        int distanciaY = this.posicionY - posicionY;
+        return new Distancia(distanciaX,distanciaY);
+    }
+
     public Posicion posicionNueva(Direccion direccion){
         return direccion.posicionNueva(posicionX,posicionY);
     }
