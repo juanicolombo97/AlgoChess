@@ -127,24 +127,29 @@ public class Entrega2JineteTests {
 
         Posicion posicion = new Posicion(4,4);
         Posicion posicionEnemiga = new Posicion(11,11);
+        Posicion posicionEnemigaAux = new Posicion(10, 10);
         tablero.crearUnidad(jugador,posicion,"jinete");
         tablero.crearUnidad(jugadorEnemigo,posicionEnemiga,"soldado");
 
+        tablero.moverUnidad(posicionEnemiga,posicionEnemigaAux,jugadorEnemigo);
+        posicionEnemiga = new Posicion(10, 10);
+        posicionEnemigaAux = new Posicion(9,9);
 
-        /*
-        // Acerco el soldado enemigo a nuestro jinete
-        tablero.moverUnidad(11,11,10,10);
-        tablero.moverUnidad(10,10,9,9);
-        tablero.moverUnidad(9,9,8,8, jugador2);
-        tablero.moverUnidad(8,8,7,7, jugador2);
-        tablero.moverUnidad(7,7,6,6, jugador2);
-        tablero.moverUnidad(6,6,6,5, jugador2);
-        tablero.moverUnidad(6,5,6,4, jugador2);
+        tablero.moverUnidad(posicionEnemiga,posicionEnemigaAux,jugadorEnemigo);
+        posicionEnemiga = new Posicion(9, 9);
+        posicionEnemigaAux = new Posicion(8,8);
 
-        // Pruebo que ataque con espada (distancia cercana) exitosamente
-        tablero.atacar(4,4,6,4, jugador1);
+        tablero.moverUnidad(posicionEnemiga,posicionEnemigaAux,jugadorEnemigo);
+        posicionEnemiga = new Posicion(8, 8);
+        posicionEnemigaAux = new Posicion(7,7);
+        tablero.moverUnidad(posicionEnemiga,posicionEnemigaAux,jugadorEnemigo);
+        posicionEnemiga = new Posicion(7, 7);
+        posicionEnemigaAux = new Posicion(6,6);
+        tablero.moverUnidad(posicionEnemiga,posicionEnemigaAux,jugadorEnemigo);
 
-         */
+        tablero.atacar(posicion,posicionEnemigaAux,jugador);
+
+        Assertions.assertEquals(95,jugadorEnemigo.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
