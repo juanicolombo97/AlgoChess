@@ -1,56 +1,45 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.juego.Posicion;
-import org.junit.Assert;
-import org.junit.Test;
+import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
+import fiuba.algo3.algochess.Modelo.juego.Distancia;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class PosicionTest {
 
     @Test
-    public void posicionNueva() {
-        Posicion posicion = new Posicion();
-        posicion.posicionNueva(5, 3);
-        Assert.assertEquals(5, posicion.getPosicionX());
-        Assert.assertEquals(3, posicion.getPosicionY());
+    public void posicionCalculaDistanciaCorrectamente(){
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+
+        Distancia distancia1 = posicion.calcularDistancia(posicion1);
+
+
+        Assertions.assertEquals(1,distancia1.getDistanciaX());
+        Assertions.assertEquals(1,distancia1.getDistanciaY());
     }
 
     @Test
-    public void movimientoNuevo() throws MovimientoInvalidoException {
-        Posicion posicion = new Posicion();
-        posicion.posicionNueva(2, 2);
-        posicion.posicionNueva(3, 3);
-        Assert.assertEquals(3, posicion.getPosicionX());
-        Assert.assertEquals(3, posicion.getPosicionY());
-    }
-
-    @Test
-    public void movimientoInvalidoAlMoverseMasDeUnCasillero() throws MovimientoInvalidoException {
-        Posicion posicion = new Posicion();
-        posicion.posicionNueva(2, 2);
+    public void calcularDistanciaInvalidaLanzaError(){
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(3,3);
         try {
-            posicion.posicionValida(2, -1);
-        } catch (MovimientoInvalidoException e) {
+            posicion.distanciaValidaDesde(posicion1);
+        }catch (MovimientoInvalidoException e){
+            Assertions.assertEquals("Solo se mueve de a 1 casillero",e.getMessage());
         }
     }
-
     @Test
-    public void distanciaXHasta() {
-        Posicion posicion0101 = new Posicion();
-        posicion0101.posicionNueva(1, 1);
-        Posicion posicion0305 = new Posicion();
-        posicion0305.posicionNueva(3, 5);
-        Assert.assertEquals(2, posicion0101.distanciaXHasta(posicion0305));
-        Assert.assertEquals(2, posicion0305.distanciaXHasta(posicion0101));
-    }
+    public void calcularPosicionNuevaCorrectamente(){
+        Posicion posicion = new Posicion(1,1);
 
-    @Test
-    public void distanciaYHasta() {
-        Posicion posicion0101 = new Posicion();
-        posicion0101.posicionNueva(1, 1);
-        Posicion posicion0305 = new Posicion();
-        posicion0305.posicionNueva(3, 5);
-        Assert.assertEquals(4, posicion0101.distanciaYHasta(posicion0305));
-        Assert.assertEquals(4, posicion0305.distanciaYHasta(posicion0101));
+        Direccion direccion = new Direccion(1,1);
+
+        Posicion posicionNueva = posicion.posicionNueva(direccion);
+
+        Assertions.assertEquals(2,posicionNueva.getPosicionX());
+
     }
 }
