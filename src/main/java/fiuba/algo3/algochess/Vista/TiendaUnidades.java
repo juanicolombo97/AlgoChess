@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class TiendaUnidades {
 
-    public static VBox crearUnidades(Jugador jugador, GridPane tablero){
+    public static VBox crearUnidades(Jugador jugador, TableroInterfaz tablero){
         VBox vBox = new VBox(20);
 
         Label unidades = new Label("Unidades disponibles");

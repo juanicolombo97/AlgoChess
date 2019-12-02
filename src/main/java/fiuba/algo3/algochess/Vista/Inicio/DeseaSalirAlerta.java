@@ -1,4 +1,4 @@
-package fiuba.algo3.algochess.Vista;
+package fiuba.algo3.algochess.Vista.Inicio;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

@@ -1,8 +1,10 @@
-package fiuba.algo3.algochess.Vista;
+package fiuba.algo3.algochess.Vista.Inicio;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Vista.FaseInicial;
+import fiuba.algo3.algochess.Vista.Inicio.DeseaSalirAlerta;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
