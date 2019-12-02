@@ -48,7 +48,7 @@ public class UnidadesCercanas {
                 if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
                     try{
                         Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
-                        if (!batallonUnidades.contains(unidadNueva)) {
+                        if (!unidadesADistanciaCercana.contains(unidadNueva)) {
                             unidadesADistanciaCercana.add(unidadNueva);
                         }
                     }catch (CasilleroVacioExcepcion | NullPointerException e){

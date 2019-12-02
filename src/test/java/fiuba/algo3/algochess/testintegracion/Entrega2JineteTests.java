@@ -18,7 +18,7 @@ public class Entrega2JineteTests {
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
         Posicion posicion = new Posicion(9, 9);
-        Posicion posicionEnemiga = new Posicion(10, 10);
+        Posicion posicionEnemiga = new Posicion(11, 11);
         tablero.crearUnidad(jugador, posicion, "jinete");
         tablero.crearUnidad(jugadorEnemigo, posicionEnemiga, "soldado");
         tablero.atacar(posicion, posicionEnemiga, jugador);
@@ -36,11 +36,13 @@ public class Entrega2JineteTests {
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
         Posicion posicion = new Posicion(9,9);
-        Posicion posicionEnemiga = new Posicion(13,13);
+        Posicion posicionEnemigaMedia = new Posicion(13,13);
+        Posicion posicionEnemigaCercana = new Posicion(10,10);
         tablero.crearUnidad(jugador,posicion,"jinete");
-        tablero.crearUnidad(jugadorEnemigo,posicionEnemiga,"soldado");
+        tablero.crearUnidad(jugadorEnemigo,posicionEnemigaMedia,"soldado");
+        tablero.crearUnidad(jugadorEnemigo,posicionEnemigaCercana,"soldado");
         try{
-            tablero.atacar(posicion,posicionEnemiga,jugador);
+            tablero.atacar(posicion,posicionEnemigaMedia,jugador);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete espadachin no puede atacar a distancias medianas",e.getMessage());
         }
@@ -51,17 +53,19 @@ public class Entrega2JineteTests {
     public void jineteEspadachinAtacaUnidadDeDistanciaLejana() throws Exception {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
-        Tablero tablero = new Tablero(jugador,jugadorEnemigo);
-        Posicion posicion = new Posicion(9,9);
-        Posicion posicionEnemiga = new Posicion(19,19);
-        tablero.crearUnidad(jugador,posicion,"jinete");
-        tablero.crearUnidad(jugadorEnemigo,posicionEnemiga,"soldado");
-        try{
-            tablero.atacar(posicion,posicionEnemiga,jugador);
-        }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias lejanas",e.getMessage());
+        Tablero tablero = new Tablero(jugador, jugadorEnemigo);
+        Posicion posicion = new Posicion(9, 9);
+        Posicion posicionEnemigaCercana = new Posicion(10, 10);
+        Posicion posicionEnemigaLejana = new Posicion(19, 19);
+        tablero.crearUnidad(jugador, posicion, "jinete");
+        tablero.crearUnidad(jugadorEnemigo, posicionEnemigaLejana, "soldado");
+        tablero.crearUnidad(jugadorEnemigo, posicionEnemigaCercana, "soldado");
+        try {
+            tablero.atacar(posicion, posicionEnemigaLejana, jugador);
+        } catch (NoPuedeAtacarException e) {
+            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias lejanas", e.getMessage());
         }
-    }// deberia tirar excepcion, falta emisario, agregarle otro
+    }
 
     @Test
     //Prueba con ataque de cerca.
@@ -76,7 +80,7 @@ public class Entrega2JineteTests {
         try{
             tablero.atacar(posicion,posicionEnemiga,jugador);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias cercanas",e.getMessage());
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas",e.getMessage());
         }
     }
 
@@ -90,6 +94,7 @@ public class Entrega2JineteTests {
         Posicion posicionEnemiga = new Posicion(13,13);
         tablero.crearUnidad(jugador,posicion,"jinete");
         tablero.crearUnidad(jugadorEnemigo,posicionEnemiga,"soldado");
+        tablero.atacar(posicion,posicionEnemiga,jugador);
 
         Unidad unidadAtacada = jugadorEnemigo.getUnidadesDisponibles().get(0);
 
@@ -109,14 +114,37 @@ public class Entrega2JineteTests {
         try{
             tablero.atacar(posicion,posicionEnemiga,jugador);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias lejanas",e.getMessage());
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias lejanas",e.getMessage());
         }
     }
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, pudiendo atacar a distancia corta
-    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException {
+    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
+        Tablero tablero = new Tablero(jugador, jugadorEnemigo);
 
+        Posicion posicion = new Posicion(4,4);
+        Posicion posicionEnemiga = new Posicion(11,11);
+        tablero.crearUnidad(jugador,posicion,"jinete");
+        tablero.crearUnidad(jugadorEnemigo,posicionEnemiga,"soldado");
+
+
+        /*
+        // Acerco el soldado enemigo a nuestro jinete
+        tablero.moverUnidad(11,11,10,10);
+        tablero.moverUnidad(10,10,9,9);
+        tablero.moverUnidad(9,9,8,8, jugador2);
+        tablero.moverUnidad(8,8,7,7, jugador2);
+        tablero.moverUnidad(7,7,6,6, jugador2);
+        tablero.moverUnidad(6,6,6,5, jugador2);
+        tablero.moverUnidad(6,5,6,4, jugador2);
+
+        // Pruebo que ataque con espada (distancia cercana) exitosamente
+        tablero.atacar(4,4,6,4, jugador1);
+
+         */
     }
 
     @Test

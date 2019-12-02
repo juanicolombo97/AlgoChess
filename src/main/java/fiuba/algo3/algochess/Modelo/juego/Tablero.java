@@ -100,22 +100,16 @@ public class Tablero {
 
     public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) throws CasilleroVacioExcepcion {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-        ArrayList unidadesCercanasADistancia1 = unidadesCercanas.unidadesCercanasADistancia(1,(HashMap) tablero, unaUnidad);
-        ArrayList unidadesCercanasADistancia2 = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
-        for(Object unidadActual : unidadesCercanasADistancia2){
-            if (!unidadesCercanasADistancia1.contains(unidadActual)){
-                unidadesCercanasADistancia1.add(unidadActual);
-            }
+        ArrayList unidadesCercanasADistanciaCercana = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
+        if (unidadesCercanasADistanciaCercana.contains(unaUnidad)){
+            unidadesCercanasADistanciaCercana.remove(unaUnidad);
         }
-        if (unidadesCercanasADistancia1.contains(unaUnidad)){
-            unidadesCercanasADistancia1.remove(unaUnidad);
-        }
-        return unidadesCercanasADistancia1;
+        return unidadesCercanasADistanciaCercana;
     }
 
     public void unidadesAliadasCercanasPorJugador(Unidad unidad, Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
 
-        for(int i = 1; i < unidadesCercanas.size(); i++) {
+        for(int i = 0; i < unidadesCercanas.size(); i++) {
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             if (jugador.unidadAliada(unidadActual)) {
                 unidadesAliadasCercanas.add(unidadActual);

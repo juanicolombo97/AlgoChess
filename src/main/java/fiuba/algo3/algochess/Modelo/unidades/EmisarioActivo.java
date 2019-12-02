@@ -24,7 +24,8 @@ public class EmisarioActivo implements Emisario{
     }
 
     @Override
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion { return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion {
+        return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
     }
 
     @Override
