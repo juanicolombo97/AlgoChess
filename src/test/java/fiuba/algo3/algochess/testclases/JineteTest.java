@@ -1,118 +1,169 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
-import fiuba.algo3.algochess.unidades.Jinete;
-import fiuba.algo3.algochess.unidades.Soldado;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
+import fiuba.algo3.algochess.Modelo.unidades.Jinete;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 
-//Pruebas realizadas a la clase fiuba.algo3.algochess.unidades.Soldado.
-
-class JineteTest {
-
-    private Casillero[][] arrayCasillero;
+public class JineteTest {
 
     @Test
-    //Cuando el jinete tiene enemigos cerca se vuelve espadachin y ataca de cerca
-    public void JineteEspadachinPuedeAtacarADistanciaCortaYOcasionaElDañoCorrespondiente() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
-        jinete.setEstadoJinete("espadachin");
-        Soldado soldadoEnemigo = new Soldado(1,2, new EmisarioNulo());
-        jinete.atacarDistanciaCerca(soldadoEnemigo, 0);
-        Assertions.assertEquals(95,soldadoEnemigo.getVidaUnidad());
+    public void jineteRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        Assertions.assertEquals(100, jinete.getVidaUnidad());
     }
 
     @Test
-    //Cuando el jinete tiene enemigos cerca se vuelve espadachin y no puede atacar a distancia media
-    public void JineteEspadachinNoPuedeAtacarADistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        Assertions.assertEquals(3, jinete.cuantoCuesta());
+    }
+
+    @Test
+    public void jineteRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        jinete.recibirDanio(20);
+        Assertions.assertEquals(80, jinete.getVidaUnidad());
+    }
+    @Test
+    public void jineteSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        jinete.curarse(20);
+        Assertions.assertEquals(120, jinete.getVidaUnidad());
+    }
+    @Test
+    public void jineteEspadachinAtacaCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
-        Soldado soldadoEnemigo = new Soldado(4, 4, new EmisarioNulo());
-        try {
-            jinete.atacarDistanciaMediana(soldadoEnemigo, 0);
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
+        jinete.atacarDistanciaCerca(jinete1,false,tablero);
+        Assertions.assertEquals(95,jinete1.getVidaUnidad());
+    }
+
+    @Test
+    public void jineteEspadachinNoAtacaCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        jinete.setEstadoJinete("espadachin");
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
+        try{
+            jinete.atacarDistanciaMediana(jinete1,false,tablero);
         }catch (NoPuedeAtacarException e){
-            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias medianas",e.getMessage());
+            Assert.assertEquals("El jinete espadachin no puede atacar a distancias medianas",e.getMessage());
         }
     }
 
     @Test
-    //Jinete Espadachin no puede atacar a distancia Lejana
-    public void JineteEspadachinNoPuedeAtacarADistanciaLejana() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteEspadachinNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
-        Soldado soldadoEnemigo = new Soldado(19, 19, new EmisarioNulo());
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
         try {
-            jinete.atacarDistanciaLejana(soldadoEnemigo, 0, arrayCasillero);
+            jinete.atacarDistanciaLejana(jinete1,false,tablero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete espadachin no puede atacar a distancias lejanas",e.getMessage());
         }
     }
 
     @Test
-    //Cuando el jinete tiene aliados cerca, y no enemigos, es Jinete Arquero, y no puede atacar a distancia corta
-    public void JineteArqueroNoPuedeAtacarADistanciaCorta() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteArqueroNoAtacaCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Soldado soldadoEnemigo = new Soldado(2, 1, new EmisarioNulo());
-        try{
-            jinete.atacarDistanciaCerca(soldadoEnemigo,0);
-        }catch (NoPuedeAtacarException e) {
-            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
+        try {
+            jinete.atacarDistanciaCerca(jinete1, false, tablero);
+        }catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas",e.getMessage());
         }
     }
 
     @Test
-    //Cuando el jinete tiene aliados cerca, y no enemigos, es Jinete Arquero, y puede atacar a distancia media
-    public void JineteArqueroPuedeAtacarADistanciaMediaYOcasionaElDañoCorrespondiente() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteArqueroAtacaCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Soldado soldadoEnemigo = new Soldado(4, 4, new EmisarioNulo());
-        jinete.atacarDistanciaMediana(soldadoEnemigo,0);
-        Assertions.assertEquals(85,soldadoEnemigo.getVidaUnidad());
+        jinete.atacarDistanciaMediana(jinete1,false,tablero);
+        Assertions.assertEquals(85,jinete1.getVidaUnidad());
     }
-
     @Test
-    //Jinete Arquero no puede atacar a distancia Lejana
-    public void JineteArqueroNoPuedeAtacarADIstanciaLejana() throws NoPuedeAtacarException, UnidadNulaException{
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteArqueroNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
-        Soldado soldadoEnemigo = new Soldado(19, 19, new EmisarioNulo());
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
         try {
-            jinete.atacarDistanciaLejana(soldadoEnemigo, 0, arrayCasillero);
+            jinete.atacarDistanciaLejana(jinete1,false,tablero);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El jinete arquero no puede atacar a distancias lejanas",e.getMessage());
         }
     }
 
     @Test
-        //El jinete se cura correctamente
-    public void jineteSeCuraCorrectamente() throws CurarException {
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
-        jinete.curarse(30);
-        Assertions.assertEquals(130,jinete.getVidaUnidad());
-    }
-    @Test
-        // fiuba.algo3.algochess.unidades.Jinete se puede mover de a un casillero
-    public void moverUnJineteNoTiraError() throws UnidadNulaException, MovimientoInvalidoException {
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
-        jinete.moverUnidad(1,1);
+    public void jineteArqueroNoPuedeAtacarCorrectamenteAUnidadAliada() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        jinete.setEstadoJinete("arquero");
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
+        try {
+            jinete.atacarDistanciaMediana(jinete1,true,tablero);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("La unidad que quieres atacar es aliada",e.getMessage());
+        }
     }
 
     @Test
-        // fiuba.algo3.algochess.unidades.Jinete no se puede mover mas de un casillero
-    public void movimientoInvalidoJinete(){
-        Jinete jinete = new Jinete(1,1, new EmisarioNulo());
+    public void jineteEspadachinNoPuedeAtacarCorrectamenteAUnidadAliada() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        jinete.setEstadoJinete("espadachin");
+        Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
         try {
-            jinete.moverUnidad(3,2);
-        } catch (MovimientoInvalidoException | UnidadNulaException e) {
-            Assertions.assertEquals("La unidad solo se mueve de a un casillero",e.getMessage());
+            jinete.atacarDistanciaMediana(jinete1,true,tablero);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("La unidad que quieres atacar es aliada",e.getMessage());
         }
     }
-    
+
 }

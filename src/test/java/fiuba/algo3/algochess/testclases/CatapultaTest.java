@@ -1,64 +1,102 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.excepciones.CurarException;
-import fiuba.algo3.algochess.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.algochess.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.excepciones.UnidadNulaException;
-import fiuba.algo3.algochess.juego.Casillero;
-import fiuba.algo3.algochess.unidades.Catapulta;
-import fiuba.algo3.algochess.unidades.EmisarioNulo;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.Catapulta;
+import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
-// Prueba el correcto funcionamiento de los metodos de la  clase fiuba.algo3.algochess.unidades.Catapulta.
+import java.util.HashMap;
 
 public class CatapultaTest {
 
-    private Casillero[][] arrayCasillero;
+    @Test
+    public void catapultaRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Assertions.assertEquals(50, catapulta.getVidaUnidad());
+    }
 
     @Test
-        // La catapulta no puede ser curada
-    public void catapultaNoPuedeSerCurada() throws CurarException {
-        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
+    public void catapultaRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Assertions.assertEquals(5, catapulta.cuantoCuesta());
+    }
+
+    @Test
+    public void catapultaRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        catapulta.recibirDanio(20);
+        Assertions.assertEquals(30, catapulta.getVidaUnidad());
+    }
+    @Test
+    public void catapultaNoSePuedeCurarCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        Posicion posicion = new Posicion(1,1);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
         try {
-            catapulta.curarse(10);
+            catapulta.curarse(20);
         }catch (CurarException e){
             Assertions.assertEquals("La catapulta no puede ser curada",e.getMessage());
         }
+
     }
     @Test
-        // La catapulta no puede atacar de cerca.
-    public void catapultaNoAtacaDeCerca(){
-        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
+    public void catapultaNoPuedeAtacarDistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
         try {
-            catapulta.atacarDistanciaCerca(catapulta, 0);
-        } catch (NoPuedeAtacarException e) {
+            catapulta.atacarDistanciaCerca(catapulta1,false,tablero);
+        }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
     }
     @Test
-        // La catapulta no puede atacar a distancia media.
-    public void catapultaNoAtacarADistanciaMedia(){
-        Catapulta catapulta = new Catapulta(0,0, new EmisarioNulo());
+    public void catapultaNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
         try {
-            catapulta.atacarDistanciaMediana(catapulta, 0);
-        } catch (NoPuedeAtacarException e) {
+            catapulta.atacarDistanciaMediana(catapulta1,false,tablero);
+        }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("La catapulta solo ataca a distancia",e.getMessage());
         }
+
     }
-
-
     @Test
-        // Verifico que la cataputa no se puede mover
-
-    public void catapultaNoSePuedeMover(){
-        Catapulta catapulta = new Catapulta(0, 0, new EmisarioNulo());
-        try {
-            catapulta.moverUnidad(1,1);
-        } catch (MovimientoInvalidoException | UnidadNulaException e) {
-            Assertions.assertEquals("La catapulta no se puede mover",e.getMessage());
-        }
+    public void catapultaPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
+        catapulta.atacarDistanciaLejana(catapulta1,false,tablero);
+        Assertions.assertEquals(30,catapulta1.getVidaUnidad());
+    }
+    @Test
+    public void catapultaPuedeAtacarUnidadAliada() throws CasilleroVacioExcepcion, UnidadNulaException, NoPuedeAtacarException, NoAlcanzanLosPuntosException, MovimientoInvalidoException {
+        Puntos puntos = new Puntos(20);
+        HashMap tablero = new HashMap();
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,4);
+        Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+        Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
+        catapulta.atacarDistanciaLejana(catapulta1,true,tablero);
+        Assertions.assertEquals(30,catapulta1.getVidaUnidad());
     }
 }
-
