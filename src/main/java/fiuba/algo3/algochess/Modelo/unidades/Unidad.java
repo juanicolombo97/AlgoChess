@@ -30,4 +30,6 @@ public interface Unidad {
     public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
 
     public void recibirNotificacion() throws CasilleroVacioExcepcion;
+
+    public boolean esSoldado();
 }

@@ -88,6 +88,9 @@ public class Soldado implements Unidad {
     public void recibirNotificacion() {
 
     }
+
+    @Override
+    public boolean esSoldado(){ return true; }
 }
 
 

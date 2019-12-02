@@ -81,6 +81,7 @@ public class Curandero implements Unidad {
         return listaUnidadesAMover;
     }
 
-
+    @Override
+    public boolean esSoldado(){ return false; }
 
 }

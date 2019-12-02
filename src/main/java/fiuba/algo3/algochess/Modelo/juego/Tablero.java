@@ -107,7 +107,7 @@ public class Tablero {
         return unidadesADistanciaCercana;
     }
 
-    public void unidadesAliadasCercanasPorJugador(Unidad unidad, Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
+    public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
 
         for(int i = 0; i < unidadesCercanas.size(); i++) {
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
@@ -121,9 +121,9 @@ public class Tablero {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
         if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(unidad, jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         } else {
-            unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         }
         return unidadesAliadasCercanasAUnidad;
     }
@@ -132,7 +132,8 @@ public class Tablero {
         ArrayList soldadosAliadosCercanos = new ArrayList();
         ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
         for (Object unidadActual: unidadesAliadasCercanasAUnidad){
-            if (unidadActual.getClass().equals(Soldado.class)){
+            Unidad laUnidadActual = (Unidad)unidadActual;
+            if (laUnidadActual.esSoldado()){
                 soldadosAliadosCercanos.add(unidadActual);
             }
         }
@@ -143,9 +144,9 @@ public class Tablero {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
         if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(unidad, jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         } else {
-            unidadesAliadasCercanasPorJugador(unidad, jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         }
         return unidadesEnemigasCercanasAUnidad;
     }
