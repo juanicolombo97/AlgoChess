@@ -7,6 +7,7 @@ import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.Modelo.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class CasilleroTest {
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true);
         Puntos puntos = new Puntos(20);
-        Soldado soldado = new Soldado(puntos,posicion);
+        Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
         Soldado soldado2 = (Soldado) casillero.obtenerUnidad();
         Assertions.assertEquals(soldado.getPosicion(),soldado2.getPosicion());
@@ -39,8 +40,8 @@ public class CasilleroTest {
         Posicion posicion1 = new Posicion(2,2);
         Casillero casillero = new Casillero(posicion,true);
         Puntos puntos = new Puntos(20);
-        Soldado soldado = new Soldado(puntos,posicion);
-        Soldado soldado1 = new Soldado(puntos,posicion1);
+        Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
+        Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
         try {
             casillero.guardarUnidad(soldado1);
@@ -54,7 +55,7 @@ public class CasilleroTest {
         Casillero casillero = new Casillero(posicion,true);
 
         Puntos puntos = new Puntos(20);
-        Soldado soldado = new Soldado(puntos,posicion);
+        Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
         casillero.eliminarUnidad();
         try {

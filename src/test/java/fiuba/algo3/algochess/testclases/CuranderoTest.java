@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.Curandero;
+import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,56 +13,56 @@ import java.util.HashMap;
 public class CuranderoTest {
 
     @Test
-    public void curanderoRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException {
+    public void curanderoRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
-        Curandero curandero = new Curandero(puntos,posicion);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
         Assertions.assertEquals(75, curandero.getVidaUnidad());
     }
 
     @Test
-    public void curanderoRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException {
+    public void curanderoRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
-        Curandero curandero = new Curandero(puntos,posicion);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
         Assertions.assertEquals(2, curandero.cuantoCuesta());
     }
 
     @Test
-    public void curanderoRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException {
+    public void curanderoRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
-        Curandero curandero = new Curandero(puntos,posicion);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
         curandero.recibirDanio(20);
         Assertions.assertEquals(55, curandero.getVidaUnidad());
     }
     @Test
-    public void curanderoSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException {
+    public void curanderoSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
-        Curandero curandero = new Curandero(puntos,posicion);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
         curandero.curarse(20);
         Assertions.assertEquals(95, curandero.getVidaUnidad());
     }
     @Test
-    public void curanderoCuraCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CurarException {
+    public void curanderoCuraCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
-        Curandero curandero = new Curandero(puntos,posicion);
-        Curandero curandero1 = new Curandero(puntos,posicion1);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
+        Curandero curandero1 = new Curandero(puntos,posicion1, new EmisarioNulo());
         curandero.atacarDistanciaCerca(curandero1,true,tablero);
         Assertions.assertEquals(90,curandero1.getVidaUnidad());
     }
     @Test
-    public void curanderoNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
+    public void curanderoNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
-        Curandero curandero = new Curandero(puntos,posicion);
-        Curandero curandero1 = new Curandero(puntos,posicion1);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
+        Curandero curandero1 = new Curandero(puntos,posicion1, new EmisarioNulo());
         try {
             curandero.atacarDistanciaMediana(curandero1,false,tablero);
         }catch (NoPuedeAtacarException | CurarException e){
@@ -70,13 +71,13 @@ public class CuranderoTest {
 
     }
     @Test
-    public void curanderoNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException {
+    public void curanderoNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
-        Curandero curandero = new Curandero(puntos,posicion);
-        Curandero curandero1 = new Curandero(puntos,posicion1);
+        Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
+        Curandero curandero1 = new Curandero(puntos,posicion1, new EmisarioNulo());
         try {
             curandero.atacarDistanciaLejana(curandero1,false,tablero);
         }catch (NoPuedeAtacarException | CurarException e){

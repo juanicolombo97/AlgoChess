@@ -92,7 +92,7 @@ public class Tablero {
 
     public void notificar(Unidad unidadEmisora) throws CasilleroVacioExcepcion {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
-        for(int i = 1; i < unidadesCercanas.size(); i++){
+        for(int i = 0; i < unidadesCercanas.size(); i++){
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             unidadActual.recibirNotificacion();
         }
