@@ -36,4 +36,7 @@ public class JineteEspadachin implements EstadoJinete{
     public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El jinete espadachin no puede atacar a distancias lejanas");
     }
+
+    @Override
+    public boolean esArquero(){return false;}
 }

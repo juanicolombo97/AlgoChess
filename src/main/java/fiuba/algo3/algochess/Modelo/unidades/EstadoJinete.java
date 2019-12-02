@@ -11,5 +11,7 @@ public interface EstadoJinete {
     public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException;
 
     public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException;
+
+    public boolean esArquero();
 }
 

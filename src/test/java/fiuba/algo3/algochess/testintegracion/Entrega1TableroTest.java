@@ -7,7 +7,7 @@ import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Entrega1TableroTests {
+public class Entrega1TableroTest {
 
     @Test
     public void seColocaPiezaAliadaEnSectorAliadaVaciaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {

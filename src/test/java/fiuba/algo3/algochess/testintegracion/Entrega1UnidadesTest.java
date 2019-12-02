@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class Entrega1UnidadesTests {
+public class Entrega1UnidadesTest {
 
     @Test
     public void unidadSePuedeMoverEnTodasLasDirecciones() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
