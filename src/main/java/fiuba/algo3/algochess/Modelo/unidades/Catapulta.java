@@ -65,7 +65,7 @@ public class Catapulta implements Unidad{
 
     @Override
     public void recibirDanio(double danioRecibido) {
-        vidaUnidad -= danioRecibido;
+        vidaUnidad -= ajustaDanio.ajustarDanio(danioRecibido, this);
     }
 
     @Override
