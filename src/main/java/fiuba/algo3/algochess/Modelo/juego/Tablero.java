@@ -11,6 +11,7 @@ public class Tablero {
     private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
+    private Emisario emisario = new EmisarioActivo(this);
     private boolean casilleroAliado = true;
     private boolean casilleroEnemigo = false;
 
@@ -40,8 +41,7 @@ public class Tablero {
 
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Casillero casilleroDestino = tablero.get(posicion);
-        Emisario emisario = new EmisarioActivo(this);
-        Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,emisario);
+        Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,this.emisario);
         casilleroDestino.guardarUnidad(unidadCreada);
         jugador.guardarUnidad(unidadCreada);
         emisario.notificar(unidadCreada);
