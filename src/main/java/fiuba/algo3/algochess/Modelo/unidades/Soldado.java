@@ -18,6 +18,7 @@ public class Soldado implements Unidad {
     public Soldado(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
         this.emisario = emisario;
+        puntosJugador.alcanzanPuntos(costoUnidad);
     }
 
     public double getVidaUnidad(){

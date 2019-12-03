@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
         }
 
         relocate(posicion.getPosicionX() * TableroInterfaz.tamanioCasillero, posicion.getPosicionY() * TableroInterfaz.tamanioCasillero);
+        setOnMouseClicked(e -> System.out.println("fefefefe"));
     }
 
 }
