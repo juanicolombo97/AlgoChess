@@ -8,17 +8,17 @@ import fiuba.algo3.algochess.Vista.*;
 import javafx.scene.input.MouseEvent;
 
 public class AgregarUnidad {
-    public AgregarUnidad(TableroInterfaz tablero, Jugador jugador, MouseEvent e, String soldado) {
+    public AgregarUnidad(TableroInterfaz tablero, Jugador jugador, MouseEvent e, String nombreUnidad) {
 
         Tablero tablero1 = tablero.getTableroJuego();
         int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
         int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
         Posicion posicion = new Posicion(x,y);
         try {
-            Unidad unidad = tablero1.crearUnidad(jugador,posicion,soldado);
+            Unidad unidad = tablero1.crearUnidad(jugador,posicion,nombreUnidad);
 
             CasilleroInterfaz casilleroInterfaz = tablero.getCasillero(posicion);
-            UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad,casilleroInterfaz.casilleroAliado());
+            UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad,casilleroInterfaz.casilleroAliado(),nombreUnidad);
             casilleroInterfaz.setUnidad(unidadInterfaz);
             MensajesAJugador.setPuntos(jugador.getPuntosDisponibles());
         }catch (Exception error){

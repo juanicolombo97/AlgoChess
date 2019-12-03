@@ -18,7 +18,7 @@ public class FaseInicial {
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
     private static InterfazJuego interfazJuego = new InterfazJuego();
 
-    public static void display() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public static void display(Stage ventana) throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
         //Inicializo Jugadores
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 1")));
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 2")));
