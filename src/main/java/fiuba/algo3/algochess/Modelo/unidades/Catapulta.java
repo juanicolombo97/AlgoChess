@@ -19,7 +19,6 @@ public class Catapulta implements Unidad{
 
 
     public Catapulta(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
-        puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
     }

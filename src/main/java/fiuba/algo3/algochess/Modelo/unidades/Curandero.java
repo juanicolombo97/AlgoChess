@@ -16,7 +16,7 @@ public class Curandero implements Unidad {
 
 
     public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
-        puntosJugador.puntosSuficientes(costoUnidad);
+
         this.posicion = posicion;
         this.emisario = emisario;
     }
