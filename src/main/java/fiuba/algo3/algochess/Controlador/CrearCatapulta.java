@@ -10,5 +10,6 @@ public class CrearCatapulta {
 
     public static void crear(Jugador jugador, TableroInterfaz tablero){
         MensajesAJugador.setMensaje("Coloque la Catapulta");
+        tablero.getTableroInterfaz().setOnMouseClicked(e -> new AgregarUnidad(tablero,jugador,e,"catapulta"));
     }
 }

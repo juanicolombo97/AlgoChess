@@ -10,5 +10,6 @@ public class CrearCurandero {
 
     public static void crear(Jugador jugador, TableroInterfaz tablero){
         MensajesAJugador.setMensaje("Coloque el Curandero");
+        tablero.getTableroInterfaz().setOnMouseClicked(e -> new AgregarUnidad(tablero,jugador,e,"curandero"));
     }
 }

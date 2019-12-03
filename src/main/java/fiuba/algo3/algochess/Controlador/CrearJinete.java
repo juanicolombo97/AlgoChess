@@ -10,5 +10,6 @@ public class CrearJinete {
 
     public static void crear(Jugador jugador, TableroInterfaz tablero){
         MensajesAJugador.setMensaje("Coloque el Jinete");
+        tablero.getTableroInterfaz().setOnMouseClicked(e -> new AgregarUnidad(tablero,jugador,e,"jinete"));
     }
 }
