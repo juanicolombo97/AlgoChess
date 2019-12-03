@@ -34,8 +34,8 @@ public class JugadorTest {
         Posicion posicion1 = new Posicion(1,1);
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
-        Casillero casillero = new Casillero(posicion,true);
         Jugador jugador = new Jugador("juani");
+        Casillero casillero = new Casillero(posicion,true, jugador);
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());

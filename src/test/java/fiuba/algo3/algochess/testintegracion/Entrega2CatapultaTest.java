@@ -112,7 +112,7 @@ public class Entrega2CatapultaTest {
 
         Unidad unidad = (Unidad) listaUnidades.get(0);
         Unidad unidad1 = (Unidad) listaUnidades.get(1);
-        
+
         boolean vidaCorrectaUnidad1 = unidad.getVidaUnidad() == 80;
         boolean vidaCorrectaUnidad2 = unidad1.getVidaUnidad() == 100;
         boolean vidaCorrecta = vidaCorrectaUnidad1 && vidaCorrectaUnidad2;

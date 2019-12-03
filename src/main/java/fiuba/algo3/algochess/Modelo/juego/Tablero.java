@@ -42,8 +42,8 @@ public class Tablero {
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Casillero casilleroDestino = tablero.get(posicion);
         Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,this.emisario);
-        casilleroDestino.guardarUnidad(unidadCreada);
         jugador.guardarUnidad(unidadCreada);
+        casilleroDestino.guardarUnidad(unidadCreada);
         emisario.notificar(unidadCreada);
         return unidadCreada;
     }
