@@ -41,7 +41,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
         if (!esUnidadAliada){
             throw new CurarException("No se puede curar un enemigo");
         }
@@ -49,17 +49,20 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException,CurarException{
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws CurarException, NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void recibirDanio(double danioRecibido) {
+    public void recibirDanio(double danioRecibido, boolean conDanioExtra) {
+        if (conDanioExtra){
+            vidaUnidad -= (danioRecibido * 0.05);
+        }
         vidaUnidad -= danioRecibido;
     }
 

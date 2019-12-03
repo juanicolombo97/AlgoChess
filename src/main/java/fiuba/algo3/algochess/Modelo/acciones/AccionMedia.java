@@ -10,7 +10,8 @@ import java.util.HashMap;
 
 public class AccionMedia {
 
-    public AccionMedia(Unidad atacante, Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException {
-        atacante.atacarDistanciaMediana(atacado,esUnidadAliada,tablero);
+    public AccionMedia(Unidad atacante, Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException {
+        atacante.atacarDistanciaMediana(atacado,esUnidadAliada,tablero, conDanioExtra);
     }
+
 }

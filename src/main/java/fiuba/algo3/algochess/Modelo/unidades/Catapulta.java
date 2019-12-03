@@ -44,26 +44,29 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, CasilleroVacioExcepcion {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, UnidadNulaException, CasilleroVacioExcepcion {
         Batallon batallon = new Batallon();
         ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
         for (Object unidad : unidadesAAtacar){
-            ( (Unidad) unidad).recibirDanio(danioDistancia);
+            ( (Unidad) unidad).recibirDanio(danioDistancia, conDanioExtra);
         }
     }
 
     @Override
-    public void recibirDanio(double danioRecibido) {
+    public void recibirDanio(double danioRecibido, boolean conDanioExtra) {
+        if (conDanioExtra){
+            vidaUnidad -= (danioRecibido * 0.05);
+        }
         vidaUnidad -= danioRecibido;
     }
 

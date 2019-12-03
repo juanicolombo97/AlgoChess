@@ -29,11 +29,11 @@ public class Tablero {
 
     private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
         if (posicion.getPosicionX()< 10){
-            Casillero casillero = new Casillero(posicion,casilleroAliado);
+            Casillero casillero = new Casillero(posicion, jugador1, casilleroAliado);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero(posicion,casilleroEnemigo);
+            Casillero casillero = new Casillero(posicion, jugador2, casilleroEnemigo);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }
@@ -82,9 +82,6 @@ public class Tablero {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
         Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
-        if (jugador1.unidadAliada(unidadAtacante) && (tablero.get(unidadAtacada.getPosicion()).esCasilleroAliado()){
-
-        }
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
     }
 

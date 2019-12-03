@@ -9,13 +9,13 @@ import java.util.HashMap;
 
 public interface Unidad {
 
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
 
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
 
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException;
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException;
 
-    public void recibirDanio(double danioRecibido) throws UnidadNulaException;
+    public void recibirDanio(double danioRecibido, boolean conDanioExtra) throws UnidadNulaException;
 
     public int cuantoCuesta();
 

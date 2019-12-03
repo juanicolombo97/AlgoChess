@@ -9,11 +9,13 @@ public class Casillero{
 
     private final Posicion posicionCasillero;
     private EstadoCasillero estadoCasillero;
-    public boolean casilleroAliado;
+    private Jugador jugador;
+    private boolean casilleroAliado;
 
-    public Casillero(Posicion posicion,boolean casilleroAliado){
+    public Casillero(Posicion posicion, Jugador jugador, boolean casilleroAliado){
         this.posicionCasillero = posicion;
         estadoCasillero = new EstadoCasilleroVacio();
+        this.jugador = jugador;
         this.casilleroAliado = casilleroAliado;
     }
 
@@ -42,6 +44,14 @@ public class Casillero{
 
    public Distancia calcularDistancia(Posicion posicionAtacado){
        return this.posicionCasillero.calcularDistancia(posicionAtacado);
+   }
+
+   public boolean casilleroAliadoAJugador(Jugador jugador){
+        return this.jugador == jugador;
+   }
+
+   public boolean atacadoEstaEnCasilleroEnemigo(Jugador jugador, Unidad atacado){
+        return !jugador.unidadAliada(atacado) && this.casilleroAliadoAJugador(jugador);
    }
 
    public boolean esCasilleroAliado(){

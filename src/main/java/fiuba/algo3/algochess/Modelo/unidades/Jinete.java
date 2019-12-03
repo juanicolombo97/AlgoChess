@@ -40,28 +40,31 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        estadoJinete.atacarDistanciaCerca(atacado);
+        estadoJinete.atacarDistanciaCerca(atacado, conDanioExtra);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        estadoJinete.atacarDistanciaMediana(atacado);
+        estadoJinete.atacarDistanciaMediana(atacado, conDanioExtra);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadInvalidaException {
-        estadoJinete.atacarDistanciaLejana(atacado);
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, UnidadInvalidaException {
+        estadoJinete.atacarDistanciaLejana(atacado, conDanioExtra);
     }
 
     @Override
-    public void recibirDanio(double danioRecibido) {
+    public void recibirDanio(double danioRecibido, boolean conDanioExtra) {
+        if (conDanioExtra){
+            vidaUnidad -= (danioRecibido * 0.05);
+        }
         vidaUnidad -= danioRecibido;
     }
 

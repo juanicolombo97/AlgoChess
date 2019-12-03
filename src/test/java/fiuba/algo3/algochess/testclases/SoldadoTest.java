@@ -32,7 +32,7 @@ public class SoldadoTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
-        soldado.recibirDanio(20);
+        soldado.recibirDanio(20, false);
         Assertions.assertEquals(80, soldado.getVidaUnidad());
     }
     @Test
@@ -51,7 +51,7 @@ public class SoldadoTest {
         Posicion posicion1 = new Posicion(2,2);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
-        soldado.atacarDistanciaCerca(soldado1,false,tablero);
+        soldado.atacarDistanciaCerca(soldado1,false,tablero, false);
         Assertions.assertEquals(90,soldado1.getVidaUnidad());
     }
     @Test
@@ -63,7 +63,7 @@ public class SoldadoTest {
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
         try {
-           soldado.atacarDistanciaMediana(soldado1,false,tablero);
+           soldado.atacarDistanciaMediana(soldado1,false,tablero, false);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
@@ -78,7 +78,7 @@ public class SoldadoTest {
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
         try {
-            soldado.atacarDistanciaLejana(soldado1,false,tablero);
+            soldado.atacarDistanciaLejana(soldado1,false,tablero,false);
         }catch (NoPuedeAtacarException e){
             Assertions.assertEquals("El soldado solo ataca distancia cercana",e.getMessage());
         }
@@ -93,7 +93,7 @@ public class SoldadoTest {
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
         try {
-            soldado.atacarDistanciaCerca(soldado1,true,tablero);
+            soldado.atacarDistanciaCerca(soldado1,true,tablero, false);
         }catch (UnidadInvalidaException e){
             Assertions.assertEquals("La unidad que quieres atacar es aliada",e.getMessage());
         }

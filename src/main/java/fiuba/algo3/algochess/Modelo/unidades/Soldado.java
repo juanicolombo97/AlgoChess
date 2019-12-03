@@ -36,25 +36,29 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
-        atacado.recibirDanio(danioCuerpo);
+        atacado.recibirDanio(danioCuerpo, conDanioExtra);
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero, boolean conDanioExtra) throws NoPuedeAtacarException {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
+
     @Override
-    public void recibirDanio(double danioRecibido) {
+    public void recibirDanio(double danioRecibido, boolean conDanioExtra) {
+        if (conDanioExtra){
+            vidaUnidad -= (danioRecibido * 0.05);
+        }
         vidaUnidad -= danioRecibido;
     }
 

@@ -17,7 +17,7 @@ public class CasilleroInterfaz extends Rectangle {
 
     public CasilleroInterfaz(Casillero casillero){
         Posicion posicion = casillero.getPosicionCasillero();
-        boolean color = casillero.casilleroAliado;
+        boolean color = casillero.esCasilleroAliado();
         this.casillero = casillero;
 
         setWidth(TableroInterfaz.tamanioCasillero);
