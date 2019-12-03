@@ -17,7 +17,6 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
 
     @Override
     public EstadoCasillero eliminarUnidad() {
-        this.unidad = null;
         return new EstadoCasilleroVacio();
     }
 
