@@ -44,6 +44,7 @@ public class Tablero {
         Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,this.emisario);
         jugador.guardarUnidad(unidadCreada);
         casilleroDestino.guardarUnidad(unidadCreada);
+        jugador.modificarPuntos(unidadCreada);
         emisario.notificar(unidadCreada);
         return unidadCreada;
     }

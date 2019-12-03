@@ -18,6 +18,7 @@ public class Jinete implements Unidad {
     public Jinete( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
         this.emisario = emisario;
+        puntosJugador.alcanzanPuntos(costoUnidad);
         recibirNotificacion();
     }
 

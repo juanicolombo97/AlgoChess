@@ -17,7 +17,7 @@ public class PuntosTest {
     public void puntosInsuficientesTiraError(){
         Puntos puntos = new Puntos(20);
         try {
-            puntos.puntosSuficientes(30);
+            puntos.alcanzanPuntos(30);
         }catch (NoAlcanzanLosPuntosException e){
             Assertions.assertEquals("Puntos insuficientes, dispone de: 20",e.getMessage());
         }

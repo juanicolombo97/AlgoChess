@@ -46,7 +46,10 @@ public class Jugador {
 
     public void guardarUnidad(Unidad unidadNueva) throws NoAlcanzanLosPuntosException {
         unidadesDisponibles.add(unidadNueva);
-        puntosJugador.puntosSuficientes(unidadNueva.cuantoCuesta());
+    }
+
+    public void modificarPuntos(Unidad unidad) throws NoAlcanzanLosPuntosException {
+        puntosJugador.puntosSuficientes(unidad.cuantoCuesta());
     }
 
     public boolean puedeSeguirJugando(){
