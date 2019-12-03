@@ -150,7 +150,7 @@ public class Entrega2JineteTest {
 
         tablero.atacar(posicion,posicionEnemigaAux,jugador);
 
-        Assertions.assertEquals(95,jugadorEnemigo.getUnidadesDisponibles().get(0).getVidaUnidad());
+        Assertions.assertEquals(94.75,jugadorEnemigo.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
@@ -292,7 +292,7 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0606, posicion0605, jugador2);
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         tablero.atacar(posicionJinete, posicion0604,jugador1);
-        Assertions.assertEquals(70, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        Assertions.assertEquals(69.75, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
@@ -359,7 +359,7 @@ public class Entrega2JineteTest {
         // Pruebo si el jinete está en modo espadachin
 
         tablero.atacar(posicionJinete, posicion0604, jugador1);
-        Assertions.assertEquals(70,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        Assertions.assertEquals(69.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
@@ -398,6 +398,6 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0302, posicion0402, jugador1);
         // Pruebo si el jinete está en modo espadachin
         tablero.atacar(posicionJinete, posicion0604, jugador1);
-        Assertions.assertEquals(95,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        Assertions.assertEquals(94.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 }

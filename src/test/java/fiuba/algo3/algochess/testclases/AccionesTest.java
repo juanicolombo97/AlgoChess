@@ -2,9 +2,7 @@ package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
 import fiuba.algo3.algochess.Modelo.excepciones.*;
-import fiuba.algo3.algochess.Modelo.juego.Distancia;
-import fiuba.algo3.algochess.Modelo.juego.Posicion;
-import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.juego.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,6 +21,9 @@ public class AccionesTest {
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion, new EmisarioNulo());
 
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        soldado1.recibirAjustaDanio(ajustaDanioNulo);
+
         AccionJugador accion = new AccionJugador();
         accion.accionNueva(soldado,soldado1,tablero,false,distancia);
 
@@ -39,6 +40,9 @@ public class AccionesTest {
         Jinete jinete = new Jinete(puntos,posicion1, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion, new EmisarioNulo());
 
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        soldado1.recibirAjustaDanio(ajustaDanioNulo);
+
         AccionJugador accion = new AccionJugador();
         accion.accionNueva(jinete,soldado1,tablero,false,distancia);
 
@@ -54,6 +58,9 @@ public class AccionesTest {
         Distancia distancia = new Distancia(7,7);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        soldado1.recibirAjustaDanio(ajustaDanioNulo);
 
         AccionJugador accion = new AccionJugador();
         accion.accionNueva(catapulta,soldado1,tablero,false,distancia);

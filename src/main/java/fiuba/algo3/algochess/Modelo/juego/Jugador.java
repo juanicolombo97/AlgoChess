@@ -14,12 +14,12 @@ public class Jugador {
     public ArrayList<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
     private Puntos puntosJugador;
-    private AjustaDanio ajustaDanio;
+    private AjustaDanioActivo ajustaDanio;
 
     public Jugador(String  nombreJugador){
         this.nombreJugador = nombreJugador;
         puntosJugador = new Puntos(puntosColocacionFichas);
-        AjustaDanio ajustaDanio = new AjustaDanio(this);
+        AjustaDanioActivo ajustaDanio = new AjustaDanioActivo(this);
         this.ajustaDanio = ajustaDanio;
     }
 

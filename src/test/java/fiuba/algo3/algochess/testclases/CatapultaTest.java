@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanioNulo;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.Catapulta;
@@ -33,6 +34,10 @@ public class CatapultaTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        catapulta.recibirAjustaDanio(ajustaDanioNulo);
+
         catapulta.recibirDanio(20);
         Assertions.assertEquals(30, catapulta.getVidaUnidad());
     }
@@ -85,6 +90,10 @@ public class CatapultaTest {
         Posicion posicion1 = new Posicion(4,4);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
         Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        catapulta1.recibirAjustaDanio(ajustaDanioNulo);
+
         catapulta.atacarDistanciaLejana(catapulta1,false,tablero);
         Assertions.assertEquals(30,catapulta1.getVidaUnidad());
     }
@@ -96,6 +105,10 @@ public class CatapultaTest {
         Posicion posicion1 = new Posicion(4,4);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
         Catapulta catapulta1 = new Catapulta(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        catapulta1.recibirAjustaDanio(ajustaDanioNulo);
+
         catapulta.atacarDistanciaLejana(catapulta1,true,tablero);
         Assertions.assertEquals(30,catapulta1.getVidaUnidad());
     }

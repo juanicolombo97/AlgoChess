@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanioNulo;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
@@ -32,6 +33,10 @@ public class SoldadoTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        soldado.recibirAjustaDanio(ajustaDanioNulo);
+
         soldado.recibirDanio(20);
         Assertions.assertEquals(80, soldado.getVidaUnidad());
     }
@@ -51,6 +56,10 @@ public class SoldadoTest {
         Posicion posicion1 = new Posicion(2,2);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        soldado1.recibirAjustaDanio(ajustaDanioNulo);
+
         soldado.atacarDistanciaCerca(soldado1,false,tablero);
         Assertions.assertEquals(90,soldado1.getVidaUnidad());
     }

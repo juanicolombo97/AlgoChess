@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanioNulo;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
@@ -17,7 +18,6 @@ public class Entrega2CatapultaTest {
         Jugador jugador = new Jugador("JUAN");
 
         Tablero tablero = new Tablero(jugador,jugador);
-
 
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);

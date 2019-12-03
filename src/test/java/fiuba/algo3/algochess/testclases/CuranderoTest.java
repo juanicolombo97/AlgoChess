@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanioNulo;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.Curandero;
@@ -33,6 +34,10 @@ public class CuranderoTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        curandero.recibirAjustaDanio(ajustaDanioNulo);
+
         curandero.recibirDanio(20);
         Assertions.assertEquals(55, curandero.getVidaUnidad());
     }

@@ -1,9 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
-import fiuba.algo3.algochess.Modelo.juego.AjustaDanio;
-import fiuba.algo3.algochess.Modelo.juego.Puntos;
-import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Modelo.juego.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +57,10 @@ public class Catapulta implements Unidad{
         Batallon batallon = new Batallon();
         ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
         for (Object unidad : unidadesAAtacar){
-            ( (Unidad) unidad).recibirDanio(danioDistancia);
+            Unidad unidadActual = (Unidad) unidad;
+            AjustaDanioNulo ajustaDanioActual = new AjustaDanioNulo();
+            unidadActual.recibirAjustaDanio(ajustaDanioActual);
+            unidadActual.recibirDanio(danioDistancia);
         }
     }
 

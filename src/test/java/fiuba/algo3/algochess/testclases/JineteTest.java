@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanioNulo;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
@@ -34,6 +35,8 @@ public class JineteTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        jinete.recibirAjustaDanio(ajustaDanioNulo);
         jinete.recibirDanio(20);
         Assertions.assertEquals(80, jinete.getVidaUnidad());
     }
@@ -54,6 +57,8 @@ public class JineteTest {
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         jinete.setEstadoJinete("espadachin");
         Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        jinete1.recibirAjustaDanio(ajustaDanioNulo);
         jinete.atacarDistanciaCerca(jinete1,false,tablero);
         Assertions.assertEquals(95,jinete1.getVidaUnidad());
     }
@@ -115,6 +120,10 @@ public class JineteTest {
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
         Jinete jinete1 = new Jinete(puntos,posicion1, new EmisarioNulo());
         jinete.setEstadoJinete("arquero");
+
+        AjustaDanioNulo ajustaDanioNulo = new AjustaDanioNulo();
+        jinete1.recibirAjustaDanio(ajustaDanioNulo);
+
         jinete.atacarDistanciaMediana(jinete1,false,tablero);
         Assertions.assertEquals(85,jinete1.getVidaUnidad());
     }
