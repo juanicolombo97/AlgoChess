@@ -1,5 +1,6 @@
-package fiuba.algo3.algochess.Vista;
+package fiuba.algo3.algochess.Vista.Inicio;
 
+import fiuba.algo3.algochess.Vista.Inicio.DeseaSalirAlerta;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

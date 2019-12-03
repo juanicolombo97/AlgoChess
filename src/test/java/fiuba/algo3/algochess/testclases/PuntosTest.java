@@ -22,4 +22,5 @@ public class PuntosTest {
             Assertions.assertEquals("Puntos insuficientes, dispone de: 20",e.getMessage());
         }
     }
+
 }

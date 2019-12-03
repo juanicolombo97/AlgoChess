@@ -13,13 +13,12 @@ public class Soldado implements Unidad {
     private static double danioCuerpo = 10;
     private Posicion posicion;
     private Emisario emisario;
+    private double danioExtra = 0;
 
     public Soldado(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
-        puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
     }
-
 
     public double getVidaUnidad(){
         return vidaUnidad;
@@ -56,7 +55,7 @@ public class Soldado implements Unidad {
 
     @Override
     public void recibirDanio(double danioRecibido) {
-        vidaUnidad -= danioRecibido;
+        vidaUnidad -= danioRecibido + (danioRecibido * this.danioExtra);
     }
 
     @Override
@@ -90,6 +89,16 @@ public class Soldado implements Unidad {
 
     @Override
     public boolean esSoldado(){ return true; }
+
+    @Override
+    public void enCasilleroEnemigo(){
+        this.danioExtra = 0.05;
+    }
+
+    @Override
+    public void enCasilleroAliado(){
+        this.danioExtra = 0.00;
+    }
 }
 
 

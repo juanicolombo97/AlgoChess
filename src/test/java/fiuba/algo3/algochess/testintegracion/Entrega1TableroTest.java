@@ -45,4 +45,44 @@ public class Entrega1TableroTest {
         }
 
     }
+    @Test
+    public void seModificanPuntosJugadorCorrectamenteConSoldado() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
+        Posicion posicion = new Posicion(10,10);
+        tablero.crearUnidad(jugador1,posicion,"soldado");
+
+        Assertions.assertEquals(19,jugador1.getPuntosDisponibles());
+    }
+    @Test
+    public void seModificanPuntosJugadorCorrectamenteConSJinete() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
+        Posicion posicion = new Posicion(10,10);
+        tablero.crearUnidad(jugador1,posicion,"jinete");
+
+        Assertions.assertEquals(17,jugador1.getPuntosDisponibles());
+    }
+    @Test
+    public void seModificanPuntosJugadorCorrectamenteConCatapulta() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
+        Posicion posicion = new Posicion(10,10);
+        tablero.crearUnidad(jugador1,posicion,"catapulta");
+
+        Assertions.assertEquals(15,jugador1.getPuntosDisponibles());
+    }
+    @Test
+    public void seModificanPuntosJugadorCorrectamenteConCurandero() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
+        Posicion posicion = new Posicion(10,10);
+        tablero.crearUnidad(jugador1,posicion,"curandero");
+
+        Assertions.assertEquals(18,jugador1.getPuntosDisponibles());
+    }
 }

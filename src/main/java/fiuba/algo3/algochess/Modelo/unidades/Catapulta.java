@@ -16,10 +16,10 @@ public class Catapulta implements Unidad{
     private Batallon batallon = new Batallon();
     private Posicion posicion;
     private Emisario emisario;
+    private double danioExtra = 0;
 
 
     public Catapulta(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
-        puntosJugador.puntosSuficientes(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
     }
@@ -65,7 +65,7 @@ public class Catapulta implements Unidad{
 
     @Override
     public void recibirDanio(double danioRecibido) {
-        vidaUnidad -= danioRecibido;
+        vidaUnidad -= danioRecibido + (danioRecibido * this.danioExtra);
     }
 
     @Override
@@ -85,5 +85,15 @@ public class Catapulta implements Unidad{
 
     @Override
     public boolean esSoldado(){ return false; }
+
+    @Override
+    public void enCasilleroEnemigo(){
+        this.danioExtra = 0.05;
+    }
+
+    @Override
+    public void enCasilleroAliado(){
+        this.danioExtra = 0.00;
+    }
 
 }

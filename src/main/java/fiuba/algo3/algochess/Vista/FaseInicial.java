@@ -5,8 +5,10 @@ import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
+import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.scene.Scene;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 public class FaseInicial {
 
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
-     private static InterfazJuego interfazJuego = new InterfazJuego();
+    private static InterfazJuego interfazJuego = new InterfazJuego();
 
     public static void display() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
         //Inicializo Jugadores
@@ -24,6 +26,7 @@ public class FaseInicial {
         Tablero tablero = new Tablero(listaJugadores.get(0),listaJugadores.get(1));
         etapaColocarFichas(listaJugadores,tablero);
 
+        //TODO: mientras ninguno se quede sin unidades, llamar a instanciaDeJuego, alternando jugadores.
     }
 
 
@@ -33,20 +36,18 @@ public class FaseInicial {
         ventana.setTitle("AlgoChess");
         for (Object jugador : listaJugadores){
             Jugador jugadorActual = (Jugador) jugador;
-            while (jugadorActual.getPuntosDisponibles() != 0){
 
-                VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
-                GridPane tableroInterfaz = TableroInterfaz.crearTablero(tablero.getTablero());
-                VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual,tableroInterfaz);
+            VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
+            TableroInterfaz tableroInterfaz = new TableroInterfaz();
+            tableroInterfaz.crearTablero(tablero);
+            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz,ventana);
 
-                BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz,ladoIzq,ladoDer);
-
-                Scene scene = new Scene(interfaz);
-
-                ventana.setScene(scene);
-                ventana.showAndWait();
+            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
+            Scene scene = new Scene(interfaz);
+            ventana.setScene(scene);
+            ventana.showAndWait();
             }
         }
 
     }
-}
+

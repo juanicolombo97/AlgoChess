@@ -32,4 +32,8 @@ public interface Unidad {
     public void recibirNotificacion() throws CasilleroVacioExcepcion;
 
     public boolean esSoldado();
+
+    public void enCasilleroEnemigo();
+
+    public void enCasilleroAliado();
 }
