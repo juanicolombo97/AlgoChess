@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanio;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
@@ -32,4 +33,6 @@ public interface Unidad {
     public void recibirNotificacion() throws CasilleroVacioExcepcion;
 
     public boolean esSoldado();
+
+    public void recibirAjustaDanio(AjustaDanio ajustaDanio);
 }

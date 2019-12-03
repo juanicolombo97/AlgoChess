@@ -14,10 +14,13 @@ public class Jugador {
     public ArrayList<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
     private Puntos puntosJugador;
+    private AjustaDanio ajustaDanio;
 
     public Jugador(String  nombreJugador){
         this.nombreJugador = nombreJugador;
         puntosJugador = new Puntos(puntosColocacionFichas);
+        AjustaDanio ajustaDanio = new AjustaDanio(this);
+        this.ajustaDanio = ajustaDanio;
     }
 
     public String getNombreJugador() {
@@ -32,6 +35,16 @@ public class Jugador {
         if (!casilleroJugador.contains(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
+    }
+
+    public boolean casilleroAliadoPorPosicion(Posicion posicion){
+        for(Object casilleroActual : casilleroJugador){
+            Casillero casillero = (Casillero) casilleroActual;
+            if (casillero.getPosicionCasillero() == posicion){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
@@ -60,6 +73,7 @@ public class Jugador {
     }
 
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CasilleroVacioExcepcion {
+        atacado.recibirAjustaDanio(this.ajustaDanio);
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados

@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.AjustaDanio;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
@@ -13,6 +14,7 @@ public class Jinete implements Unidad {
     private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion;
     private Emisario emisario;
+    private AjustaDanio ajustaDanio;
 
     public Jinete( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
@@ -98,5 +100,10 @@ public class Jinete implements Unidad {
 
     @Override
     public boolean esSoldado(){ return false; }
+
+    @Override
+    public void recibirAjustaDanio(AjustaDanio ajustaDanio){
+        this.ajustaDanio = ajustaDanio;
+    }
 
 }
