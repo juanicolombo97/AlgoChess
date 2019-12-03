@@ -28,7 +28,14 @@ public class TiendaUnidades {
         botonJinete.setOnAction(e -> CrearJinete.crear(jugador,tablero));
         botonCurandero.setOnAction(e -> CrearCurandero.crear(jugador,tablero));
         botonCatapulta.setOnAction(e -> CrearCatapulta.crear(jugador,tablero));
-        unidadesListas.setOnAction(e -> ventana.close());
+        unidadesListas.setOnAction(e -> {
+            if (jugador.getPuntosDisponibles() > 0){
+                MensajesAJugador.setMensaje("Todavia tienes puntos");
+            }
+            else {
+                ventana.close();
+            }
+        });
 
 
         vBox.getChildren().addAll(unidades,botonSoldado,botonCurandero,botonJinete,botonCatapulta,unidadesListas);

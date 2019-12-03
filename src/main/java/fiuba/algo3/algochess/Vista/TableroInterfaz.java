@@ -48,7 +48,5 @@ public class TableroInterfaz {
         return tableroInterfaz.get(posicion);
     }
 
-    public static Group getGrupoCasilleros() {
-        return grupoCasilleros;
-    }
+
 }

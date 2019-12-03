@@ -47,6 +47,8 @@ public class FaseInicial {
             ventana.setScene(scene);
             ventana.showAndWait();
             }
+        FaseJuego faseJuego = new FaseJuego(tableroInterfaz,tablero,listaJugadores,ventana);
+        faseJuego.comenzarJuego();
     }
 
 
