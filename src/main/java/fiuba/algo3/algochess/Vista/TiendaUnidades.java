@@ -28,6 +28,7 @@ public class TiendaUnidades {
         botonCatapulta.setOnAction(e -> CrearCatapulta.crear(jugador,tablero));
 
 
+
         vBox.getChildren().addAll(unidades,botonSoldado,botonCurandero,botonJinete,botonCatapulta);
         return vBox;
     }

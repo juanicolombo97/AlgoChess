@@ -36,10 +36,10 @@ public class FaseInicial {
             Jugador jugadorActual = (Jugador) jugador;
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
             TableroInterfaz tableroInterfaz = new TableroInterfaz();
-            tableroInterfaz.crearTablero(tablero.getTablero());
+            tableroInterfaz.crearTablero(tablero);
             VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual,tableroInterfaz);
 
-            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTablero(),ladoIzq,ladoDer);
+            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(),ladoIzq,ladoDer);
 
             Scene scene = new Scene(interfaz);
             ventana.setScene(scene);

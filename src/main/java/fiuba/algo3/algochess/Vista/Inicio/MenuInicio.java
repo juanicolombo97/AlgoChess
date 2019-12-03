@@ -46,6 +46,7 @@ public class MenuInicio extends Application {
         botonJugar.setOnAction(e -> {
 
             try {
+                ventana.close();
                 FaseInicial.display();
             } catch (CasilleroOcupadoException ex) {
                 ex.printStackTrace();
@@ -54,7 +55,7 @@ public class MenuInicio extends Application {
             } catch (NoAlcanzanLosPuntosException ex) {
                 ex.printStackTrace();
             }
-            ventana.close();
+
         });
 
         ventana.setOnCloseRequest( e -> {

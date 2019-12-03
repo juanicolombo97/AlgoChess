@@ -10,5 +10,6 @@ public class CrearSoldado {
 
     public static void crear(Jugador jugador, TableroInterfaz tablero){
         MensajesAJugador.setMensaje("Coloque el Soldado");
+        tablero.getTableroInterfaz().setOnMouseClicked(e -> new AgregarUnidad(tablero,jugador,e,"soldado"));
     }
 }
