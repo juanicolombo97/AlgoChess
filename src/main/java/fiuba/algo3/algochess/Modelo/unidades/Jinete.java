@@ -13,6 +13,7 @@ public class Jinete implements Unidad {
     private EstadoJinete estadoJinete = new JineteArquero();
     private Posicion posicion;
     private Emisario emisario;
+    private double danioExtra = 0;
 
     public Jinete( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         this.posicion = posicion;
@@ -62,7 +63,7 @@ public class Jinete implements Unidad {
 
     @Override
     public void recibirDanio(double danioRecibido) {
-        vidaUnidad -= danioRecibido;
+        vidaUnidad -= danioRecibido + (danioRecibido * this.danioExtra);
     }
 
     @Override
@@ -98,5 +99,15 @@ public class Jinete implements Unidad {
 
     @Override
     public boolean esSoldado(){ return false; }
+
+    @Override
+    public void enCasilleroEnemigo(){
+        this.danioExtra = 0.05;
+    }
+
+    @Override
+    public void enCasilleroAliado(){
+        this.danioExtra = 0.00;
+    }
 
 }

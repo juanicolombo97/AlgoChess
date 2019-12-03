@@ -11,6 +11,7 @@ public class Tablero {
     private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
+    private Emisario emisario = new EmisarioActivo(this);
     private boolean casilleroAliado = true;
     private boolean casilleroEnemigo = false;
 
@@ -28,11 +29,11 @@ public class Tablero {
 
     private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) throws UnidadInvalidaException {
         if (posicion.getPosicionX()< 10){
-            Casillero casillero = new Casillero(posicion,casilleroAliado);
+            Casillero casillero = new Casillero(posicion,casilleroAliado, jugador1);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;
         } else {
-            Casillero casillero = new Casillero(posicion,casilleroEnemigo);
+            Casillero casillero = new Casillero(posicion,casilleroEnemigo, jugador2);
             jugador2.agregarCasillero(casillero);
             return casillero;
         }
@@ -40,10 +41,9 @@ public class Tablero {
 
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Casillero casilleroDestino = tablero.get(posicion);
-        Emisario emisario = new EmisarioActivo(this);
-        Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,emisario);
-        casilleroDestino.guardarUnidad(unidadCreada);
+        Unidad unidadCreada = jugador.crearUnidad(casilleroDestino,nombreUnidad,posicion,this.emisario);
         jugador.guardarUnidad(unidadCreada);
+        casilleroDestino.guardarUnidad(unidadCreada);
         emisario.notificar(unidadCreada);
         return unidadCreada;
     }

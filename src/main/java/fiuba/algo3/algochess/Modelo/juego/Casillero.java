@@ -9,17 +9,24 @@ public class Casillero{
 
     private final Posicion posicionCasillero;
     private EstadoCasillero estadoCasillero;
+    private Jugador jugador;
     public boolean casilleroAliado;
 
-    public Casillero(Posicion posicion,boolean casilleroAliado){
+    public Casillero(Posicion posicion,boolean casilleroAliado,Jugador jugador){
         this.posicionCasillero = posicion;
         estadoCasillero = new EstadoCasilleroVacio();
         this.casilleroAliado = casilleroAliado;
+        this.jugador = jugador;
     }
 
     public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
         unidadNueva.modificarPosicion(posicionCasillero);
+        if (!jugador.unidadAliada(unidadNueva)){
+            unidadNueva.enCasilleroEnemigo();
+        } else {
+            unidadNueva.enCasilleroAliado();
+        }
    }
    public void eliminarUnidad() throws CasilleroVacioExcepcion {
         estadoCasillero = estadoCasillero.eliminarUnidad();
