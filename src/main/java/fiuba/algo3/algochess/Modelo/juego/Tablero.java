@@ -82,7 +82,9 @@ public class Tablero {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
         Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
-        if (tablero.get(unidadAtacada.getPosicion())
+        if (jugador1.unidadAliada(unidadAtacante) && (tablero.get(unidadAtacada.getPosicion()).esCasilleroAliado()){
+
+        }
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
     }
 

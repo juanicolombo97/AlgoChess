@@ -44,4 +44,8 @@ public class Casillero{
        return this.posicionCasillero.calcularDistancia(posicionAtacado);
    }
 
+   public boolean esCasilleroAliado(){
+        return this.casilleroAliado;
+   }
+
 }
