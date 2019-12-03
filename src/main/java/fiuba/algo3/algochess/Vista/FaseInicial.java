@@ -4,21 +4,19 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.util.ArrayList;
 
 public class FaseInicial {
 
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
-     private static InterfazJuego interfazJuego = new InterfazJuego();
+    private static InterfazJuego interfazJuego = new InterfazJuego();
 
     public static void display() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
         //Inicializo Jugadores
@@ -28,6 +26,7 @@ public class FaseInicial {
         Tablero tablero = new Tablero(listaJugadores.get(0),listaJugadores.get(1));
         etapaColocarFichas(listaJugadores,tablero);
 
+        //TODO: mientras ninguno se quede sin unidades, llamar a instanciaDeJuego, alternando jugadores.
     }
 
 

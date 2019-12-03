@@ -23,7 +23,7 @@ public class DeseaSalirAlerta {
         Label label = new Label();
         label.setText(mensaje);
         Button botonSi = new Button("SI");
-        Button botonNo = new Button("No");
+        Button botonNo = new Button("NO");
 
         botonSi.setOnAction(e -> {
             respuesta = true;
