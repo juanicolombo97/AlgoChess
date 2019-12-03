@@ -22,7 +22,7 @@ public class JugadorTest {
     public void jugadorPuedeCrearUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
         Jugador jugador = new Jugador("juani");
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion,true);
+        Casillero casillero = new Casillero(posicion,true, jugador);
         jugador.agregarCasillero(casillero);
         Unidad unidad = jugador.crearUnidad(casillero,"soldado",posicion, new EmisarioNulo());
 

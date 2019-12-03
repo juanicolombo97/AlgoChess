@@ -13,6 +13,7 @@ public class Curandero implements Unidad {
     private static int curacion = 15;
     private Posicion posicion;
     private Emisario emisario;
+    private double danioExtra = 0;
 
 
     public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
@@ -60,7 +61,7 @@ public class Curandero implements Unidad {
 
     @Override
     public void recibirDanio(double danioRecibido) {
-        vidaUnidad -= danioRecibido;
+        vidaUnidad -= danioRecibido + (danioRecibido * this.danioExtra);
     }
 
     @Override
@@ -82,5 +83,15 @@ public class Curandero implements Unidad {
 
     @Override
     public boolean esSoldado(){ return false; }
+
+    @Override
+    public void enCasilleroEnemigo(){
+        this.danioExtra = 0.05;
+    }
+
+    @Override
+    public void enCasilleroAliado(){
+        this.danioExtra = 0.00;
+    }
 
 }
