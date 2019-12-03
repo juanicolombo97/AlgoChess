@@ -104,8 +104,7 @@ public class Entrega1UnidadesTest {
 
         Unidad unidadAtacada = jugador2.getUnidadesDisponibles().get(0);
 
-        Assertions.assertEquals(79.0,unidadAtacada.getVidaUnidad());
-
+        Assertions.assertEquals(80,unidadAtacada.getVidaUnidad());
     }
 
 
