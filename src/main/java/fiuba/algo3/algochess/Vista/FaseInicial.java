@@ -4,12 +4,15 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
+import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.util.ArrayList;
 
 public class FaseInicial {
@@ -34,17 +37,18 @@ public class FaseInicial {
         ventana.setTitle("AlgoChess");
         for (Object jugador : listaJugadores){
             Jugador jugadorActual = (Jugador) jugador;
+
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
             TableroInterfaz tableroInterfaz = new TableroInterfaz();
             tableroInterfaz.crearTablero(tablero);
-            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual,tableroInterfaz);
+            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz,ventana);
 
-            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(),ladoIzq,ladoDer);
-
+            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
             Scene scene = new Scene(interfaz);
             ventana.setScene(scene);
             ventana.showAndWait();
+            }
         }
 
     }
-}
+

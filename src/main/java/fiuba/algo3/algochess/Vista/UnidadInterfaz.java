@@ -17,7 +17,7 @@ public class UnidadInterfaz extends Circle {
         Circle unidadCirculo = new Circle(TableroInterfaz.tamanioCasillero * 0.3125);
         unidadCirculo.setFill(Color.BLACK);
         setFill(Color.BLACK);
-        relocate(posicion.getPosicionX(),posicion.getPosicionY());
+        relocate(posicion.getPosicionX() * TableroInterfaz.tamanioCasillero,posicion.getPosicionY() * TableroInterfaz.tamanioCasillero);
 
     }
 

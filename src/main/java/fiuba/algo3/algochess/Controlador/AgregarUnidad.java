@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+import fiuba.algo3.algochess.Vista.FaseInicial;
 import fiuba.algo3.algochess.Vista.MensajesAJugador;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import fiuba.algo3.algochess.Vista.UnidadInterfaz;
