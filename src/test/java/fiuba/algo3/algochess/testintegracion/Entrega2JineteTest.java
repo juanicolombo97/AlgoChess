@@ -150,12 +150,12 @@ public class Entrega2JineteTest {
 
         tablero.atacar(posicion,posicionEnemigaAux,jugador);
 
-        Assertions.assertEquals(95,jugadorEnemigo.getUnidadesDisponibles().get(0).getVidaUnidad());
+        Assertions.assertEquals(94.75,jugadorEnemigo.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
-    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion {
+    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, CurarException {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -199,8 +199,8 @@ public class Entrega2JineteTest {
         // Intento atacar al curandero enemigo a distancia media
         try{
             tablero.atacar(posicionJinete, posicion0401, jugador1);
-        } catch (NoPuedeAtacarException | CurarException e){
-            e.printStackTrace();
+        }catch (NoPuedeAtacarException e) {
+            Assertions.assertEquals("El jinete espadachin no puede atacar a distancias medianas", e.getMessage());
         }
     }
 
@@ -262,7 +262,7 @@ public class Entrega2JineteTest {
         try{
             tablero.atacar(posicionJinete, posicion0604, jugador1);
         } catch (NoPuedeAtacarException e){
-            e.printStackTrace();
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
         }
     }
 
@@ -292,11 +292,12 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0606, posicion0605, jugador2);
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         tablero.atacar(posicionJinete, posicion0604,jugador1);
+        Assertions.assertEquals(69.75, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
     //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
-    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion, CurarException {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -323,8 +324,8 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         try{
             tablero.atacar(posicionJinete, posicion0604, jugador1);
-        } catch (NoPuedeAtacarException | CurarException e){
-            e.printStackTrace();
+        } catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
         }
     }
 
@@ -356,7 +357,9 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0606, posicion0605, jugador2);
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         // Pruebo si el jinete está en modo espadachin
+
         tablero.atacar(posicionJinete, posicion0604, jugador1);
+        Assertions.assertEquals(69.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
@@ -395,5 +398,6 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0302, posicion0402, jugador1);
         // Pruebo si el jinete está en modo espadachin
         tablero.atacar(posicionJinete, posicion0604, jugador1);
+        Assertions.assertEquals(94.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 }
