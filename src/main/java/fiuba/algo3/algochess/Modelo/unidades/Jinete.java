@@ -26,8 +26,11 @@ public class Jinete implements Unidad {
         return vidaUnidad;
     }
 
-    public void setEstadoJinete(String estado){
-        estadoJinete = (EstadoJinete) estadoJinete.cambiarEstadoJinete(estado);
+    public void setEstadoJinete(String estado){ //temporal, sacar ifs con refactor de recibirNotificacion()
+        if(estado == "arquero"){
+            this.estadoJinete = this.estadoJinete.setEstadoJineteArquero();
+        }
+        this.estadoJinete = this.estadoJinete.setEstadoJineteEspadachin();
     }
 
     @Override
@@ -87,11 +90,19 @@ public class Jinete implements Unidad {
     @Override
     public void recibirNotificacion() {
         if (this.emisario.cantidadSoldadosAliadosCercanos(this) == 0 && this.emisario.unidadesEnemigasCercanas(this).size() > 0){
-            setEstadoJinete("espadachin");
+            setEstadoJineteEspadachin();
         }
         else if (this.emisario.cantidadSoldadosAliadosCercanos(this) > 0 || this.emisario.unidadesEnemigasCercanas(this).size() == 0){
-            setEstadoJinete("arquero");
+            setEstadoJineteArquero();
         }
+    }
+
+    private void setEstadoJineteArquero() {
+        estadoJinete = estadoJinete.setEstadoJineteArquero();
+    }
+
+    private void setEstadoJineteEspadachin() {
+        estadoJinete = estadoJinete.setEstadoJineteEspadachin();
     }
 
     public EstadoJinete getEstado(){
