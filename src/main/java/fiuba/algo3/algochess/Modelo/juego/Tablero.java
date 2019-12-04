@@ -103,9 +103,6 @@ public class Tablero {
     public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
         ArrayList unidadesADistanciaCercana = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
-        if (unidadesADistanciaCercana.contains(unaUnidad)){
-            unidadesADistanciaCercana.remove(unaUnidad);
-        }
         return unidadesADistanciaCercana;
     }
 
