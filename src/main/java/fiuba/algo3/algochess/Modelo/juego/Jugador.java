@@ -83,11 +83,11 @@ public class Jugador {
 
     public void reconocerUnidadesAliadasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
         if (unidadAliada(unidad)){
-            reconocerUnidadesAliadasAdyascentesA(unidad,unidadesCercanas,unidadesAliadasCercanasAUnidad);
+            reconocerUnidadesAliadasAdyascentesAUnidad(unidadesCercanas,unidadesAliadasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesAliadasAdyascentesA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
+    private void reconocerUnidadesAliadasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
         for(int i = 0; i < unidadesCercanas.size(); i++) {
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             if (unidadAliada(unidadActual)) {
@@ -98,11 +98,11 @@ public class Jugador {
 
     public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
         if (unidadAliada(unidad)){
-            reconocerUnidadesEnemigasAdyascentesA(unidad,unidadesCercanas,unidadesEnemigasCercanasAUnidad);
+            reconocerUnidadesEnemigasAdyascentesAUnidad(unidadesCercanas,unidadesEnemigasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesEnemigasAdyascentesA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+    private void reconocerUnidadesEnemigasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
         for(int i = 0; i < unidadesCercanas.size(); i++) {
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
             if (!unidadAliada(unidadActual)) {
