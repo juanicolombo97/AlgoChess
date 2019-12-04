@@ -15,12 +15,12 @@ public class Posicion {
     }
 
 
-    public Distancia distanciaValidaDesde(Posicion posicion) throws MovimientoInvalidoException {
+    public Distancia distanciaValidaDesde(Posicion posicion) {
         Distancia distancia = posicion.distanciaValidaHasta(this.posicionX,this.posicionY);
         return distancia;
     }
 
-    private Distancia distanciaValidaHasta(int posicionX, int posicionY) throws MovimientoInvalidoException {
+    private Distancia distanciaValidaHasta(int posicionX, int posicionY) {
         int distanciaX = Math.abs(this.posicionX - posicionX);
         int distanciaY = Math.abs(this.posicionY - posicionY);
         if (distanciaX > 1 && distanciaY > 1){

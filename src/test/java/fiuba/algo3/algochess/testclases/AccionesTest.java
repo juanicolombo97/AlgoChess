@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class AccionesTest {
 
     @Test
-    public void seAtacaUnaUnidadADistanciaCercanaCorrectamente() throws NoAlcanzanLosPuntosException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void seAtacaUnaUnidadADistanciaCercanaCorrectamente() {
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -30,7 +30,7 @@ public class AccionesTest {
 
     }
     @Test
-    public void seAtacaUnaUnidadADistanciaMedianaCorrectamente() throws NoAlcanzanLosPuntosException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void seAtacaUnaUnidadADistanciaMedianaCorrectamente() {
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -46,7 +46,7 @@ public class AccionesTest {
 
     }
     @Test
-    public void seAtacaUnaUnidadADistanciaLejanaCorrectamente() throws NoAlcanzanLosPuntosException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void seAtacaUnaUnidadADistanciaLejanaCorrectamente() {
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
@@ -63,7 +63,7 @@ public class AccionesTest {
     }
 
     @Test
-    public void seCuraUnaUnidadADistanciaCercanaCorrectamente() throws NoAlcanzanLosPuntosException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void seCuraUnaUnidadADistanciaCercanaCorrectamente() {
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);

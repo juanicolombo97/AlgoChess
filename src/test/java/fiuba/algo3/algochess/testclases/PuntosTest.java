@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class PuntosTest {
 
     @Test
-    public void puntosSuficientesNoTiraError() throws NoAlcanzanLosPuntosException {
+    public void puntosSuficientesNoTiraError() {
         Puntos puntos = new Puntos(20);
         puntos.puntosSuficientes(10);
         Assertions.assertEquals(10,puntos.puntosDisponibles);

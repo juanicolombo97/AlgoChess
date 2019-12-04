@@ -18,7 +18,7 @@ public class UnidadesFabricaTest {
 
     @Test
     //Pruebo que genere correctamente a la fiuba.algo3.algochess.Modelo.unidades.Unidad fiuba.algo3.algochess.Modelo.unidades.Soldado.
-    public void creoUnidadesSoldado() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void creoUnidadesSoldado() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         UnidadesFabrica fabrica = new UnidadesFabrica();
@@ -29,7 +29,7 @@ public class UnidadesFabricaTest {
     }
     @Test
     //Pruebo que la fabrica genere correctamente al fiuba.algo3.algochess.Modelo.unidades.Jinete.
-    public void creoUnidadesJinete() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void creoUnidadesJinete() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         UnidadesFabrica fabrica = new UnidadesFabrica();
@@ -40,7 +40,7 @@ public class UnidadesFabricaTest {
 
     @Test
     // Pruebo que se pueda crear correctamente el fiuba.algo3.algochess.Modelo.unidades.Curandero.
-    public void creoUnidadesCurandero() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void creoUnidadesCurandero() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         UnidadesFabrica fabrica = new UnidadesFabrica();
@@ -51,7 +51,7 @@ public class UnidadesFabricaTest {
 
     @Test
     // Pruebo que se pueda crear la fiuba.algo3.algochess.Modelo.unidades.Catapulta.
-    public void creoUnidadesCatapulta() throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void creoUnidadesCatapulta() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         UnidadesFabrica fabrica = new UnidadesFabrica();
@@ -61,7 +61,7 @@ public class UnidadesFabricaTest {
     }
 
     @Test
-    public void unidarInvalidaLanzaExcepcion() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void unidarInvalidaLanzaExcepcion() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         UnidadesFabrica fabrica = new UnidadesFabrica();

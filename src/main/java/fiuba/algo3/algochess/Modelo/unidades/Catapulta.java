@@ -19,7 +19,7 @@ public class Catapulta implements Unidad{
     private double danioExtra = 0;
 
 
-    public Catapulta(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Catapulta(Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         this.posicion = posicion;
         this.emisario = emisario;
         puntosJugador.alcanzanPuntos(costoUnidad);
@@ -35,7 +35,7 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
         this.emisario.notificar(this);
     }
@@ -46,17 +46,17 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, CasilleroVacioExcepcion {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         Batallon batallon = new Batallon();
         ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
         for (Object unidad : unidadesAAtacar){
@@ -75,12 +75,12 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarException {
+    public void curarse(int vidaACurar) {
         throw new CurarException("La catapulta no puede ser curada");
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) {
         throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 

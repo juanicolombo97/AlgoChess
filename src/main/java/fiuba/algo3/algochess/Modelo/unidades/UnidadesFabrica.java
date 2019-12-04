@@ -12,7 +12,7 @@ public class UnidadesFabrica {
     //Fabrica utilizada para crear las unidades del juego.
     private Unidad unidadACrear;
 
-    public Unidad crearUnidad(String unidad, Puntos puntosJugador, Posicion posicion, Emisario emisario) throws UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Unidad crearUnidad(String unidad, Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         switch (unidad) {
 
             case "soldado": {

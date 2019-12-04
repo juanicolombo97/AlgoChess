@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class SoldadoTest {
     @Test
-    public void soldadoRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoRecienCreadoTieneVidaLlena() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -20,7 +20,7 @@ public class SoldadoTest {
     }
 
     @Test
-    public void soldadoRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoRecienCreadoCuestaLosPuntosCorrectos() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -28,7 +28,7 @@ public class SoldadoTest {
     }
 
     @Test
-    public void soldadoRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoRecibeDanioCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -36,7 +36,7 @@ public class SoldadoTest {
         Assertions.assertEquals(80, soldado.getVidaUnidad());
     }
     @Test
-    public void soldadoSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoSeCuraCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -44,7 +44,7 @@ public class SoldadoTest {
         Assertions.assertEquals(120, soldado.getVidaUnidad());
     }
     @Test
-    public void soldadoAtacaCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -55,7 +55,7 @@ public class SoldadoTest {
         Assertions.assertEquals(90,soldado1.getVidaUnidad());
     }
     @Test
-    public void soldadoNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoNoPuedeAtacarCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -70,7 +70,7 @@ public class SoldadoTest {
 
     }
     @Test
-    public void soldadoeNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoeNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -85,7 +85,7 @@ public class SoldadoTest {
     }
 
     @Test
-    public void soldadoNoPuedeAtacarCorrectamenteAUnidadAliada() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void soldadoNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);

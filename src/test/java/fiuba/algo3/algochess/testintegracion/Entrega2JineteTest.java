@@ -14,7 +14,7 @@ public class Entrega2JineteTest {
     // Prueba de fiuba.algo3.algochess.unidades.Jinete ataca fiuba.algo3.algochess.unidades.Curandero.
     @Test
     //Prueba con ataque de cerca.
-    public void jineteEspadachinAtacaUnidadDeCerca() throws Exception {
+    public void jineteEspadachinAtacaUnidadDeCerca() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
@@ -32,7 +32,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Prueba con ataque de distancia media.
-    public void jineteEspadachinAtacaUnidadDeDistanciaMedia() throws Exception {
+    public void jineteEspadachinAtacaUnidadDeDistanciaMedia() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
@@ -51,7 +51,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Prueba con ataque de distancia lejana.
-    public void jineteEspadachinAtacaUnidadDeDistanciaLejana() throws Exception {
+    public void jineteEspadachinAtacaUnidadDeDistanciaLejana() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
@@ -70,7 +70,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Prueba con ataque de cerca.
-    public void jineteArqueroAtacaUnidadDeCerca() throws Exception {
+    public void jineteArqueroAtacaUnidadDeCerca() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
@@ -87,7 +87,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Prueba con ataque de distancia media.
-    public void jineteArqueroAtacaUnidadDeDistanciaMedia() throws Exception {
+    public void jineteArqueroAtacaUnidadDeDistanciaMedia() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
@@ -104,7 +104,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Prueba con ataque de distancia lejana.
-    public void jineteArqueroAtacaUnidadDeDistanciaLejana() throws Exception {
+    public void jineteArqueroAtacaUnidadDeDistanciaLejana() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
@@ -121,7 +121,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, pudiendo atacar a distancia corta
-    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+    public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() {
         Jugador jugador = new Jugador("tobias");
         Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
@@ -155,7 +155,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
-    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, MovimientoInvalidoException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, CurarException {
+    public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -206,7 +206,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Jinete sin aliados ni enemigos cerca se le acerca un Soldado aliado y su estado sigue siendo Arquero
-    public void AJineteSeLeAcercaSoldadoAliadoSinEnemigosCercaYSuEstadoSigueSiendoArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void AJineteSeLeAcercaSoldadoAliadoSinEnemigosCercaYSuEstadoSigueSiendoArquero() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -226,7 +226,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Si a un jinete, por mas que tenga enemigos cerca, se le acerca un Soldado Aliado, se vuelve Arquero
-    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+    public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -268,7 +268,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Si a un jinete arquero sin aliados cerca, se le acerca un enemigo, se convierte en Espadachin
-    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+    public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -297,7 +297,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
-    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion, CurarException {
+    public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -331,7 +331,7 @@ public class Entrega2JineteTest {
 
     @Test
     //SI a un jinete arquero, se la acerca un enemigo, teniendo aliados NO Soldados cerca, cambia de estado a Espadachin
-    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+    public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -364,7 +364,7 @@ public class Entrega2JineteTest {
 
     @Test
     //Si a un jinete espadachin, se le acercan Aliados no Soldados, no cambian su estado
-    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstado() throws NoPuedeAtacarException, UnidadNulaException, CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CurarException, CasilleroVacioExcepcion {
+    public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstado() {
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);

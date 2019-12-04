@@ -28,13 +28,13 @@ public class Jugador {
         casilleroJugador.add(casilleroNuevo);
     }
 
-    private void casilleroAliado(Casillero casillero) throws CasilleroEnemigoException {
+    private void casilleroAliado(Casillero casillero){
         if (!casilleroJugador.contains(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
     }
 
-    public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) throws CasilleroEnemigoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
 
         //Llamo para ver si el casillero pertenece al jugador.
         casilleroAliado(casillero);
@@ -44,11 +44,11 @@ public class Jugador {
         return unidadCreada;
     }
 
-    public void guardarUnidad(Unidad unidadNueva) throws NoAlcanzanLosPuntosException {
+    public void guardarUnidad(Unidad unidadNueva) {
         unidadesDisponibles.add(unidadNueva);
     }
 
-    public void modificarPuntos(Unidad unidad) throws NoAlcanzanLosPuntosException {
+    public void modificarPuntos(Unidad unidad) {
         puntosJugador.puntosSuficientes(unidad.cuantoCuesta());
     }
 
@@ -56,13 +56,13 @@ public class Jugador {
         return unidadesDisponibles.size() !=0;
     }
 
-    public void unidadPerteneceAJugador(Unidad unidad) throws UnidadInvalidaException {
+    public void unidadPerteneceAJugador(Unidad unidad) {
         if (!unidadesDisponibles.contains(unidad)){
             throw new UnidadInvalidaException("Unidad pertenece al enemigo");
         }
     }
 
-    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) throws CurarException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CasilleroVacioExcepcion {
+    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) {
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados

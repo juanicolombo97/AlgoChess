@@ -15,7 +15,7 @@ public class Puntos {
         puntosDisponibles = puntosDisponibles - costoUnidad;
     }
 
-    public void alcanzanPuntos(int costoUnidad) throws NoAlcanzanLosPuntosException {
+    public void alcanzanPuntos(int costoUnidad) {
         if (puntosDisponibles < costoUnidad){
             throw new NoAlcanzanLosPuntosException("Puntos insuficientes, dispone de: " + puntosDisponibles);
         }

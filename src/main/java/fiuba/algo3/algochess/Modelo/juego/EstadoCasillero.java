@@ -6,7 +6,7 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
 public interface EstadoCasillero {
 
-    public EstadoCasillero guardarUnidad(Unidad unidad) throws CasilleroOcupadoException;
-    public EstadoCasillero eliminarUnidad() throws CasilleroVacioExcepcion;
-    public Unidad obtenerUnidad() throws CasilleroVacioExcepcion;
+    public EstadoCasillero guardarUnidad(Unidad unidad);
+    public EstadoCasillero eliminarUnidad();
+    public Unidad obtenerUnidad();
 }

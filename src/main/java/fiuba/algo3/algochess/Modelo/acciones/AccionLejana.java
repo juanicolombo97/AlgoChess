@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class AccionLejana {
 
-    public AccionLejana(Unidad atacante, Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException {
+    public AccionLejana(Unidad atacante, Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         atacante.atacarDistanciaLejana(atacado,esUnidadAliada,tablero);
     }
 }

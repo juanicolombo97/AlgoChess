@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class CatapultaTest {
 
     @Test
-    public void catapultaRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaRecienCreadoTieneVidaLlena() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -21,7 +21,7 @@ public class CatapultaTest {
     }
 
     @Test
-    public void catapultaRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaRecienCreadoCuestaLosPuntosCorrectos() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -29,7 +29,7 @@ public class CatapultaTest {
     }
 
     @Test
-    public void catapultaRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaRecibeDanioCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -37,7 +37,7 @@ public class CatapultaTest {
         Assertions.assertEquals(30, catapulta.getVidaUnidad());
     }
     @Test
-    public void catapultaNoSePuedeCurarCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaNoSePuedeCurarCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -49,7 +49,7 @@ public class CatapultaTest {
 
     }
     @Test
-    public void catapultaNoPuedeAtacarDistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaNoPuedeAtacarDistanciaCercana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -63,7 +63,7 @@ public class CatapultaTest {
         }
     }
     @Test
-    public void catapultaNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void catapultaNoPuedeAtacarCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -78,7 +78,7 @@ public class CatapultaTest {
 
     }
     @Test
-    public void catapultaPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void catapultaPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -89,7 +89,7 @@ public class CatapultaTest {
         Assertions.assertEquals(30,catapulta1.getVidaUnidad());
     }
     @Test
-    public void catapultaPuedeAtacarUnidadAliada() throws CasilleroVacioExcepcion, UnidadNulaException, NoPuedeAtacarException, NoAlcanzanLosPuntosException, MovimientoInvalidoException {
+    public void catapultaPuedeAtacarUnidadAliada() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);

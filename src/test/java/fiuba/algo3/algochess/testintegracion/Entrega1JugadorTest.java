@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class Entrega1JugadorTest {
 
     @Test
-    public void jugadorNoPuedeCrearMasUnidadesQuePuntosDisponibles() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jugadorNoPuedeCrearMasUnidadesQuePuntosDisponibles() {
         Jugador jugador = new Jugador("Juani");
         Tablero tablero = new Tablero(jugador,jugador);
 
