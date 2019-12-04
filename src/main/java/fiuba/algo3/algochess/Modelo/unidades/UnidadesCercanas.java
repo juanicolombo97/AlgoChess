@@ -42,22 +42,14 @@ public class UnidadesCercanas {
         ArrayList unidadesADistanciaCercana = new ArrayList();
         for (int counter = 0; counter < distanciaLimite; counter++){
             for (Object direccionActual : listaDirecciones) {
-                Posicion posicionNueva = unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (counter == 1) {
-                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + ((Direccion) direccionActual).getY());
-                }
-                    try{
-                        Posicion posicion = posicionNueva.posicionValida();
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
-                        if (!unidadesADistanciaCercana.contains(unidadNueva)) {
-                            unidadesADistanciaCercana.add(unidadNueva);
-                        }
-                    }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){
-
-                    }
-                }
+                Posicion posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + counter*(((Direccion) direccionActual).getX()),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + counter*(((Direccion) direccionActual).getY()));
+                try{
+                    Posicion posicion = posicionNueva.posicionValida();
+                    Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
+                    unidadesADistanciaCercana.add(unidadNueva);
+                }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){}
             }
+        }
         return unidadesADistanciaCercana;
     }
-
 }
