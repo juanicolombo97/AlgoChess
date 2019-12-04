@@ -85,9 +85,6 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public boolean esSoldado(){ return false; }
-
-    @Override
     public void enCasilleroEnemigo(){
         this.danioExtra = 0.05;
     }

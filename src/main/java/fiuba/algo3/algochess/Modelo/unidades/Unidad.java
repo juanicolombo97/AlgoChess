@@ -30,8 +30,6 @@ public interface Unidad {
 
     public void recibirNotificacion();
 
-    public boolean esSoldado();
-
     public void enCasilleroEnemigo();
 
     public void enCasilleroAliado();

@@ -89,9 +89,6 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public boolean esSoldado(){ return true; }
-
-    @Override
     public void enCasilleroEnemigo(){
         this.danioExtra = 0.05;
     }
