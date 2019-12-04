@@ -18,7 +18,7 @@ public class FaseInicial {
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
     private static InterfazJuego interfazJuego = new InterfazJuego();
 
-    public static void display() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public static void display(Stage ventana) throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
         //Inicializo Jugadores
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 1")));
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 2")));
@@ -26,7 +26,6 @@ public class FaseInicial {
         Tablero tablero = new Tablero(listaJugadores.get(0),listaJugadores.get(1));
         etapaColocarFichas(listaJugadores,tablero);
 
-        //TODO: mientras ninguno se quede sin unidades, llamar a instanciaDeJuego, alternando jugadores.
     }
 
 
@@ -34,12 +33,13 @@ public class FaseInicial {
     public static void etapaColocarFichas(ArrayList listaJugadores,Tablero tablero) throws NoAlcanzanLosPuntosException {
         Stage ventana = new Stage();
         ventana.setTitle("AlgoChess");
+        TableroInterfaz tableroInterfaz = new TableroInterfaz();
+        tableroInterfaz.crearTablero(tablero);
         for (Object jugador : listaJugadores){
             Jugador jugadorActual = (Jugador) jugador;
 
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
-            TableroInterfaz tableroInterfaz = new TableroInterfaz();
-            tableroInterfaz.crearTablero(tablero);
+
             VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz,ventana);
 
             BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
@@ -47,7 +47,10 @@ public class FaseInicial {
             ventana.setScene(scene);
             ventana.showAndWait();
             }
-        }
-
+        FaseJuego faseJuego = new FaseJuego(tableroInterfaz,tablero,listaJugadores,ventana);
+        faseJuego.comenzarJuego();
     }
+
+
+}
 

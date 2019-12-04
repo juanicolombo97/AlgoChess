@@ -46,8 +46,8 @@ public class MenuInicio extends Application {
         botonJugar.setOnAction(e -> {
 
             try {
+                FaseInicial.display(ventana);
                 ventana.close();
-                FaseInicial.display();
             } catch (CasilleroOcupadoException ex) {
                 ex.printStackTrace();
             } catch (UnidadInvalidaException ex) {

@@ -10,12 +10,15 @@ public class Puntos {
         puntosDisponibles = puntos;
     }
 
-    public void puntosSuficientes(int costoUnidad) throws NoAlcanzanLosPuntosException {
-        if (puntosDisponibles - costoUnidad < 0){
-            throw new NoAlcanzanLosPuntosException("Puntos insuficientes, dispone de: " + puntosDisponibles);
-        }
+    public void puntosSuficientes(int costoUnidad){
+
         puntosDisponibles = puntosDisponibles - costoUnidad;
     }
 
+    public void alcanzanPuntos(int costoUnidad) throws NoAlcanzanLosPuntosException {
+        if (puntosDisponibles < costoUnidad){
+            throw new NoAlcanzanLosPuntosException("Puntos insuficientes, dispone de: " + puntosDisponibles);
+        }
+    }
 
 }

@@ -44,7 +44,9 @@ public class TableroInterfaz {
         return tablero;
     }
 
-    public void agregarUnidad(UnidadInterfaz unidad){
-        grupoUnidades.getChildren().add(unidad);
+    public CasilleroInterfaz getCasillero(Posicion posicion){
+        return tableroInterfaz.get(posicion);
     }
+
+
 }
