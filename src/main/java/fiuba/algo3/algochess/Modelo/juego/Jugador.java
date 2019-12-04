@@ -95,4 +95,19 @@ public class Jugador {
             }
         }
     }
+
+    public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+        if (unidadAliada(unidad)){
+            reconocerUnidadesEnemigasAdyascentesA(unidad,unidadesCercanas,unidadesEnemigasCercanasAUnidad);
+        }
+    }
+
+    private void reconocerUnidadesEnemigasAdyascentesA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+        for(int i = 0; i < unidadesCercanas.size(); i++) {
+            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+            if (!unidadAliada(unidadActual)) {
+                unidadesEnemigasCercanasAUnidad.add(unidadActual);
+            }
+        }
+    }
 }

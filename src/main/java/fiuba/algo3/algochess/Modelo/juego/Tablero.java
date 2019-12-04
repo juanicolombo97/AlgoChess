@@ -106,6 +106,7 @@ public class Tablero {
         return unidadesADistanciaCercana;
     }
 
+    /*
     public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
 
         for(int i = 0; i < unidadesCercanas.size(); i++) {
@@ -115,8 +116,9 @@ public class Tablero {
             }
         }
     }
+     */
 
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) {
+    public ArrayList unidadesAliadasCercanas(Unidad unidad) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
         this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
@@ -137,14 +139,8 @@ public class Tablero {
     public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
-
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        }
-
-
+        this.jugador1.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         return unidadesEnemigasCercanasAUnidad;
     }
 }
