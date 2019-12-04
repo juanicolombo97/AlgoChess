@@ -12,7 +12,8 @@ public class Entrega1JugadorTest {
     @Test
     public void jugadorNoPuedeCrearMasUnidadesQuePuntosDisponibles() {
         Jugador jugador = new Jugador("Juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("Juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(1,12);

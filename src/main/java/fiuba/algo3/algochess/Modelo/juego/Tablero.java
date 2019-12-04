@@ -3,10 +3,7 @@ package fiuba.algo3.algochess.Modelo.juego;
 import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Tablero {
@@ -14,10 +11,7 @@ public class Tablero {
     private Jugador jugador1;
     private Jugador jugador2;
     private Emisario emisario = new EmisarioActivo(this);
-    private List casillerosAliados;
-    private List casillerosEnemigos;
-    private boolean casilleroAliado = true;
-    private boolean casilleroEnemigo = false;
+
 
     public Tablero(Jugador jugador1, Jugador jugador2) {
         this.jugador1 = jugador1;
@@ -25,7 +19,7 @@ public class Tablero {
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
                 Posicion posicion = new Posicion(i,j);
-                Casillero casillero = new Casillero(posicion,true,jugador1);
+                Casillero casillero = new Casillero(posicion,jugador1);
                 tablero.put(posicion,casillero);
             }
         }
@@ -35,14 +29,15 @@ public class Tablero {
 
     public void filterCasilleros(){
 
-        casillerosAliados = tablero.entrySet().stream()
+        List casillerosAliados = tablero.entrySet().stream()
                                                     .filter(map -> map.getKey().posicionX < 10)
+                                                    .map(Map.Entry :: getValue)
                                                     .collect(Collectors.toList());
         jugador1.casillerosAliados(casillerosAliados);
 
-        casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX > 10)
+        List casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
+                                                                .map(Map.Entry :: getValue)
                                                                 .collect(Collectors.toList());
-
         jugador2.casillerosAliados(casillerosEnemigos);
     }
 
@@ -99,7 +94,6 @@ public class Tablero {
     }
 
 
-
     public void notificar(Unidad unidadEmisora) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
         for(int i = 0; i < unidadesCercanas.size(); i++){
@@ -114,17 +108,6 @@ public class Tablero {
         return unidadesADistanciaCercana;
     }
 
-    /*
-    public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
-
-        for(int i = 0; i < unidadesCercanas.size(); i++) {
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
-            if (jugador.unidadAliada(unidadActual)) {
-                unidadesAliadasCercanas.add(unidadActual);
-            }
-        }
-    }
-     */
 
     public ArrayList unidadesAliadasCercanas(Unidad unidad) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);

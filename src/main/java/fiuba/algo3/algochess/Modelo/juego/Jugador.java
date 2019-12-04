@@ -25,9 +25,6 @@ public class Jugador {
         return nombreJugador;
     }
 
-    public void agregarCasillero(Casillero casilleroNuevo){
-        casilleroJugador.add(casilleroNuevo);
-    }
 
     public void casillerosAliados(List casilleros){
         casilleroJugador = casilleros;

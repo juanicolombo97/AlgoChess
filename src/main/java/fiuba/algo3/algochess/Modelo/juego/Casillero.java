@@ -7,12 +7,10 @@ public class Casillero{
     private final Posicion posicionCasillero;
     private EstadoCasillero estadoCasillero;
     private Jugador jugador;
-    public boolean casilleroAliado;
 
-    public Casillero(Posicion posicion,boolean casilleroAliado,Jugador jugador){
+    public Casillero(Posicion posicion,Jugador jugador){
         this.posicionCasillero = posicion;
         estadoCasillero = new EstadoCasilleroVacio();
-        this.casilleroAliado = casilleroAliado;
         this.jugador = jugador;
     }
 

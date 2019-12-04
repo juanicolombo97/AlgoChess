@@ -15,7 +15,8 @@ public class Entrega1UnidadesTest {
         Direccion direccion = new Direccion(0,0);
         ArrayList listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new Jugador("juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         tablero.crearUnidad(jugador,posicion,"soldado");
 
@@ -32,7 +33,8 @@ public class Entrega1UnidadesTest {
         Direccion direccion = new Direccion(0,0);
         ArrayList listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new Jugador("juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("juan");
+        Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         Posicion posicion1 = new Posicion(3,3);
         tablero.crearUnidad(jugador,posicion,"soldado");
