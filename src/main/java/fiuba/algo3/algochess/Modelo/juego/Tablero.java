@@ -119,11 +119,7 @@ public class Tablero {
     public ArrayList unidadesAliadasCercanas(Unidad unidad) {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        }
+        this.jugador1.reconocerUnidadesAliadas(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 
@@ -140,7 +136,7 @@ public class Tablero {
     public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
-        
+
         if (this.jugador1.unidadAliada(unidad)){
             unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         } else {

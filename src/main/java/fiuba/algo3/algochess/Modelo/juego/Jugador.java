@@ -80,4 +80,17 @@ public class Jugador {
     public int getPuntosDisponibles(){
         return puntosJugador.puntosDisponibles;
     }
+
+    public void reconocerUnidadesAliadas(Unidad unidad, Jugador jugadorEnemigo, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
+        if (unidadAliada(unidad)){
+            for(int i = 0; i < unidadesCercanas.size(); i++) {
+                Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+                if (unidadAliada(unidadActual)) {
+                    unidadesAliadasCercanasAUnidad.add(unidadActual);
+                }
+            }
+        } else {
+            jugadorEnemigo.reconocerUnidadesAliadas(unidad, this, unidadesCercanas, unidadesAliadasCercanasAUnidad );
+        }
+    }
 }
