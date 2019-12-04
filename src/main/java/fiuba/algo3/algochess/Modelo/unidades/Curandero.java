@@ -99,4 +99,11 @@ public class Curandero implements Unidad {
 
     }
 
+    @Override
+    public void identificarse(ArrayList soldadosAliadosCercanos) {
+        if(esSoldado()){
+            soldadosAliadosCercanos.add(this);
+        }
+    }
+
 }
