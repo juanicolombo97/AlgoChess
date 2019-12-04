@@ -38,5 +38,4 @@ public interface Unidad {
 
     public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados);
 
-    void identificarse(ArrayList soldadosAliadosCercanos);
 }

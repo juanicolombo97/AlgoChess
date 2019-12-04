@@ -128,11 +128,4 @@ public class Jinete implements Unidad {
 
     }
 
-    @Override
-    public void identificarse(ArrayList soldadosAliadosCercanos) {
-        if(esSoldado()){
-            soldadosAliadosCercanos.add(this);
-        }
-    }
-
 }

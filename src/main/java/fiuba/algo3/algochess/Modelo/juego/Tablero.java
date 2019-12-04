@@ -122,7 +122,7 @@ public class Tablero {
         ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
         for (Object unidadActual: unidadesAliadasCercanasAUnidad){
             Unidad laUnidadActual = (Unidad)unidadActual;
-            laUnidadActual.identificarse(soldadosAliadosCercanos);
+            laUnidadActual.agregarSoldadoAListaDeSoldados(soldadosAliadosCercanos);
         }
         return soldadosAliadosCercanos.size();
     }

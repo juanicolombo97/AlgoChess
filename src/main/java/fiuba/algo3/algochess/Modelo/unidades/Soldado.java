@@ -106,12 +106,6 @@ public class Soldado implements Unidad {
         listaDeSoldados.add(this);
     }
 
-    @Override
-    public void identificarse(ArrayList soldadosAliadosCercanos) {
-        if(esSoldado()){
-            soldadosAliadosCercanos.add(this);
-        }
-    }
 }
 
 
