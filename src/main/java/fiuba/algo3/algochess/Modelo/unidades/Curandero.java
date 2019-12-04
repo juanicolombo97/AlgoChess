@@ -87,10 +87,6 @@ public class Curandero implements Unidad {
 
     @Override
     public void setDanioPorCasillero(Jugador jugador){
-        if (!jugador.unidadAliada(this)){
-            this.danioExtra = 0.05;
-        } else {
-            this.danioExtra = 0.00;
-        }
+        this.danioExtra = jugador.danioPorCasillero(this);
     }
 }

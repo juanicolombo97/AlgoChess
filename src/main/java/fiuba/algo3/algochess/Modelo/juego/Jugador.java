@@ -80,4 +80,12 @@ public class Jugador {
     public int getPuntosDisponibles(){
         return puntosJugador.puntosDisponibles;
     }
+
+    public double danioPorCasillero(Unidad unidad){
+        if (!unidadAliada(unidad)){
+            return 0.05;
+        } else {
+            return 0.00;
+        }
+    }
 }
