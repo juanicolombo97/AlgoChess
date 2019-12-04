@@ -107,17 +107,6 @@ public class Tablero {
         return unidadesADistanciaCercana;
     }
 
-    /*
-    public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
-
-        for(int i = 0; i < unidadesCercanas.size(); i++) {
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
-            if (jugador.unidadAliada(unidadActual)) {
-                unidadesAliadasCercanas.add(unidadActual);
-            }
-        }
-    }
-     */
 
     public ArrayList unidadesAliadasCercanas(Unidad unidad) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
