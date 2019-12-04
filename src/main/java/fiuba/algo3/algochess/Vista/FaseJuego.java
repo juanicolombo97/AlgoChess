@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javafx.scene.control.Button;
-import org.testng.junit.JUnit3TestClass;
 
 import java.util.ArrayList;
 
