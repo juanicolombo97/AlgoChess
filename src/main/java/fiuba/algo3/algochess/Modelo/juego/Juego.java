@@ -4,6 +4,7 @@ public class Juego {
 
     private Jugador jugadorAliado;
     private Jugador jugadorEnemigo;
+    private Jugador jugadorActual;
     private Tablero tablero;
 
     public Juego(Jugador jugador, Jugador jugador2){
@@ -11,8 +12,11 @@ public class Juego {
         this.jugadorEnemigo = jugador2;
     }
 
-    public void comenzarJuego(){
+    public Tablero comenzarJuego(){
         Tablero tablero = new Tablero(jugadorAliado,jugadorEnemigo);
         this.tablero = tablero;
+        return tablero;
     }
+
+
 }

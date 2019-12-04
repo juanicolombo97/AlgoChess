@@ -62,6 +62,14 @@ public class Jugador {
         }
     }
 
+    public void unidadModificarPosicionCasillero(Unidad unidad, Casillero casilleroFin){
+        if (casilleroJugador.contains(casilleroFin)){
+            unidad.enCasilleroAliado();
+        }else {
+            unidad.enCasilleroEnemigo();
+        }
+    }
+
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) {
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = unidadAliada(atacado);

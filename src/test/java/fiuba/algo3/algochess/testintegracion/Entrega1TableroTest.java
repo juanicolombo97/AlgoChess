@@ -85,4 +85,19 @@ public class Entrega1TableroTest {
 
         Assertions.assertEquals(18,jugador1.getPuntosDisponibles());
     }
+
+    @Test
+    public void jugadorEnemigoNoPuedeMoverUnidadesAliadas(){
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
+        Posicion posicion = new Posicion(10,10);
+        Posicion posicionFinal = new Posicion(11,11);
+        tablero.crearUnidad(jugador1,posicion,"curandero");
+        try {
+            tablero.moverUnidad(posicion,posicionFinal,jugador);
+        }catch (UnidadInvalidaException e){
+                Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }
+    }
 }
