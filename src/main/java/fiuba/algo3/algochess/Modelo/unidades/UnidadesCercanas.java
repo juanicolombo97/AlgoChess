@@ -22,7 +22,7 @@ public class UnidadesCercanas {
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
+                if (posicionNueva.posicionX > 0 && posicionNueva.posicionY > 0) {
                     try{
                         Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
                         if (!batallonUnidades.contains(unidadNueva)) {
@@ -44,9 +44,9 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (counter == 1) {
-                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionX() + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionY() + ((Direccion) direccionActual).getY());
+                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + ((Direccion) direccionActual).getY());
                 }
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
+                if (posicionNueva.posicionX > 0 && posicionNueva.posicionY > 0) {
                     try{
                         Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
                         if (!unidadesADistanciaCercana.contains(unidadNueva)) {

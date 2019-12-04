@@ -28,7 +28,7 @@ public class Tablero {
     }
 
     private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) {
-        if (posicion.getPosicionX()< 10){
+        if (posicion.posicionX< 10){
             Casillero casillero = new Casillero(posicion,casilleroAliado, jugador1);
 ;           jugador1.agregarCasillero(casillero);
             return casillero;

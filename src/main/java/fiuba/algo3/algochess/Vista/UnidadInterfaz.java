@@ -30,7 +30,7 @@ public class UnidadInterfaz extends Pane {
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
 
-        relocate(posicion.getPosicionX() * TableroInterfaz.tamanioCasillero, posicion.getPosicionY() * TableroInterfaz.tamanioCasillero);
+        relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero, posicion.posicionY * TableroInterfaz.tamanioCasillero);
         setOnMouseClicked(e -> System.out.println("fefefefe"));
         getChildren().add(nombre);
     }
