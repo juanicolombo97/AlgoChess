@@ -19,11 +19,7 @@ public class Casillero{
     public void guardarUnidad(Unidad unidadNueva) {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
         unidadNueva.modificarPosicion(posicionCasillero);
-        if (!jugador.unidadAliada(unidadNueva)){
-            unidadNueva.enCasilleroEnemigo();
-        } else {
-            unidadNueva.enCasilleroAliado();
-        }
+        unidadNueva.setDanioPorCasillero(jugador);
    }
    public void eliminarUnidad() {
         estadoCasillero = estadoCasillero.eliminarUnidad();

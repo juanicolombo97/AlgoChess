@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public interface Unidad {
 
     public boolean esSoldado();
 
-    public void enCasilleroEnemigo();
+    public void setDanioPorCasillero(Jugador jugador);
 
-    public void enCasilleroAliado();
 }

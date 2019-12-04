@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
@@ -88,13 +89,11 @@ public class Catapulta implements Unidad{
     public boolean esSoldado(){ return false; }
 
     @Override
-    public void enCasilleroEnemigo(){
-        this.danioExtra = 0.05;
+    public void setDanioPorCasillero(Jugador jugador){
+        if (!jugador.unidadAliada(this)){
+            this.danioExtra = 0.05;
+        } else {
+            this.danioExtra = 0.00;
+        }
     }
-
-    @Override
-    public void enCasilleroAliado(){
-        this.danioExtra = 0.00;
-    }
-
 }
