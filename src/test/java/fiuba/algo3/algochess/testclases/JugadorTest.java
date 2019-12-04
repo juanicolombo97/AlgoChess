@@ -8,6 +8,7 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class JugadorTest {
@@ -22,8 +23,10 @@ public class JugadorTest {
     public void jugadorPuedeCrearUnidad() {
         Jugador jugador = new Jugador("juani");
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion,true, jugador);
-        jugador.agregarCasillero(casillero);
+        Casillero casillero = new Casillero(posicion, jugador);
+        ArrayList lista = new ArrayList();
+        lista.add(casillero);
+        jugador.casillerosAliados(lista);
         Unidad unidad = jugador.crearUnidad(casillero,"soldado",posicion, new EmisarioNulo());
 
 
@@ -35,7 +38,7 @@ public class JugadorTest {
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
         Jugador jugador = new Jugador("juani");
-        Casillero casillero = new Casillero(posicion,true, jugador);
+        Casillero casillero = new Casillero(posicion, jugador);
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());

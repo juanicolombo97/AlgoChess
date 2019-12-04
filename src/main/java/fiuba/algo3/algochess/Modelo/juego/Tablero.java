@@ -3,17 +3,15 @@ package fiuba.algo3.algochess.Modelo.juego;
 import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Tablero {
     private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
     private Emisario emisario = new EmisarioActivo(this);
-    private boolean casilleroAliado = true;
-    private boolean casilleroEnemigo = false;
+
 
     public Tablero(Jugador jugador1, Jugador jugador2) {
         this.jugador1 = jugador1;
@@ -21,22 +19,26 @@ public class Tablero {
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
                 Posicion posicion = new Posicion(i,j);
-                Casillero casillero = this.asignarEquipo(posicion,jugador1,jugador2);
+                Casillero casillero = new Casillero(posicion,jugador1);
                 tablero.put(posicion,casillero);
             }
         }
+        filterCasilleros();
     }
 
-    private Casillero asignarEquipo (Posicion posicion,Jugador jugador1, Jugador jugador2) {
-        if (posicion.posicionX< 10){
-            Casillero casillero = new Casillero(posicion,casilleroAliado, jugador1);
-;           jugador1.agregarCasillero(casillero);
-            return casillero;
-        } else {
-            Casillero casillero = new Casillero(posicion,casilleroEnemigo, jugador2);
-            jugador2.agregarCasillero(casillero);
-            return casillero;
-        }
+
+    public void filterCasilleros(){
+
+        List casillerosAliados = tablero.entrySet().stream()
+                                                    .filter(map -> map.getKey().posicionX < 10)
+                                                    .map(Map.Entry :: getValue)
+                                                    .collect(Collectors.toList());
+        jugador1.casillerosAliados(casillerosAliados);
+
+        List casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
+                                                                .map(Map.Entry :: getValue)
+                                                                .collect(Collectors.toList());
+        jugador2.casillerosAliados(casillerosEnemigos);
     }
 
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) {
@@ -90,7 +92,6 @@ public class Tablero {
     public HashMap getTablero(){
         return (HashMap) tablero;
     }
-
 
 
     public void notificar(Unidad unidadEmisora) { //done

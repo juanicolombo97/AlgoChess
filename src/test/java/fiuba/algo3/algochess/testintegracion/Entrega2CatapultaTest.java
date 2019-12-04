@@ -15,8 +15,8 @@ public class Entrega2CatapultaTest {
     @Test
     public void catapultaAtacaABatallonUnidades() {
         Jugador jugador = new Jugador("JUAN");
-
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("Juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
 
 
         Posicion posicion = new Posicion(1,1);
@@ -29,7 +29,7 @@ public class Entrega2CatapultaTest {
         tablero.crearUnidad(jugador,posicion1,"soldado");
         tablero.crearUnidad(jugador,posicion2,"soldado");
         tablero.crearUnidad(jugador,posicion3,"soldado");
-        tablero.crearUnidad(jugador,posicion4,"catapulta");
+        tablero.crearUnidad(jugador1,posicion4,"catapulta");
 
         tablero.atacar(posicion4,posicion3,jugador);
 

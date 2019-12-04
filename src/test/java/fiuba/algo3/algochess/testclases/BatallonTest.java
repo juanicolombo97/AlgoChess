@@ -39,9 +39,10 @@ public class BatallonTest {
     @Test
     public void seFormaBatallonSoloDeSoldados() {
         Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador1,jugador1);
+        Jugador jugador = new Jugador("Juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
 
-        Posicion posicion = new Posicion(9,9);
+
         Posicion posicion1 = new Posicion(12,12);
         Posicion posicion2 = new Posicion(10,10);
         Posicion posicion3 = new Posicion(11,11);
@@ -49,7 +50,7 @@ public class BatallonTest {
         Posicion posicion5 = new Posicion(11,10);
         Posicion posicion6 = new Posicion(12,11);
 
-        tablero.crearUnidad(jugador1,posicion,"soldado");
+
         tablero.crearUnidad(jugador1,posicion1,"soldado");
         tablero.crearUnidad(jugador1,posicion2,"soldado");
         tablero.crearUnidad(jugador1,posicion3,"soldado");
@@ -62,7 +63,7 @@ public class BatallonTest {
         ArrayList listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
         Unidad unidad = (Unidad) listaUnidadesAliadas.get(0);
         ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
-        Assertions.assertEquals(4,listaUnidades.size());
+        Assertions.assertEquals(3,listaUnidades.size());
     }
 
     @Test
