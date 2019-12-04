@@ -82,8 +82,8 @@ public class BatallonTest {
         ArrayList unidades = jugador2.getUnidadesDisponibles();
         // Obtengo dicho soldado
         Unidad unidad = (Unidad) unidades.get(1);
-        Assertions.assertEquals(14, unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(14, unidad.getPosicion().getPosicionY());
+        Posicion posicionEsperada = new Posicion(14,14);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
@@ -104,9 +104,10 @@ public class BatallonTest {
         // La unidad en la posicion (13, 12) permaneció en la misma posición a causa del obstáculo.
         // Obtengo dicha unidad para comprobarlo
         ArrayList unidades = jugador2.getUnidadesDisponibles();
+
         Unidad unidad = (Unidad) unidades.get(1);
-        Assertions.assertEquals(13,unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(12,unidad.getPosicion().getPosicionY());
+        Posicion posicionEsperada = new Posicion(13,12);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
@@ -138,9 +139,8 @@ public class BatallonTest {
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
         Unidad unidad = (Unidad) unidades.get(1);
-
-        Assertions.assertEquals(16,unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(16,unidad.getPosicion().getPosicionY());
+        Posicion posicionEsperada = new Posicion(16,16);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
@@ -165,8 +165,7 @@ public class BatallonTest {
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
         Unidad unidad = (Unidad) unidades.get(3);
-
-        Assertions.assertEquals(12, unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(12, unidad.getPosicion().getPosicionY());
+        Posicion posicionEsperada = new Posicion(12,12);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 }

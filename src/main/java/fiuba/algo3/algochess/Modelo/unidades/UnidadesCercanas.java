@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
+import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
@@ -22,19 +23,18 @@ public class UnidadesCercanas {
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
                     try{
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                        Posicion posicion = posicionNueva.posicionValida();
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
                         if (!batallonUnidades.contains(unidadNueva)) {
                             batallonUnidades.add(unidadNueva);
                             listaUnidades.add(unidadNueva);
                         }
-                    }catch (CasilleroVacioExcepcion | NullPointerException e){
+                    }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){
 
                     }
                 }
             }
-        }
         return batallonUnidades;
     }
 
@@ -44,20 +44,19 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (counter == 1) {
-                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionX() + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).getPosicionY() + ((Direccion) direccionActual).getY());
+                    posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + ((Direccion) direccionActual).getX(),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + ((Direccion) direccionActual).getY());
                 }
-                if (posicionNueva.getPosicionY() > 0 && posicionNueva.getPosicionY() > 0) {
                     try{
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                        Posicion posicion = posicionNueva.posicionValida();
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
                         if (!unidadesADistanciaCercana.contains(unidadNueva)) {
                             unidadesADistanciaCercana.add(unidadNueva);
                         }
-                    }catch (CasilleroVacioExcepcion | NullPointerException e){
+                    }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){
 
                     }
                 }
             }
-        }
         return unidadesADistanciaCercana;
     }
 

@@ -39,7 +39,7 @@ public class PosicionTest {
 
         Posicion posicionNueva = posicion.posicionNueva(direccion);
 
-        Assertions.assertEquals(2,posicionNueva.getPosicionX());
+        Assertions.assertEquals(2,posicionNueva.posicionX);
 
     }
 }

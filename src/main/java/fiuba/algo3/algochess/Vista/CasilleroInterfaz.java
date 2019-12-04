@@ -26,7 +26,7 @@ public class CasilleroInterfaz extends StackPane {
         rectangle.setWidth(TableroInterfaz.tamanioCasillero);
         rectangle.setHeight(TableroInterfaz.tamanioCasillero);
         rectangle.setStroke(Color.BLACK);
-        relocate(posicion.getPosicionX() * TableroInterfaz.tamanioCasillero,posicion.getPosicionY() * TableroInterfaz.tamanioCasillero);
+        relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero,posicion.posicionY * TableroInterfaz.tamanioCasillero);
         rectangle.setFill(casilleroAliado ? Color.valueOf("#feb") : Color.valueOf("#582"));
         getChildren().add(rectangle);
     }

@@ -2,11 +2,12 @@ package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 
+import java.net.PortUnreachableException;
 import java.util.Objects;
 
 public class Posicion {
 
-    private int posicionX, posicionY;
+    public int posicionX, posicionY;
 
 
     public Posicion(int posicionX, int posicionY){
@@ -29,13 +30,7 @@ public class Posicion {
         return new Distancia(distanciaX,distanciaY);
     }
 
-   public int getPosicionX(){
-        return posicionX;
-    }
 
-    public int getPosicionY(){
-        return posicionY;
-    }
 
     public Distancia calcularDistancia(Posicion posicionFinal){
         return posicionFinal.calcularDistancia(this.posicionX,this.posicionY);
@@ -61,6 +56,12 @@ public class Posicion {
         return direccion.posicionNueva(posicionX,posicionY);
     }
 
+    public Posicion posicionValida(){
+        if (posicionX > 0 && posicionY > 0){
+            return this;
+        }
+        throw new MovimientoInvalidoException("La posicion es invalida");
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
