@@ -90,7 +90,7 @@ public class Jugador {
     }
 
     public int getPuntosDisponibles(){
-        return puntosJugador.puntosDisponibles;
+        return puntosJugador.getPuntosDisponibles();
     }
 
     public void reconocerUnidadesAliadasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {

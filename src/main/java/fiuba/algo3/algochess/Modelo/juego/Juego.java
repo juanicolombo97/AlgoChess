@@ -1,5 +1,8 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
+
 public class Juego {
 
     private Jugador jugadorAliado;
@@ -7,6 +10,7 @@ public class Juego {
     private Jugador jugadorActual;
     private Jugador jugadorSiguiente;
     private Tablero tablero;
+    private Fase faseActual;
 
     public Juego(Jugador jugador, Jugador jugador2){
         this.jugadorAliado = jugador;
@@ -18,34 +22,21 @@ public class Juego {
         this.tablero = tablero;
         this.jugadorActual = jugadorAliado;
         this.jugadorSiguiente = jugadorEnemigo;
+        FaseCreacionUnidades faseCreacionUnidades = new FaseCreacionUnidades(this.jugadorActual, this.jugadorSiguiente, this.tablero);
+        this.faseActual = faseCreacionUnidades;
         return tablero;
     }
 
     public void cambiarTurno(){
         if (jugadorSiguiente.puedeSeguirJugando()){
-            Jugador auxiliar = jugadorActual;
-            this.jugadorActual = jugadorSiguiente;
-            this.jugadorSiguiente = auxiliar;
-        } else{
+            faseActual.cambiarTurno();
+        } else {
             finalizarJuego();
         }
     }
 
-    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador){
-        if (jugadorActual == jugador){
-            tablero.atacar(posicionAtacante, posicionAtacado, jugador);
-        }
-        this.cambiarTurno();
-    }
-
-    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){
-        if (jugadorActual == jugador){
-            tablero.moverUnidad(posicionInicial, posicionFinal, jugador);
-        }
-        this.cambiarTurno();
-    }
-
     public void finalizarJuego(){
         // Algo como "Gano el jugador: str(jugadorActual)"
+        System.out.print("Finalizó el juego");
     }
 }

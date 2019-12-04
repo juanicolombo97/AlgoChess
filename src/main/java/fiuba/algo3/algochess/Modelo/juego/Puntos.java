@@ -4,7 +4,7 @@ import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 
 public class Puntos {
 
-    public int puntosDisponibles;
+    private int puntosDisponibles;
 
     public Puntos(int puntos){
         puntosDisponibles = puntos;
@@ -19,6 +19,10 @@ public class Puntos {
         if (puntosDisponibles < costoUnidad){
             throw new NoAlcanzanLosPuntosException("Puntos insuficientes, dispone de: " + puntosDisponibles);
         }
+    }
+
+    public int getPuntosDisponibles(){
+        return this.puntosDisponibles;
     }
 
 }
