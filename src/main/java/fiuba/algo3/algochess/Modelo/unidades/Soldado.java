@@ -15,7 +15,7 @@ public class Soldado implements Unidad {
     private Emisario emisario;
     private double danioExtra = 0;
 
-    public Soldado(Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Soldado(Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         this.posicion = posicion;
         this.emisario = emisario;
         puntosJugador.alcanzanPuntos(costoUnidad);
@@ -31,13 +31,13 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
         this.emisario.notificar(this);
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, UnidadNulaException, UnidadInvalidaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
@@ -45,12 +45,12 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("El soldado solo ataca distancia cercana");
     }
 
@@ -65,12 +65,12 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarException {
+    public void curarse(int vidaACurar) {
         vidaUnidad += vidaACurar;
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) {
         Batallon batallon = new Batallon();
         ArrayList batallonSoldados = batallon.calcularBatallonDeSoldados(unidadAMover,tablero,unidadesAliadas);
         if (batallonSoldados.size() < 3){

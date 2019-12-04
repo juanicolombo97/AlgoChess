@@ -9,7 +9,7 @@ import fiuba.algo3.algochess.Modelo.juego.Posicion;
 public class UnidadNueva {
 
     //Creo una fabrica de unidades.
-    public Unidad crearUnidad(String unidad, Puntos puntosJugador, Posicion posicion, Emisario emisario) throws fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException, NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Unidad crearUnidad(String unidad, Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         UnidadesFabrica unidadesFabrica = new UnidadesFabrica();
         Unidad unidadNueva = unidadesFabrica.crearUnidad(unidad.toLowerCase(),puntosJugador,posicion,emisario);
         return unidadNueva;

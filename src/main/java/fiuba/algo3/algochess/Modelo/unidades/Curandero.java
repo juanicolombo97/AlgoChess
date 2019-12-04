@@ -16,7 +16,7 @@ public class Curandero implements Unidad {
     private double danioExtra = 0;
 
 
-    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         puntosJugador.alcanzanPuntos(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
@@ -32,7 +32,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
         this.emisario.notificar(this);
     }
@@ -42,7 +42,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         if (!esUnidadAliada){
             throw new CurarException("No se puede curar un enemigo");
         }
@@ -50,12 +50,12 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
@@ -70,12 +70,12 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarException {
+    public void curarse(int vidaACurar) {
         vidaUnidad += vidaACurar;
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
+    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) {
         ArrayList listaUnidadesAMover = new ArrayList();
         listaUnidadesAMover.add(this);
         return listaUnidadesAMover;

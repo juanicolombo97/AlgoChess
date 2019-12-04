@@ -1,8 +1,5 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
-import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
 public class Casillero{
@@ -19,7 +16,7 @@ public class Casillero{
         this.jugador = jugador;
     }
 
-    public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void guardarUnidad(Unidad unidadNueva) {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
         unidadNueva.modificarPosicion(posicionCasillero);
         if (!jugador.unidadAliada(unidadNueva)){
@@ -28,22 +25,22 @@ public class Casillero{
             unidadNueva.enCasilleroAliado();
         }
    }
-   public void eliminarUnidad() throws CasilleroVacioExcepcion {
+   public void eliminarUnidad() {
         estadoCasillero = estadoCasillero.eliminarUnidad();
    }
 
-   public Unidad obtenerUnidad() throws CasilleroVacioExcepcion {
+   public Unidad obtenerUnidad() {
         return estadoCasillero.obtenerUnidad();
    }
    public Posicion getPosicionCasillero(){
         return posicionCasillero;
    }
 
-   public void movimientoValido(Casillero casilleroDestino) throws MovimientoInvalidoException {
+   public void movimientoValido(Casillero casilleroDestino) {
         casilleroDestino.distanciaCorrecta(this.posicionCasillero);
    }
 
-   public void distanciaCorrecta(Posicion posicion) throws MovimientoInvalidoException {
+   public void distanciaCorrecta(Posicion posicion) {
         posicionCasillero.distanciaValidaDesde(posicion);
    }
 

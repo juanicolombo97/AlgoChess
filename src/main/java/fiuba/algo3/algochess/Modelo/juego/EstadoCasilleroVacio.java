@@ -7,17 +7,17 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 public class EstadoCasilleroVacio implements EstadoCasillero {
 
     @Override
-    public EstadoCasillero guardarUnidad(Unidad unidad) throws CasilleroOcupadoException {
+    public EstadoCasillero guardarUnidad(Unidad unidad){
         return new EstadoCasilleroOcupado(unidad);
     }
 
     @Override
-    public EstadoCasillero eliminarUnidad() throws CasilleroVacioExcepcion {
+    public EstadoCasillero eliminarUnidad(){
         throw new CasilleroVacioExcepcion("El casillero esta vacio");
     }
 
     @Override
-    public Unidad obtenerUnidad() throws CasilleroVacioExcepcion {
+    public Unidad obtenerUnidad(){
         throw new CasilleroVacioExcepcion("El casillero esta vacio");
     }
 }

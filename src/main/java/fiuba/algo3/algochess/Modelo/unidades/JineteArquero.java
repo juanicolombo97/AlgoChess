@@ -23,17 +23,17 @@ public class JineteArquero implements EstadoJinete{
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado) {
         throw new NoPuedeAtacarException("El jinete arquero no puede atacar a distancias cortas");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado) throws NoPuedeAtacarException, UnidadNulaException {
+    public void atacarDistanciaMediana(Unidad atacado) {
         atacado.recibirDanio(danio);
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado) throws NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado) {
         throw new NoPuedeAtacarException("El jinete arquero no puede atacar a distancias lejanas");
     }
 

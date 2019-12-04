@@ -9,27 +9,27 @@ import java.util.HashMap;
 
 public interface Unidad {
 
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero);
 
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero);
 
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException;
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero);
 
-    public void recibirDanio(double danioRecibido) throws UnidadNulaException;
+    public void recibirDanio(double danioRecibido);
 
     public int cuantoCuesta();
 
-    public void curarse(int vidaACurar) throws CurarException, UnidadNulaException;
+    public void curarse(int vidaACurar);
 
-    public ArrayList habilidadMoverse(Unidad unidadAMover,HashMap tablero,ArrayList unidadesAliadas) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
+    public ArrayList habilidadMoverse(Unidad unidadAMover,HashMap tablero,ArrayList unidadesAliadas);
 
     public double getVidaUnidad();
 
     public Posicion getPosicion();
 
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
+    public void modificarPosicion(Posicion posicion);
 
-    public void recibirNotificacion() throws CasilleroVacioExcepcion;
+    public void recibirNotificacion();
 
     public boolean esSoldado();
 
