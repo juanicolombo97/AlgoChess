@@ -88,4 +88,34 @@ public class Jugador {
     public int getPuntosDisponibles(){
         return puntosJugador.puntosDisponibles;
     }
+
+    public void reconocerUnidadesAliadasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
+        if (unidadAliada(unidad)){
+            reconocerUnidadesAliadasAdyascentesAUnidad(unidadesCercanas,unidadesAliadasCercanasAUnidad);
+        }
+    }
+
+    private void reconocerUnidadesAliadasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
+        for(int i = 0; i < unidadesCercanas.size(); i++) {
+            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+            if (unidadAliada(unidadActual)) {
+                unidadesAliadasCercanasAUnidad.add(unidadActual);
+            }
+        }
+    }
+
+    public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+        if (unidadAliada(unidad)){
+            reconocerUnidadesEnemigasAdyascentesAUnidad(unidadesCercanas,unidadesEnemigasCercanasAUnidad);
+        }
+    }
+
+    private void reconocerUnidadesEnemigasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+        for(int i = 0; i < unidadesCercanas.size(); i++) {
+            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+            if (!unidadAliada(unidadActual)) {
+                unidadesEnemigasCercanasAUnidad.add(unidadActual);
+            }
+        }
+    }
 }

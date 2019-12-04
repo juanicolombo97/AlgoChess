@@ -1,10 +1,6 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
-import fiuba.algo3.algochess.Modelo.excepciones.NoPuedeAtacarException;
-import fiuba.algo3.algochess.Modelo.excepciones.UnidadNulaException;
-
 public interface EstadoJinete {
-    public EstadoJinete cambiarEstadoJinete(String estado);
 
     public void atacarDistanciaCerca(Unidad atacado);
 
@@ -13,5 +9,9 @@ public interface EstadoJinete {
     public void atacarDistanciaLejana(Unidad atacado);
 
     public boolean esArquero();
+
+    public JineteArquero setEstadoJineteArquero();
+
+    public JineteEspadachin setEstadoJineteEspadachin();
 }
 

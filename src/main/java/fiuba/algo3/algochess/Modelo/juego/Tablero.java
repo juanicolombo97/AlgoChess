@@ -93,7 +93,7 @@ public class Tablero {
 
 
 
-    public void notificar(Unidad unidadEmisora) {
+    public void notificar(Unidad unidadEmisora) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
         for(int i = 0; i < unidadesCercanas.size(); i++){
             Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
@@ -101,15 +101,13 @@ public class Tablero {
         }
     }
 
-    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) {
+    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) { // done
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
         ArrayList unidadesADistanciaCercana = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
-        if (unidadesADistanciaCercana.contains(unaUnidad)){
-            unidadesADistanciaCercana.remove(unaUnidad);
-        }
         return unidadesADistanciaCercana;
     }
 
+    /*
     public void unidadesAliadasCercanasPorJugador(Jugador jugador, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanas){
 
         for(int i = 0; i < unidadesCercanas.size(); i++) {
@@ -119,26 +117,22 @@ public class Tablero {
             }
         }
     }
+     */
 
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) {
+    public ArrayList unidadesAliadasCercanas(Unidad unidad) { //done
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        }
+        this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad) {
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad) { //done
         ArrayList soldadosAliadosCercanos = new ArrayList();
         ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
         for (Object unidadActual: unidadesAliadasCercanasAUnidad){
             Unidad laUnidadActual = (Unidad)unidadActual;
-            if (laUnidadActual.esSoldado()){
-                soldadosAliadosCercanos.add(unidadActual);
-            }
+            laUnidadActual.identificarse(soldadosAliadosCercanos);
         }
         return soldadosAliadosCercanos.size();
     }
@@ -146,11 +140,8 @@ public class Tablero {
     public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
-        if (this.jugador1.unidadAliada(unidad)){
-            unidadesAliadasCercanasPorJugador(jugador2, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        } else {
-            unidadesAliadasCercanasPorJugador(jugador1, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
-        }
+        this.jugador1.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         return unidadesEnemigasCercanasAUnidad;
     }
 }

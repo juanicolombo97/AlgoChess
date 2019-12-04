@@ -105,6 +105,13 @@ public class Soldado implements Unidad {
     public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
         listaDeSoldados.add(this);
     }
+
+    @Override
+    public void identificarse(ArrayList soldadosAliadosCercanos) {
+        if(esSoldado()){
+            soldadosAliadosCercanos.add(this);
+        }
+    }
 }
 
 
