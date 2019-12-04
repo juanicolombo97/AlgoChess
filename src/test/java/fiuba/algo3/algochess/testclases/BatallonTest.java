@@ -14,55 +14,6 @@ import java.util.ArrayList;
 public class BatallonTest {
 
     @Test
-    public void seFormaBatallonDeUnidadesCercanasCorrectamente() {
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador,jugador1);
-
-        Posicion posicion = new Posicion(1,1);
-        Posicion posicion1 = new Posicion(2,2);
-        Posicion posicion2 = new Posicion(3,3);
-        Posicion posicion3 = new Posicion(4,4);
-
-        tablero.crearUnidad(jugador,posicion,"soldado");
-        tablero.crearUnidad(jugador,posicion1,"catapulta");
-        tablero.crearUnidad(jugador,posicion2,"curandero");
-        tablero.crearUnidad(jugador,posicion3,"jinete");
-
-        Batallon batallon = new Batallon();
-        Unidad unidad = jugador.getUnidadesDisponibles().get(0);
-
-        ArrayList unidadesCercanas = batallon.calcularBatallon(unidad,tablero.getTablero());
-
-        Assertions.assertEquals(4,unidadesCercanas.size());
-
-    }
-
-    @Test
-    public void seFormaBatallonConUnidadesEnemigasTambien() {
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador,jugador1);
-
-        Posicion posicion = new Posicion(8,8);
-        Posicion posicion1 = new Posicion(9,9);
-        Posicion posicion2 = new Posicion(10,10);
-        Posicion posicion3 = new Posicion(11,11);
-
-        tablero.crearUnidad(jugador,posicion,"soldado");
-        tablero.crearUnidad(jugador,posicion1,"soldado");
-        tablero.crearUnidad(jugador1,posicion2,"soldado");
-        tablero.crearUnidad(jugador1,posicion3,"soldado");
-
-        Batallon batallon = new Batallon();
-        Unidad unidad = jugador.getUnidadesDisponibles().get(0);
-
-        ArrayList unidadesCercanas = batallon.calcularBatallon(unidad,tablero.getTablero());
-
-        Assertions.assertEquals(4,unidadesCercanas.size());
-    }
-
-    @Test
     public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");

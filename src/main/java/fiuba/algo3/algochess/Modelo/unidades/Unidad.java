@@ -36,4 +36,6 @@ public interface Unidad {
     public void enCasilleroEnemigo();
 
     public void enCasilleroAliado();
+
+    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados);
 }

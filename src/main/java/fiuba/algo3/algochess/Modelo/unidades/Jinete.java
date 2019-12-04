@@ -111,4 +111,9 @@ public class Jinete implements Unidad {
         this.danioExtra = 0.00;
     }
 
+    @Override
+    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+
+    }
+
 }

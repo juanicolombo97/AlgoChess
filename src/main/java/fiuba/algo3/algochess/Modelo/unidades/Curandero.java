@@ -94,4 +94,9 @@ public class Curandero implements Unidad {
         this.danioExtra = 0.00;
     }
 
+    @Override
+    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+
+    }
+
 }
