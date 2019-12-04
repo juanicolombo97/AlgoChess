@@ -6,12 +6,13 @@ import fiuba.algo3.algochess.Modelo.unidades.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Jugador {
 
     private int puntosColocacionFichas = 20;
     private ArrayList<Unidad> unidadesDisponibles = new ArrayList<>();
-    public ArrayList<Casillero> casilleroJugador = new ArrayList<>();
+    public List<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
     private Puntos puntosJugador;
 
@@ -26,6 +27,10 @@ public class Jugador {
 
     public void agregarCasillero(Casillero casilleroNuevo){
         casilleroJugador.add(casilleroNuevo);
+    }
+
+    public void casillerosAliados(List casilleros){
+        casilleroJugador = casilleros;
     }
 
     private void casilleroAliado(Casillero casillero){
