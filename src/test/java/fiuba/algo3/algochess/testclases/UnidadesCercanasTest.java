@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 public class UnidadesCercanasTest {
 
     @Test
-    public void unidadesCercanasADistancia1y2() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroVacioExcepcion, MovimientoInvalidoException, CasilleroEnemigoException, NoAlcanzanLosPuntosException {
+    public void unidadesCercanasADistancia1y2() {
         Jugador jugador = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
@@ -40,7 +40,7 @@ public class UnidadesCercanasTest {
     }
 
     @Test
-    public void unidadesAliadasCercanas() throws CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public void unidadesAliadasCercanas() {
         Jugador jugador = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
@@ -59,7 +59,7 @@ public class UnidadesCercanasTest {
     }
 
     @Test
-    public void cantidadSoldadosAliadosCercanos() throws CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public void cantidadSoldadosAliadosCercanos() {
         Jugador jugador = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
@@ -78,7 +78,7 @@ public class UnidadesCercanasTest {
     }
 
     @Test
-    public void unidadesEnemigasCercanas() throws CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion, CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public void unidadesEnemigasCercanas() {
         Jugador jugador = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);

@@ -26,7 +26,7 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() {
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
         Puntos puntos = new Puntos(20);
@@ -36,7 +36,7 @@ public class CasilleroTest {
         Assertions.assertEquals(soldado.getPosicion(),soldado2.getPosicion());
     }
     @Test
-    public void seQuiereAgregarUnidadACasilleroOcupado() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void seQuiereAgregarUnidadACasilleroOcupado() {
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
@@ -51,7 +51,7 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() {
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
 

@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class CuranderoTest {
 
     @Test
-    public void curanderoRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoRecienCreadoTieneVidaLlena() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
@@ -21,7 +21,7 @@ public class CuranderoTest {
     }
 
     @Test
-    public void curanderoRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoRecienCreadoCuestaLosPuntosCorrectos() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
@@ -29,7 +29,7 @@ public class CuranderoTest {
     }
 
     @Test
-    public void curanderoRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoRecibeDanioCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
@@ -37,7 +37,7 @@ public class CuranderoTest {
         Assertions.assertEquals(55, curandero.getVidaUnidad());
     }
     @Test
-    public void curanderoSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoSeCuraCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
@@ -45,7 +45,7 @@ public class CuranderoTest {
         Assertions.assertEquals(95, curandero.getVidaUnidad());
     }
     @Test
-    public void curanderoCuraCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoCuraCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -56,7 +56,7 @@ public class CuranderoTest {
         Assertions.assertEquals(90,curandero1.getVidaUnidad());
     }
     @Test
-    public void curanderoNoPuedeAtacarCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoNoPuedeAtacarCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);
@@ -71,7 +71,7 @@ public class CuranderoTest {
 
     }
     @Test
-    public void curanderoNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void curanderoNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
         HashMap tablero = new HashMap();
         Posicion posicion = new Posicion(1,1);

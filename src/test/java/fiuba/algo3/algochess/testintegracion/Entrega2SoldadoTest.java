@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Entrega2SoldadoTest {
 
     @Test
-    public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -39,7 +39,7 @@ public class Entrega2SoldadoTest {
     }
 
     @Test
-    public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -72,7 +72,7 @@ public class Entrega2SoldadoTest {
 
     }
     @Test
-    public void batallonSeDisuelveCorrectamenteAlDejarDeExistir() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void batallonSeDisuelveCorrectamenteAlDejarDeExistir() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -111,7 +111,7 @@ public class Entrega2SoldadoTest {
     }
 
     @Test
-    public void habiendo4SoldadosSoloSeMueven3() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void habiendo4SoldadosSoloSeMueven3() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);

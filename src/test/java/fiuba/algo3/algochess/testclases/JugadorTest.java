@@ -19,7 +19,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorPuedeCrearUnidad() throws NoAlcanzanLosPuntosException, UnidadInvalidaException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jugadorPuedeCrearUnidad() {
         Jugador jugador = new Jugador("juani");
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion,true, jugador);
@@ -30,7 +30,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorAtacaCorrectamenteUnidad() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, UnidadInvalidaException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void jugadorAtacaCorrectamenteUnidad() {
         Posicion posicion1 = new Posicion(1,1);
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
