@@ -8,26 +8,18 @@ import java.util.HashMap;
 public class Batallon {
 
     private UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-    private ArrayList unidades = new ArrayList();
-
-    public ArrayList calcularBatallon(Unidad unidadAtacada, HashMap tablero) {
-        return  unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAtacada);
-    }
 
     public ArrayList calcularBatallonDeSoldados(Unidad unidadAMover,HashMap tablero,ArrayList listaUnidadesAliadas) {
-       ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAMover);
+       ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(tablero, unidadAMover);
        return listaSoldados(listaUnidades,listaUnidadesAliadas);
     }
 
     private ArrayList listaSoldados(ArrayList listaUnidades,ArrayList unidadesAliadas) {
         ArrayList<Soldado> listaSoldados = new ArrayList<>();
-        for (int x = 0; x < listaUnidades.size(); x++) {
-            Unidad unidad = (Unidad) listaUnidades.get(x);
-            if (unidadesAliadas.contains(unidad)) {
-                try {
-                    listaSoldados.add((Soldado) unidad);
-                }catch (ClassCastException e) {
-                }
+        for (Object unidad : listaUnidades) {
+            Unidad unidadActual = (Unidad) unidad;
+            if (unidadesAliadas.contains(unidadActual)) {
+                unidadActual.agregarSoldadoAListaDeSoldados(listaSoldados);
             }
         }
         return listaSoldados;

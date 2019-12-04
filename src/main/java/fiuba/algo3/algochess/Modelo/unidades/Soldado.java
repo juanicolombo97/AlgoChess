@@ -100,6 +100,11 @@ public class Soldado implements Unidad {
     public void enCasilleroAliado(){
         this.danioExtra = 0.00;
     }
+
+    @Override
+    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+        listaDeSoldados.add(this);
+    }
 }
 
 

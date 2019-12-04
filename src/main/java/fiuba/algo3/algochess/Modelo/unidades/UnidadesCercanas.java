@@ -14,7 +14,8 @@ public class UnidadesCercanas {
     private ArrayList listaDirecciones = direccion.direccionesMovimiento();
     private ArrayList batallonUnidades = new ArrayList();
 
-    public ArrayList unidadesCercanas(HashMap tablero, ArrayList listaUnidades, Unidad unidadAtacada){
+    public ArrayList unidadesCercanas(HashMap tablero, Unidad unidadAtacada){
+        ArrayList listaUnidades = new ArrayList();
         listaUnidades.add(unidadAtacada);
         batallonUnidades.add(unidadAtacada);
         while (listaUnidades.size()!= 0){

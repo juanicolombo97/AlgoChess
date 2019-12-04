@@ -57,8 +57,8 @@ public class Catapulta implements Unidad{
 
     @Override
     public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
-        Batallon batallon = new Batallon();
-        ArrayList unidadesAAtacar = batallon.calcularBatallon(atacado,tablero);
+        UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
+        ArrayList unidadesAAtacar = unidadesCercanas.unidadesCercanas(tablero, atacado);
         for (Object unidad : unidadesAAtacar){
             ( (Unidad) unidad).recibirDanio(danioDistancia);
         }
@@ -95,6 +95,11 @@ public class Catapulta implements Unidad{
     @Override
     public void enCasilleroAliado(){
         this.danioExtra = 0.00;
+    }
+
+    @Override
+    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+
     }
 
 }
