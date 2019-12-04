@@ -56,7 +56,12 @@ public class Posicion {
         return direccion.posicionNueva(posicionX,posicionY);
     }
 
-
+    public Posicion posicionValida(){
+        if (posicionX > 0 && posicionY > 0){
+            return this;
+        }
+        throw new MovimientoInvalidoException("La posicion es invalida");
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
