@@ -119,7 +119,8 @@ public class Tablero {
     public ArrayList unidadesAliadasCercanas(Unidad unidad) {
         ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
-        this.jugador1.reconocerUnidadesAliadas(unidad, jugador2, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 
