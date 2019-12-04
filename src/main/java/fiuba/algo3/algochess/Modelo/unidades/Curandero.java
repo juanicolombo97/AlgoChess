@@ -82,13 +82,8 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void enCasilleroEnemigo(){
-        this.danioExtra = 0.05;
-    }
-
-    @Override
-    public void enCasilleroAliado(){
-        this.danioExtra = 0.00;
+    public void setDanioPorCasillero(double danioExtra) {
+        this.danioExtra = danioExtra;
     }
 
     @Override

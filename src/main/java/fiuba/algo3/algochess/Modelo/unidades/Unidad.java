@@ -30,9 +30,7 @@ public interface Unidad {
 
     public void recibirNotificacion();
 
-    public void enCasilleroEnemigo();
-
-    public void enCasilleroAliado();
+    public void setDanioPorCasillero(double danioExtra);
 
     public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados);
 

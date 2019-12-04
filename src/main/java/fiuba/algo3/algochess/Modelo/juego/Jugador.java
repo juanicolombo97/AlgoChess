@@ -15,6 +15,8 @@ public class Jugador {
     public List<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
     private Puntos puntosJugador;
+    private double DANIOEXTRA = 0.05;
+    private double NODANIOEXTRA = 0.00;
 
     public Jugador(String  nombreJugador){
         this.nombreJugador = nombreJugador;
@@ -66,9 +68,9 @@ public class Jugador {
 
     public void unidadModificarPosicionCasillero(Unidad unidad, Casillero casilleroFin){
         if (casilleroJugador.contains(casilleroFin)){
-            unidad.enCasilleroAliado();
+            unidad.setDanioPorCasillero(NODANIOEXTRA);
         }else {
-            unidad.enCasilleroEnemigo();
+            unidad.setDanioPorCasillero(DANIOEXTRA);
         }
     }
 
