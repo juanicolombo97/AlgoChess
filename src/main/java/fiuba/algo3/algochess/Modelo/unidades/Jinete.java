@@ -27,10 +27,11 @@ public class Jinete implements Unidad {
     }
 
     public void setEstadoJinete(String estado){ //temporal, sacar ifs con refactor de recibirNotificacion()
-        if(estado == "arquero"){
+        if(estado.equals("arquero")){
             this.estadoJinete = this.estadoJinete.setEstadoJineteArquero();
+        }else if(estado.equals("espadachin")){
+            this.estadoJinete = this.estadoJinete.setEstadoJineteEspadachin();
         }
-        this.estadoJinete = this.estadoJinete.setEstadoJineteEspadachin();
     }
 
     @Override
