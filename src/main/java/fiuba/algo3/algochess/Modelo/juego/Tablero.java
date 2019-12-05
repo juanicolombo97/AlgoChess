@@ -19,7 +19,7 @@ public class Tablero {
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
                 Posicion posicion = new Posicion(i,j);
-                Casillero casillero = new Casillero(posicion,jugador1,new UnidadNula());
+                Casillero casillero = new Casillero(posicion,jugador1);
                 tablero.put(posicion,casillero);
             }
         }
