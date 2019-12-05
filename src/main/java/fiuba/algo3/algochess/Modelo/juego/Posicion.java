@@ -84,4 +84,11 @@ public class Posicion {
                 unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
             }
     }
+
+    public void posicionValidaParaFormarBatallon(HashMap tablero, ArrayList batallonUnidades, ArrayList listaUnidades) {
+        if(posicionValida()){
+            Unidad unidad = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+            unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
-import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
@@ -21,12 +20,7 @@ public class UnidadesCercanas {
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                if (posicionNueva.posicionValida()) {
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
-                        if (!batallonUnidades.contains(unidadNueva)) {
-                            unidadNueva.agregarUnidadCercana(batallonUnidades,listaUnidades);
-                        }
-                }
+                posicionNueva.posicionValidaParaFormarBatallon(tablero,batallonUnidades,listaUnidades);
             }
         }
         return batallonUnidades;
