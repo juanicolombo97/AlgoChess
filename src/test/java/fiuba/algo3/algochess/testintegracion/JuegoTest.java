@@ -157,6 +157,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        juego.cambiarTurno();
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
@@ -170,6 +171,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        juego.cambiarTurno();
         // Cambio de fase a FaseJuego
         Posicion posicionDestinoSoldadoEnemigo = new Posicion(10,1);
         try {
@@ -198,6 +200,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        juego.cambiarTurno();
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
@@ -211,6 +214,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        juego.cambiarTurno();
         // Cambio de fase a FaseJuego
         Posicion posicionDestinoSoldado = new Posicion(10,1);
         juego.realizarMovimiento(posicionSoldado, posicionDestinoSoldado, jugador1);
@@ -235,6 +239,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        juego.cambiarTurno();
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
@@ -248,6 +253,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        juego.cambiarTurno();
         // Cambio de fase a FaseJuego
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
@@ -320,6 +326,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        juego.cambiarTurno();
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
@@ -334,7 +341,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
         // Cambio de fase a FaseJuego
-        juego.cambiarAFaseJuego();
+        juego.cambiarTurno();
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
