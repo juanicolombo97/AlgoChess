@@ -1,8 +1,10 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
-import java.net.PortUnreachableException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Posicion {
@@ -74,5 +76,12 @@ public class Posicion {
     @Override
     public int hashCode() {
         return Objects.hash(posicionX, posicionY);
+    }
+
+    public void determinarPosicionValida(HashMap tablero, ArrayList unidadesADistanciaCercana) {
+            if (posicionValida()){
+                Unidad unidadNueva = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+                unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
+            }
     }
 }
