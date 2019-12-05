@@ -7,8 +7,6 @@ public class Juego {
 
     private Jugador jugadorAliado;
     private Jugador jugadorEnemigo;
-    private Jugador jugadorActual;
-    private Jugador jugadorSiguiente;
     private Tablero tablero;
     private Fase faseActual;
 
@@ -20,16 +18,12 @@ public class Juego {
     public Tablero comenzarJuego(){
         Tablero tablero = new Tablero(jugadorAliado,jugadorEnemigo);
         this.tablero = tablero;
-        this.jugadorActual = jugadorAliado;
-        this.jugadorSiguiente = jugadorEnemigo;
-        FaseCreacionUnidades faseCreacionUnidades = new FaseCreacionUnidades(this.jugadorActual, this.jugadorSiguiente, this.tablero, this);
-        this.faseActual = faseCreacionUnidades;
+        this.faseActual = new FaseCreacionUnidades(this.jugadorAliado, this.jugadorEnemigo, this.tablero, this);
         return tablero;
     }
 
     public void cambiarAFaseJuego(){
-        FaseJuego faseJuego = new FaseJuego(jugadorAliado, jugadorEnemigo, tablero, this);
-        this.faseActual = faseJuego;
+        this.faseActual = new FaseJuego(jugadorAliado, jugadorEnemigo, tablero, this);
     }
 
     public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
