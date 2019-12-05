@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
 
 public class Puntos {
 
@@ -11,8 +12,10 @@ public class Puntos {
     }
 
     public void puntosSuficientes(int costoUnidad){
-
         puntosDisponibles = puntosDisponibles - costoUnidad;
+        if (puntosDisponibles == 0){
+            throw new JugadorSeQuedoSinPuntosException("Te haz quedado sin puntos");
+        }
     }
 
     public void alcanzanPuntos(int costoUnidad) {

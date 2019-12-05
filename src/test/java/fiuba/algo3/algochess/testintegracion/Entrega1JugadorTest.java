@@ -25,11 +25,10 @@ public class Entrega1JugadorTest {
         tablero.crearUnidad(jugador,posicion,"catapulta");
         tablero.crearUnidad(jugador,posicion1,"catapulta");
         tablero.crearUnidad(jugador,posicion2,"catapulta");
-        tablero.crearUnidad(jugador,posicion3,"catapulta");
         try {
-            tablero.crearUnidad(jugador,posicion4,"soldado");
-        }catch (NoAlcanzanLosPuntosException e){
-            Assertions.assertEquals("Puntos insuficientes, dispone de: 0",e.getMessage());
+            tablero.crearUnidad(jugador,posicion3,"catapulta");
+        }catch (JugadorSeQuedoSinPuntosException e){
+            Assertions.assertEquals("Te haz quedado sin puntos",e.getMessage());
         }
     }
 

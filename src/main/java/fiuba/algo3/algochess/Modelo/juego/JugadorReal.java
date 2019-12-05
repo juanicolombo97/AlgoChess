@@ -44,7 +44,6 @@ public class JugadorReal implements Jugador {
         } catch (JugadorNuloException e){
             juego.cambiarAFaseJuego();
         }
-
     }
 
     public String getNombreJugador() {
@@ -66,9 +65,6 @@ public class JugadorReal implements Jugador {
     }
 
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
-
-        //Llamo para ver si el casillero pertenece al jugador.
-        casilleroAliado(casillero);
         //Creo la unidad y cambio los puntos disponibles del jugador
         UnidadNueva unidadNueva = new UnidadNueva();
         Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion,emisario);
