@@ -32,14 +32,6 @@ public class Juego {
         this.faseActual = faseJuego;
     }
 
-    public void cambiarTurno(){
-        if (jugadorSiguiente.puedeSeguirJugando()){
-            faseActual.cambiarTurno();
-        } else {
-            finalizarJuego();
-        }
-    }
-
     public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
         faseActual.crearUnidad(jugador, posicion, nombreUnidad);
     }

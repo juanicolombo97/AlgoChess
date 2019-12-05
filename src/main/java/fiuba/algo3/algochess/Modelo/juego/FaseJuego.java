@@ -18,9 +18,13 @@ public class FaseJuego implements Fase{
 
     @Override
     public void cambiarTurno(){
-        Jugador auxiliar = jugadorActual;
-        this.jugadorActual = jugadorSiguiente;
-        this.jugadorSiguiente = auxiliar;
+        if (jugadorSiguiente.puedeSeguirJugando()) {
+            Jugador auxiliar = jugadorActual;
+            this.jugadorActual = jugadorSiguiente;
+            this.jugadorSiguiente = auxiliar;
+        } else {
+            juego.finalizarJuego();
+        }
     }
 
     @Override
