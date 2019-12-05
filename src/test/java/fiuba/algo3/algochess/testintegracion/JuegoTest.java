@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.testintegracion;
 
+import fiuba.algo3.algochess.Modelo.excepciones.FaseCreacionUnidadesFinalizoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -83,10 +84,10 @@ public class JuegoTest {
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
-        Posicion posicionCatapultaEnemiga = new Posicion(20,6);
-        Posicion posicionCatapultaEnemiga2 = new Posicion(20,6);
-        Posicion posicionCatapultaEnemiga3 = new Posicion(20,6);
-        Posicion posicionSoldadoEnemigo2 = new Posicion(20,20);
+        Posicion posicionCatapultaEnemiga = new Posicion(19,6);
+        Posicion posicionCatapultaEnemiga2 = new Posicion(19,5);
+        Posicion posicionCatapultaEnemiga3 = new Posicion(19,4);
+        Posicion posicionSoldadoEnemigo2 = new Posicion(19,20);
         juego.crearUnidad(jugador2, posicionSoldadoEnemigo, "soldado");
         juego.crearUnidad(jugador2, posicionCuranderoEnemigo1, "curandero");
         juego.crearUnidad(jugador2, posicionCuranderoEnemigo2, "curandero");
@@ -95,8 +96,8 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
         try {
             juego.crearUnidad(jugador2, posicionSoldadoEnemigo2, "soldado");
-        } catch (TurnoJugadorException e){
-            Assertions.assertEquals("Es el turno del otro jugador", e.getMessage());
+        } catch (FaseCreacionUnidadesFinalizoException e){
+            Assertions.assertEquals("La fase de creación de unidades ya finalizó", e.getMessage());
         }
     }
 
