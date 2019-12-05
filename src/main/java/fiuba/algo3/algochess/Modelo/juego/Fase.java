@@ -7,4 +7,6 @@ public interface Fase {
     public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador);
 
     public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador);
+
+    public void cambiarTurno();
 }

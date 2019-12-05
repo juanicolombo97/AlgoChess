@@ -6,11 +6,13 @@ public class FaseJuego implements Fase{
     private Jugador jugadorActual;
     private Jugador jugadorSiguiente;
     private Tablero tablero;
+    private Juego juego;
 
-    public FaseJuego(Jugador jugador1, Jugador jugador2, Tablero tablero){
+    public FaseJuego(Jugador jugador1, Jugador jugador2, Tablero tablero, Juego juego){
         this.jugadorActual = jugador1;
         this.jugadorSiguiente = jugador2;
         this.tablero = tablero;
+        this.juego = juego;
     }
 
     @Override

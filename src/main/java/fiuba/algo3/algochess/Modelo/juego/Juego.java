@@ -22,9 +22,14 @@ public class Juego {
         this.tablero = tablero;
         this.jugadorActual = jugadorAliado;
         this.jugadorSiguiente = jugadorEnemigo;
-        FaseCreacionUnidades faseCreacionUnidades = new FaseCreacionUnidades(this.jugadorActual, this.jugadorSiguiente, this.tablero);
+        FaseCreacionUnidades faseCreacionUnidades = new FaseCreacionUnidades(this.jugadorActual, this.jugadorSiguiente, this.tablero, this);
         this.faseActual = faseCreacionUnidades;
         return tablero;
+    }
+
+    public void cambiarAFaseJuego(){
+        FaseJuego faseJuego = new FaseJuego(jugadorAliado, jugadorEnemigo, tablero, this);
+        this.faseActual = faseJuego;
     }
 
     public void cambiarTurno(){
@@ -33,6 +38,18 @@ public class Juego {
         } else {
             finalizarJuego();
         }
+    }
+
+    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
+        faseActual.crearUnidad(jugador, posicion, nombreUnidad);
+    }
+
+    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){
+        faseActual.realizarMovimiento(posicionInicial, posicionFinal, jugador);
+    }
+
+    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador){
+        faseActual.realizarAtaque(posicionAtacante, posicionAtacado, jugador);
     }
 
     public void finalizarJuego(){

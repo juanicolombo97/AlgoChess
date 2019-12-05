@@ -7,21 +7,23 @@ public class FaseCreacionUnidades implements Fase{
     private Jugador jugadorActual;
     private Jugador jugadorSiguiente;
     private Tablero tablero;
+    private Juego juego;
 
-    public FaseCreacionUnidades(Jugador jugador1, Jugador jugador2, Tablero tablero){
+    public FaseCreacionUnidades(Jugador jugador1, Jugador jugador2, Tablero tablero, Juego juego){
         this.jugadorActual = jugador1;
         this.jugadorSiguiente = jugador2;
         this.tablero = tablero;
+        this.juego = juego;
     }
 
     public void iniciarFaseCreacionUnidades(){
 
     }
 
+    @Override
     public void cambiarTurno(){
         if (jugadorActual == jugadorSiguiente){
-            FaseJuego faseJuego = new FaseJuego(jugadorActual, jugadorSiguiente, tablero);
-            faseJuego.iniciarFaseJuego();
+            juego.cambiarAFaseJuego();
         }
         this.jugadorActual = jugadorSiguiente;
     }
