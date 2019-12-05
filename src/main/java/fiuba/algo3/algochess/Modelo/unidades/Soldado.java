@@ -98,6 +98,18 @@ public class Soldado implements Unidad {
         listaDeSoldados.add(this);
     }
 
+    @Override
+    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades) {
+        if (!batallonUnidades.contains(this)){
+            batallonUnidades.add(this);
+            listaUnidades.add(this);
+        }
+    }
+
+    @Override
+    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana) {
+        unidadesADistanciaCercana.add(this);
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import javafx.scene.Scene;
@@ -16,14 +17,16 @@ import java.util.ArrayList;
 public class FaseJuego {
 
     private TableroInterfaz tableroInterfaz;
+    private Juego juego;
     private Tablero tablero;
     private ArrayList listaJugadores;
     private Stage ventana;
     private static Label turnoDe = new Label();
     private static Label errores = new Label();
 
-    public FaseJuego(TableroInterfaz tableroInterfaz, Tablero tablero, ArrayList listaJugadores,Stage ventana){
+    public FaseJuego(TableroInterfaz tableroInterfaz, Tablero tablero, Juego juego, ArrayList listaJugadores, Stage ventana){
         this.tableroInterfaz = tableroInterfaz;
+        this.juego = juego;
         this.tablero = tablero;
         this.listaJugadores = listaJugadores;
         this.ventana = ventana;
@@ -37,8 +40,6 @@ public class FaseJuego {
         Scene scene = new Scene(interfaz);
         ventana.setScene(scene);
         ventana.show();
-
-
     }
 
     public VBox crearBotonesAccion(){

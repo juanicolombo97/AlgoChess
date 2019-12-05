@@ -10,7 +10,7 @@ public class Tablero {
     private Map<Posicion,Casillero> tablero = new HashMap<>();
     private Jugador jugador1;
     private Jugador jugador2;
-    private Emisario emisario = new EmisarioActivo(this);
+    private Emisario emisario;
 
 
     public Tablero(Jugador jugador1, Jugador jugador2) {
@@ -23,6 +23,7 @@ public class Tablero {
                 tablero.put(posicion,casillero);
             }
         }
+        emisario = new EmisarioActivo(this);
         filterCasilleros();
     }
 
@@ -73,12 +74,16 @@ public class Tablero {
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
             try {
+
                 casilleroFin.guardarUnidad(unidad);
-                jugador.unidadModificarPosicionCasillero(unidad,casilleroFin);
+                jugador.unidadModificarPosicionCasillero(unidad, casilleroFin);
                 casilleroInicio.eliminarUnidad();
+                unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
                 contador++;
             }catch (CasilleroOcupadoException e){
+                
             }
+
         }
     }
 

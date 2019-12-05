@@ -1,8 +1,10 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
-import java.net.PortUnreachableException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Posicion {
@@ -56,11 +58,11 @@ public class Posicion {
         return direccion.posicionNueva(posicionX,posicionY);
     }
 
-    public Posicion posicionValida(){
-        if (posicionX > 0 && posicionY > 0){
-            return this;
+    public boolean posicionValida(){
+        if ((posicionX > 0 && posicionX < 20 ) && (posicionY > 0 && posicionY < 20 )){
+            return true;
         }
-        throw new MovimientoInvalidoException("La posicion es invalida");
+        return false;
     }
     @Override
     public boolean equals(Object o) {
@@ -74,5 +76,19 @@ public class Posicion {
     @Override
     public int hashCode() {
         return Objects.hash(posicionX, posicionY);
+    }
+
+    public void determinarPosicionValida(HashMap tablero, ArrayList unidadesADistanciaCercana) {
+            if (posicionValida()){
+                Unidad unidadNueva = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+                unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
+            }
+    }
+
+    public void posicionValidaParaFormarBatallon(HashMap tablero, ArrayList batallonUnidades, ArrayList listaUnidades) {
+        if(posicionValida()){
+            Unidad unidad = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+            unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
+        }
     }
 }

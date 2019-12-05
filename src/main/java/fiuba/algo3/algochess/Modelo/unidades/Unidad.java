@@ -34,4 +34,7 @@ public interface Unidad {
 
     public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados);
 
+    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades);
+
+    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana);
 }

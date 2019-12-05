@@ -11,7 +11,7 @@ public class PuntosTest {
     public void puntosSuficientesNoTiraError() {
         Puntos puntos = new Puntos(20);
         puntos.puntosSuficientes(10);
-        Assertions.assertEquals(10,puntos.puntosDisponibles);
+        Assertions.assertEquals(10,puntos.getPuntosDisponibles());
     }
     @Test
     public void puntosInsuficientesTiraError(){

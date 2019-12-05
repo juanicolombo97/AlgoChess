@@ -42,5 +42,9 @@ public class Casillero{
    public Distancia calcularDistancia(Posicion posicionAtacado){
        return this.posicionCasillero.calcularDistancia(posicionAtacado);
    }
+   public Unidad obtenerUnidadCercana(){
+        return estadoCasillero.obtenerUnidadCercana();
+   }
+
 
 }
