@@ -10,35 +10,35 @@ public class Juego {
     private Tablero tablero;
     private Fase faseActual;
 
-    public Juego(Jugador jugador, Jugador jugador2){
+    public Juego(Jugador jugador, Jugador jugador2) {
         this.jugadorAliado = jugador;
         this.jugadorEnemigo = jugador2;
     }
 
-    public Tablero comenzarJuego(){
-        Tablero tablero = new Tablero(jugadorAliado,jugadorEnemigo);
+    public Tablero comenzarJuego() {
+        Tablero tablero = new Tablero(jugadorAliado, jugadorEnemigo);
         this.tablero = tablero;
         this.faseActual = new FaseCreacionUnidades(this.jugadorAliado, this.jugadorEnemigo, this.tablero, this);
         return tablero;
     }
 
-    public void cambiarAFaseJuego(){
-        this.faseActual = new FaseJuego(jugadorAliado, jugadorEnemigo, tablero, this);
+    public void cambiarAFaseJuego() {
+        this.faseActual = new FaseJuego(jugadorAliado, tablero, this);
     }
 
-    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
+    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad) {
         faseActual.crearUnidad(jugador, posicion, nombreUnidad);
     }
 
-    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){
+    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador) {
         faseActual.realizarMovimiento(posicionInicial, posicionFinal, jugador);
     }
 
-    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador){
+    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador) {
         faseActual.realizarAtaque(posicionAtacante, posicionAtacado, jugador);
     }
 
-    public void finalizarJuego(){
+    public void finalizarJuego() {
         // Algo como "Gano el jugador: str(jugadorActual)"
         System.out.print("Finalizó el juego");
     }

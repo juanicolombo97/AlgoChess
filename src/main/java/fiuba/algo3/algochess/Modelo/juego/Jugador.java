@@ -15,6 +15,7 @@ public class Jugador {
     public List<Casillero> casilleroJugador = new ArrayList<>();
     private String nombreJugador;
     private Puntos puntosJugador;
+    private Jugador rival;
     private double DANIOEXTRA = 0.05;
     private double NODANIOEXTRA = 0.00;
 
@@ -122,4 +123,24 @@ public class Jugador {
             }
         }
     }
+
+    public void recibirContrincante(Jugador rival){
+        this.rival = rival;
+    }
+
+    public Jugador cambiarTurnoJuego(){
+        if(puedeSeguirJugando()){
+            return this.rival;
+        }
+        throw new JugadorPerdioException("El jugador no tiene mas unidades");
+    }
+
+    public Jugador cambiarTurnoCreacion(){
+        if(rival.getPuntosDisponibles() == 0){
+            throw new TerminoCreacionException("Jugadores sin puntos disponibles");
+        }
+        return rival;
+    }
+
+
 }
