@@ -9,4 +9,6 @@ public interface Fase {
     public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador);
 
     public void cambiarTurno();
+
+    public void cambiarJugadorActual(Jugador jugador);
 }

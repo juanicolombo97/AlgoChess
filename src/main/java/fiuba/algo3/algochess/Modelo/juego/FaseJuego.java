@@ -5,26 +5,23 @@ import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 
 public class FaseJuego implements Fase{
     private Jugador jugadorActual;
-    private Jugador jugadorSiguiente;
     private Tablero tablero;
     private Juego juego;
 
-    public FaseJuego(Jugador jugador1, Jugador jugador2, Tablero tablero, Juego juego){
-        this.jugadorActual = jugador1;
-        this.jugadorSiguiente = jugador2;
+    public FaseJuego(Jugador jugador, Tablero tablero, Juego juego){
+        this.jugadorActual = jugador;
         this.tablero = tablero;
         this.juego = juego;
     }
 
     @Override
     public void cambiarTurno(){
-        if (jugadorSiguiente.puedeSeguirJugando()) {
-            Jugador auxiliar = jugadorActual;
-            this.jugadorActual = jugadorSiguiente;
-            this.jugadorSiguiente = auxiliar;
-        } else {
-            juego.finalizarJuego();
-        }
+        this.jugadorActual.cambiarTurno();
+    }
+
+    @Override
+    public void cambiarJugadorActual(Jugador jugador){
+        this.jugadorActual = jugador;
     }
 
     @Override

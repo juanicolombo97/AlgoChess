@@ -3,7 +3,9 @@ package fiuba.algo3.algochess.Vista;
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
+import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.scene.Scene;
@@ -19,13 +21,14 @@ public class FaseInicial {
     private static InterfazJuego interfazJuego = new InterfazJuego();
 
     public static void display(Stage ventana) throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        //Inicializo Jugadores
-        listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 1")));
-        listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 2")));
-
-        Tablero tablero = new Tablero(listaJugadores.get(0),listaJugadores.get(1));
-        etapaColocarFichas(listaJugadores,tablero);
-
+        //Inicializo Jugadores y Juego
+        listaJugadores.add(new JugadorReal(VentanaLoguear.display("Registro Jugador 1")));
+        listaJugadores.add(new JugadorReal(VentanaLoguear.display("Registro Jugador 2")));
+        Jugador jugador1 = listaJugadores.get(0);
+        Jugador jugador2 = listaJugadores.get(1);
+        Juego juego = new Juego(jugador1, jugador2);
+        Tablero tablero = juego.comenzarJuego();
+        etapaColocarFichas(listaJugadores, tablero);
     }
 
 

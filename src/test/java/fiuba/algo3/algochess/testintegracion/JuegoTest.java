@@ -14,16 +14,16 @@ public class JuegoTest {
 
     @Test
     public void comenzarJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
     }
 
     @Test
     public void elTurnoEsDelJugador1yNoDelJugador2(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         try{
@@ -36,8 +36,8 @@ public class JuegoTest {
 
     @Test
     public void crearUnidadesDeUnJugador(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -63,8 +63,8 @@ public class JuegoTest {
 
     @Test
     public void cambioDeFaseAFaseJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -101,8 +101,8 @@ public class JuegoTest {
 
     @Test
     public void noEsPosibleMoverEnFaseDeCreacionDeUnidades(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -117,8 +117,8 @@ public class JuegoTest {
 
     @Test
     public void noEsPosibleAtacarEnFaseDeCreacionDeUnidades(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -144,8 +144,8 @@ public class JuegoTest {
 
     @Test
     public void turnoDelOtroJugadorEnFaseJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -185,8 +185,8 @@ public class JuegoTest {
 
     @Test
     public void MoverEnFaseJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -222,8 +222,8 @@ public class JuegoTest {
 
     @Test
     public void AtacarEnFaseJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -258,8 +258,8 @@ public class JuegoTest {
 
     @Test
     public void cambioDeTurnosEnFaseJuego(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);
@@ -305,8 +305,8 @@ public class JuegoTest {
 
     @Test
     public void prueboCuatroTurnosDeAtaqueEntreSoldados(){
-        Jugador jugador1 = new Jugador("nicolas");
-        Jugador jugador2 = new Jugador("juani");
+        Jugador jugador1 = new JugadorReal("nicolas");
+        Jugador jugador2 = new JugadorReal("juani");
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tableroDeJuego = juego.comenzarJuego();
         Posicion posicionSoldado = new Posicion(9,1);

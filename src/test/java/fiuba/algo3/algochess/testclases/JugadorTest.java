@@ -15,13 +15,13 @@ public class JugadorTest {
 
     @Test
     public void jugadorRecienCreadoCuentaNoTieneUnidades(){
-        Jugador jugador = new Jugador("Juani");
+        Jugador jugador = new JugadorReal("Juani");
         Assertions.assertEquals(0,jugador.getUnidadesDisponibles().size());
     }
 
     @Test
     public void jugadorPuedeCrearUnidad() {
-        Jugador jugador = new Jugador("juani");
+        Jugador jugador = new JugadorReal("juani");
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion, jugador);
         ArrayList lista = new ArrayList();
@@ -37,7 +37,7 @@ public class JugadorTest {
         Posicion posicion1 = new Posicion(1,1);
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
-        Jugador jugador = new Jugador("juani");
+        Jugador jugador = new JugadorReal("juani");
         Casillero casillero = new Casillero(posicion, jugador);
         HashMap tablero = new HashMap();
         Puntos puntos = new Puntos(20);

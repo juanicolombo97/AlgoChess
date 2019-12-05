@@ -14,8 +14,8 @@ public class Entrega1UnidadesTest {
     public void unidadSePuedeMoverEnTodasLasDirecciones() {
         Direccion direccion = new Direccion(0,0);
         ArrayList listaDirecciones = direccion.direccionesMovimiento();
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("juani");
+        Jugador jugador = new JugadorReal("juani");
+        Jugador jugador1 = new JugadorReal("juani");
         Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         tablero.crearUnidad(jugador,posicion,"soldado");
@@ -32,8 +32,8 @@ public class Entrega1UnidadesTest {
     public void unidadMovivleNoSePuedeMoverACasilleroOcupado() {
         Direccion direccion = new Direccion(0,0);
         ArrayList listaDirecciones = direccion.direccionesMovimiento();
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juani");
+        Jugador jugador1 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         Posicion posicion1 = new Posicion(3,3);
@@ -47,8 +47,8 @@ public class Entrega1UnidadesTest {
     }
     @Test
     public void soldadoAtacaAUnidadEnemigaConExito() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(9,9);
         Posicion posicion2 = new Posicion(10,10);
@@ -63,8 +63,8 @@ public class Entrega1UnidadesTest {
     }
     @Test
     public void jineteAtacaAUnidadEnemigaConExito() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(9,9);
         Posicion posicion2 = new Posicion(13,13);
@@ -79,8 +79,8 @@ public class Entrega1UnidadesTest {
     }
     @Test
     public void catapultaAtacaAUnidadEnemigaConExito() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(9,9);
         Posicion posicion2 = new Posicion(15,15);
@@ -95,8 +95,8 @@ public class Entrega1UnidadesTest {
     }
     @Test
     public void catapultaAtacaAUnidadAliadaConExito() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(10,10);
         Posicion posicion2 = new Posicion(17,17);
@@ -113,8 +113,8 @@ public class Entrega1UnidadesTest {
 
     @Test
     public void curanderoCuraPiezaAliadaConExito() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(11,11);
         Posicion posicion2 = new Posicion(10,10);
@@ -128,8 +128,8 @@ public class Entrega1UnidadesTest {
     }
     @Test
     public void curanderoNoCuraUnidadEnemiga() {
-        Jugador jugador = new Jugador("juan");
-        Jugador jugador2 = new Jugador("juan");
+        Jugador jugador = new JugadorReal("juan");
+        Jugador jugador2 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
         Posicion posicion = new Posicion(10,10);
         Posicion posicion2 = new Posicion(9,9);

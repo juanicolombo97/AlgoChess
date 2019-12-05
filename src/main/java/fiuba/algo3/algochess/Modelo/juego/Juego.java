@@ -13,17 +13,27 @@ public class Juego {
     public Juego(Jugador jugador, Jugador jugador2){
         this.jugadorAliado = jugador;
         this.jugadorEnemigo = jugador2;
+        this.jugadorAliado.setJugadorRival(this.jugadorEnemigo);
+        this.jugadorEnemigo.setJugadorRival(new JugadorNulo());
+        this.jugadorAliado.setJuego(this);
+        this.jugadorEnemigo.setJuego(this);
+    }
+
+    public void cambiarJugadorActual(Jugador jugador){
+        faseActual.cambiarJugadorActual(jugador);
     }
 
     public Tablero comenzarJuego(){
         Tablero tablero = new Tablero(jugadorAliado,jugadorEnemigo);
         this.tablero = tablero;
-        this.faseActual = new FaseCreacionUnidades(this.jugadorAliado, this.jugadorEnemigo, this.tablero, this);
+        this.faseActual = new FaseCreacionUnidades(this.jugadorAliado, this.tablero, this);
         return tablero;
     }
 
     public void cambiarAFaseJuego(){
-        this.faseActual = new FaseJuego(jugadorAliado, jugadorEnemigo, tablero, this);
+        // Esta linea sirve para el manejo de turnos diferente a la fase anterior
+        this.jugadorEnemigo.setJugadorRival(jugadorAliado);
+        this.faseActual = new FaseJuego(jugadorAliado, tablero, this);
     }
 
     public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){

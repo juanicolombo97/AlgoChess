@@ -1,39 +1,36 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.FaseJuegoNoComienzaAunException;
+import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 
 public class FaseCreacionUnidades implements Fase{
-    private Jugador jugador1;
-    private Jugador jugador2;
     private Jugador jugadorActual;
-    private Jugador jugadorSiguiente;
     private Tablero tablero;
     private Juego juego;
 
-    public FaseCreacionUnidades(Jugador jugador1, Jugador jugador2, Tablero tablero, Juego juego){
-        this.jugador1 = jugador1;
-        this.jugador2 = jugador2;
-        this.jugadorActual = jugador1;
-        this.jugadorSiguiente = jugador2;
+    public FaseCreacionUnidades(Jugador jugador, Tablero tablero, Juego juego){
+        this.jugadorActual = jugador;
         this.tablero = tablero;
         this.juego = juego;
     }
 
     @Override
     public void cambiarTurno(){
-        if (todasLasUnidadesFueronCreadas()){
-            juego.cambiarAFaseJuego();
-        } else {
-            this.jugadorActual = jugadorSiguiente;
-        }
+        this.jugadorActual.cambiarTurno();
+    }
+
+    @Override
+    public void cambiarJugadorActual(Jugador jugador){
+        this.jugadorActual = jugador;
     }
 
     @Override
     public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
         if (jugadorActual == jugador) {
-            tablero.crearUnidad(jugador, posicion, nombreUnidad);
-            if(jugadorActual.getPuntosDisponibles() == 0){
+            try {
+                tablero.crearUnidad(jugador, posicion, nombreUnidad);
+            } catch (NoAlcanzanLosPuntosException e){
                 this.cambiarTurno();
             }
         } else {
@@ -51,7 +48,4 @@ public class FaseCreacionUnidades implements Fase{
         throw new FaseJuegoNoComienzaAunException("La fase de juego aun no ha comenzado");
     }
 
-    private boolean todasLasUnidadesFueronCreadas(){
-        return jugador1.getPuntosDisponibles() == 0 && jugador2.getPuntosDisponibles() == 0;
-    }
 }
