@@ -6,10 +6,8 @@ import fiuba.algo3.algochess.Controlador.CrearJinete;
 import fiuba.algo3.algochess.Controlador.CrearSoldado;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -34,6 +32,7 @@ public class TiendaUnidades {
                 MensajesAJugador.setMensaje("Todavia tienes puntos");
             }
             else {
+                juego.cambiarTurno();
                 ventana.close();
             }
         });

@@ -2,13 +2,10 @@ package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.Modelo.excepciones.FaseCreacionUnidadesFinalizoException;
 import fiuba.algo3.algochess.Modelo.excepciones.FaseJuegoNoComienzaAunException;
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 import fiuba.algo3.algochess.Modelo.juego.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class JuegoTest {
 
@@ -53,7 +50,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
-        //Cuando se acaban los puntos de un jugador, pasa al turno del siguiente
+        juego.cambiarTurno();
         try {
             juego.crearUnidad(jugador1, posicionSoldado2, "soldado");
         } catch (TurnoJugadorException e){
@@ -274,6 +271,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
         juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        juego.cambiarTurno();
         Posicion posicionSoldadoEnemigo = new Posicion(11,1);
         Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
         Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
@@ -287,6 +285,7 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        juego.cambiarTurno();
         // Cambio de fase a FaseJuego
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
@@ -335,15 +334,19 @@ public class JuegoTest {
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
         juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
         // Cambio de fase a FaseJuego
+        juego.cambiarAFaseJuego();
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        juego.cambiarTurno();
         // Turno de jugador 2
         juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
         Assertions.assertEquals(90, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
+        juego.cambiarTurno();
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(80, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        juego.cambiarTurno();
         // Turno de jugador 2
         juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
         Assertions.assertEquals(80, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());

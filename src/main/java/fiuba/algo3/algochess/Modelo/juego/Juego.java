@@ -1,7 +1,5 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
 public class Juego {
@@ -52,5 +50,9 @@ public class Juego {
     public void finalizarJuego(){
         // Algo como "Gano el jugador: str(jugadorActual)"
         System.out.print("Finalizó el juego");
+    }
+
+    public void cambiarTurno() {
+        faseActual.cambiarTurno();
     }
 }

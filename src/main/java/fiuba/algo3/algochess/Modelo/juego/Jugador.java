@@ -1,11 +1,7 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.unidades.Emisario;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
-import fiuba.algo3.algochess.Modelo.unidades.UnidadNueva;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,5 +40,4 @@ public interface Jugador {
     public void reconocerUnidadesAliadasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad);
 
     public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad);
-
 }
