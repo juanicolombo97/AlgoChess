@@ -19,7 +19,7 @@ public class Tablero {
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
                 Posicion posicion = new Posicion(i,j);
-                Casillero casillero = new Casillero(posicion,jugador1);
+                Casillero casillero = new Casillero(posicion,jugador1,new UnidadNula());
                 tablero.put(posicion,casillero);
             }
         }
@@ -72,13 +72,12 @@ public class Tablero {
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
-            try {
+           
                 casilleroFin.guardarUnidad(unidad);
                 jugador.unidadModificarPosicionCasillero(unidad,casilleroFin);
                 casilleroInicio.eliminarUnidad();
                 contador++;
-            }catch (CasilleroOcupadoException e){
-            }
+
         }
     }
 
