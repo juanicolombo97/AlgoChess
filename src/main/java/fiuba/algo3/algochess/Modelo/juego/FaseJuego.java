@@ -37,6 +37,7 @@ public class FaseJuego implements Fase{
         } else {
             throw new TurnoJugadorException("Es el turno del otro jugador");
         }
+        juego.cambiarTurno();
     }
 
     @Override
@@ -46,5 +47,6 @@ public class FaseJuego implements Fase{
         } else {
             throw new TurnoJugadorException("Es el turno del otro jugador");
         }
+        juego.cambiarTurno();
     }
 }

@@ -258,7 +258,7 @@ public class JuegoTest {
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
-/*
+
     @Test
     public void cambioDeTurnosEnFaseJuego(){
         Jugador jugador1 = new JugadorReal("nicolas");
@@ -306,7 +306,7 @@ public class JuegoTest {
         // Realizo accion con jugador 2
         juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
         Assertions.assertEquals(90, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
-    }*/
+    }
 
     @Test
     public void prueboCuatroTurnosDeAtaqueEntreSoldados(){
@@ -345,15 +345,12 @@ public class JuegoTest {
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
-        juego.cambiarTurno();
         // Turno de jugador 2
         juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
         Assertions.assertEquals(90, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
-        juego.cambiarTurno();
         // Turno de jugador 1
         juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
         Assertions.assertEquals(80, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
-        juego.cambiarTurno();
         // Turno de jugador 2
         juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
         Assertions.assertEquals(80, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());

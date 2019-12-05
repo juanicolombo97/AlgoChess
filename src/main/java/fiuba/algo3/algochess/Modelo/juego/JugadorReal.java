@@ -42,7 +42,6 @@ public class JugadorReal implements Jugador {
             this.jugadorSiguiente.getPuntosDisponibles();
             juego.cambiarJugadorActual(this.jugadorSiguiente);
         } catch (JugadorNuloException e){
-            System.out.print("Entra en la excepcion");
             juego.cambiarAFaseJuego();
         }
     }
