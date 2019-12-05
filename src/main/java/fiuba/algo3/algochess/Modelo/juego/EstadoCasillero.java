@@ -9,4 +9,5 @@ public interface EstadoCasillero {
     public EstadoCasillero guardarUnidad(Unidad unidad);
     public EstadoCasillero eliminarUnidad();
     public Unidad obtenerUnidad();
+    public Unidad obtenerUnidadCercana();
 }

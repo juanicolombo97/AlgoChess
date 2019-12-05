@@ -91,4 +91,13 @@ public class Curandero implements Unidad {
 
     }
 
+    @Override
+    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades) {
+        batallonUnidades.add(this);
+        listaUnidades.add(this);
+    }
+    @Override
+    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana) {
+        unidadesADistanciaCercana.add(this);
+    }
 }

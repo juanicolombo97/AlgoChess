@@ -24,14 +24,12 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (posicionNueva.posicionValida()) {
-
                     try {
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
                         if (!batallonUnidades.contains(unidadNueva)) {
-                            batallonUnidades.add(unidadNueva);
-                            listaUnidades.add(unidadNueva);
+                            unidadNueva.agregarUnidadCercana(batallonUnidades,listaUnidades);
                         }
-                    } catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e) {
+                    } catch (CasilleroVacioExcepcion e) {
 
                     }
                 }
@@ -48,9 +46,9 @@ public class UnidadesCercanas {
                 if (posicionNueva.posicionValida()){
 
                 try{
-                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
-                    unidadesADistanciaCercana.add(unidadNueva);
-                }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){}
+                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
+                    unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
+                }catch (CasilleroVacioExcepcion | NullPointerException e){}
                 }
             }
         }

@@ -24,4 +24,9 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     public Unidad obtenerUnidad() {
         return unidad;
     }
+
+    @Override
+    public Unidad obtenerUnidadCercana() {
+        return unidad;
+    }
 }

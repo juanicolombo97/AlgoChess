@@ -71,4 +71,12 @@ public class UnidadNula implements Unidad{
     public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados) {
         throw new UnidadNulaException("La unidad es inválida");
     }
+    @Override
+    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades) {
+
+    }
+    @Override
+    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana) {
+
+    }
 }
