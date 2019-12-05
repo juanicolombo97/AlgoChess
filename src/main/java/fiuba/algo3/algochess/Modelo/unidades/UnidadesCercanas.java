@@ -23,16 +23,18 @@ public class UnidadesCercanas {
             Unidad unidad = (Unidad) listaUnidades.remove(0);
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
-                    try{
-                        Posicion posicion = posicionNueva.posicionValida();
-                        Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
+                if (posicionNueva.posicionValida()) {
+
+                    try {
+                        Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
                         if (!batallonUnidades.contains(unidadNueva)) {
                             batallonUnidades.add(unidadNueva);
                             listaUnidades.add(unidadNueva);
                         }
-                    }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){
+                    } catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e) {
 
                     }
+                }
                 }
             }
         return batallonUnidades;
@@ -43,11 +45,13 @@ public class UnidadesCercanas {
         for (int counter = 0; counter < distanciaLimite; counter++){
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + counter*(((Direccion) direccionActual).getX()),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + counter*(((Direccion) direccionActual).getY()));
+                if (posicionNueva.posicionValida()){
+
                 try{
-                    Posicion posicion = posicionNueva.posicionValida();
-                    Unidad unidadNueva = ((Casillero) tablero.get(posicion)).obtenerUnidad();
+                    Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidad();
                     unidadesADistanciaCercana.add(unidadNueva);
                 }catch (CasilleroVacioExcepcion | NullPointerException | MovimientoInvalidoException e){}
+                }
             }
         }
         return unidadesADistanciaCercana;
