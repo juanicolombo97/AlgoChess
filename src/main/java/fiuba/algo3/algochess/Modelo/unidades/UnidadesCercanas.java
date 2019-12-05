@@ -24,14 +24,10 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva((Direccion) direccionActual);
                 if (posicionNueva.posicionValida()) {
-                    try {
                         Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
                         if (!batallonUnidades.contains(unidadNueva)) {
                             unidadNueva.agregarUnidadCercana(batallonUnidades,listaUnidades);
                         }
-                    } catch (CasilleroVacioExcepcion e) {
-
-                    }
                 }
                 }
             }
