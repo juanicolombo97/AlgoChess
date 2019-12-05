@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.FaseCreacionUnidadesFinalizoException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
 public class FaseJuego implements Fase{
     private Jugador jugadorActual;
@@ -25,7 +26,7 @@ public class FaseJuego implements Fase{
     }
 
     @Override
-    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
+    public Unidad crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
         throw new FaseCreacionUnidadesFinalizoException("La fase de creación de unidades ya finalizó");
     }
 

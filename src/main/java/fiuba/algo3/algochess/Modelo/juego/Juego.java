@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
 public class Juego {
 
@@ -36,8 +37,8 @@ public class Juego {
         this.faseActual = new FaseJuego(jugadorAliado, tablero, this);
     }
 
-    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
-        faseActual.crearUnidad(jugador, posicion, nombreUnidad);
+    public Unidad crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
+        return faseActual.crearUnidad(jugador, posicion, nombreUnidad);
     }
 
     public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){

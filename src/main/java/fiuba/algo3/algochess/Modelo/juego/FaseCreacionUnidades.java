@@ -4,6 +4,9 @@ import fiuba.algo3.algochess.Modelo.excepciones.FaseJuegoNoComienzaAunException;
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
+import fiuba.algo3.algochess.Modelo.unidades.Soldado;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+import fiuba.algo3.algochess.Modelo.unidades.UnidadNula;
 
 public class FaseCreacionUnidades implements Fase{
     private Jugador jugadorActual;
@@ -27,11 +30,12 @@ public class FaseCreacionUnidades implements Fase{
     }
 
     @Override
-    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
+    public Unidad crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad){
         try {
-            tablero.crearUnidad(jugador, posicion, nombreUnidad);
+            return tablero.crearUnidad(jugador, posicion, nombreUnidad);
         } catch (NoAlcanzanLosPuntosException | JugadorSeQuedoSinPuntosException e){
             this.cambiarTurno();
+            return new UnidadNula();
         }
     }
 

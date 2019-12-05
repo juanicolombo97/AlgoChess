@@ -20,7 +20,7 @@ public class FaseInicial {
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
     private static InterfazJuego interfazJuego = new InterfazJuego();
 
-    public static void display(Stage ventana) throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
+    public static void display(Stage ventana) {
         //Inicializo Jugadores y Juego
         listaJugadores.add(new JugadorReal(VentanaLoguear.display("Registro Jugador 1")));
         listaJugadores.add(new JugadorReal(VentanaLoguear.display("Registro Jugador 2")));
@@ -28,12 +28,12 @@ public class FaseInicial {
         Jugador jugador2 = listaJugadores.get(1);
         Juego juego = new Juego(jugador1, jugador2);
         Tablero tablero = juego.comenzarJuego();
-        etapaColocarFichas(listaJugadores, tablero);
+        etapaColocarFichas(listaJugadores, juego, tablero);
     }
 
 
 
-    public static void etapaColocarFichas(ArrayList listaJugadores,Tablero tablero) throws NoAlcanzanLosPuntosException {
+    public static void etapaColocarFichas(ArrayList listaJugadores, Juego juego, Tablero tablero) {
         Stage ventana = new Stage();
         ventana.setTitle("AlgoChess");
         TableroInterfaz tableroInterfaz = new TableroInterfaz();
@@ -43,14 +43,14 @@ public class FaseInicial {
 
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
 
-            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz,ventana);
+            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz, juego, ventana);
 
             BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
             Scene scene = new Scene(interfaz);
             ventana.setScene(scene);
             ventana.showAndWait();
             }
-        FaseJuego faseJuego = new FaseJuego(tableroInterfaz,tablero,listaJugadores,ventana);
+        FaseJuego faseJuego = new FaseJuego(tableroInterfaz,tablero, juego,listaJugadores,ventana);
         faseJuego.comenzarJuego();
     }
 

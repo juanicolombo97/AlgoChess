@@ -1,8 +1,10 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+
 public interface Fase {
 
-    public void crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad);
+    public Unidad crearUnidad(Jugador jugador, Posicion posicion, String nombreUnidad);
 
     public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador);
 
