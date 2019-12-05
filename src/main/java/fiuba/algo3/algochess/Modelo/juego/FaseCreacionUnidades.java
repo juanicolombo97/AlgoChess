@@ -1,6 +1,6 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
+import fiuba.algo3.algochess.Modelo.excepciones.FaseJuegoNoComienzaAunException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 
 public class FaseCreacionUnidades implements Fase{
@@ -42,10 +42,14 @@ public class FaseCreacionUnidades implements Fase{
     }
 
     @Override
-    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){}
+    public void realizarMovimiento(Posicion posicionInicial, Posicion posicionFinal, Jugador jugador){
+        throw new FaseJuegoNoComienzaAunException("La fase de juego aun no ha comenzado");
+    }
 
     @Override
-    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador){}
+    public void realizarAtaque(Posicion posicionAtacante, Posicion posicionAtacado, Jugador jugador){
+        throw new FaseJuegoNoComienzaAunException("La fase de juego aun no ha comenzado");
+    }
 
     private boolean todasLasUnidadesFueronCreadas(){
         return jugador1.getPuntosDisponibles() == 0 && jugador2.getPuntosDisponibles() == 0;

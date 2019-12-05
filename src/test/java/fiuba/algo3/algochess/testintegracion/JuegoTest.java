@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.Modelo.excepciones.FaseCreacionUnidadesFinalizoException;
+import fiuba.algo3.algochess.Modelo.excepciones.FaseJuegoNoComienzaAunException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.TurnoJugadorException;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -64,7 +65,7 @@ public class JuegoTest {
     }
 
     @Test
-    public void crearUnidadesDeAmbosJugadores(){
+    public void cambioDeFaseAFaseJuego(){
         Jugador jugador1 = new Jugador("nicolas");
         Jugador jugador2 = new Jugador("juani");
         Juego juego = new Juego(jugador1, jugador2);
@@ -98,6 +99,49 @@ public class JuegoTest {
             juego.crearUnidad(jugador2, posicionSoldadoEnemigo2, "soldado");
         } catch (FaseCreacionUnidadesFinalizoException e){
             Assertions.assertEquals("La fase de creación de unidades ya finalizó", e.getMessage());
+        }
+    }
+
+    @Test
+    public void noEsPosibleMoverEnFaseDeCreacionDeUnidades(){
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("juani");
+        Juego juego = new Juego(jugador1, jugador2);
+        Tablero tableroDeJuego = juego.comenzarJuego();
+        Posicion posicionSoldado = new Posicion(9,1);
+        Posicion posicionDestino = new Posicion(9,2);
+        juego.crearUnidad(jugador1, posicionSoldado, "soldado");
+        try {
+            juego.realizarMovimiento(posicionSoldado, posicionDestino, jugador1);
+        } catch (FaseJuegoNoComienzaAunException e){
+            Assertions.assertEquals("La fase de juego aun no ha comenzado", e.getMessage());
+        }
+    }
+
+    @Test
+    public void noEsPosibleAtacarEnFaseDeCreacionDeUnidades(){
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("juani");
+        Juego juego = new Juego(jugador1, jugador2);
+        Tablero tableroDeJuego = juego.comenzarJuego();
+        Posicion posicionSoldado = new Posicion(9,1);
+        Posicion posicionCurandero1 = new Posicion(7,2);
+        Posicion posicionCurandero2 = new Posicion(7,1);
+        Posicion posicionCatapulta = new Posicion(1,6);
+        Posicion posicionCatapulta2 = new Posicion(4,6);
+        Posicion posicionCatapulta3 = new Posicion(7,6);
+        juego.crearUnidad(jugador1, posicionSoldado, "soldado");
+        juego.crearUnidad(jugador1, posicionCurandero1, "curandero");
+        juego.crearUnidad(jugador1, posicionCurandero2, "curandero");
+        juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        Posicion posicionSoldadoEnemigo = new Posicion(11,1);
+        juego.crearUnidad(jugador2, posicionSoldadoEnemigo, "soldado");
+        try {
+            juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
+        } catch (FaseJuegoNoComienzaAunException e){
+            Assertions.assertEquals("La fase de juego aun no ha comenzado", e.getMessage());
         }
     }
 
