@@ -29,8 +29,8 @@ public class UnidadesCercanas {
                             unidadNueva.agregarUnidadCercana(batallonUnidades,listaUnidades);
                         }
                 }
-                }
             }
+        }
         return batallonUnidades;
     }
 
@@ -44,7 +44,7 @@ public class UnidadesCercanas {
                 try{
                     Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
                     unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
-                }catch (CasilleroVacioExcepcion | NullPointerException e){}
+                }catch (NullPointerException e){}
                 }
             }
         }
