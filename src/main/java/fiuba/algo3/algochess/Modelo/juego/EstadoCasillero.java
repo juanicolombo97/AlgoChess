@@ -11,5 +11,4 @@ public interface EstadoCasillero {
     public Unidad obtenerUnidad();
     public Unidad obtenerUnidadCercana();
 
-    int guardarUnidadBatallon(Unidad unidad, Jugador jugador, Casillero casilleroInicio, Casillero casilleroFin);
 }
