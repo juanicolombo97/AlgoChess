@@ -28,5 +28,11 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     @Override
     public Unidad obtenerUnidadCercana() {
         return unidad;
+
+    }
+
+    @Override
+    public int guardarUnidadBatallon(Unidad unidad, Jugador jugador, Casillero casilleroInicio, Casillero casilleroFin) {
+        return 0;
     }
 }

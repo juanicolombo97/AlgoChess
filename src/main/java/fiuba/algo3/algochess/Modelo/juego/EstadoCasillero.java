@@ -10,4 +10,6 @@ public interface EstadoCasillero {
     public EstadoCasillero eliminarUnidad();
     public Unidad obtenerUnidad();
     public Unidad obtenerUnidadCercana();
+
+    int guardarUnidadBatallon(Unidad unidad, Jugador jugador, Casillero casilleroInicio, Casillero casilleroFin);
 }

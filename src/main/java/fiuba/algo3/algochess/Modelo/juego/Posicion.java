@@ -57,7 +57,7 @@ public class Posicion {
     }
 
     public boolean posicionValida(){
-        if (posicionX > 0 && posicionY > 0){
+        if ((posicionX > 0 && posicionX < 20 ) && (posicionY > 0 && posicionY < 20 )){
             return true;
         }
         return false;

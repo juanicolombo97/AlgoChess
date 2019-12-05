@@ -40,7 +40,6 @@ public class UnidadesCercanas {
             for (Object direccionActual : listaDirecciones) {
                 Posicion posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionX + counter*(((Direccion) direccionActual).getX()),unidadCentral.getPosicion().posicionNueva((Direccion) direccionActual).posicionY + counter*(((Direccion) direccionActual).getY()));
                 if (posicionNueva.posicionValida()){
-
                     Unidad unidadNueva = ((Casillero) tablero.get(posicionNueva)).obtenerUnidadCercana();
                     unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
                 }

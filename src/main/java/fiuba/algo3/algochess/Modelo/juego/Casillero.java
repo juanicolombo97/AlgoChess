@@ -46,4 +46,12 @@ public class Casillero{
         return estadoCasillero.obtenerUnidadCercana();
    }
 
+
+   public void modificarEstado(EstadoCasillero estado){
+        estadoCasillero = estado;
+   }
+
+    public int guardarUnidadBatallon(Unidad unidad, Jugador jugador, Casillero casilleroInicio) {
+       return estadoCasillero.guardarUnidadBatallon(unidad,jugador,casilleroInicio,this);
+    }
 }
