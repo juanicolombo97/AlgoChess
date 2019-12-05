@@ -256,4 +256,98 @@ public class JuegoTest {
         Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
+    @Test
+    public void cambioDeTurnosEnFaseJuego(){
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("juani");
+        Juego juego = new Juego(jugador1, jugador2);
+        Tablero tableroDeJuego = juego.comenzarJuego();
+        Posicion posicionSoldado = new Posicion(9,1);
+        Posicion posicionCurandero1 = new Posicion(7,2);
+        Posicion posicionCurandero2 = new Posicion(7,1);
+        Posicion posicionCatapulta = new Posicion(1,6);
+        Posicion posicionCatapulta2 = new Posicion(4,6);
+        Posicion posicionCatapulta3 = new Posicion(7,6);
+        juego.crearUnidad(jugador1, posicionSoldado, "soldado");
+        juego.crearUnidad(jugador1, posicionCurandero1, "curandero");
+        juego.crearUnidad(jugador1, posicionCurandero2, "curandero");
+        juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        Posicion posicionSoldadoEnemigo = new Posicion(11,1);
+        Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
+        Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
+        Posicion posicionCatapultaEnemiga = new Posicion(19,6);
+        Posicion posicionCatapultaEnemiga2 = new Posicion(19,5);
+        Posicion posicionCatapultaEnemiga3 = new Posicion(19,4);
+        Posicion posicionSoldadoEnemigo2 = new Posicion(19,20);
+        juego.crearUnidad(jugador2, posicionSoldadoEnemigo, "soldado");
+        juego.crearUnidad(jugador2, posicionCuranderoEnemigo1, "curandero");
+        juego.crearUnidad(jugador2, posicionCuranderoEnemigo2, "curandero");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        // Cambio de fase a FaseJuego
+        // Turno de jugador 1
+        juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
+        Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        // Turno de jugador 2
+        // Pruebo que al tratar de ejecutar una accion como jugador 1 no me lo permite
+        try{
+            juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
+        } catch (TurnoJugadorException e){
+            Assertions.assertEquals("Es el turno del otro jugador", e.getMessage());
+        }
+        // Realizo accion con jugador 2
+        juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
+        Assertions.assertEquals(90, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
+    }
+
+    @Test
+    public void prueboCuatroTurnosDeAtaqueEntreSoldados(){
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("juani");
+        Juego juego = new Juego(jugador1, jugador2);
+        Tablero tableroDeJuego = juego.comenzarJuego();
+        Posicion posicionSoldado = new Posicion(9,1);
+        Posicion posicionCurandero1 = new Posicion(7,2);
+        Posicion posicionCurandero2 = new Posicion(7,1);
+        Posicion posicionCatapulta = new Posicion(1,6);
+        Posicion posicionCatapulta2 = new Posicion(4,6);
+        Posicion posicionCatapulta3 = new Posicion(7,6);
+        juego.crearUnidad(jugador1, posicionSoldado, "soldado");
+        juego.crearUnidad(jugador1, posicionCurandero1, "curandero");
+        juego.crearUnidad(jugador1, posicionCurandero2, "curandero");
+        juego.crearUnidad(jugador1, posicionCatapulta, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta2, "catapulta");
+        juego.crearUnidad(jugador1, posicionCatapulta3, "catapulta");
+        Posicion posicionSoldadoEnemigo = new Posicion(11,1);
+        Posicion posicionCuranderoEnemigo1 = new Posicion(13,2);
+        Posicion posicionCuranderoEnemigo2 = new Posicion(13,1);
+        Posicion posicionCatapultaEnemiga = new Posicion(19,6);
+        Posicion posicionCatapultaEnemiga2 = new Posicion(19,5);
+        Posicion posicionCatapultaEnemiga3 = new Posicion(19,4);
+        Posicion posicionSoldadoEnemigo2 = new Posicion(19,20);
+        juego.crearUnidad(jugador2, posicionSoldadoEnemigo, "soldado");
+        juego.crearUnidad(jugador2, posicionCuranderoEnemigo1, "curandero");
+        juego.crearUnidad(jugador2, posicionCuranderoEnemigo2, "curandero");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga, "catapulta");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga2, "catapulta");
+        juego.crearUnidad(jugador2, posicionCatapultaEnemiga3, "catapulta");
+        // Cambio de fase a FaseJuego
+        // Turno de jugador 1
+        juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
+        Assertions.assertEquals(90, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        // Turno de jugador 2
+        juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
+        Assertions.assertEquals(90, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
+        // Turno de jugador 1
+        juego.realizarAtaque(posicionSoldado, posicionSoldadoEnemigo, jugador1);
+        Assertions.assertEquals(80, jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
+        // Turno de jugador 2
+        juego.realizarAtaque(posicionSoldadoEnemigo, posicionSoldado, jugador2);
+        Assertions.assertEquals(80, jugador1.getUnidadesDisponibles().get(0).getVidaUnidad());
+    }
+
+
 }
