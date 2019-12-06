@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Direccion {
 
@@ -34,8 +35,8 @@ public class Direccion {
 
     }
 
-    public ArrayList direccionesMovimiento(){
-        ArrayList listaDirecciones = new ArrayList();
+    public List<Direccion> direccionesMovimiento(){
+        List<Direccion> listaDirecciones = new ArrayList<>();
 
         listaDirecciones.add(norte);
         listaDirecciones.add(sur);

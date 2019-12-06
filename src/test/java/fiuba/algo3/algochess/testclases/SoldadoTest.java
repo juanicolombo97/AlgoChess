@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SoldadoTest {
     @Test
@@ -46,7 +48,7 @@ public class SoldadoTest {
     @Test
     public void soldadoAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -57,7 +59,7 @@ public class SoldadoTest {
     @Test
     public void soldadoNoPuedeAtacarCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -72,7 +74,7 @@ public class SoldadoTest {
     @Test
     public void soldadoeNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
@@ -87,7 +89,7 @@ public class SoldadoTest {
     @Test
     public void soldadoNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());

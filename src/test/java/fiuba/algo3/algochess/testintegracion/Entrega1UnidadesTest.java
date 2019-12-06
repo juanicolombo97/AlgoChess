@@ -7,31 +7,31 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Entrega1UnidadesTest {
 
     @Test
     public void unidadSePuedeMoverEnTodasLasDirecciones() {
         Direccion direccion = new Direccion(0,0);
-        ArrayList listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new JugadorReal("juani");
         Jugador jugador1 = new JugadorReal("juani");
         Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         tablero.crearUnidad(jugador,posicion,"soldado");
 
-        for (int x = 0; x < listaDirecciones.size(); x++){
-            Direccion direccion1 = (Direccion) listaDirecciones.get(x);
+        for (Direccion direccionActual : listaDirecciones){
             Unidad unidad = jugador.getUnidadesDisponibles().get(0);
             Posicion posicion1 = unidad.getPosicion();
-            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccion1),jugador);
+            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccionActual),jugador);
         }
 
     }
     @Test
     public void unidadMovivleNoSePuedeMoverACasilleroOcupado() {
         Direccion direccion = new Direccion(0,0);
-        ArrayList listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new JugadorReal("juani");
         Jugador jugador1 = new JugadorReal("juan");
         Tablero tablero = new Tablero(jugador,jugador1);

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Entrega2CatapultaTest {
 
@@ -34,12 +35,12 @@ public class Entrega2CatapultaTest {
 
         tablero.atacar(posicion4,posicion3,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
 
-        Unidad unidad = (Unidad) listaUnidades.get(0);
-        Unidad unidad1 = (Unidad) listaUnidades.get(1);
-        Unidad unidad2 = (Unidad) listaUnidades.get(2);
-        Unidad unidad3 = (Unidad) listaUnidades.get(3);
+        Unidad unidad = listaUnidades.get(0);
+        Unidad unidad1 = listaUnidades.get(1);
+        Unidad unidad2 = listaUnidades.get(2);
+        Unidad unidad3 = listaUnidades.get(3);
 
         boolean vidaCorrectaUnidad1 = unidad.getVidaUnidad() == 80;
         boolean vidaCorrectaUnidad2 = unidad1.getVidaUnidad() == 80;
@@ -73,13 +74,13 @@ public class Entrega2CatapultaTest {
 
         tablero.atacar(posicion4,posicion3,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
-        ArrayList listaUnidades2 = jugador1.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades2 = jugador1.getUnidadesDisponibles();
 
-        Unidad unidad = (Unidad) listaUnidades.get(0);
-        Unidad unidad1 = (Unidad) listaUnidades.get(1);
-        Unidad unidad2 = (Unidad) listaUnidades.get(2);
-        Unidad unidad3 = (Unidad) listaUnidades2.get(0);
+        Unidad unidad = listaUnidades.get(0);
+        Unidad unidad1 = listaUnidades.get(1);
+        Unidad unidad2 = listaUnidades.get(2);
+        Unidad unidad3 = listaUnidades2.get(0);
 
         boolean vidaCorrectaUnidad1 = unidad.getVidaUnidad() == 80;
         boolean vidaCorrectaUnidad2 = unidad1.getVidaUnidad() == 80;
@@ -109,10 +110,10 @@ public class Entrega2CatapultaTest {
 
         tablero.atacar(posicion2,posicion,jugador1);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
 
-        Unidad unidad = (Unidad) listaUnidades.get(0);
-        Unidad unidad1 = (Unidad) listaUnidades.get(1);
+        Unidad unidad = listaUnidades.get(0);
+        Unidad unidad1 = listaUnidades.get(1);
 
         boolean vidaCorrectaUnidad1 = unidad.getVidaUnidad() == 80;
         boolean vidaCorrectaUnidad2 = unidad1.getVidaUnidad() == 100;

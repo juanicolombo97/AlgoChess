@@ -7,6 +7,7 @@ import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FaseInicial {
 
@@ -33,13 +35,12 @@ public class FaseInicial {
 
 
 
-    public static void etapaColocarFichas(ArrayList listaJugadores, Juego juego, Tablero tablero) {
+    public static void etapaColocarFichas(List<Jugador> listaJugadores, Juego juego, Tablero tablero) {
         Stage ventana = new Stage();
         ventana.setTitle("AlgoChess");
         TableroInterfaz tableroInterfaz = new TableroInterfaz();
         tableroInterfaz.crearTablero(tablero);
-        for (Object jugador : listaJugadores){
-            Jugador jugadorActual = (Jugador) jugador;
+        for (Jugador jugadorActual : listaJugadores){
 
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
 

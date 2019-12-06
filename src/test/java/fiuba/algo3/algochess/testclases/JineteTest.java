@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class JineteTest {
 
@@ -48,7 +50,7 @@ public class JineteTest {
     @Test
     public void jineteEspadachinAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -61,7 +63,7 @@ public class JineteTest {
     @Test
     public void jineteEspadachinNoAtacaCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -77,7 +79,7 @@ public class JineteTest {
     @Test
     public void jineteEspadachinNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -93,7 +95,7 @@ public class JineteTest {
     @Test
     public void jineteArqueroNoAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -109,7 +111,7 @@ public class JineteTest {
     @Test
     public void jineteArqueroAtacaCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -121,7 +123,7 @@ public class JineteTest {
     @Test
     public void jineteArqueroNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -137,7 +139,7 @@ public class JineteTest {
     @Test
     public void jineteArqueroNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -153,7 +155,7 @@ public class JineteTest {
     @Test
     public void jineteEspadachinNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());

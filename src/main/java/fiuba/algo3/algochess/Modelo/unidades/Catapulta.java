@@ -1,11 +1,14 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 //Clase donde se implementa la fiuba.algo3.algochess.Modelo.unidades.Unidad fiuba.algo3.algochess.Modelo.unidades.Catapulta
 
@@ -46,21 +49,21 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         throw new NoPuedeAtacarException("La catapulta solo ataca a distancia");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-        ArrayList unidadesAAtacar = unidadesCercanas.unidadesCercanas(tablero, atacado);
-        for (Object unidad : unidadesAAtacar){
-            ( (Unidad) unidad).recibirDanio(danioDistancia);
+        List<Unidad> unidadesAAtacar = unidadesCercanas.unidadesCercanas(tablero, atacado);
+        for (Unidad unidadActual : unidadesAAtacar){
+            unidadActual.recibirDanio(danioDistancia);
         }
     }
 
@@ -80,7 +83,7 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) {
+    public List<Unidad> habilidadMoverse(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas) {
         throw new MovimientoInvalidoException("La catapulta no se puede mover");
     }
 
@@ -90,18 +93,18 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+    public void agregarSoldadoAListaDeSoldados(List<Unidad> listaDeSoldados){
 
     }
     @Override
-    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades) {
+    public void agregarUnidadCercana(List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
         if(!batallonUnidades.contains(this)){
             batallonUnidades.add(this);
             listaUnidades.add(this);
         }
     }
     @Override
-    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana) {
+    public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana) {
         unidadesADistanciaCercana.add(this);
     }
 }

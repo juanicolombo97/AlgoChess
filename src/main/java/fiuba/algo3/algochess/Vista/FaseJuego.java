@@ -13,18 +13,19 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FaseJuego {
 
     private TableroInterfaz tableroInterfaz;
     private Juego juego;
     private Tablero tablero;
-    private ArrayList listaJugadores;
+    private List<Jugador> listaJugadores;
     private Stage ventana;
     private static Label turnoDe = new Label();
     private static Label errores = new Label();
 
-    public FaseJuego(TableroInterfaz tableroInterfaz, Tablero tablero, Juego juego, ArrayList listaJugadores, Stage ventana){
+    public FaseJuego(TableroInterfaz tableroInterfaz, Tablero tablero, Juego juego, List<Jugador> listaJugadores, Stage ventana){
         this.tableroInterfaz = tableroInterfaz;
         this.juego = juego;
         this.tablero = tablero;

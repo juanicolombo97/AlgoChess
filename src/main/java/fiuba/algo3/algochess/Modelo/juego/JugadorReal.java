@@ -11,6 +11,7 @@ import fiuba.algo3.algochess.Modelo.unidades.UnidadNueva;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JugadorReal implements Jugador {
 
@@ -54,7 +55,7 @@ public class JugadorReal implements Jugador {
         return this.puntosJugador.getPuntosDisponibles();
     }
 
-    public void casillerosAliados(List casilleros){
+    public void casillerosAliados(List<Casillero> casilleros){
         casilleroJugador = casilleros;
     }
 
@@ -67,8 +68,7 @@ public class JugadorReal implements Jugador {
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
         //Creo la unidad y cambio los puntos disponibles del jugador
         UnidadNueva unidadNueva = new UnidadNueva();
-        Unidad unidadCreada = unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion,emisario);
-        return unidadCreada;
+        return unidadNueva.crearUnidad(nombreUnidad,puntosJugador,posicion,emisario);
     }
 
     public void guardarUnidad(Unidad unidadNueva) {
@@ -93,7 +93,7 @@ public class JugadorReal implements Jugador {
         }
     }
 
-    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, HashMap tablero, Distancia distancia) {
+    public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
@@ -108,30 +108,28 @@ public class JugadorReal implements Jugador {
         return unidadesDisponibles.contains(unidad);
     }
 
-    public void reconocerUnidadesAliadasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
+    public void reconocerUnidadesAliadasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
         if (unidadAliada(unidad)){
             reconocerUnidadesAliadasAdyascentesAUnidad(unidadesCercanas,unidadesAliadasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesAliadasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesAliadasCercanasAUnidad) {
-        for(int i = 0; i < unidadesCercanas.size(); i++) {
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+    private void reconocerUnidadesAliadasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
+        for(Unidad unidadActual : unidadesCercanas) {
             if (unidadAliada(unidadActual)) {
                 unidadesAliadasCercanasAUnidad.add(unidadActual);
             }
         }
     }
 
-    public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
+    public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
         if (unidadAliada(unidad)){
             reconocerUnidadesEnemigasAdyascentesAUnidad(unidadesCercanas,unidadesEnemigasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesEnemigasAdyascentesAUnidad(ArrayList unidadesCercanas, ArrayList unidadesEnemigasCercanasAUnidad) {
-        for(int i = 0; i < unidadesCercanas.size(); i++) {
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+    private void reconocerUnidadesEnemigasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
+        for(Unidad unidadActual : unidadesCercanas) {
             if (!unidadAliada(unidadActual)) {
                 unidadesEnemigasCercanasAUnidad.add(unidadActual);
             }

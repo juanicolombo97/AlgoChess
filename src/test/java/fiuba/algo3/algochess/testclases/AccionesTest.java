@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Distancia;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
@@ -10,12 +11,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AccionesTest {
 
     @Test
     public void seAtacaUnaUnidadADistanciaCercanaCorrectamente() {
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -31,7 +33,7 @@ public class AccionesTest {
     }
     @Test
     public void seAtacaUnaUnidadADistanciaMedianaCorrectamente() {
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
@@ -47,7 +49,7 @@ public class AccionesTest {
     }
     @Test
     public void seAtacaUnaUnidadADistanciaLejanaCorrectamente() {
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(8,8);
@@ -69,7 +71,7 @@ public class AccionesTest {
 
     @Test
     public void seCuraUnaUnidadADistanciaCercanaCorrectamente() {
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);

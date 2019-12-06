@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BatallonTest {
 
@@ -31,9 +32,9 @@ public class BatallonTest {
         tablero.crearUnidad(jugador1,posicion3,"soldado");
 
         Batallon batallon = new Batallon();
-        ArrayList listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
-        Unidad unidad = (Unidad) listaUnidadesAliadas.get(0);
-        ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
+        Unidad unidad = listaUnidadesAliadas.get(0);
+        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
         Assertions.assertEquals(3,listaUnidades.size());
     }
 
@@ -61,9 +62,9 @@ public class BatallonTest {
 
 
         Batallon batallon = new Batallon();
-        ArrayList listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
-        Unidad unidad = (Unidad) listaUnidadesAliadas.get(0);
-        ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
+        Unidad unidad = listaUnidadesAliadas.get(0);
+        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
         Assertions.assertEquals(3,listaUnidades.size());
     }
 
@@ -81,9 +82,9 @@ public class BatallonTest {
         // Muevo el soldado del (12, 12) al (13, 13)
         // Al mover el batallón, todas las unidades deben moverse (1, 1)
         tablero.moverUnidad(posicionSoldado1, posicionSoldado2, jugador2);
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
         // Obtengo dicho soldado
-        Unidad unidad = (Unidad) unidades.get(1);
+        Unidad unidad = unidades.get(1);
         Posicion posicionEsperada = new Posicion(14,14);
         Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
@@ -105,9 +106,9 @@ public class BatallonTest {
         tablero.moverUnidad(posicionSoldado1, posicionFinal, jugador2);
         // La unidad en la posicion (13, 12) permaneció en la misma posición a causa del obstáculo.
         // Obtengo dicha unidad para comprobarlo
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
-        Unidad unidad = (Unidad) unidades.get(1);
+        Unidad unidad = unidades.get(1);
         Posicion posicionEsperada = new Posicion(13,12);
         Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
@@ -137,10 +138,10 @@ public class BatallonTest {
 
         tablero.moverUnidad(posicion1717, posicion1818, jugador2);
 
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
-        Unidad unidad = (Unidad) unidades.get(1);
+        Unidad unidad = unidades.get(1);
         Posicion posicionEsperada = new Posicion(16,16);
         Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
@@ -163,10 +164,10 @@ public class BatallonTest {
 
         //La unidad de la pos 12,12 al ser la mas lejana y ya haber 3 soldados no se mueve
 
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
-        Unidad unidad = (Unidad) unidades.get(3);
+        Unidad unidad = unidades.get(3);
         Posicion posicionEsperada = new Posicion(12,12);
         Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }

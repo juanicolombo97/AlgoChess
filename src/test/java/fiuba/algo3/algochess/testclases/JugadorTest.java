@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JugadorTest {
 
@@ -24,12 +26,10 @@ public class JugadorTest {
         Jugador jugador = new JugadorReal("juani");
         Posicion posicion = new Posicion(1,1);
         Casillero casillero = new Casillero(posicion, jugador);
-        ArrayList lista = new ArrayList();
+        List<Casillero> lista = new ArrayList<>();
         lista.add(casillero);
         jugador.casillerosAliados(lista);
         Unidad unidad = jugador.crearUnidad(casillero,"soldado",posicion, new EmisarioNulo());
-
-
     }
 
     @Test
@@ -39,7 +39,7 @@ public class JugadorTest {
         Distancia distancia = new Distancia(1,1);
         Jugador jugador = new JugadorReal("juani");
         Casillero casillero = new Casillero(posicion, jugador);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());

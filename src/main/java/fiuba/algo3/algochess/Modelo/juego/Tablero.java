@@ -30,13 +30,13 @@ public class Tablero {
 
     public void filterCasilleros(){
 
-        List casillerosAliados = tablero.entrySet().stream()
+        List<Casillero> casillerosAliados = tablero.entrySet().stream()
                                                     .filter(map -> map.getKey().posicionX < 10)
                                                     .map(Map.Entry :: getValue)
                                                     .collect(Collectors.toList());
         jugador1.casillerosAliados(casillerosAliados);
 
-        List casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
+        List<Casillero> casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
                                                                 .map(Map.Entry :: getValue)
                                                                 .collect(Collectors.toList());
         jugador2.casillerosAliados(casillerosEnemigos);
@@ -64,10 +64,10 @@ public class Tablero {
         casilleroInicial.movimientoValido(casilleroDestino);
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
-        ArrayList listaUnidadesAliadas = jugador.getUnidadesDisponibles();
-        ArrayList listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, (HashMap) tablero,listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAliadas = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, tablero,listaUnidadesAliadas);
         while (contador != 3 && listaUnidadesAMover.size() != 0){
-            Unidad unidad = (Unidad) listaUnidadesAMover.remove(0);
+            Unidad unidad = listaUnidadesAMover.remove(0);
             jugador.unidadPerteneceAJugador(unidad);
             Posicion posicion = unidad.getPosicion();
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
@@ -91,50 +91,47 @@ public class Tablero {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
         Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
-        jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), (HashMap) tablero,distancia);
+        jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), tablero,distancia);
     }
 
-    public HashMap getTablero(){
-        return (HashMap) tablero;
+    public Map<Posicion, Casillero> getTablero(){
+        return tablero;
     }
 
 
     public void notificar(Unidad unidadEmisora) { //done
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
-        for(int i = 0; i < unidadesCercanas.size(); i++){
-            Unidad unidadActual = (Unidad) unidadesCercanas.get(i);
+        List<Unidad> unidadesCercanas = unidadesCercanasADistancia1y2(unidadEmisora);
+        for(Unidad unidadActual : unidadesCercanas){
             unidadActual.recibirNotificacion();
         }
     }
 
-    public ArrayList unidadesCercanasADistancia1y2(Unidad unaUnidad) { // done
+    public List<Unidad> unidadesCercanasADistancia1y2(Unidad unaUnidad) { // done
         UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-        ArrayList unidadesADistanciaCercana = unidadesCercanas.unidadesCercanasADistancia(2,(HashMap) tablero, unaUnidad);
-        return unidadesADistanciaCercana;
+        return unidadesCercanas.unidadesCercanasADistancia(2, tablero, unaUnidad);
     }
 
 
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) { //done
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
-        ArrayList unidadesAliadasCercanasAUnidad = new ArrayList();
+    public List<Unidad> unidadesAliadasCercanas(Unidad unidad) { //done
+        List<Unidad> unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
+        List<Unidad> unidadesAliadasCercanasAUnidad = new ArrayList<>();
         this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         this.jugador2.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 
     public int cantidadSoldadosAliadosCercanos(Unidad unidad) { //done
-        ArrayList soldadosAliadosCercanos = new ArrayList();
-        ArrayList unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
-        for (Object unidadActual: unidadesAliadasCercanasAUnidad){
-            Unidad laUnidadActual = (Unidad)unidadActual;
-            laUnidadActual.agregarSoldadoAListaDeSoldados(soldadosAliadosCercanos);
+        List<Unidad> soldadosAliadosCercanos = new ArrayList<>();
+        List<Unidad> unidadesAliadasCercanasAUnidad = unidadesAliadasCercanas(unidad);
+        for (Unidad unidadActual: unidadesAliadasCercanasAUnidad){
+            unidadActual.agregarSoldadoAListaDeSoldados(soldadosAliadosCercanos);
         }
         return soldadosAliadosCercanos.size();
     }
 
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
-        ArrayList unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
-        ArrayList unidadesEnemigasCercanasAUnidad = new ArrayList();
+    public List<Unidad> unidadesEnemigasCercanas(Unidad unidad) {
+        List<Unidad> unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
+        List<Unidad> unidadesEnemigasCercanasAUnidad = new ArrayList<>();
         this.jugador1.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         this.jugador2.reconocerUnidadesEnemigasCercanasA(unidad, unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         return unidadesEnemigasCercanasAUnidad;
