@@ -1,23 +1,20 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Entrega2CatapultaTest {
 
     @Test
     public void catapultaAtacaABatallonUnidades() {
-        Jugador jugador = new JugadorReal("JUAN");
-        Jugador jugador1 = new JugadorReal("Juani");
+        Jugador jugador = new Jugador("JUAN");
+        Jugador jugador1 = new Jugador("Juani");
         Tablero tablero = new Tablero(jugador,jugador1);
 
 
@@ -54,8 +51,8 @@ public class Entrega2CatapultaTest {
 
     @Test
     public void catapultaTambienAtacaBatallonUnidadesQueContienenAliadas() {
-        Jugador jugador = new JugadorReal("JUAN");
-        Jugador jugador1 = new JugadorReal("JUAN");
+        Jugador jugador = new Jugador("JUAN");
+        Jugador jugador1 = new Jugador("JUAN");
 
         Tablero tablero = new Tablero(jugador,jugador1);
 
@@ -93,8 +90,8 @@ public class Entrega2CatapultaTest {
     }
     @Test
     public void catapultaAtacaUnidadEnemigaSinUnidadeCerca() {
-        Jugador jugador = new JugadorReal("JUAN");
-        Jugador jugador1 = new JugadorReal("JUAN");
+        Jugador jugador = new Jugador("JUAN");
+        Jugador jugador1 = new Jugador("JUAN");
 
         Tablero tablero = new Tablero(jugador,jugador1);
 

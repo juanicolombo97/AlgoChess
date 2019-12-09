@@ -1,8 +1,6 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Batallon;
@@ -10,15 +8,14 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BatallonTest {
 
     @Test
     public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() {
-        Jugador jugador = new JugadorReal("juani");
-        Jugador jugador1 = new JugadorReal("carlos");
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(9,9);
@@ -40,8 +37,8 @@ public class BatallonTest {
 
     @Test
     public void seFormaBatallonSoloDeSoldados() {
-        Jugador jugador1 = new JugadorReal("carlos");
-        Jugador jugador = new JugadorReal("Juani");
+        Jugador jugador1 = new Jugador("carlos");
+        Jugador jugador = new Jugador("Juani");
         Tablero tablero = new Tablero(jugador,jugador1);
 
 
@@ -70,8 +67,8 @@ public class BatallonTest {
 
     @Test
     void moverBatallonSoldados() {
-        Jugador jugador1 = new JugadorReal("juan");
-        Jugador jugador2 = new JugadorReal("pedro");
+        Jugador jugador1 = new Jugador("juan");
+        Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
         Posicion posicionSoldado1 = new Posicion(12, 12);
         Posicion posicionSoldado2 = new Posicion(13, 13);
@@ -91,8 +88,8 @@ public class BatallonTest {
 
     @Test
     void moverBatallonSoldadosConObstaculo() {
-        Jugador jugador1 = new JugadorReal("juan");
-        Jugador jugador2 = new JugadorReal("pedro");
+        Jugador jugador1 = new Jugador("juan");
+        Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
         Posicion posicionSoldado1 = new Posicion(12, 12);
         Posicion posicionSoldado2 = new Posicion(13, 12);
@@ -115,8 +112,8 @@ public class BatallonTest {
 
     @Test
     void seDisuelveBatallonCorrectamente() {
-        Jugador jugador1 = new JugadorReal("juan");
-        Jugador jugador2 = new JugadorReal("pedro");
+        Jugador jugador1 = new Jugador("juan");
+        Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
         Posicion posicionSoldado1 = new Posicion(15, 15);
         Posicion posicionSoldado2 = new Posicion(14, 14);
@@ -148,8 +145,8 @@ public class BatallonTest {
 
     @Test
     void moverBatallonDe4SoloMueve3Unidades() {
-        Jugador jugador1 = new JugadorReal("juan");
-        Jugador jugador2 = new JugadorReal("pedro");
+        Jugador jugador1 = new Jugador("juan");
+        Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionSoldado1 = new Posicion(15, 15);
         Posicion posicionSoldado2 = new Posicion(14, 14);

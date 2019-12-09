@@ -1,8 +1,6 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Soldado;
@@ -13,8 +11,8 @@ public class UnidadesCercanasTest {
 
     @Test
     public void unidadesCercanasADistancia1y2() {
-        Jugador jugador = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
         Posicion posicionSoldado1 = new Posicion(4,4);
         Posicion posicionSoldado2 = new Posicion(6,6);
@@ -42,8 +40,8 @@ public class UnidadesCercanasTest {
 
     @Test
     public void unidadesAliadasCercanas() {
-        Jugador jugador = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
         Posicion posicionSoldado1 = new Posicion(9,9);
         Posicion posicionSoldado2 = new Posicion(9,8);
@@ -61,8 +59,8 @@ public class UnidadesCercanasTest {
 
     @Test
     public void cantidadSoldadosAliadosCercanos() {
-        Jugador jugador = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
         Posicion posicionSoldado1 = new Posicion(9,9);
         Posicion posicionCurandero = new Posicion(9,8);
@@ -80,8 +78,8 @@ public class UnidadesCercanasTest {
 
     @Test
     public void unidadesEnemigasCercanas() {
-        Jugador jugador = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador, jugador2);
         Posicion posicionSoldado1 = new Posicion(9,9);
         Posicion posicionSoldado2 = new Posicion(9,8); // unidad aliada

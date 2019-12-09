@@ -1,23 +1,20 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Entrega2SoldadoTest {
 
     @Test
     public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() {
-        Jugador jugador = new JugadorReal("juani");
-        Jugador jugador1 = new JugadorReal("carlos");
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
@@ -42,8 +39,8 @@ public class Entrega2SoldadoTest {
 
     @Test
     public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() {
-        Jugador jugador = new JugadorReal("juani");
-        Jugador jugador1 = new JugadorReal("carlos");
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
@@ -75,8 +72,8 @@ public class Entrega2SoldadoTest {
     }
     @Test
     public void batallonSeDisuelveCorrectamenteAlDejarDeExistir() {
-        Jugador jugador = new JugadorReal("juani");
-        Jugador jugador1 = new JugadorReal("carlos");
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
@@ -114,8 +111,8 @@ public class Entrega2SoldadoTest {
 
     @Test
     public void habiendo4SoldadosSoloSeMueven3() {
-        Jugador jugador = new JugadorReal("juani");
-        Jugador jugador1 = new JugadorReal("carlos");
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
