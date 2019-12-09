@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Tablero {
@@ -54,7 +55,7 @@ public class Tablero {
 
     public void moverUnidad(Posicion posicionInicial,Posicion posicionFinal, Jugador jugador) {
 
-        int contador = 0;
+        AtomicInteger contador = new AtomicInteger(0);
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
         Distancia distancia = posicionInicial.calcularDistanciaConDireccion(posicionFinal);
@@ -66,23 +67,17 @@ public class Tablero {
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
         List<Unidad> listaUnidadesAliadas = jugador.getUnidadesDisponibles();
         List<Unidad> listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, tablero,listaUnidadesAliadas);
-        while (contador != 3 && listaUnidadesAMover.size() != 0){
+        while (contador.get() != 3 && listaUnidadesAMover.size() != 0){
             Unidad unidad = listaUnidadesAMover.remove(0);
             jugador.unidadPerteneceAJugador(unidad);
             Posicion posicion = unidad.getPosicion();
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
-            try {
 
-                casilleroFin.guardarUnidad(unidad);
-                jugador.unidadModificarPosicionCasillero(unidad, casilleroFin);
-                casilleroInicio.eliminarUnidad();
-                unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
-                contador++;
-            }catch (CasilleroOcupadoException e){
-                
-            }
+            casilleroFin.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador);
+
+
 
         }
     }

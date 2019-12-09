@@ -337,10 +337,8 @@ public class Entrega2JineteTest {
         Jugador jugador2 = new JugadorReal("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
-        Posicion posicionCurandero = new Posicion(4,2);
         Posicion posicionCuranderoEnemigo = new Posicion(11,11);
         tablero.crearUnidad(jugador1, posicionJinete, "jinete");
-        tablero.crearUnidad(jugador1, posicionCurandero, "curandero");
         tablero.crearUnidad(jugador2, posicionCuranderoEnemigo, "curandero");
         // Acerco el curandero enemigo a nuestro jinete
         Posicion posicion1010 = new Posicion(10,10);
@@ -358,8 +356,11 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0606, posicion0605, jugador2);
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         // Pruebo si el jinete está en modo espadachin
-
+        Posicion posicion = jugador2.getUnidadesDisponibles().get(0).getPosicion();
+        System.out.println(posicion.posicionX);
+        System.out.println(posicion.posicionY);
         tablero.atacar(posicionJinete, posicion0604, jugador1);
+
         Assertions.assertEquals(69.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 

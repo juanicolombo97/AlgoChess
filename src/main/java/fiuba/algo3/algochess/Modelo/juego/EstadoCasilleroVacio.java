@@ -5,6 +5,8 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import fiuba.algo3.algochess.Modelo.unidades.UnidadNula;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class EstadoCasilleroVacio implements EstadoCasillero {
 
 
@@ -28,6 +30,15 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
 
     public Unidad obtenerUnidadCercana() {
         return new UnidadNula();
+    }
+
+    @Override
+    public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casilleroFin) {
+        jugador.unidadModificarPosicionCasillero(unidad,casilleroFin);
+        casilleroInicio.eliminarUnidad();
+        unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
+        contador.set(contador.get()+1);
+        casilleroFin.modificarEstadoCasillero(new EstadoCasilleroOcupado(unidad));
     }
 
 }

@@ -2,6 +2,8 @@ package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Casillero{
 
     private final Posicion posicionCasillero;
@@ -47,4 +49,11 @@ public class Casillero{
    }
 
 
+    public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador) {
+        estadoCasillero.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador,this);
+    }
+
+    public void modificarEstadoCasillero(EstadoCasillero estadoCasilleroNuevo){
+        this.estadoCasillero = estadoCasilleroNuevo;
+    }
 }
