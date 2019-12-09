@@ -33,7 +33,7 @@ public class UnidadesCercanas {
         List<Unidad> unidadesADistanciaCercana = new ArrayList<>();
         for (int counter = 0; counter < distanciaLimite; counter++){
             for (Direccion direccionActual : listaDirecciones) {
-                Posicion posicionNueva = new Posicion(unidadCentral.getPosicion().posicionNueva(direccionActual).posicionX + counter*((direccionActual).getX()),unidadCentral.getPosicion().posicionNueva(direccionActual).posicionY + counter*((direccionActual).getY()));
+                Posicion posicionNueva = unidadCentral.calcularPosicionCernana(direccionActual,counter);
                 posicionNueva.determinarPosicionValida(tablero, unidadesADistanciaCercana);
             }
         }

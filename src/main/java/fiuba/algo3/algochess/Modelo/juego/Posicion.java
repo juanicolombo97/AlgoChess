@@ -86,4 +86,8 @@ public class Posicion {
             unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
         }
     }
+
+    public Posicion posicionNuevaCercana(Direccion direccionActual, int counter) {
+       return direccionActual.calcularPosicionCercana(posicionX,posicionY,counter);
+    }
 }

@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
@@ -40,4 +41,6 @@ public interface Unidad {
     public void agregarUnidadCercana(List<Unidad> batallonUnidades, List<Unidad> listaUnidades);
 
     public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana);
+
+    Posicion calcularPosicionCernana(Direccion direccionActual, int counter);
 }

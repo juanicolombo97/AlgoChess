@@ -20,7 +20,7 @@ public class Tablero {
         for(int i = 0; i < 20; i++){
             for(int j = 0; j < 20; j++){
                 Posicion posicion = new Posicion(i,j);
-                Casillero casillero = new Casillero(posicion,jugador1);
+                Casillero casillero = new Casillero(posicion);
                 tablero.put(posicion,casillero);
             }
         }
@@ -59,7 +59,7 @@ public class Tablero {
         Casillero casilleroInicial = tablero.get(posicionInicial);
         Casillero casilleroDestino = tablero.get(posicionFinal);
         Distancia distancia = posicionInicial.calcularDistanciaConDireccion(posicionFinal);
-        Direccion direccionMovimiento = new Direccion(distancia.getDistanciaX(),distancia.getDistanciaY());
+        Direccion direccionMovimiento = distancia.direccionMovimiento();
 
         //Veo que la distancia sea correcta.
         casilleroInicial.movimientoValido(casilleroDestino);
@@ -75,7 +75,7 @@ public class Tablero {
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
 
-            casilleroFin.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador);
+                casilleroFin.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador);
 
 
 

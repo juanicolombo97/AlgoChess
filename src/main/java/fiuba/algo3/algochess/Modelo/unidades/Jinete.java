@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
@@ -133,6 +134,12 @@ public class Jinete implements Unidad {
     @Override
     public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana) {
         unidadesADistanciaCercana.add(this);
+    }
+
+    @Override
+    public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
+        Posicion posicionNueva = posicion.posicionNueva(direccionActual);
+        return posicionNueva.posicionNuevaCercana(direccionActual,counter);
     }
 
 }

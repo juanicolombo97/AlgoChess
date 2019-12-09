@@ -25,7 +25,7 @@ public class JugadorTest {
     public void jugadorPuedeCrearUnidad() {
         Jugador jugador = new JugadorReal("juani");
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion, jugador);
+        Casillero casillero = new Casillero(posicion);
         List<Casillero> lista = new ArrayList<>();
         lista.add(casillero);
         jugador.casillerosAliados(lista);
@@ -38,7 +38,7 @@ public class JugadorTest {
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
         Jugador jugador = new JugadorReal("juani");
-        Casillero casillero = new Casillero(posicion, jugador);
+        Casillero casillero = new Casillero(posicion);
         Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());

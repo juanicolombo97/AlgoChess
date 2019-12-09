@@ -9,17 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class PosicionTest {
 
-    @Test
-    public void posicionCalculaDistanciaCorrectamente(){
-        Posicion posicion = new Posicion(1,1);
-        Posicion posicion1 = new Posicion(2,2);
-
-        Distancia distancia1 = posicion.calcularDistancia(posicion1);
-
-
-        Assertions.assertEquals(1,distancia1.getDistanciaX());
-        Assertions.assertEquals(1,distancia1.getDistanciaY());
-    }
 
     @Test
     public void calcularDistanciaInvalidaLanzaError(){

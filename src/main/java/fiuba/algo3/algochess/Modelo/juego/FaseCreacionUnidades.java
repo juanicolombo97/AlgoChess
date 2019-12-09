@@ -34,7 +34,7 @@ public class FaseCreacionUnidades implements Fase{
         } catch (NoAlcanzanLosPuntosException e){
             return crearUnidad(jugador,posicion,nombreUnidad);
         }catch(JugadorSeQuedoSinPuntosException e){
-            return new UnidadNula();
+            return new UnidadNula(posicion);
         }
     }
 

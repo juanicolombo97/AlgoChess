@@ -29,7 +29,7 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
     @Override
 
     public Unidad obtenerUnidadCercana() {
-        return new UnidadNula();
+        return new UnidadNula(new Posicion(0,0));
     }
 
     @Override

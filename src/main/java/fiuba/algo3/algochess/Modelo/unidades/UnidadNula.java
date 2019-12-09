@@ -2,6 +2,7 @@ package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadNulaException;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.HashMap;
@@ -9,6 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 public class UnidadNula implements Unidad{
+
+    private  Posicion posicion;
+
+    public UnidadNula(Posicion posicion){
+        this.posicion = posicion;
+    }
     @Override
     public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         throw new UnidadNulaException("La unidad es inválida");
@@ -80,5 +87,9 @@ public class UnidadNula implements Unidad{
     @Override
     public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana) {
 
+    }
+    @Override
+    public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
+        return posicion;
     }
 }
