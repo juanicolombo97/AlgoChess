@@ -35,7 +35,6 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
 
     @Override
     public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casillero) {
-
     }
 
 }

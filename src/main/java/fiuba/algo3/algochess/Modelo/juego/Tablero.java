@@ -74,19 +74,7 @@ public class Tablero {
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
             Casillero casilleroInicio = tablero.get(posicion);
             Casillero casilleroFin = tablero.get(posicionDestino);
-            try {
-                casilleroFin.guardarUnidad(unidad);
-                jugador.unidadModificarPosicionCasillero(unidad,casilleroFin);
-                casilleroInicio.eliminarUnidad();
-                unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
-                contador.set(contador.get()+1);
-            }catch (CasilleroOcupadoException e){
-
-            }
-
-
-
-
+            casilleroFin.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador);
         }
     }
 

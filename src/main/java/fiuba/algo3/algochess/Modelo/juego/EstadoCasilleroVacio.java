@@ -34,11 +34,12 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
 
     @Override
     public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casilleroFin) {
+        casilleroFin.modificarEstadoCasillero(new EstadoCasilleroOcupado(unidad));
+        unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
         jugador.unidadModificarPosicionCasillero(unidad,casilleroFin);
         casilleroInicio.eliminarUnidad();
-        unidad.modificarPosicion(casilleroFin.getPosicionCasillero());
         contador.set(contador.get()+1);
-        casilleroFin.modificarEstadoCasillero(new EstadoCasilleroOcupado(unidad));
+
     }
 
 }
