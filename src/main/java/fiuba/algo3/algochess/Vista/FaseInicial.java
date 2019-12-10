@@ -76,15 +76,33 @@ public class FaseInicial {
         VBox vBox = new VBox(10);
 
         Label unidadesDisponibles = new Label("Unidades: ");
+
         Button crearSoldado = new Button("Crear Soldado");
         crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz));
+
         Button crearJinete = new Button("Crear Jinete");
+        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz));
+
         Button crearCurandero = new Button("Crear Curandero");
+        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz));
+
         Button crearCatapulta = new Button("Crear Catapulta");
+        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz));
 
-
-        vBox.getChildren().addAll(unidadesDisponibles,crearSoldado,crearCurandero,crearJinete,crearCatapulta);
+        Button terminarTurno = new Button("Terminar Turnos");
+        terminarTurno.setOnAction(e -> {
+            if (juego.jugadorActual().getPuntosDisponibles() > 0){
+                mensajeDeError.setText("Todavia dispone de puntos");
+            }else {
+                inicioJuego();
+            }
+        });
+        vBox.getChildren().addAll(unidadesDisponibles,crearSoldado,crearCurandero,crearJinete,crearCatapulta,terminarTurno);
         return vBox;
+    }
+
+    public static void inicioJuego(){
+        mensajeDeError.setText("Comienzo etapa juego");
     }
 
 }
