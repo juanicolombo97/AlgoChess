@@ -78,13 +78,12 @@ public class Tablero {
         }
     }
 
-    public Casillero atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) {
+    public void atacar(Posicion posicionAtacante,Posicion posicionAtacado, Jugador jugador) {
         Unidad unidadAtacante = tablero.get(posicionAtacante).obtenerUnidad();
         Unidad unidadAtacada = tablero.get(posicionAtacado).obtenerUnidad();
         Distancia distancia = tablero.get(posicionAtacante).calcularDistancia(posicionAtacado);
         jugador.atacar(unidadAtacante,unidadAtacada,tablero.get(posicionAtacado), tablero,distancia);
-        Casillero casilleroAtacado = tablero.get(posicionAtacado);
-        return casilleroAtacado;
+
     }
 
     public Map<Posicion, Casillero> getTablero(){

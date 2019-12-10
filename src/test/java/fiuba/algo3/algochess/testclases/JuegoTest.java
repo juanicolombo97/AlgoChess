@@ -4,8 +4,11 @@ import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+import javafx.scene.layout.VBox;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class JuegoTest {
 
@@ -466,7 +469,7 @@ public class JuegoTest {
     }
 
     @Test
-    void jugadorEnemigoSeQuedaSinPiezasPierde(){
+    void jugadorEnemigoNoPuedeAtacarConUnidadMuerta(){
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -474,10 +477,9 @@ public class JuegoTest {
         Posicion posicion3 = new Posicion(4,4);
         Posicion posicion4 = new Posicion(5,5);
         Posicion posicion5 = new Posicion(10,10);
-        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion6 = new Posicion(13,12);
         Posicion posicion7 = new Posicion(12,12);
         Posicion posicion8 = new Posicion(13,13);
-        Posicion posicion9 = new Posicion(14,14);
 
         juego.crearUnidad("catapulta",posicion);
         juego.crearUnidad("curandero",posicion1);
@@ -487,24 +489,168 @@ public class JuegoTest {
         juego.crearUnidad("catapulta",posicion5);
         juego.crearUnidad("catapulta",posicion6);
         juego.crearUnidad("catapulta",posicion7);
-        juego.crearUnidad("curandero",posicion8);
-        juego.crearUnidad("jinete",posicion9);
+        juego.crearUnidad("catapulta",posicion8);
 
-        //Simulo ataques sacando vida manuelmente dejando 20 al jinete de Enemigo
 
-        Unidad unidad0 = juego.jugadorEnemigo.getUnidadesDisponibles().get(0);
-        unidad0.recibirDanio(50);
-        Unidad unidad1 = juego.jugadorEnemigo.getUnidadesDisponibles().get(1);
-        unidad1.recibirDanio(50);
-        Unidad unidad2 = juego.jugadorEnemigo.getUnidadesDisponibles().get(2);
-        unidad2.recibirDanio(50);
-        Unidad unidad3 = juego.jugadorEnemigo.getUnidadesDisponibles().get(3);
-        unidad3.recibirDanio(75);
-        Unidad unidad4 = juego.jugadorEnemigo.getUnidadesDisponibles().get(4);
-        unidad4.recibirDanio(80);
 
-            juego.atacar(posicion,posicion9);
-            System.out.println(juego.jugadorEnemigo.getUnidadesDisponibles().size());
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        try {
+            juego.atacar(posicion5,posicion);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }
+    }
+
+    @Test
+    void jugadorNoPuedeAtacarUnidadMuerta(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(4,5);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(13,12);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+
+
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion8,posicion2);
+        try {
+            juego.atacar(posicion,posicion5);
+        }catch (CasilleroVacioExcepcion e){
+            Assertions.assertEquals("El casillero esta vacio",e.getMessage());
+        }
+    }
+
+    @Test
+    void jugadorEnemigoPierdeUnidadYSeLeRestaDeLaLista(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(12,12);
+        Posicion posicion7 = new Posicion(14,14);
+        Posicion posicion8 = new Posicion(16,16);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+
+
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+
+        int tamanio = juego.jugadorEnemigo.getUnidadesDisponibles().size();
+        Assertions.assertEquals(3,tamanio);
+    }
+    @Test
+    void jugadorAliadoPierdeUnidadCorrectamente(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(4,3);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(14,14);
+        Posicion posicion8 = new Posicion(13,13);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("catapulta",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+
+
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion7,posicion);
+
+        int tamanio = juego.jugadorAliado.getUnidadesDisponibles().size();
+        Assertions.assertEquals(3,tamanio);
+    }
+
+    @Test
+    void jugadorEnemigoSeQuedaSinUnidadesYPierde(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("catapulta",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+
+        //Pierden los dos 1 unidad
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        try {
+            juego.atacar(posicion,posicion5);
+        }catch (JugadorPerdioException e){
+            Assertions.assertEquals("El jugador perdio",e.getMessage());
+        }
+
+
 
     }
 

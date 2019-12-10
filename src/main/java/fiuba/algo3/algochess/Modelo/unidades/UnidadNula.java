@@ -94,7 +94,9 @@ public class UnidadNula implements Unidad{
     }
 
     @Override
-    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+    public void sigueViva(List<Unidad> unidadesDisponibles) {
 
     }
+
+
 }

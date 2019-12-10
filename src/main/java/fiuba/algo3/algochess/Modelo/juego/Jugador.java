@@ -121,14 +121,17 @@ public class Jugador {
     }
 
 
-
-    public void actualizarVidaUnidad(Unidad unidaAtacada, Casillero casilleroUnidad) {
-        unidaAtacada.seEncuentraViva(unidadesDisponibles,casilleroUnidad);
-    }
-
     public void puedeSeguirJugando() {
         if (unidadesDisponibles.size() == 0){
             throw new JugadorPerdioException("El jugador perdio");
         }
+    }
+
+    public void actualizarUnidadesDisponibles() {
+        ArrayList<Unidad> listaUnidadesVivas = new ArrayList<>();
+        for (Unidad unidad : unidadesDisponibles){
+            unidad.sigueViva(listaUnidadesVivas);
+        }
+        unidadesDisponibles =  listaUnidadesVivas;
     }
 }

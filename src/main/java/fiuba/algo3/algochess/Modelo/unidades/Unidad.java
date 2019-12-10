@@ -43,5 +43,6 @@ public interface Unidad {
 
     Posicion calcularPosicionCercana(Direccion direccionActual, int counter);
 
-    void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad);
+
+    void sigueViva(List<Unidad> unidadesDisponibles);
 }

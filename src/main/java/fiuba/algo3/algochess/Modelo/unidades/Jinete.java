@@ -142,10 +142,9 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
-        if (vidaUnidad < 0){
-            unidadesDisponibles.remove(this);
-            casilleroUnidad.eliminarUnidad();
+    public void sigueViva(List<Unidad> unidadesDisponibles) {
+        if (vidaUnidad > 0){
+            unidadesDisponibles.add(this);
         }
     }
 
