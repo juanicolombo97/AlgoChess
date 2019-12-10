@@ -13,9 +13,7 @@ public class Puntos {
 
     public void modificarPuntos(int costoUnidad){
         puntosDisponibles = puntosDisponibles - costoUnidad;
-        if (puntosDisponibles == 0){
-            actualizarEstado();
-        }
+
     }
 
     public void alcanzanPuntos(int costoUnidad) {
@@ -28,7 +26,10 @@ public class Puntos {
         return this.puntosDisponibles;
     }
 
-    public void actualizarEstado() {
-      throw new JugadorSeQuedoSinPuntosException("Te haz quedado sin puntos");
+
+    public void puedeSeguirColocandoFichas() {
+        if (puntosDisponibles == 0){
+            throw new JugadorSeQuedoSinPuntosException("Te haz quedado sin puntos");
+        }
     }
 }

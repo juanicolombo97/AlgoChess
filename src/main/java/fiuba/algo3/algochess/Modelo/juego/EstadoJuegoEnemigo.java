@@ -17,6 +17,7 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     public EstadoJuego crearUnidad(Tablero tablero, String nombreUnidad, Posicion posicion) {
         try {
             tablero.crearUnidad(jugador,posicion,nombreUnidad);
+            jugador.puedeSeguirColocandoFichas();
         }catch (JugadorSeQuedoSinPuntosException e){
             return new EstadoJuegoAliado(jugadorEnemigo,jugador);
         }

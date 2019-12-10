@@ -73,6 +73,10 @@ public class Jugador {
         }
     }
 
+    public void puedeSeguirColocandoFichas(){
+        puntosJugador.puedeSeguirColocandoFichas();
+    }
+
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
        unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();

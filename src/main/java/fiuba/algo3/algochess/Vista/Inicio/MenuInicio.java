@@ -4,7 +4,6 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Vista.FaseInicial;
-import fiuba.algo3.algochess.Vista.Inicio.DeseaSalirAlerta;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -37,11 +36,6 @@ public class MenuInicio extends Application {
 
 
         scene = new Scene(stackPane, 800,600);
-       // Creo imagen y la establesco para que se mueva con la ventana.
-        final ImageView imagen = new ImageView("fiuba/algo3/algochess/Vista/imagenes/fondomenu.jpg");
-        imagen.fitHeightProperty().bind(ventana.heightProperty());
-        imagen.fitWidthProperty().bind(ventana.widthProperty());
-
 
         botonJugar.setOnAction(e -> {
 
@@ -73,7 +67,7 @@ public class MenuInicio extends Application {
 
         layout.getChildren().addAll(botonJugar,botonSalir);
         layout.setAlignment(Pos.CENTER);
-        stackPane.getChildren().addAll(imagen,layout);
+        stackPane.getChildren().addAll(layout);
         ventana.setScene(scene);
         ventana.show();
     }

@@ -20,6 +20,7 @@ public class AgregarUnidad {
                 CasilleroInterfaz casilleroInterfaz = tablero.getCasillero(posicion);
                 UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad,casilleroInterfaz.casilleroAliado(),nombreUnidad);
                 casilleroInterfaz.setUnidad(unidadInterfaz);
+                System.out.println(jugador.getPuntosDisponibles());
                 MensajesAJugador.setPuntos(jugador.getPuntosDisponibles());
             }
         }catch (Exception error){
