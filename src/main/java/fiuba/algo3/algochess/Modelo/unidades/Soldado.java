@@ -7,7 +7,6 @@ import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -119,6 +118,14 @@ public class Soldado implements Unidad {
     public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
         Posicion posicionNueva = posicion.posicionNueva(direccionActual);
        return posicionNueva.posicionNuevaCercana(direccionActual,counter);
+    }
+
+    @Override
+    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+        if (vidaUnidad < 0){
+            unidadesDisponibles.remove(this);
+            casilleroUnidad.eliminarUnidad();
+        }
     }
 }
 

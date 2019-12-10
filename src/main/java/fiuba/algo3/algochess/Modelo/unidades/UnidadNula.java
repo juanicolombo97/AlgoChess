@@ -5,7 +5,7 @@ import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -91,5 +91,10 @@ public class UnidadNula implements Unidad{
     @Override
     public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
         return posicion;
+    }
+
+    @Override
+    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+
     }
 }

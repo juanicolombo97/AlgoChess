@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 // Interfaz que representa las unidades del juego.
@@ -43,4 +42,6 @@ public interface Unidad {
     public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana);
 
     Posicion calcularPosicionCernana(Direccion direccionActual, int counter);
+
+    void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad);
 }

@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
 public class EstadoJuegoEnemigo implements EstadoJuego {
 
@@ -27,6 +28,14 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     @Override
     public EstadoJuego mover(Posicion posicionInicial, Posicion posicionFinal, Tablero tablero) {
         tablero.moverUnidad(posicionInicial,posicionFinal,jugador);
+        return new EstadoJuegoAliado(jugadorEnemigo,jugador);
+    }
+    @Override
+    public EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero) {
+        jugador.puedeSeguirJugando();
+        Casillero casilleroUnidad = tablero.atacar(posicionAtancate,posicionAtacado,jugador);
+        Unidad unidaAtacada = casilleroUnidad.obtenerUnidad();
+        jugadorEnemigo.actualizarVidaUnidad(unidaAtacada, casilleroUnidad);
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
 }

@@ -1,15 +1,13 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroEnemigoException;
-import fiuba.algo3.algochess.Modelo.excepciones.JugadorNuloException;
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.unidades.Emisario;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import fiuba.algo3.algochess.Modelo.unidades.UnidadNueva;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +74,7 @@ public class Jugador {
         boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
         accion.accionNueva(atacante, atacado, tablero, esUnidadAliada, distancia);
+
     }
 
     public ArrayList<Unidad> getUnidadesDisponibles() {
@@ -116,5 +115,15 @@ public class Jugador {
 
     public void actualizarEstado() {
         puntosJugador.actualizarEstado();
+    }
+
+    public void actualizarVidaUnidad(Unidad unidaAtacada, Casillero casilleroUnidad) {
+        unidaAtacada.seEncuentraViva(unidadesDisponibles,casilleroUnidad);
+    }
+
+    public void puedeSeguirJugando() {
+        if (unidadesDisponibles.size() == 0){
+            throw new JugadorPerdioException("El jugador perdio");
+        }
     }
 }

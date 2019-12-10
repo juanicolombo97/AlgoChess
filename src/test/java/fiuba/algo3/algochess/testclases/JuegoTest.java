@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -333,6 +334,183 @@ public class JuegoTest {
         int y = unidadMovida.getPosicion().posicionY;
         Posicion posicionResultante = new Posicion(x,y);
         Assertions.assertEquals(posicionResultante,posicion13);
+    }
+
+    @Test
+    void jugadorAliadoPuedeAtacarEnSuTurno(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        juego.atacar(posicion,posicion5);
+
+        Unidad unidadAtacada = juego.jugadorEnemigo.getUnidadesDisponibles().get(0);
+        double vidaUnidad = unidadAtacada.getVidaUnidad();
+        Assertions.assertEquals(30,vidaUnidad);
+
+    }
+    @Test
+    void jugadorAliadoNoPuedeAtacarEnTurnoEnemigo(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        juego.atacar(posicion,posicion5);
+        try {
+            juego.atacar(posicion,posicion5);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }
+
+    }
+    @Test
+    void jugadorEnemigoPuedeAtacarEnSuTurno(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+
+        Unidad unidadAtacada = juego.jugadorAliado.getUnidadesDisponibles().get(0);
+        double vidaUnidad = unidadAtacada.getVidaUnidad();
+        Assertions.assertEquals(30,vidaUnidad);
+
+    }
+    @Test
+    void jugadorEnemigoNoPuedeAtacarEnTurnoAliado(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5,posicion);
+        try {
+            juego.atacar(posicion5,posicion);
+        }catch (UnidadInvalidaException e){
+            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }
+
+    }
+
+    @Test
+    void jugadorEnemigoSeQuedaSinPiezasPierde(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        //Simulo ataques sacando vida manuelmente dejando 20 al jinete de Enemigo
+
+        Unidad unidad0 = juego.jugadorEnemigo.getUnidadesDisponibles().get(0);
+        unidad0.recibirDanio(50);
+        Unidad unidad1 = juego.jugadorEnemigo.getUnidadesDisponibles().get(1);
+        unidad1.recibirDanio(50);
+        Unidad unidad2 = juego.jugadorEnemigo.getUnidadesDisponibles().get(2);
+        unidad2.recibirDanio(50);
+        Unidad unidad3 = juego.jugadorEnemigo.getUnidadesDisponibles().get(3);
+        unidad3.recibirDanio(75);
+        Unidad unidad4 = juego.jugadorEnemigo.getUnidadesDisponibles().get(4);
+        unidad4.recibirDanio(80);
+        try {
+            juego.atacar(posicion,posicion9);
+        }catch (JugadorPerdioException e){
+            Assertions.assertEquals("El jugador perdio",e.getMessage());
+        }
     }
 
 }

@@ -25,6 +25,10 @@ public class Juego {
         estadoJuego = estadoJuego.mover(posicionInicial,posicionFinal,tablero);
     }
 
+    public void atacar(Posicion posicionAtancate,Posicion posicionAtacado){
+        estadoJuego = estadoJuego.atacar(posicionAtancate,posicionAtacado,tablero);
+    }
+
 
 
 }
