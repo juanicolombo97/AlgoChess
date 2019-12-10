@@ -13,13 +13,13 @@ public class Puntos {
 
     public void puntosSuficientes(int costoUnidad){
         puntosDisponibles = puntosDisponibles - costoUnidad;
+        if (puntosDisponibles == 0){
+            actualizarEstado();
+        }
     }
 
     public void alcanzanPuntos(int costoUnidad) {
         if (puntosDisponibles < costoUnidad){
-            if (puntosDisponibles == 0){
-                throw new JugadorSeQuedoSinPuntosException("Te haz quedado sin puntos");
-            }
             throw new NoAlcanzanLosPuntosException("Puntos insuficientes, dispone de: " + puntosDisponibles);
         }
     }
@@ -28,4 +28,7 @@ public class Puntos {
         return this.puntosDisponibles;
     }
 
+    public void actualizarEstado() {
+      throw new JugadorSeQuedoSinPuntosException("Te haz quedado sin puntos");
+    }
 }
