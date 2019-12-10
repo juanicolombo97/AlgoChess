@@ -1,14 +1,14 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Controlador.SeleccionarUnidadAMover;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javafx.scene.control.Button;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class FaseJuego {
 
     public void comenzarJuego(){
         VBox acciones = crearBotonesAccion();
-        VBox mensajes = mensajesJugadores((Jugador) listaJugadores.get(0));
+        VBox mensajes = mensajesJugadores(listaJugadores.get(0));
         BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(),mensajes,acciones);
 
         Scene scene = new Scene(interfaz);
@@ -43,6 +43,10 @@ public class FaseJuego {
 
         Button botonAtaque = new Button("Atacar/Curar");
         Button botonMover = new Button("Mover");
+
+        //botonAtaque.setOnAtcion(e -> Atacar(...)); lo que tenga que ir aca
+        Jugador jugadorActual = listaJugadores.get(0);
+        botonMover.setOnAction(e -> SeleccionarUnidadAMover.seleccionarUnidad(tablero,tableroInterfaz,jugadorActual);
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;
