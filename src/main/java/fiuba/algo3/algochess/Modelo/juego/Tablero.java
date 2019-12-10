@@ -87,7 +87,7 @@ public class Tablero {
 
     public Map<Posicion, Casillero> getTablero(){
         return tablero;
-    }
+    } //Se usa en Vista y en Test
 
 
     public void notificar(Unidad unidadEmisora) { //done

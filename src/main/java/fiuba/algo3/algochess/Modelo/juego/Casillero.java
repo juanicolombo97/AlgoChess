@@ -28,7 +28,7 @@ public class Casillero{
         return estadoCasillero.obtenerUnidad();
    }
 
-   public Posicion getPosicionCasillero(){
+   public Posicion getPosicionCasillero(){ //Se usa en EstadoCasillero.guardarUnidadCercana()
         return posicionCasillero;
    }
 
