@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.*;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.Modelo.unidades.Soldado;
@@ -28,7 +27,7 @@ public class JugadorTest {
         Casillero casillero = new Casillero(posicion);
         List<Casillero> lista = new ArrayList<>();
         lista.add(casillero);
-        jugador.casillerosAliados(lista);
+        jugador.setCasillerosDeJugador(lista);
         Unidad unidad = jugador.crearUnidad(casillero,"soldado",posicion, new EmisarioNulo());
     }
 

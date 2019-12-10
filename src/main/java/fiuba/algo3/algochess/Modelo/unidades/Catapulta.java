@@ -30,12 +30,12 @@ public class Catapulta implements Unidad{
 
     public double getVidaUnidad(){
         return vidaUnidad;
-    }
+    } //Solo se usa en Test
 
     @Override
     public Posicion getPosicion() {
         return posicion;
-    }
+    } //Se usa en el Modelo, en los Tests y en la Vista
 
     @Override
     public void modificarPosicion(Posicion posicion) {
@@ -73,7 +73,7 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public int cuantoCuesta() {
+    public int costoDeUnidad() {
         return costoUnidad;
     }
 

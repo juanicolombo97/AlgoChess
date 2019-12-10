@@ -16,7 +16,6 @@ public class Distancia {
         this.distanciaY = distanciaY;
     }
 
-
     public Direccion direccionMovimiento() {
         return new Direccion(distanciaX,distanciaY);
     }

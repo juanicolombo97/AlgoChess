@@ -27,7 +27,7 @@ public class CatapultaTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
-        Assertions.assertEquals(5, catapulta.cuantoCuesta());
+        Assertions.assertEquals(5, catapulta.costoDeUnidad());
     }
 
     @Test

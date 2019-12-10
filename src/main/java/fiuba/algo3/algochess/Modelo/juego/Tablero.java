@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
 import java.util.*;
@@ -35,12 +34,12 @@ public class Tablero {
                                                     .filter(map -> map.getKey().posicionX < 10)
                                                     .map(Map.Entry :: getValue)
                                                     .collect(Collectors.toList());
-        jugador1.casillerosAliados(casillerosAliados);
+        jugador1.setCasillerosDeJugador(casillerosAliados);
 
         List<Casillero> casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
                                                                 .map(Map.Entry :: getValue)
                                                                 .collect(Collectors.toList());
-        jugador2.casillerosAliados(casillerosEnemigos);
+        jugador2.setCasillerosDeJugador(casillerosEnemigos);
     }
 
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) {
@@ -62,11 +61,10 @@ public class Tablero {
         Direccion direccionMovimiento = distancia.direccionMovimiento();
 
         //Veo que la distancia sea correcta.
-        casilleroInicial.movimientoValido(casilleroDestino);
+        casilleroInicial.validarMovimiento(casilleroDestino);
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
-        List<Unidad> listaUnidadesAliadas = jugador.getUnidadesDisponibles();
-        List<Unidad> listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, tablero,listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAMover = jugador.unidadesAMover(unidadAMover, tablero);
         while (contador.get() != 3 && listaUnidadesAMover.size() != 0){
             Unidad unidad = listaUnidadesAMover.remove(0);
             jugador.unidadPerteneceAJugador(unidad);
@@ -88,7 +86,7 @@ public class Tablero {
 
     public Map<Posicion, Casillero> getTablero(){
         return tablero;
-    }
+    } //Se usa en Vista y en Test
 
 
     public void notificar(Unidad unidadEmisora) { //done
@@ -107,8 +105,8 @@ public class Tablero {
     public List<Unidad> unidadesAliadasCercanas(Unidad unidad) { //done
         List<Unidad> unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         List<Unidad> unidadesAliadasCercanasAUnidad = new ArrayList<>();
-        this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        this.jugador2.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador1.reconocerUnidadesAliadasCercanasAUnidad(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesAliadasCercanasAUnidad(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 

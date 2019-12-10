@@ -15,11 +15,6 @@ public class EmisarioNulo implements Emisario {
     }
 
     @Override
-    public List<Unidad> unidadesAliadasCercanas(Unidad unidad) {
-        return new ArrayList<>();
-    }
-
-    @Override
     public int cantidadSoldadosAliadosCercanos(Unidad unidad) {
         return 0;
     }
