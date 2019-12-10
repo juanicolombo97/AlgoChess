@@ -502,11 +502,10 @@ public class JuegoTest {
         unidad3.recibirDanio(75);
         Unidad unidad4 = juego.jugadorEnemigo.getUnidadesDisponibles().get(4);
         unidad4.recibirDanio(80);
-        try {
+
             juego.atacar(posicion,posicion9);
-        }catch (JugadorPerdioException e){
-            Assertions.assertEquals("El jugador perdio",e.getMessage());
-        }
+            System.out.println(juego.jugadorEnemigo.getUnidadesDisponibles().size());
+
     }
 
 }

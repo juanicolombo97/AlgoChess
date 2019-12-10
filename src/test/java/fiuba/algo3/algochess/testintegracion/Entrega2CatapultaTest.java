@@ -30,7 +30,7 @@ public class Entrega2CatapultaTest {
         tablero.crearUnidad(jugador,posicion3,"soldado");
         tablero.crearUnidad(jugador1,posicion4,"catapulta");
 
-        tablero.atacar(posicion4,posicion3,jugador);
+        tablero.atacar(posicion4,posicion3,jugador1);
 
         List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
 
@@ -69,7 +69,7 @@ public class Entrega2CatapultaTest {
         tablero.crearUnidad(jugador1,posicion3,"soldado");
         tablero.crearUnidad(jugador1,posicion4,"catapulta");
 
-        tablero.atacar(posicion4,posicion3,jugador);
+        tablero.atacar(posicion4,posicion3,jugador1);
 
         List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
         List<Unidad> listaUnidades2 = jugador1.getUnidadesDisponibles();

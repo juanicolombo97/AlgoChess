@@ -32,10 +32,11 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     }
     @Override
     public EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero) {
-        jugador.puedeSeguirJugando();
+
         Casillero casilleroUnidad = tablero.atacar(posicionAtancate,posicionAtacado,jugador);
         Unidad unidaAtacada = casilleroUnidad.obtenerUnidad();
         jugadorEnemigo.actualizarVidaUnidad(unidaAtacada, casilleroUnidad);
+        jugadorEnemigo.puedeSeguirJugando();
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
 }

@@ -38,10 +38,13 @@ public class JugadorTest {
         Posicion posicion = new Posicion(2,2);
         Distancia distancia = new Distancia(1,1);
         Jugador jugador = new Jugador("juani");
+
+
         Casillero casillero = new Casillero(posicion);
         Map<Posicion, Casillero> tablero = new HashMap<>();
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
+        jugador.getUnidadesDisponibles().add(soldado);
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
         jugador.atacar(soldado,soldado1,casillero,tablero,distancia);
     }

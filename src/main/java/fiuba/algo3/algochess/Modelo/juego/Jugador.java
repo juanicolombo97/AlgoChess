@@ -76,6 +76,7 @@ public class Jugador {
     }
 
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
+       unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = unidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
@@ -119,9 +120,7 @@ public class Jugador {
         }
     }
 
-    public void actualizarEstado() {
-        puntosJugador.actualizarEstado();
-    }
+
 
     public void actualizarVidaUnidad(Unidad unidaAtacada, Casillero casilleroUnidad) {
         unidaAtacada.seEncuentraViva(unidadesDisponibles,casilleroUnidad);
