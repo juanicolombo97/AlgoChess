@@ -14,8 +14,7 @@ import java.util.List;
 
 public class FaseInicial {
 
-    private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
-    private static InterfazJuego interfazJuego = new InterfazJuego();
+
 
     public static void display(Stage ventana) {
         //Inicializo Jugadores y Juego
@@ -32,19 +31,15 @@ public class FaseInicial {
         ventana.setTitle("AlgoChess");
         TableroInterfaz tableroInterfaz = new TableroInterfaz();
         tableroInterfaz.crearTablero(juego.tablero);
-        for (Jugador jugadorActual : listaJugadores){
 
-            VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
+        VBox ladoIzq = MensajesAJugador.mensajesJugador(juego.jugadorActual());
+        VBox ladoDer = TiendaUnidades.crearUnidades(juego.jugadorActual(), tableroInterfaz, ventana,juego.tablero);
 
-            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz, ventana,juego.tablero);
+        BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
+        Scene scene = new Scene(interfaz);
+        ventana.setScene(scene);
+        ventana.showAndWait();
 
-            BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
-            Scene scene = new Scene(interfaz);
-            ventana.setScene(scene);
-            ventana.showAndWait();
-            }
-        FaseJuego faseJuego = new FaseJuego(tableroInterfaz,juego.tablero,listaJugadores,ventana);
-        faseJuego.comenzarJuego();
     }
 
 
