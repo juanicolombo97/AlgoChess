@@ -26,12 +26,12 @@ public class Soldado implements Unidad {
 
     public double getVidaUnidad(){
         return vidaUnidad;
-    }
+    } //Solo se usa en Test
 
     @Override
     public Posicion getPosicion() {
         return posicion;
-    }
+    } //Se usa en el Modelo, en los Tests y en la Vista
 
     @Override
     public void modificarPosicion(Posicion posicion) {
@@ -63,7 +63,7 @@ public class Soldado implements Unidad {
     }
 
     @Override
-    public int cuantoCuesta() {
+    public int costoDeUnidad() {
         return costoUnidad;
     }
 
@@ -75,7 +75,7 @@ public class Soldado implements Unidad {
     @Override
     public List<Unidad> habilidadMoverse(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas) {
         Batallon batallon = new Batallon();
-        List<Unidad> batallonSoldados = batallon.calcularBatallonDeSoldados(unidadAMover,tablero,unidadesAliadas);
+        List<Unidad> batallonSoldados = batallon.batallonDeSoldados(unidadAMover,tablero,unidadesAliadas);
         if (batallonSoldados.size() < 3){
             List<Unidad> listaUnidad = new ArrayList<>();
             listaUnidad.add(this);

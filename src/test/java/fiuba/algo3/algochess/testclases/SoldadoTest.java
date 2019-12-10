@@ -26,7 +26,7 @@ public class SoldadoTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
-        Assertions.assertEquals(1, soldado.cuantoCuesta());
+        Assertions.assertEquals(1, soldado.costoDeUnidad());
     }
 
     @Test

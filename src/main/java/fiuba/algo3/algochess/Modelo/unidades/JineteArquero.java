@@ -21,9 +21,6 @@ public class JineteArquero implements EstadoJinete{
     }
 
     @Override
-    public boolean esArquero(){return true;}
-
-    @Override
     public JineteArquero setEstadoJineteArquero() {
         return new JineteArquero();
     }

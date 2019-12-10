@@ -11,21 +11,21 @@ import java.util.Map;
 public class UnidadesCercanas {
 
     private Direccion direccion = new Direccion(0,0);
-    private List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
-    private List<Unidad> batallonUnidades = new ArrayList<>();
+    private List<Direccion> listaDirecciones = direccion.direcciones();
+    private List<Unidad> unidadesCercanas = new ArrayList<>();
 
     public List<Unidad> unidadesCercanas(Map<Posicion, Casillero> tablero, Unidad unidadAtacada){
         List<Unidad> listaUnidades = new ArrayList<>();
         listaUnidades.add(unidadAtacada);
-        batallonUnidades.add(unidadAtacada);
+        unidadesCercanas.add(unidadAtacada);
         while (listaUnidades.size()!= 0){
             Unidad unidad = listaUnidades.remove(0);
             for (Direccion direccionActual : listaDirecciones) {
                 Posicion posicionNueva = unidad.getPosicion().posicionNueva(direccionActual);
-                posicionNueva.posicionValidaParaFormarBatallon(tablero,batallonUnidades,listaUnidades);
+                posicionNueva.determinarPosicionValidaParaFormarBatallon(tablero,unidadesCercanas,listaUnidades);
             }
         }
-        return batallonUnidades;
+        return unidadesCercanas;
     }
 
     public List<Unidad> unidadesCercanasADistancia(int distanciaLimite, Map<Posicion, Casillero> tablero, Unidad unidadCentral){

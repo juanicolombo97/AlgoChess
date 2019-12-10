@@ -6,7 +6,6 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Entrega1UnidadesTest {
@@ -14,7 +13,7 @@ public class Entrega1UnidadesTest {
     @Test
     public void unidadSePuedeMoverEnTodasLasDirecciones() {
         Direccion direccion = new Direccion(0,0);
-        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direcciones();
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("juani");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -31,7 +30,7 @@ public class Entrega1UnidadesTest {
     @Test
     public void unidadMovivleNoSePuedeMoverACasilleroOcupado() {
         Direccion direccion = new Direccion(0,0);
-        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direcciones();
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador1);

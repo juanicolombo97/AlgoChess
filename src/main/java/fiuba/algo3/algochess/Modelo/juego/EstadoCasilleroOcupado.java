@@ -12,6 +12,7 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     public EstadoCasilleroOcupado(Unidad unidad){
         this.unidad = unidad;
     }
+
     @Override
     public EstadoCasillero guardarUnidad(Unidad unidad){
         throw new CasilleroOcupadoException("El casillero se encuentra ocupado");
@@ -30,7 +31,6 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     @Override
     public Unidad obtenerUnidadCercana() {
         return unidad;
-
     }
 
     @Override

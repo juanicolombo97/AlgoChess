@@ -19,11 +19,6 @@ public class EmisarioActivo implements Emisario{
     }
 
     @Override
-    public List<Unidad> unidadesAliadasCercanas(Unidad unidad) {
-        return this.tablero.unidadesAliadasCercanas(unidad);
-    }
-
-    @Override
     public int cantidadSoldadosAliadosCercanos(Unidad unidad) {
         return this.tablero.cantidadSoldadosAliadosCercanos(unidad);
     }

@@ -27,7 +27,7 @@ public class CuranderoTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Curandero curandero = new Curandero(puntos,posicion, new EmisarioNulo());
-        Assertions.assertEquals(2, curandero.cuantoCuesta());
+        Assertions.assertEquals(2, curandero.costoDeUnidad());
     }
 
     @Test

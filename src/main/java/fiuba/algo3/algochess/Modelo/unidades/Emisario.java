@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface Emisario {
     public void notificar(Unidad unidad);
-    public List<Unidad> unidadesAliadasCercanas(Unidad unidad);
     public int cantidadSoldadosAliadosCercanos(Unidad unidad);
     public List<Unidad> unidadesEnemigasCercanas(Unidad unidad);
 }

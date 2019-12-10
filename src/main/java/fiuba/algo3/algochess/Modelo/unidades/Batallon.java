@@ -13,7 +13,7 @@ public class Batallon {
 
     private UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
 
-    public List<Unidad> calcularBatallonDeSoldados(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> listaUnidadesAliadas) {
+    public List<Unidad> batallonDeSoldados(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> listaUnidadesAliadas) {
        List<Unidad> listaUnidades = unidadesCercanas.unidadesCercanas(tablero, unidadAMover);
        return listaSoldados(listaUnidades,listaUnidadesAliadas);
     }

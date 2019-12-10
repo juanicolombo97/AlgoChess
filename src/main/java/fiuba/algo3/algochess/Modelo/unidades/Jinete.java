@@ -27,7 +27,7 @@ public class Jinete implements Unidad {
 
     public double getVidaUnidad(){
         return vidaUnidad;
-    }
+    } //Solo se usa en Test
 
     public void setEstadoJinete(String estado){ //temporal, sacar ifs con refactor de recibirNotificacion()
         if(estado.equals("arquero")){
@@ -40,7 +40,7 @@ public class Jinete implements Unidad {
     @Override
     public Posicion getPosicion() {
         return posicion;
-    }
+    } //Se usa en el Modelo, en los Tests y en la Vista
 
     @Override
     public void modificarPosicion(Posicion posicion) {
@@ -75,7 +75,7 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public int cuantoCuesta() {
+    public int costoDeUnidad() {
         return costoUnidad;
     }
 
@@ -109,10 +109,6 @@ public class Jinete implements Unidad {
         estadoJinete = estadoJinete.setEstadoJineteEspadachin();
     }
 
-    public EstadoJinete getEstado(){
-        return estadoJinete;
-    }
-
     @Override
     public void setDanioPorCasillero(double danioExtra) {
         this.danioExtra = danioExtra;
@@ -120,7 +116,6 @@ public class Jinete implements Unidad {
 
     @Override
     public void agregarSoldadoAListaDeSoldados(List<Unidad> listaDeSoldados){
-
     }
 
     @Override
