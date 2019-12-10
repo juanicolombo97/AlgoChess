@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
+import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
@@ -90,13 +91,8 @@ public class FaseInicial {
         crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz));
 
         Button terminarTurno = new Button("Terminar Turnos");
-        terminarTurno.setOnAction(e -> {
-            if (juego.jugadorActual().getPuntosDisponibles() > 0){
-                mensajeDeError.setText("Todavia dispone de puntos");
-            }else {
-                inicioJuego();
-            }
-        });
+        terminarTurno.setOnAction(e -> new ManejadorTurnoColocacionFichas(juego,mensajeDeError));
+        
         vBox.getChildren().addAll(unidadesDisponibles,crearSoldado,crearCurandero,crearJinete,crearCatapulta,terminarTurno);
         return vBox;
     }
