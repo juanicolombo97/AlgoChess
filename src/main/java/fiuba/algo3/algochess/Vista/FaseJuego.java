@@ -46,7 +46,7 @@ public class FaseJuego {
 
         //botonAtaque.setOnAtcion(e -> Atacar(...)); lo que tenga que ir aca
         Jugador jugadorActual = listaJugadores.get(0);
-        botonMover.setOnAction(e -> SeleccionarUnidadAMover.seleccionarUnidad(tablero,tableroInterfaz,jugadorActual);
+        botonMover.setOnAction(e -> SeleccionarUnidadAMover.seleccionarUnidad(tablero,tableroInterfaz,jugadorActual));
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;
