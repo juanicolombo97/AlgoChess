@@ -5,7 +5,7 @@ public class Juego {
 
     public Jugador jugadorAliado;
     public Jugador jugadorEnemigo;
-    private Tablero tablero;
+    public Tablero tablero;
     private EstadoJuego estadoJuego;
 
 
@@ -29,6 +29,9 @@ public class Juego {
         estadoJuego = estadoJuego.atacar(posicionAtancate,posicionAtacado,tablero);
     }
 
+    public Jugador jugadorActual(){
+        return estadoJuego.jugadorActual();
+    }
 
 
 }

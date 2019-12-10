@@ -38,4 +38,9 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
         jugadorEnemigo.verificarSiPuedeSeguirJugando();
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
+
+    @Override
+    public Jugador jugadorActual() {
+        return jugador;
+    }
 }

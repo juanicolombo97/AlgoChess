@@ -7,4 +7,6 @@ public interface EstadoJuego {
     EstadoJuego mover(Posicion posicionInicial, Posicion posicionFinal, Tablero tablero);
 
     EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero);
+
+    Jugador jugadorActual();
 }
