@@ -28,15 +28,15 @@ public class Casillero{
         return estadoCasillero.obtenerUnidad();
    }
 
-   public Posicion getPosicionCasillero(){
+   public Posicion getPosicionCasillero(){ //Se usa en EstadoCasillero.guardarUnidadCercana()
         return posicionCasillero;
    }
 
-   public void movimientoValido(Casillero casilleroDestino) {
-        casilleroDestino.distanciaCorrecta(this.posicionCasillero);
+   public void validarMovimiento(Casillero casilleroDestino) {
+        casilleroDestino.validarDistancia(this.posicionCasillero);
    }
 
-   public void distanciaCorrecta(Posicion posicion) {
+   public void validarDistancia(Posicion posicion) {
         posicionCasillero.distanciaValidaDesde(posicion);
    }
 

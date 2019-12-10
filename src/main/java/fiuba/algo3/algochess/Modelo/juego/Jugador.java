@@ -26,23 +26,21 @@ public class Jugador {
         puntosJugador = new Puntos(puntosColocacionFichas);
     }
 
-
     public String getNombreJugador() {
         return nombreJugador;
-    }
+    }  //Se usa solo en vista
 
     public int getPuntosDisponibles() {
         return this.puntosJugador.getPuntosDisponibles();
-    }
+    } //Se usa en vista y en test
 
-    public void casillerosAliados(List<Casillero> casilleros) {
+    public void setCasillerosDeJugador(List<Casillero> casilleros) {
         casilleroJugador = casilleros;
     }
 
-
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
         //Creo la unidad y cambio los puntos disponibles del jugador
-        casilleroAliado(casillero);
+        esCasilleroAliado(casillero);
         UnidadNueva unidadNueva = new UnidadNueva();
         return unidadNueva.crearUnidad(nombreUnidad, puntosJugador, posicion, emisario);
     }
@@ -51,14 +49,14 @@ public class Jugador {
         unidadesDisponibles.add(unidadNueva);
     }
 
-    public void casilleroAliado(Casillero casillero){
+    public void esCasilleroAliado(Casillero casillero){
         if (!casilleroJugador.contains(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
     }
 
     public void modificarPuntos(Unidad unidad) {
-        puntosJugador.puntosSuficientes(unidad.cuantoCuesta());
+        puntosJugador.modificarPuntos(unidad.costoDeUnidad());
     }
 
     public void unidadPerteneceAJugador(Unidad unidad) {
@@ -78,50 +76,53 @@ public class Jugador {
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
        unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();
-        boolean esUnidadAliada = unidadAliada(atacado);
+        boolean esUnidadAliada = esUnidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
         accion.accionNueva(atacante, atacado, tablero, esUnidadAliada, distancia);
 
     }
 
-    public ArrayList<Unidad> getUnidadesDisponibles() {
-        return unidadesDisponibles;
+    public List<Unidad> unidadesAMover(Unidad unidadAMover, Map<Posicion,Casillero> tablero){
+        return unidadAMover.habilidadMoverse(unidadAMover, tablero, unidadesDisponibles);
     }
 
-    public boolean unidadAliada(Unidad unidad) {
+    public List<Unidad> getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    } //Se usa solo en test
+
+    public boolean esUnidadAliada(Unidad unidad) {
         return unidadesDisponibles.contains(unidad);
     }
 
-    public void reconocerUnidadesAliadasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
-        if (unidadAliada(unidad)) {
-            reconocerUnidadesAliadasAdyascentesAUnidad(unidadesCercanas, unidadesAliadasCercanasAUnidad);
+    public void reconocerUnidadesAliadasCercanasAUnidad(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
+        if (esUnidadAliada(unidad)) {
+            reconocerUnidadesAliadasAdyacentesAUnidad(unidadesCercanas, unidadesAliadasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesAliadasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
+    private void reconocerUnidadesAliadasAdyacentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
         for (Unidad unidadActual : unidadesCercanas) {
-            if (unidadAliada(unidadActual)) {
+            if (esUnidadAliada(unidadActual)) {
                 unidadesAliadasCercanasAUnidad.add(unidadActual);
             }
         }
     }
 
     public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
-        if (unidadAliada(unidad)) {
-            reconocerUnidadesEnemigasAdyascentesAUnidad(unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        if (esUnidadAliada(unidad)) {
+            reconocerUnidadesEnemigasAdyacentesAUnidad(unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesEnemigasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
+    private void reconocerUnidadesEnemigasAdyacentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
         for (Unidad unidadActual : unidadesCercanas) {
-            if (!unidadAliada(unidadActual)) {
+            if (!esUnidadAliada(unidadActual)) {
                 unidadesEnemigasCercanasAUnidad.add(unidadActual);
             }
         }
     }
 
-
-    public void puedeSeguirJugando() {
+    public void verificarSiPuedeSeguirJugando() {
         if (unidadesDisponibles.size() == 0){
             throw new JugadorPerdioException("El jugador perdio");
         }

@@ -28,7 +28,7 @@ public class JineteTest {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
-        Assertions.assertEquals(3, jinete.cuantoCuesta());
+        Assertions.assertEquals(3, jinete.costoDeUnidad());
     }
 
     @Test

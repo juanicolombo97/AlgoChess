@@ -34,7 +34,7 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     public EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero) {
         tablero.atacar(posicionAtancate,posicionAtacado,jugador);
         jugadorEnemigo.actualizarUnidadesDisponibles();
-        jugadorEnemigo.puedeSeguirJugando();
+        jugadorEnemigo.verificarSiPuedeSeguirJugando();
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
 }

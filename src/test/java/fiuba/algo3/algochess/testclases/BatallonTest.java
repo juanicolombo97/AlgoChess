@@ -31,7 +31,7 @@ public class BatallonTest {
         Batallon batallon = new Batallon();
         List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
         Unidad unidad = listaUnidadesAliadas.get(0);
-        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        List<Unidad> listaUnidades = batallon.batallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
         Assertions.assertEquals(3,listaUnidades.size());
     }
 
@@ -61,7 +61,7 @@ public class BatallonTest {
         Batallon batallon = new Batallon();
         List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
         Unidad unidad = listaUnidadesAliadas.get(0);
-        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        List<Unidad> listaUnidades = batallon.batallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
         Assertions.assertEquals(3,listaUnidades.size());
     }
 
