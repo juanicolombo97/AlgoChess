@@ -34,12 +34,12 @@ public class Tablero {
                                                     .filter(map -> map.getKey().posicionX < 10)
                                                     .map(Map.Entry :: getValue)
                                                     .collect(Collectors.toList());
-        jugador1.casillerosAliados(casillerosAliados);
+        jugador1.setCasillerosDeJugador(casillerosAliados);
 
         List<Casillero> casillerosEnemigos = tablero.entrySet().stream().filter(map -> map.getKey().posicionX >= 10)
                                                                 .map(Map.Entry :: getValue)
                                                                 .collect(Collectors.toList());
-        jugador2.casillerosAliados(casillerosEnemigos);
+        jugador2.setCasillerosDeJugador(casillerosEnemigos);
     }
 
     public Unidad crearUnidad(Jugador jugador,Posicion posicion, String nombreUnidad) {

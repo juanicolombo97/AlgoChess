@@ -28,13 +28,13 @@ public class Jugador {
 
     public String getNombreJugador() {
         return nombreJugador;
-    }
+    }  //Se usa solo en vista
 
     public int getPuntosDisponibles() {
         return this.puntosJugador.getPuntosDisponibles();
-    }
+    } //Se usa en vista y en test
 
-    public void casillerosAliados(List<Casillero> casilleros) {
+    public void setCasillerosDeJugador(List<Casillero> casilleros) {
         casilleroJugador = casilleros;
     }
 
@@ -88,7 +88,7 @@ public class Jugador {
 
     public List<Unidad> getUnidadesDisponibles() {
         return unidadesDisponibles;
-    }
+    } //Se usa solo en test
 
     public boolean esUnidadAliada(Unidad unidad) {
         return unidadesDisponibles.contains(unidad);
