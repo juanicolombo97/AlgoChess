@@ -8,8 +8,6 @@ public interface EstadoJinete {
 
     public void atacarDistanciaLejana(Unidad atacado);
 
-    public boolean esArquero();
-
     public JineteArquero setEstadoJineteArquero();
 
     public JineteEspadachin setEstadoJineteEspadachin();

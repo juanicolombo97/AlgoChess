@@ -6,6 +6,7 @@ import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Jinete;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+import fiuba.algo3.algochess.Modelo.unidades.UnidadNula;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -217,11 +218,23 @@ public class Entrega2JineteTest {
         tablero.crearUnidad(jugador1, posicionJinete, "jinete");
         tablero.crearUnidad(jugador1, posicionSoldado, "soldado");
         Jinete jinete = (Jinete) jugador1.getUnidadesDisponibles().get(0);
-        Assertions.assertTrue(jinete.getEstado().esArquero());
+        try {
+            jinete.atacarDistanciaCerca(new UnidadNula(posicion0402), false, tablero.getTablero());
+        } catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
+        }
         tablero.moverUnidad(posicionSoldado, posicion0402, jugador1);
-        Assertions.assertTrue(jinete.getEstado().esArquero());
+        try {
+            jinete.atacarDistanciaCerca(new UnidadNula(posicion0402), false, tablero.getTablero());
+        } catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
+        }
         tablero.moverUnidad(posicion0402, posicion0403, jugador1);
-        Assertions.assertTrue(jinete.getEstado().esArquero());
+        try {
+            jinete.atacarDistanciaCerca(new UnidadNula(posicion0402), false, tablero.getTablero());
+        } catch (NoPuedeAtacarException e){
+            Assertions.assertEquals("El jinete arquero no puede atacar a distancias cortas", e.getMessage());
+        }
     }
 
     @Test

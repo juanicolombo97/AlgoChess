@@ -27,12 +27,12 @@ public class Curandero implements Unidad {
 
     public double getVidaUnidad(){
         return vidaUnidad;
-    }
+    } //Solo se usa en Test
 
     @Override
     public Posicion getPosicion() {
         return posicion;
-    }
+    } //Se usa en el Modelo, en los Tests y en la Vista
 
     @Override
     public void modificarPosicion(Posicion posicion) {
@@ -68,7 +68,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public int cuantoCuesta() {
+    public int costoDeUnidad() {
         return costoUnidad;
     }
 
@@ -112,7 +112,7 @@ public class Curandero implements Unidad {
         return posicionNueva.posicionNuevaCercana(direccionActual,counter);
     }
     @Override
-    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+    public void verificarEstaViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
         if (vidaUnidad < 0){
             unidadesDisponibles.remove(this);
             casilleroUnidad.eliminarUnidad();

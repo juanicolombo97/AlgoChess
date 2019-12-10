@@ -37,7 +37,7 @@ public class UnidadNula implements Unidad{
     }
 
     @Override
-    public int cuantoCuesta() {
+    public int costoDeUnidad() {
         throw new UnidadNulaException("La unidad es inválida");
     }
 
@@ -94,7 +94,7 @@ public class UnidadNula implements Unidad{
     }
 
     @Override
-    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+    public void verificarEstaViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
 
     }
 }

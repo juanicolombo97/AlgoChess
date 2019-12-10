@@ -56,7 +56,7 @@ public class Jugador {
     }
 
     public void modificarPuntos(Unidad unidad) {
-        puntosJugador.modificarPuntos(unidad.cuantoCuesta());
+        puntosJugador.modificarPuntos(unidad.costoDeUnidad());
     }
 
     public void unidadPerteneceAJugador(Unidad unidad) {
@@ -123,7 +123,7 @@ public class Jugador {
     }
 
     public void actualizarVidaUnidad(Unidad unidaAtacada, Casillero casilleroUnidad) {
-        unidaAtacada.seEncuentraViva(unidadesDisponibles,casilleroUnidad);
+        unidaAtacada.verificarEstaViva(unidadesDisponibles,casilleroUnidad);
     }
 
     public void verificarSiPuedeSeguirJugando() {

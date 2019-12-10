@@ -19,15 +19,15 @@ public interface Unidad {
 
     public void recibirDanio(double danioRecibido);
 
-    public int cuantoCuesta();
+    public int costoDeUnidad();
 
     public void curarse(int vidaACurar);
 
     public List<Unidad> habilidadMoverse(Unidad unidadAMover,Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas);
 
-    public double getVidaUnidad();
+    public double getVidaUnidad(); //Solo se usa en Test
 
-    public Posicion getPosicion();
+    public Posicion getPosicion(); //Se usa en el Modelo, en los Tests y en la Vista
 
     public void modificarPosicion(Posicion posicion);
 
@@ -43,5 +43,5 @@ public interface Unidad {
 
     Posicion calcularPosicionCercana(Direccion direccionActual, int counter);
 
-    void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad);
+    void verificarEstaViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad);
 }
