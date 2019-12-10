@@ -27,8 +27,8 @@ public class TableroInterfaz {
         GridPane pane = new GridPane();
         tableroJuego = tablero;
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
-        for (Object casillero : tableroJuego.getTablero().values() ){
-            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz((Casillero) casillero);
+        for (Casillero casilleroActual : tableroJuego.getTablero().values() ){
+            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }

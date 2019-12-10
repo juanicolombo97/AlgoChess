@@ -1,11 +1,14 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Jinete implements Unidad {
     private static int costoUnidad = 3;
@@ -46,7 +49,7 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
@@ -54,7 +57,7 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         if (esUnidadAliada){
             throw new UnidadInvalidaException("La unidad que quieres atacar es aliada");
         }
@@ -62,7 +65,7 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         estadoJinete.atacarDistanciaLejana(atacado);
     }
 
@@ -82,8 +85,8 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) {
-        ArrayList listaUnidadesAMover = new ArrayList();
+    public List<Unidad> habilidadMoverse(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas) {
+        List<Unidad> listaUnidadesAMover = new ArrayList<>();
         listaUnidadesAMover.add(this);
         return listaUnidadesAMover;
     }
@@ -116,20 +119,34 @@ public class Jinete implements Unidad {
     }
 
     @Override
-    public void agregarSoldadoAListaDeSoldados(ArrayList<Soldado> listaDeSoldados){
+    public void agregarSoldadoAListaDeSoldados(List<Unidad> listaDeSoldados){
 
     }
 
     @Override
-    public void agregarUnidadCercana(ArrayList batallonUnidades, ArrayList listaUnidades) {
+    public void agregarUnidadCercana(List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
         if(!batallonUnidades.contains(this)){
             batallonUnidades.add(this);
             listaUnidades.add(this);
         }
     }
     @Override
-    public void agregarUnidadADistancia(ArrayList unidadesADistanciaCercana) {
+    public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana) {
         unidadesADistanciaCercana.add(this);
+    }
+
+    @Override
+    public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
+        Posicion posicionNueva = posicion.posicionNueva(direccionActual);
+        return posicionNueva.posicionNuevaCercana(direccionActual,counter);
+    }
+
+    @Override
+    public void seEncuentraViva(ArrayList<Unidad> unidadesDisponibles, Casillero casilleroUnidad) {
+        if (vidaUnidad < 0){
+            unidadesDisponibles.remove(this);
+            casilleroUnidad.eliminarUnidad();
+        }
     }
 
 }

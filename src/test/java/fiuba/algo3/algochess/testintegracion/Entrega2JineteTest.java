@@ -2,7 +2,6 @@ package fiuba.algo3.algochess.testintegracion;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.JugadorReal;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Jinete;
@@ -16,8 +15,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de cerca.
     public void jineteEspadachinAtacaUnidadDeCerca() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
         Posicion posicion = new Posicion(9, 9);
         Posicion posicionEnemiga = new Posicion(11, 11);
@@ -34,8 +33,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de distancia media.
     public void jineteEspadachinAtacaUnidadDeDistanciaMedia() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
         Posicion posicion = new Posicion(9,9);
         Posicion posicionEnemigaMedia = new Posicion(13,13);
@@ -53,8 +52,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de distancia lejana.
     public void jineteEspadachinAtacaUnidadDeDistanciaLejana() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
         Posicion posicion = new Posicion(9, 9);
         Posicion posicionEnemigaCercana = new Posicion(10, 10);
@@ -72,8 +71,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de cerca.
     public void jineteArqueroAtacaUnidadDeCerca() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
         Posicion posicion = new Posicion(9,9);
         Posicion posicionEnemiga = new Posicion(10,10);
@@ -89,8 +88,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de distancia media.
     public void jineteArqueroAtacaUnidadDeDistanciaMedia() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
         Posicion posicion = new Posicion(9,9);
         Posicion posicionEnemiga = new Posicion(13,13);
@@ -106,8 +105,8 @@ public class Entrega2JineteTest {
     @Test
     //Prueba con ataque de distancia lejana.
     public void jineteArqueroAtacaUnidadDeDistanciaLejana() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador,jugadorEnemigo);
         Posicion posicion = new Posicion(9,9);
         Posicion posicionEnemiga = new Posicion(19,19);
@@ -123,8 +122,8 @@ public class Entrega2JineteTest {
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, pudiendo atacar a distancia corta
     public void JineteSinAliadosCercaAtacaEnemigoCercanoConEspadaExitosamente() {
-        Jugador jugador = new JugadorReal("tobias");
-        Jugador jugadorEnemigo = new JugadorReal("francisco");
+        Jugador jugador = new Jugador("tobias");
+        Jugador jugadorEnemigo = new Jugador("francisco");
         Tablero tablero = new Tablero(jugador, jugadorEnemigo);
 
         Posicion posicion = new Posicion(4,4);
@@ -157,8 +156,8 @@ public class Entrega2JineteTest {
     @Test
     //Jinete con un enemigo cerca, SIN aliados cerca, esta en modo Espadachin, siendo incapaz de atacar a distancia mediana
     public void JineteSinAliadosCercaConUnEnemigoCercanoNoPuedeAtacarAEnemigoEnDistanciaMedia() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionSoldadoEnemigo = new Posicion(11,11);
@@ -208,8 +207,8 @@ public class Entrega2JineteTest {
     @Test
     //Jinete sin aliados ni enemigos cerca se le acerca un Soldado aliado y su estado sigue siendo Arquero
     public void AJineteSeLeAcercaSoldadoAliadoSinEnemigosCercaYSuEstadoSigueSiendoArquero() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionSoldado = new Posicion(4,1);
@@ -228,8 +227,8 @@ public class Entrega2JineteTest {
     @Test
     //Si a un jinete, por mas que tenga enemigos cerca, se le acerca un Soldado Aliado, se vuelve Arquero
     public void AJineteSeLeAcercaUnSoldadoAliadoConEnemigosCercaYCambiaSuModoAArquero() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionSoldado = new Posicion(1,1);
@@ -270,8 +269,8 @@ public class Entrega2JineteTest {
     @Test
     //Si a un jinete arquero sin aliados cerca, se le acerca un enemigo, se convierte en Espadachin
     public void AJineteSeLeAcercaEnemigoSinSoldadosAliadosCercaYCambiaSuModoAEspadachin() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionCuranderoEnemigo = new Posicion(11,11);
@@ -299,8 +298,8 @@ public class Entrega2JineteTest {
     @Test
     //Si a un jinete arquero con aliados cerca, se le acerca una unidad enemiga, este no cambia su estado de Arquero
     public void AJineteConSoldadoAliadoCercanoSeLeAcercaUnidadEnemigaYNoCambiaSuEstado() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionSoldado = new Posicion(4,2);
@@ -333,14 +332,12 @@ public class Entrega2JineteTest {
     @Test
     //SI a un jinete arquero, se la acerca un enemigo, teniendo aliados NO Soldados cerca, cambia de estado a Espadachin
     public void AJineteConAliadosNoSoldadosCercanosSeLeAcercaEnemigoYSuEstadoCambiaAEspadachin() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
-        Posicion posicionCurandero = new Posicion(4,2);
         Posicion posicionCuranderoEnemigo = new Posicion(11,11);
         tablero.crearUnidad(jugador1, posicionJinete, "jinete");
-        tablero.crearUnidad(jugador1, posicionCurandero, "curandero");
         tablero.crearUnidad(jugador2, posicionCuranderoEnemigo, "curandero");
         // Acerco el curandero enemigo a nuestro jinete
         Posicion posicion1010 = new Posicion(10,10);
@@ -358,16 +355,19 @@ public class Entrega2JineteTest {
         tablero.moverUnidad(posicion0606, posicion0605, jugador2);
         tablero.moverUnidad(posicion0605, posicion0604, jugador2);
         // Pruebo si el jinete está en modo espadachin
-
+        Posicion posicion = jugador2.getUnidadesDisponibles().get(0).getPosicion();
+        System.out.println(posicion.posicionX);
+        System.out.println(posicion.posicionY);
         tablero.atacar(posicionJinete, posicion0604, jugador1);
+
         Assertions.assertEquals(69.75,jugador2.getUnidadesDisponibles().get(0).getVidaUnidad());
     }
 
     @Test
     //Si a un jinete espadachin, se le acercan Aliados no Soldados, no cambian su estado
     public void AJineteConEnemigosCercaSeLeAcercaAliadoNoSoldadoYNoCambiaSuEstado() {
-        Jugador jugador1 = new JugadorReal("nicolas");
-        Jugador jugador2 = new JugadorReal("tobias");
+        Jugador jugador1 = new Jugador("nicolas");
+        Jugador jugador2 = new Jugador("tobias");
         Tablero tablero = new Tablero(jugador1, jugador2);
         Posicion posicionJinete = new Posicion(4,4);
         Posicion posicionCurandero = new Posicion(1,1);

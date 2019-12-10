@@ -3,8 +3,9 @@ package fiuba.algo3.algochess.Modelo.juego;
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Posicion {
@@ -19,8 +20,7 @@ public class Posicion {
 
 
     public Distancia distanciaValidaDesde(Posicion posicion) {
-        Distancia distancia = posicion.distanciaValidaHasta(this.posicionX,this.posicionY);
-        return distancia;
+        return posicion.distanciaValidaHasta(this.posicionX, this.posicionY);
     }
 
     private Distancia distanciaValidaHasta(int posicionX, int posicionY) {
@@ -31,8 +31,6 @@ public class Posicion {
         }
         return new Distancia(distanciaX,distanciaY);
     }
-
-
 
     public Distancia calcularDistancia(Posicion posicionFinal){
         return posicionFinal.calcularDistancia(this.posicionX,this.posicionY);
@@ -59,10 +57,7 @@ public class Posicion {
     }
 
     public boolean posicionValida(){
-        if ((posicionX > 0 && posicionX < 20 ) && (posicionY > 0 && posicionY < 20 )){
-            return true;
-        }
-        return false;
+        return (posicionX > 0 && posicionX < 20) && (posicionY > 0 && posicionY < 20);
     }
     @Override
     public boolean equals(Object o) {
@@ -78,17 +73,21 @@ public class Posicion {
         return Objects.hash(posicionX, posicionY);
     }
 
-    public void determinarPosicionValida(HashMap tablero, ArrayList unidadesADistanciaCercana) {
+    public void determinarPosicionValida(Map<Posicion, Casillero> tablero, List<Unidad> unidadesADistanciaCercana) {
             if (posicionValida()){
-                Unidad unidadNueva = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+                Unidad unidadNueva = tablero.get(this).obtenerUnidadCercana();
                 unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
             }
     }
 
-    public void posicionValidaParaFormarBatallon(HashMap tablero, ArrayList batallonUnidades, ArrayList listaUnidades) {
+    public void posicionValidaParaFormarBatallon(Map<Posicion, Casillero> tablero, List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
         if(posicionValida()){
-            Unidad unidad = ((Casillero) tablero.get(this)).obtenerUnidadCercana();
+            Unidad unidad = tablero.get(this).obtenerUnidadCercana();
             unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
         }
+    }
+
+    public Posicion posicionNuevaCercana(Direccion direccionActual, int counter) {
+       return direccionActual.calcularPosicionCercana(posicionX,posicionY,counter);
     }
 }

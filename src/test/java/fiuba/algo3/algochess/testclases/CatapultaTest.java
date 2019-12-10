@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.Catapulta;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CatapultaTest {
 
@@ -51,7 +53,7 @@ public class CatapultaTest {
     @Test
     public void catapultaNoPuedeAtacarDistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -65,7 +67,7 @@ public class CatapultaTest {
     @Test
     public void catapultaNoPuedeAtacarCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -80,7 +82,7 @@ public class CatapultaTest {
     @Test
     public void catapultaPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
@@ -96,7 +98,7 @@ public class CatapultaTest {
     @Test
     public void catapultaPuedeAtacarUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Catapulta catapulta = new Catapulta(puntos,posicion, new EmisarioNulo());
