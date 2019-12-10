@@ -1,13 +1,9 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
+import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
-import javafx.scene.layout.VBox;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,13 +19,13 @@ public class JuegoTest {
     }
 
     @Test
-    void jugadorIncorrectoPuedeCrearUnidad(){
+    void jugadorIncorrectoNoPuedeCrearUnidad(){
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(10,10);
         try {
             juego.crearUnidad("soldado",posicion);
-        }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }catch (CasilleroEnemigoException e){
+            Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
         }
     }
 
@@ -61,7 +57,7 @@ public class JuegoTest {
         Posicion posicion = new Posicion(11,11);
         try {
             juego.crearUnidad("soldado",posicion);
-        }catch (UnidadInvalidaException e){
+        }catch (CasilleroEnemigoException e){
             Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
         }
     }
@@ -73,7 +69,7 @@ public class JuegoTest {
         Posicion posicion1 = new Posicion(2,1);
         Posicion posicion2 = new Posicion(3,1);
         Posicion posicion3 = new Posicion(4,1);
-        Posicion posicion4 = new Posicion(5,1);
+        Posicion posicion4 = new Posicion(15,11);
 
         juego.crearUnidad("catapulta",posicion);
         juego.crearUnidad("catapulta",posicion1);
@@ -119,7 +115,7 @@ public class JuegoTest {
         juego.crearUnidad("catapulta",posicion3);
         try {
             juego.crearUnidad("soldado",posicion4);
-        }catch (UnidadInvalidaException e){
+        }catch (CasilleroEnemigoException e){
             Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
         }
     }
@@ -127,7 +123,7 @@ public class JuegoTest {
     @Test
     void jugadorAliadoNoPuedePonerEnCasilleroOcupado(){
         Juego juego = new Juego("juani","carlos");
-        Posicion posicion = new Posicion(11,11);
+        Posicion posicion = new Posicion(1,1);
         juego.crearUnidad("soldado",posicion);
         try {
             juego.crearUnidad("soldado",posicion);
@@ -142,7 +138,7 @@ public class JuegoTest {
         Posicion posicion1 = new Posicion(2,1);
         Posicion posicion2 = new Posicion(3,1);
         Posicion posicion3 = new Posicion(4,1);
-        Posicion posicion4 = new Posicion(2,2);
+        Posicion posicion4 = new Posicion(12,12);
 
         juego.crearUnidad("catapulta",posicion);
         juego.crearUnidad("catapulta",posicion1);
@@ -194,7 +190,7 @@ public class JuegoTest {
     @Test
     void terminaFaseCreacionFichasYJugadorAliadoNoPuedeMoverFichasEnemigas(){
         Juego juego = new Juego("juani","carlos");
-        Posicion posicion = new Posicion(11,10);
+        Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,1);
         Posicion posicion2 = new Posicion(3,1);
         Posicion posicion3 = new Posicion(4,1);
@@ -204,21 +200,21 @@ public class JuegoTest {
         Posicion posicion7 = new Posicion(14,11);
         Posicion posicion8 = new Posicion(12,10);
         Posicion posicion9 = new Posicion(17,17);
-        Posicion posicion11 = new Posicion(18,10);
+        Posicion posicion11 = new Posicion(15,11);
 
 
+        juego.crearUnidad("catapulta",posicion);
         juego.crearUnidad("catapulta",posicion1);
         juego.crearUnidad("catapulta",posicion2);
         juego.crearUnidad("catapulta",posicion3);
         juego.crearUnidad("catapulta",posicion4);
         juego.crearUnidad("catapulta",posicion5);
         juego.crearUnidad("catapulta",posicion6);
-        juego.crearUnidad("catapulta",posicion7);
-        juego.crearUnidad("soldado",posicion11);
-        juego.crearUnidad("soldado",posicion);
+        juego.crearUnidad("soldado",posicion7);
+        juego.crearUnidad("soldado",posicion8);
         juego.crearUnidad("jinete",posicion9);
         try {
-            juego.mover(posicion,posicion8);
+            juego.mover(posicion7,posicion11);
         }catch (UnidadInvalidaException e){
             Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
         }

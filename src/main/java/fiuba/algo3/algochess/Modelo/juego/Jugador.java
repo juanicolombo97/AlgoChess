@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.acciones.AccionJugador;
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroEnemigoException;
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.unidades.Emisario;
@@ -19,13 +20,11 @@ public class Jugador {
     private Puntos puntosJugador;
     private double DANIOEXTRA = 0.05;
     private double NODANIOEXTRA = 0.00;
-    private Jugador jugadorSiguiente;
 
     public Jugador(String nombreJugador) {
         this.nombreJugador = nombreJugador;
         puntosJugador = new Puntos(puntosColocacionFichas);
     }
-
 
 
     public String getNombreJugador() {
@@ -43,12 +42,19 @@ public class Jugador {
 
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
         //Creo la unidad y cambio los puntos disponibles del jugador
+        casilleroAliado(casillero);
         UnidadNueva unidadNueva = new UnidadNueva();
         return unidadNueva.crearUnidad(nombreUnidad, puntosJugador, posicion, emisario);
     }
 
     public void guardarUnidad(Unidad unidadNueva) {
         unidadesDisponibles.add(unidadNueva);
+    }
+
+    public void casilleroAliado(Casillero casillero){
+        if (!casilleroJugador.contains(casillero)){
+            throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
+        }
     }
 
     public void modificarPuntos(Unidad unidad) {
