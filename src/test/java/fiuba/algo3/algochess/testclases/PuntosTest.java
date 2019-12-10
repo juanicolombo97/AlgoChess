@@ -10,7 +10,7 @@ public class PuntosTest {
     @Test
     public void puntosSuficientesNoTiraError() {
         Puntos puntos = new Puntos(20);
-        puntos.puntosSuficientes(10);
+        puntos.modificarPuntos(10);
         Assertions.assertEquals(10,puntos.getPuntosDisponibles());
     }
     @Test

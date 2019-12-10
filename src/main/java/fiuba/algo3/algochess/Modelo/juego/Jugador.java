@@ -26,7 +26,6 @@ public class Jugador {
         puntosJugador = new Puntos(puntosColocacionFichas);
     }
 
-
     public String getNombreJugador() {
         return nombreJugador;
     }
@@ -39,10 +38,9 @@ public class Jugador {
         casilleroJugador = casilleros;
     }
 
-
     public Unidad crearUnidad(Casillero casillero, String nombreUnidad, Posicion posicion, Emisario emisario) {
         //Creo la unidad y cambio los puntos disponibles del jugador
-        casilleroAliado(casillero);
+        esCasilleroAliado(casillero);
         UnidadNueva unidadNueva = new UnidadNueva();
         return unidadNueva.crearUnidad(nombreUnidad, puntosJugador, posicion, emisario);
     }
@@ -51,14 +49,14 @@ public class Jugador {
         unidadesDisponibles.add(unidadNueva);
     }
 
-    public void casilleroAliado(Casillero casillero){
+    public void esCasilleroAliado(Casillero casillero){
         if (!casilleroJugador.contains(casillero)){
             throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
         }
     }
 
     public void modificarPuntos(Unidad unidad) {
-        puntosJugador.puntosSuficientes(unidad.cuantoCuesta());
+        puntosJugador.modificarPuntos(unidad.cuantoCuesta());
     }
 
     public void unidadPerteneceAJugador(Unidad unidad) {

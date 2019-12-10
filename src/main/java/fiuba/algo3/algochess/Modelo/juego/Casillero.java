@@ -32,11 +32,11 @@ public class Casillero{
         return posicionCasillero;
    }
 
-   public void movimientoValido(Casillero casilleroDestino) {
-        casilleroDestino.distanciaCorrecta(this.posicionCasillero);
+   public void validarMovimiento(Casillero casilleroDestino) {
+        casilleroDestino.validarDistancia(this.posicionCasillero);
    }
 
-   public void distanciaCorrecta(Posicion posicion) {
+   public void validarDistancia(Posicion posicion) {
         posicionCasillero.distanciaValidaDesde(posicion);
    }
 

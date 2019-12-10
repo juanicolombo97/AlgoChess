@@ -61,7 +61,7 @@ public class Tablero {
         Direccion direccionMovimiento = distancia.direccionMovimiento();
 
         //Veo que la distancia sea correcta.
-        casilleroInicial.movimientoValido(casilleroDestino);
+        casilleroInicial.validarMovimiento(casilleroDestino);
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
         List<Unidad> listaUnidadesAMover = jugador.unidadesAMover(unidadAMover, tablero);

@@ -11,7 +11,7 @@ public class Puntos {
         puntosDisponibles = puntos;
     }
 
-    public void puntosSuficientes(int costoUnidad){
+    public void modificarPuntos(int costoUnidad){
         puntosDisponibles = puntosDisponibles - costoUnidad;
         if (puntosDisponibles == 0){
             actualizarEstado();
