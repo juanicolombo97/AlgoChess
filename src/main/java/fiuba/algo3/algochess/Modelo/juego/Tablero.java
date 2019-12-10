@@ -65,8 +65,7 @@ public class Tablero {
         casilleroInicial.movimientoValido(casilleroDestino);
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
-        List<Unidad> listaUnidadesAliadas = jugador.getUnidadesDisponibles();
-        List<Unidad> listaUnidadesAMover = unidadAMover.habilidadMoverse(unidadAMover, tablero,listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAMover = jugador.unidadesAMover(unidadAMover, tablero);
         while (contador.get() != 3 && listaUnidadesAMover.size() != 0){
             Unidad unidad = listaUnidadesAMover.remove(0);
             jugador.unidadPerteneceAJugador(unidad);

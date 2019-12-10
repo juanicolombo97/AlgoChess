@@ -84,7 +84,11 @@ public class Jugador {
 
     }
 
-    public ArrayList<Unidad> getUnidadesDisponibles() {
+    public List<Unidad> unidadesAMover(Unidad unidadAMover, Map<Posicion,Casillero> tablero){
+        return unidadAMover.habilidadMoverse(unidadAMover, tablero, unidadesDisponibles);
+    }
+
+    public List<Unidad> getUnidadesDisponibles() {
         return unidadesDisponibles;
     }
 
