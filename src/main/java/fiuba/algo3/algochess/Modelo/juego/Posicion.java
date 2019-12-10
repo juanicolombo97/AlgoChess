@@ -59,6 +59,7 @@ public class Posicion {
     public boolean posicionValida(){
         return (posicionX > 0 && posicionX < 20) && (posicionY > 0 && posicionY < 20);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

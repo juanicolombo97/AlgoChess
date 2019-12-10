@@ -11,7 +11,7 @@ import java.util.Map;
 public class UnidadesCercanas {
 
     private Direccion direccion = new Direccion(0,0);
-    private List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
+    private List<Direccion> listaDirecciones = direccion.direcciones();
     private List<Unidad> unidadesCercanas = new ArrayList<>();
 
     public List<Unidad> unidadesCercanas(Map<Posicion, Casillero> tablero, Unidad unidadAtacada){

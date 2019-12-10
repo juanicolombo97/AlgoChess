@@ -36,7 +36,7 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
         Casillero casilleroUnidad = tablero.atacar(posicionAtancate,posicionAtacado,jugador);
         Unidad unidaAtacada = casilleroUnidad.obtenerUnidad();
         jugadorEnemigo.actualizarVidaUnidad(unidaAtacada, casilleroUnidad);
-        jugadorEnemigo.puedeSeguirJugando();
+        jugadorEnemigo.verificarSiPuedeSeguirJugando();
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
 }

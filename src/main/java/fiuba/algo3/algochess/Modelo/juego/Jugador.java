@@ -78,7 +78,7 @@ public class Jugador {
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
        unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();
-        boolean esUnidadAliada = unidadAliada(atacado);
+        boolean esUnidadAliada = esUnidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
         accion.accionNueva(atacante, atacado, tablero, esUnidadAliada, distancia);
 
@@ -92,45 +92,43 @@ public class Jugador {
         return unidadesDisponibles;
     }
 
-    public boolean unidadAliada(Unidad unidad) {
+    public boolean esUnidadAliada(Unidad unidad) {
         return unidadesDisponibles.contains(unidad);
     }
 
-    public void reconocerUnidadesAliadasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
-        if (unidadAliada(unidad)) {
-            reconocerUnidadesAliadasAdyascentesAUnidad(unidadesCercanas, unidadesAliadasCercanasAUnidad);
+    public void reconocerUnidadesAliadasCercanasAUnidad(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
+        if (esUnidadAliada(unidad)) {
+            reconocerUnidadesAliadasAdyacentesAUnidad(unidadesCercanas, unidadesAliadasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesAliadasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
+    private void reconocerUnidadesAliadasAdyacentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesAliadasCercanasAUnidad) {
         for (Unidad unidadActual : unidadesCercanas) {
-            if (unidadAliada(unidadActual)) {
+            if (esUnidadAliada(unidadActual)) {
                 unidadesAliadasCercanasAUnidad.add(unidadActual);
             }
         }
     }
 
     public void reconocerUnidadesEnemigasCercanasA(Unidad unidad, List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
-        if (unidadAliada(unidad)) {
-            reconocerUnidadesEnemigasAdyascentesAUnidad(unidadesCercanas, unidadesEnemigasCercanasAUnidad);
+        if (esUnidadAliada(unidad)) {
+            reconocerUnidadesEnemigasAdyacentesAUnidad(unidadesCercanas, unidadesEnemigasCercanasAUnidad);
         }
     }
 
-    private void reconocerUnidadesEnemigasAdyascentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
+    private void reconocerUnidadesEnemigasAdyacentesAUnidad(List<Unidad> unidadesCercanas, List<Unidad> unidadesEnemigasCercanasAUnidad) {
         for (Unidad unidadActual : unidadesCercanas) {
-            if (!unidadAliada(unidadActual)) {
+            if (!esUnidadAliada(unidadActual)) {
                 unidadesEnemigasCercanasAUnidad.add(unidadActual);
             }
         }
     }
 
-
-
     public void actualizarVidaUnidad(Unidad unidaAtacada, Casillero casilleroUnidad) {
         unidaAtacada.seEncuentraViva(unidadesDisponibles,casilleroUnidad);
     }
 
-    public void puedeSeguirJugando() {
+    public void verificarSiPuedeSeguirJugando() {
         if (unidadesDisponibles.size() == 0){
             throw new JugadorPerdioException("El jugador perdio");
         }

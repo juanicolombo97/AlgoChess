@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.unidades.*;
 
 import java.util.*;
@@ -107,8 +106,8 @@ public class Tablero {
     public List<Unidad> unidadesAliadasCercanas(Unidad unidad) { //done
         List<Unidad> unidadesCercanas = unidadesCercanasADistancia1y2(unidad);
         List<Unidad> unidadesAliadasCercanasAUnidad = new ArrayList<>();
-        this.jugador1.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
-        this.jugador2.reconocerUnidadesAliadasCercanasA(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador1.reconocerUnidadesAliadasCercanasAUnidad(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
+        this.jugador2.reconocerUnidadesAliadasCercanasAUnidad(unidad, unidadesCercanas, unidadesAliadasCercanasAUnidad);
         return unidadesAliadasCercanasAUnidad;
     }
 

@@ -26,30 +26,27 @@ public class Direccion {
         noroeste = new Direccion(-1,1);
         sureste = new Direccion(1,-1);
         suroeste = new Direccion(-1,-1);
-
-
     }
+
     public Direccion(int x, int y){
         this.x = x;
         this.y = y;
-
     }
 
-    public List<Direccion> direccionesMovimiento(){
-        List<Direccion> listaDirecciones = new ArrayList<>();
+    public List<Direccion> direcciones(){
+        List<Direccion> direcciones = new ArrayList<>();
 
-        listaDirecciones.add(norte);
-        listaDirecciones.add(sur);
-        listaDirecciones.add(este);
-        listaDirecciones.add(oeste);
-        listaDirecciones.add(noreste);
-        listaDirecciones.add(noroeste);
-        listaDirecciones.add(sureste);
-        listaDirecciones.add(suroeste);
+        direcciones.add(norte);
+        direcciones.add(sur);
+        direcciones.add(este);
+        direcciones.add(oeste);
+        direcciones.add(noreste);
+        direcciones.add(noroeste);
+        direcciones.add(sureste);
+        direcciones.add(suroeste);
 
-        return listaDirecciones;
+        return direcciones;
     }
-
 
     public Posicion posicionNueva(int posicionX,int posicionY){
         return new Posicion(posicionX + this.x,posicionY + this.y);
