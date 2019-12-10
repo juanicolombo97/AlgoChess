@@ -31,7 +31,7 @@ public class UnidadInterfaz extends Pane {
         }
 
         relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero, posicion.posicionY * TableroInterfaz.tamanioCasillero);
-        setOnMouseClicked(e -> System.out.println("fefefefe"));
+
         getChildren().add(nombre);
     }
 

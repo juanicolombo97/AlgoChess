@@ -41,4 +41,8 @@ public class EstadoJuegoAliado implements EstadoJuego {
     public Jugador jugadorActual() {
         return jugador;
     }
+    @Override
+    public EstadoJuego cambiarTurno() {
+        return new EstadoJuegoEnemigo(jugadorEnemigo,jugador);
+    }
 }

@@ -19,34 +19,22 @@ public class TableroInterfaz {
     private static Group grupoCasilleros = new Group();
     private static Group grupoUnidades = new Group();
     private static HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
-    private GridPane tablero;
-    private Tablero tableroJuego;
 
 
-    public  void crearTablero(Tablero tablero){
+
+    public static GridPane crearTablero(Tablero tablero){
         GridPane pane = new GridPane();
-        tableroJuego = tablero;
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
-        for (Casillero casilleroActual : tableroJuego.getTablero().values() ){
+        for (Casillero casilleroActual : tablero.getTablero().values() ){
             CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
         pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
-        this.tablero = pane;
+        return pane;
     }
-
-    public Tablero getTableroJuego(){
-        return tableroJuego;
-    }
-
-    public GridPane getTableroInterfaz(){
-        return tablero;
-    }
-
-    public CasilleroInterfaz getCasillero(Posicion posicion){
+    public static CasilleroInterfaz getCasillero(Posicion posicion){
         return tableroInterfaz.get(posicion);
     }
-
 
 }

@@ -33,5 +33,8 @@ public class Juego {
         return estadoJuego.jugadorActual();
     }
 
+    public void cambiarTurno(){
+        estadoJuego = estadoJuego.cambiarTurno();
+    }
 
 }

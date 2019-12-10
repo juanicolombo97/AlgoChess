@@ -9,4 +9,6 @@ public interface EstadoJuego {
     EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero);
 
     Jugador jugadorActual();
+
+    EstadoJuego cambiarTurno();
 }
