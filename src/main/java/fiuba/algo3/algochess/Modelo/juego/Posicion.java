@@ -74,13 +74,13 @@ public class Posicion {
     }
 
     public void determinarPosicionValida(Map<Posicion, Casillero> tablero, List<Unidad> unidadesADistanciaCercana) {
-            if (posicionValida()){
-                Unidad unidadNueva = tablero.get(this).obtenerUnidadCercana();
-                unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
-            }
+        if (posicionValida()){
+            Unidad unidadNueva = tablero.get(this).obtenerUnidadCercana();
+            unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
+        }
     }
 
-    public void posicionValidaParaFormarBatallon(Map<Posicion, Casillero> tablero, List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
+    public void determinarPosicionValidaParaFormarBatallon(Map<Posicion, Casillero> tablero, List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
         if(posicionValida()){
             Unidad unidad = tablero.get(this).obtenerUnidadCercana();
             unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
