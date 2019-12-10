@@ -30,7 +30,7 @@ public class FaseJuego {
 
     public void comenzarJuego(){
         VBox acciones = crearBotonesAccion();
-        VBox mensajes = mensajesJugadores((Jugador) listaJugadores.get(0));
+        VBox mensajes = mensajesJugadores( listaJugadores.get(0));
         BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(),mensajes,acciones);
 
         Scene scene = new Scene(interfaz);
