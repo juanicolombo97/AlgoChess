@@ -109,7 +109,7 @@ public class Catapulta implements Unidad{
     }
 
     @Override
-    public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
+    public Posicion calcularPosicionCercana(Direccion direccionActual, int counter) {
         Posicion posicionNueva = posicion.posicionNueva(direccionActual);
         return posicionNueva.posicionNuevaCercana(direccionActual,counter);
     }

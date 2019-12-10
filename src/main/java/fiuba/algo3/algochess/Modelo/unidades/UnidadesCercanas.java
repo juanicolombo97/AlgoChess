@@ -5,7 +5,6 @@ import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +32,7 @@ public class UnidadesCercanas {
         List<Unidad> unidadesADistanciaCercana = new ArrayList<>();
         for (int counter = 0; counter < distanciaLimite; counter++){
             for (Direccion direccionActual : listaDirecciones) {
-                Posicion posicionNueva = unidadCentral.calcularPosicionCernana(direccionActual,counter);
+                Posicion posicionNueva = unidadCentral.calcularPosicionCercana(direccionActual,counter);
                 posicionNueva.determinarPosicionValida(tablero, unidadesADistanciaCercana);
             }
         }

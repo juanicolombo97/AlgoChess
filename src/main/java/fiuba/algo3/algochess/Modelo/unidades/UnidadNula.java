@@ -89,7 +89,7 @@ public class UnidadNula implements Unidad{
 
     }
     @Override
-    public Posicion calcularPosicionCernana(Direccion direccionActual, int counter) {
+    public Posicion calcularPosicionCercana(Direccion direccionActual, int counter) {
         return posicion;
     }
 
