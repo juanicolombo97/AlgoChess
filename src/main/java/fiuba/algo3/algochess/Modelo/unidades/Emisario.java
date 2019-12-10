@@ -4,10 +4,11 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Emisario {
-    public void notificar(Unidad unidad) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) throws CasilleroVacioExcepcion;
-    public int cantidadSoldadosAliadosCercanos(Unidad unidad) throws CasilleroVacioExcepcion;
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad) throws CasilleroVacioExcepcion;
+    public void notificar(Unidad unidad);
+    public List<Unidad> unidadesAliadasCercanas(Unidad unidad);
+    public int cantidadSoldadosAliadosCercanos(Unidad unidad);
+    public List<Unidad> unidadesEnemigasCercanas(Unidad unidad);
 }

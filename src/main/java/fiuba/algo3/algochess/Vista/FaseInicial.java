@@ -1,8 +1,5 @@
 package fiuba.algo3.algochess.Vista;
 
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
@@ -12,35 +9,35 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FaseInicial {
 
     private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
     private static InterfazJuego interfazJuego = new InterfazJuego();
 
-    public static void display(Stage ventana) throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException {
-        //Inicializo Jugadores
+    public static void display(Stage ventana) {
+        //Inicializo Jugadores y Juego
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 1")));
         listaJugadores.add(new Jugador(VentanaLoguear.display("Registro Jugador 2")));
-
-        Tablero tablero = new Tablero(listaJugadores.get(0),listaJugadores.get(1));
-        etapaColocarFichas(listaJugadores,tablero);
-
+        Jugador jugador1 = listaJugadores.get(0);
+        Jugador jugador2 = listaJugadores.get(1);
+        Tablero tablero = new Tablero(jugador1,jugador2);
+        etapaColocarFichas(listaJugadores, tablero);
     }
 
 
 
-    public static void etapaColocarFichas(ArrayList listaJugadores,Tablero tablero) throws NoAlcanzanLosPuntosException {
+    public static void etapaColocarFichas(List<Jugador> listaJugadores, Tablero tablero) {
         Stage ventana = new Stage();
         ventana.setTitle("AlgoChess");
         TableroInterfaz tableroInterfaz = new TableroInterfaz();
         tableroInterfaz.crearTablero(tablero);
-        for (Object jugador : listaJugadores){
-            Jugador jugadorActual = (Jugador) jugador;
+        for (Jugador jugadorActual : listaJugadores){
 
             VBox ladoIzq = MensajesAJugador.mensajesJugador(jugadorActual);
 
-            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz,ventana);
+            VBox ladoDer = TiendaUnidades.crearUnidades(jugadorActual, tableroInterfaz, ventana,tablero);
 
             BorderPane interfaz = InterfazJuego.crearInterfaz(tableroInterfaz.getTableroInterfaz(), ladoIzq, ladoDer);
             Scene scene = new Scene(interfaz);

@@ -1,12 +1,16 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Posicion {
 
-    private int posicionX, posicionY;
+    public int posicionX, posicionY;
 
 
     public Posicion(int posicionX, int posicionY){
@@ -15,26 +19,17 @@ public class Posicion {
     }
 
 
-    public Distancia distanciaValidaDesde(Posicion posicion) throws MovimientoInvalidoException {
-        Distancia distancia = posicion.distanciaValidaHasta(this.posicionX,this.posicionY);
-        return distancia;
+    public Distancia distanciaValidaDesde(Posicion posicion) {
+        return posicion.distanciaValidaHasta(this.posicionX, this.posicionY);
     }
 
-    private Distancia distanciaValidaHasta(int posicionX, int posicionY) throws MovimientoInvalidoException {
+    private Distancia distanciaValidaHasta(int posicionX, int posicionY) {
         int distanciaX = Math.abs(this.posicionX - posicionX);
         int distanciaY = Math.abs(this.posicionY - posicionY);
         if (distanciaX > 1 && distanciaY > 1){
             throw new MovimientoInvalidoException("Solo se mueve de a 1 casillero");
         }
         return new Distancia(distanciaX,distanciaY);
-    }
-
-   public int getPosicionX(){
-        return posicionX;
-    }
-
-    public int getPosicionY(){
-        return posicionY;
     }
 
     public Distancia calcularDistancia(Posicion posicionFinal){
@@ -61,6 +56,9 @@ public class Posicion {
         return direccion.posicionNueva(posicionX,posicionY);
     }
 
+    public boolean posicionValida(){
+        return (posicionX > 0 && posicionX < 20) && (posicionY > 0 && posicionY < 20);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,5 +71,23 @@ public class Posicion {
     @Override
     public int hashCode() {
         return Objects.hash(posicionX, posicionY);
+    }
+
+    public void determinarPosicionValida(Map<Posicion, Casillero> tablero, List<Unidad> unidadesADistanciaCercana) {
+            if (posicionValida()){
+                Unidad unidadNueva = tablero.get(this).obtenerUnidadCercana();
+                unidadNueva.agregarUnidadADistancia(unidadesADistanciaCercana);
+            }
+    }
+
+    public void posicionValidaParaFormarBatallon(Map<Posicion, Casillero> tablero, List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
+        if(posicionValida()){
+            Unidad unidad = tablero.get(this).obtenerUnidadCercana();
+            unidad.agregarUnidadCercana(batallonUnidades,listaUnidades);
+        }
+    }
+
+    public Posicion posicionNuevaCercana(Direccion direccionActual, int counter) {
+       return direccionActual.calcularPosicionCercana(posicionX,posicionY,counter);
     }
 }

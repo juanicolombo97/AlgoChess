@@ -7,32 +7,34 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Entrega1UnidadesTest {
 
     @Test
-    public void unidadSePuedeMoverEnTodasLasDirecciones() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void unidadSePuedeMoverEnTodasLasDirecciones() {
         Direccion direccion = new Direccion(0,0);
-        ArrayList listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new Jugador("juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         tablero.crearUnidad(jugador,posicion,"soldado");
 
-        for (int x = 0; x < listaDirecciones.size(); x++){
-            Direccion direccion1 = (Direccion) listaDirecciones.get(x);
+        for (Direccion direccionActual : listaDirecciones){
             Unidad unidad = jugador.getUnidadesDisponibles().get(0);
             Posicion posicion1 = unidad.getPosicion();
-            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccion1),jugador);
+            tablero.moverUnidad(posicion1, posicion1.posicionNueva(direccionActual),jugador);
         }
 
     }
     @Test
-    public void unidadMovivleNoSePuedeMoverACasilleroOcupado() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void unidadMovivleNoSePuedeMoverACasilleroOcupado() {
         Direccion direccion = new Direccion(0,0);
-        ArrayList listaDirecciones = direccion.direccionesMovimiento();
+        List<Direccion> listaDirecciones = direccion.direccionesMovimiento();
         Jugador jugador = new Jugador("juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("juan");
+        Tablero tablero = new Tablero(jugador,jugador1);
         Posicion posicion = new Posicion(2,2);
         Posicion posicion1 = new Posicion(3,3);
         tablero.crearUnidad(jugador,posicion,"soldado");
@@ -44,7 +46,7 @@ public class Entrega1UnidadesTest {
         }
     }
     @Test
-    public void soldadoAtacaAUnidadEnemigaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void soldadoAtacaAUnidadEnemigaConExito() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
@@ -60,7 +62,7 @@ public class Entrega1UnidadesTest {
 
     }
     @Test
-    public void jineteAtacaAUnidadEnemigaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void jineteAtacaAUnidadEnemigaConExito() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
@@ -76,7 +78,7 @@ public class Entrega1UnidadesTest {
 
     }
     @Test
-    public void catapultaAtacaAUnidadEnemigaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void catapultaAtacaAUnidadEnemigaConExito() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
@@ -92,7 +94,7 @@ public class Entrega1UnidadesTest {
 
     }
     @Test
-    public void catapultaAtacaAUnidadAliadaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void catapultaAtacaAUnidadAliadaConExito() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
@@ -110,7 +112,7 @@ public class Entrega1UnidadesTest {
 
 
     @Test
-    public void curanderoCuraPiezaAliadaConExito() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void curanderoCuraPiezaAliadaConExito() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);
@@ -125,7 +127,7 @@ public class Entrega1UnidadesTest {
         Assertions.assertEquals(115,unidadAtacada.getVidaUnidad());
     }
     @Test
-    public void curanderoNoCuraUnidadEnemiga() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, CasilleroVacioExcepcion, CurarException, NoPuedeAtacarException, MovimientoInvalidoException {
+    public void curanderoNoCuraUnidadEnemiga() {
         Jugador jugador = new Jugador("juan");
         Jugador jugador2 = new Jugador("juan");
         Tablero tablero = new Tablero(jugador,jugador2);

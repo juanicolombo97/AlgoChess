@@ -3,6 +3,8 @@ package fiuba.algo3.algochess.Modelo.juego;
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class EstadoCasilleroOcupado implements EstadoCasillero {
 
     private Unidad unidad;
@@ -11,7 +13,7 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
         this.unidad = unidad;
     }
     @Override
-    public EstadoCasillero guardarUnidad(Unidad unidad) throws CasilleroOcupadoException {
+    public EstadoCasillero guardarUnidad(Unidad unidad){
         throw new CasilleroOcupadoException("El casillero se encuentra ocupado");
     }
 
@@ -24,4 +26,15 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     public Unidad obtenerUnidad() {
         return unidad;
     }
+
+    @Override
+    public Unidad obtenerUnidadCercana() {
+        return unidad;
+
+    }
+
+    @Override
+    public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casillero) {
+    }
+
 }

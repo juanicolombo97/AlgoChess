@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.testclases;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
@@ -9,61 +8,12 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BatallonTest {
 
     @Test
-    public void seFormaBatallonDeUnidadesCercanasCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador,jugador1);
-
-        Posicion posicion = new Posicion(1,1);
-        Posicion posicion1 = new Posicion(2,2);
-        Posicion posicion2 = new Posicion(3,3);
-        Posicion posicion3 = new Posicion(4,4);
-
-        tablero.crearUnidad(jugador,posicion,"soldado");
-        tablero.crearUnidad(jugador,posicion1,"catapulta");
-        tablero.crearUnidad(jugador,posicion2,"curandero");
-        tablero.crearUnidad(jugador,posicion3,"jinete");
-
-        Batallon batallon = new Batallon();
-        Unidad unidad = jugador.getUnidadesDisponibles().get(0);
-
-        ArrayList unidadesCercanas = batallon.calcularBatallon(unidad,tablero.getTablero());
-
-        Assertions.assertEquals(4,unidadesCercanas.size());
-
-    }
-
-    @Test
-    public void seFormaBatallonConUnidadesEnemigasTambien() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
-        Jugador jugador = new Jugador("juani");
-        Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador,jugador1);
-
-        Posicion posicion = new Posicion(8,8);
-        Posicion posicion1 = new Posicion(9,9);
-        Posicion posicion2 = new Posicion(10,10);
-        Posicion posicion3 = new Posicion(11,11);
-
-        tablero.crearUnidad(jugador,posicion,"soldado");
-        tablero.crearUnidad(jugador,posicion1,"soldado");
-        tablero.crearUnidad(jugador1,posicion2,"soldado");
-        tablero.crearUnidad(jugador1,posicion3,"soldado");
-
-        Batallon batallon = new Batallon();
-        Unidad unidad = jugador.getUnidadesDisponibles().get(0);
-
-        ArrayList unidadesCercanas = batallon.calcularBatallon(unidad,tablero.getTablero());
-
-        Assertions.assertEquals(4,unidadesCercanas.size());
-    }
-
-    @Test
-    public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void seFormaBatallonDeSoldadosSinUnidadesEnemigas() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -79,18 +29,19 @@ public class BatallonTest {
         tablero.crearUnidad(jugador1,posicion3,"soldado");
 
         Batallon batallon = new Batallon();
-        ArrayList listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
-        Unidad unidad = (Unidad) listaUnidadesAliadas.get(0);
-        ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
+        Unidad unidad = listaUnidadesAliadas.get(0);
+        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
         Assertions.assertEquals(3,listaUnidades.size());
     }
 
     @Test
-    public void seFormaBatallonSoloDeSoldados() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void seFormaBatallonSoloDeSoldados() {
         Jugador jugador1 = new Jugador("carlos");
-        Tablero tablero = new Tablero(jugador1,jugador1);
+        Jugador jugador = new Jugador("Juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
 
-        Posicion posicion = new Posicion(9,9);
+
         Posicion posicion1 = new Posicion(12,12);
         Posicion posicion2 = new Posicion(10,10);
         Posicion posicion3 = new Posicion(11,11);
@@ -98,7 +49,7 @@ public class BatallonTest {
         Posicion posicion5 = new Posicion(11,10);
         Posicion posicion6 = new Posicion(12,11);
 
-        tablero.crearUnidad(jugador1,posicion,"soldado");
+
         tablero.crearUnidad(jugador1,posicion1,"soldado");
         tablero.crearUnidad(jugador1,posicion2,"soldado");
         tablero.crearUnidad(jugador1,posicion3,"soldado");
@@ -108,14 +59,14 @@ public class BatallonTest {
 
 
         Batallon batallon = new Batallon();
-        ArrayList listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
-        Unidad unidad = (Unidad) listaUnidadesAliadas.get(0);
-        ArrayList listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
-        Assertions.assertEquals(4,listaUnidades.size());
+        List<Unidad> listaUnidadesAliadas = jugador1.getUnidadesDisponibles();
+        Unidad unidad = listaUnidadesAliadas.get(0);
+        List<Unidad> listaUnidades = batallon.calcularBatallonDeSoldados(unidad,tablero.getTablero(),listaUnidadesAliadas);
+        Assertions.assertEquals(3,listaUnidades.size());
     }
 
     @Test
-    void moverBatallonSoldados() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    void moverBatallonSoldados() {
         Jugador jugador1 = new Jugador("juan");
         Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -128,15 +79,15 @@ public class BatallonTest {
         // Muevo el soldado del (12, 12) al (13, 13)
         // Al mover el batallón, todas las unidades deben moverse (1, 1)
         tablero.moverUnidad(posicionSoldado1, posicionSoldado2, jugador2);
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
         // Obtengo dicho soldado
-        Unidad unidad = (Unidad) unidades.get(1);
-        Assertions.assertEquals(14, unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(14, unidad.getPosicion().getPosicionY());
+        Unidad unidad = unidades.get(1);
+        Posicion posicionEsperada = new Posicion(14,14);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
-    void moverBatallonSoldadosConObstaculo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    void moverBatallonSoldadosConObstaculo() {
         Jugador jugador1 = new Jugador("juan");
         Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -152,14 +103,15 @@ public class BatallonTest {
         tablero.moverUnidad(posicionSoldado1, posicionFinal, jugador2);
         // La unidad en la posicion (13, 12) permaneció en la misma posición a causa del obstáculo.
         // Obtengo dicha unidad para comprobarlo
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
-        Unidad unidad = (Unidad) unidades.get(1);
-        Assertions.assertEquals(13,unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(12,unidad.getPosicion().getPosicionY());
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
+
+        Unidad unidad = unidades.get(1);
+        Posicion posicionEsperada = new Posicion(13,12);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
-    void seDisuelveBatallonCorrectamente() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    void seDisuelveBatallonCorrectamente() {
         Jugador jugador1 = new Jugador("juan");
         Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
@@ -183,17 +135,16 @@ public class BatallonTest {
 
         tablero.moverUnidad(posicion1717, posicion1818, jugador2);
 
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
-        Unidad unidad = (Unidad) unidades.get(1);
-
-        Assertions.assertEquals(16,unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(16,unidad.getPosicion().getPosicionY());
+        Unidad unidad = unidades.get(1);
+        Posicion posicionEsperada = new Posicion(16,16);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
     @Test
-    void moverBatallonDe4SoloMueve3Unidades() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, UnidadNulaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    void moverBatallonDe4SoloMueve3Unidades() {
         Jugador jugador1 = new Jugador("juan");
         Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1, jugador2);
@@ -210,12 +161,11 @@ public class BatallonTest {
 
         //La unidad de la pos 12,12 al ser la mas lejana y ya haber 3 soldados no se mueve
 
-        ArrayList unidades = jugador2.getUnidadesDisponibles();
+        List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
-        Unidad unidad = (Unidad) unidades.get(3);
-
-        Assertions.assertEquals(12, unidad.getPosicion().getPosicionX());
-        Assertions.assertEquals(12, unidad.getPosicion().getPosicionY());
+        Unidad unidad = unidades.get(3);
+        Posicion posicionEsperada = new Posicion(12,12);
+        Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 }

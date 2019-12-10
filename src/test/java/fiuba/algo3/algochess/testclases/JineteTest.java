@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.testclases;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
@@ -10,11 +11,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class JineteTest {
 
     @Test
-    public void jineteRecienCreadoTieneVidaLlena() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteRecienCreadoTieneVidaLlena() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -22,7 +24,7 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteRecienCreadoCuestaLosPuntosCorrectos() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteRecienCreadoCuestaLosPuntosCorrectos() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -30,7 +32,7 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteRecibeDanioCorrectamente() throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteRecibeDanioCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -38,7 +40,7 @@ public class JineteTest {
         Assertions.assertEquals(80, jinete.getVidaUnidad());
     }
     @Test
-    public void jineteSeCuraCorrectamente() throws NoAlcanzanLosPuntosException, CurarException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteSeCuraCorrectamente() {
         Puntos puntos = new Puntos(20);
         Posicion posicion = new Posicion(1,1);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -46,9 +48,9 @@ public class JineteTest {
         Assertions.assertEquals(120, jinete.getVidaUnidad());
     }
     @Test
-    public void jineteEspadachinAtacaCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteEspadachinAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -59,9 +61,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteEspadachinNoAtacaCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteEspadachinNoAtacaCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -75,9 +77,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteEspadachinNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteEspadachinNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -91,9 +93,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteArqueroNoAtacaCorrectamenteADistanciaCercana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteArqueroNoAtacaCorrectamenteADistanciaCercana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -107,9 +109,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteArqueroAtacaCorrectamenteADistanciaMediana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteArqueroAtacaCorrectamenteADistanciaMediana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -119,9 +121,9 @@ public class JineteTest {
         Assertions.assertEquals(85,jinete1.getVidaUnidad());
     }
     @Test
-    public void jineteArqueroNoPuedeAtacarCorrectamenteADistanciaLejana() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteArqueroNoPuedeAtacarCorrectamenteADistanciaLejana() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -135,9 +137,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteArqueroNoPuedeAtacarCorrectamenteAUnidadAliada() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteArqueroNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());
@@ -151,9 +153,9 @@ public class JineteTest {
     }
 
     @Test
-    public void jineteEspadachinNoPuedeAtacarCorrectamenteAUnidadAliada() throws NoAlcanzanLosPuntosException, UnidadNulaException, NoPuedeAtacarException, UnidadInvalidaException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jineteEspadachinNoPuedeAtacarCorrectamenteAUnidadAliada() {
         Puntos puntos = new Puntos(20);
-        HashMap tablero = new HashMap();
+        Map<Posicion, Casillero> tablero = new HashMap<>();
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(4,4);
         Jinete jinete = new Jinete(puntos,posicion, new EmisarioNulo());

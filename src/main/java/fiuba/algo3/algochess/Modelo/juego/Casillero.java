@@ -1,49 +1,42 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
-import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.unidades.*;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Casillero{
 
     private final Posicion posicionCasillero;
     private EstadoCasillero estadoCasillero;
-    private Jugador jugador;
-    public boolean casilleroAliado;
 
-    public Casillero(Posicion posicion,boolean casilleroAliado,Jugador jugador){
+
+    public Casillero(Posicion posicion){
         this.posicionCasillero = posicion;
         estadoCasillero = new EstadoCasilleroVacio();
-        this.casilleroAliado = casilleroAliado;
-        this.jugador = jugador;
     }
 
-    public void guardarUnidad(Unidad unidadNueva) throws CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void guardarUnidad(Unidad unidadNueva) {
         estadoCasillero = estadoCasillero.guardarUnidad(unidadNueva);
         unidadNueva.modificarPosicion(posicionCasillero);
-        if (!jugador.unidadAliada(unidadNueva)){
-            unidadNueva.enCasilleroEnemigo();
-        } else {
-            unidadNueva.enCasilleroAliado();
-        }
+
    }
-   public void eliminarUnidad() throws CasilleroVacioExcepcion {
+   public void eliminarUnidad() {
         estadoCasillero = estadoCasillero.eliminarUnidad();
    }
 
-   public Unidad obtenerUnidad() throws CasilleroVacioExcepcion {
+   public Unidad obtenerUnidad() {
         return estadoCasillero.obtenerUnidad();
    }
+
    public Posicion getPosicionCasillero(){
         return posicionCasillero;
    }
 
-   public void movimientoValido(Casillero casilleroDestino) throws MovimientoInvalidoException {
+   public void movimientoValido(Casillero casilleroDestino) {
         casilleroDestino.distanciaCorrecta(this.posicionCasillero);
    }
 
-   public void distanciaCorrecta(Posicion posicion) throws MovimientoInvalidoException {
+   public void distanciaCorrecta(Posicion posicion) {
         posicionCasillero.distanciaValidaDesde(posicion);
    }
 
@@ -51,4 +44,15 @@ public class Casillero{
        return this.posicionCasillero.calcularDistancia(posicionAtacado);
    }
 
+   public Unidad obtenerUnidadCercana(){
+        return estadoCasillero.obtenerUnidadCercana();
+   }
+
+    public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador) {
+        estadoCasillero.guardarUnidadCercana(unidad,jugador,casilleroInicio,contador,this);
+    }
+
+    public void modificarEstadoCasillero(EstadoCasillero estadoCasilleroNuevo){
+        this.estadoCasillero = estadoCasilleroNuevo;
+    }
 }

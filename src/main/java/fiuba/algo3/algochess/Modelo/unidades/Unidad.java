@@ -1,39 +1,48 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 // Interfaz que representa las unidades del juego.
 
 public interface Unidad {
 
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero);
 
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, UnidadInvalidaException;
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero);
 
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException, CasilleroVacioExcepcion, UnidadInvalidaException;
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero);
 
-    public void recibirDanio(double danioRecibido) throws UnidadNulaException;
+    public void recibirDanio(double danioRecibido);
 
     public int cuantoCuesta();
 
-    public void curarse(int vidaACurar) throws CurarException, UnidadNulaException;
+    public void curarse(int vidaACurar);
 
-    public ArrayList habilidadMoverse(Unidad unidadAMover,HashMap tablero,ArrayList unidadesAliadas) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
+    public List<Unidad> habilidadMoverse(Unidad unidadAMover,Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas);
 
     public double getVidaUnidad();
 
     public Posicion getPosicion();
 
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion;
+    public void modificarPosicion(Posicion posicion);
 
-    public void recibirNotificacion() throws CasilleroVacioExcepcion;
+    public void recibirNotificacion();
 
-    public boolean esSoldado();
+    public void setDanioPorCasillero(double danioExtra);
 
-    public void enCasilleroEnemigo();
+    public void agregarSoldadoAListaDeSoldados(List<Unidad> listaDeSoldados);
 
-    public void enCasilleroAliado();
+    public void agregarUnidadCercana(List<Unidad> batallonUnidades, List<Unidad> listaUnidades);
+
+    public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana);
+
+    Posicion calcularPosicionCercana(Direccion direccionActual, int counter);
+
+
+    void sigueViva(List<Unidad> unidadesDisponibles);
 }

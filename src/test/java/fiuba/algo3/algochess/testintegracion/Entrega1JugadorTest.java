@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 public class Entrega1JugadorTest {
 
     @Test
-    public void jugadorNoPuedeCrearMasUnidadesQuePuntosDisponibles() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void jugadorNoPuedeCrearMasUnidadesQuePuntosDisponibles() {
         Jugador jugador = new Jugador("Juani");
-        Tablero tablero = new Tablero(jugador,jugador);
+        Jugador jugador1 = new Jugador("Juani");
+        Tablero tablero = new Tablero(jugador,jugador1);
 
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(1,12);
@@ -23,17 +24,16 @@ public class Entrega1JugadorTest {
         tablero.crearUnidad(jugador,posicion,"catapulta");
         tablero.crearUnidad(jugador,posicion1,"catapulta");
         tablero.crearUnidad(jugador,posicion2,"catapulta");
-        tablero.crearUnidad(jugador,posicion3,"catapulta");
         try {
-            tablero.crearUnidad(jugador,posicion4,"soldado");
-        }catch (NoAlcanzanLosPuntosException e){
-            Assertions.assertEquals("Puntos insuficientes, dispone de: 0",e.getMessage());
+            tablero.crearUnidad(jugador,posicion3,"catapulta");
+        }catch (JugadorSeQuedoSinPuntosException e){
+            Assertions.assertEquals("Te haz quedado sin puntos",e.getMessage());
         }
     }
 
     @Test
     public void jugadorRecienCreadoAlNoTenerUnidadesSeLoConsideraPerdedor(){
         Jugador jugador = new Jugador("Juani");
-        Assertions.assertEquals(false,jugador.puedeSeguirJugando());
+        Assertions.assertEquals(0, jugador.getUnidadesDisponibles().size());
     }
 }

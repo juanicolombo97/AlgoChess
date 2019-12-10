@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.testintegracion;
 
-import fiuba.algo3.algochess.Modelo.excepciones.*;
 import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
@@ -8,12 +7,12 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Entrega2SoldadoTest {
 
     @Test
-    public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -29,9 +28,9 @@ public class Entrega2SoldadoTest {
 
         tablero.moverUnidad(posicion2,posicion3,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
         //Agarro la unidad en la posicion 0 , que es la que estaba en la pos 1,1.
-        Unidad unidad = (Unidad) listaUnidades.get(0);
+        Unidad unidad = listaUnidades.get(0);
         Posicion posicionFinal = unidad.getPosicion();
 
         Assertions.assertEquals(posicion1,posicionFinal);
@@ -39,7 +38,7 @@ public class Entrega2SoldadoTest {
     }
 
     @Test
-    public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() throws CasilleroOcupadoException, UnidadInvalidaException, NoAlcanzanLosPuntosException, CasilleroEnemigoException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -57,10 +56,10 @@ public class Entrega2SoldadoTest {
 
         tablero.moverUnidad(posicion2,posicion4,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
         //Agarro la unidad en la posicion 0 , que es la que estaba en la pos 1,1.
-        Unidad unidad = (Unidad) listaUnidades.get(0);
-        Unidad unidad1 = (Unidad) listaUnidades.get(1);
+        Unidad unidad = listaUnidades.get(0);
+        Unidad unidad1 = listaUnidades.get(1);
         Posicion posicion6 = unidad1.getPosicion();
         Posicion posicion5 = unidad.getPosicion();
         Posicion posicion7 = new Posicion(2,3);
@@ -72,7 +71,7 @@ public class Entrega2SoldadoTest {
 
     }
     @Test
-    public void batallonSeDisuelveCorrectamenteAlDejarDeExistir() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void batallonSeDisuelveCorrectamenteAlDejarDeExistir() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -94,11 +93,11 @@ public class Entrega2SoldadoTest {
         tablero.moverUnidad(posicion4,posicion5,jugador);
         tablero.moverUnidad(posicion5,posicion6,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
         //Agarro la unidad en la posicion 0 , que es la que estaba en la pos 1,1.
-        Unidad unidad = (Unidad) listaUnidades.get(0);
-        Unidad unidad1 = (Unidad) listaUnidades.get(1);
-        Unidad unidad2 = (Unidad) listaUnidades.get(2);
+        Unidad unidad = listaUnidades.get(0);
+        Unidad unidad1 = listaUnidades.get(1);
+        Unidad unidad2 = listaUnidades.get(2);
         Posicion posicion7 = unidad1.getPosicion();
         Posicion posicion8 = unidad.getPosicion();
         Posicion posicion9 = unidad2.getPosicion();
@@ -111,7 +110,7 @@ public class Entrega2SoldadoTest {
     }
 
     @Test
-    public void habiendo4SoldadosSoloSeMueven3() throws CasilleroOcupadoException, UnidadInvalidaException, CasilleroEnemigoException, NoAlcanzanLosPuntosException, CasilleroVacioExcepcion, UnidadNulaException, MovimientoInvalidoException {
+    public void habiendo4SoldadosSoloSeMueven3() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");
         Tablero tablero = new Tablero(jugador,jugador1);
@@ -129,12 +128,12 @@ public class Entrega2SoldadoTest {
 
         tablero.moverUnidad(posicion3,posicion4,jugador);
 
-        ArrayList listaUnidades = jugador.getUnidadesDisponibles();
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
 
-        Unidad unidadInmovil = (Unidad) listaUnidades.get(0);
-        Unidad unidadMovil1 = (Unidad) listaUnidades.get(1);
-        Unidad unidadMovil2= (Unidad) listaUnidades.get(2);
-        Unidad unidadMovil3 = (Unidad) listaUnidades.get(3);
+        Unidad unidadInmovil = listaUnidades.get(0);
+        Unidad unidadMovil1 = listaUnidades.get(1);
+        Unidad unidadMovil2= listaUnidades.get(2);
+        Unidad unidadMovil3 = listaUnidades.get(3);
 
         boolean movimientoCorrecto1 = ((unidadInmovil.getPosicion().equals(posicion)) && (unidadMovil1.getPosicion().equals(posicion2)));
 

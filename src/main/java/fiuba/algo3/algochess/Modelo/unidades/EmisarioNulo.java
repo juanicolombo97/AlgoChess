@@ -4,19 +4,19 @@ import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmisarioNulo implements Emisario {
     private Tablero tablero;
 
     @Override
-    public void notificar(Unidad unidad) throws MovimientoInvalidoException {
+    public void notificar(Unidad unidad) {
 
     }
 
     @Override
-    public ArrayList unidadesAliadasCercanas(Unidad unidad) {
-        ArrayList listaNula = new ArrayList();
-        return listaNula;
+    public List<Unidad> unidadesAliadasCercanas(Unidad unidad) {
+        return new ArrayList<>();
     }
 
     @Override
@@ -25,8 +25,7 @@ public class EmisarioNulo implements Emisario {
     }
 
     @Override
-    public ArrayList unidadesEnemigasCercanas(Unidad unidad) {
-        ArrayList listaNula = new ArrayList();
-        return listaNula;
+    public List<Unidad> unidadesEnemigasCercanas(Unidad unidad) {
+        return new ArrayList<>();
     }
 }

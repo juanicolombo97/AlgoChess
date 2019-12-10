@@ -1,11 +1,14 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.*;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Direccion;
 import fiuba.algo3.algochess.Modelo.juego.Puntos;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Curandero implements Unidad {
     private static int costoUnidad = 2;
@@ -16,7 +19,7 @@ public class Curandero implements Unidad {
     private double danioExtra = 0;
 
 
-    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) throws NoAlcanzanLosPuntosException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public Curandero( Puntos puntosJugador, Posicion posicion, Emisario emisario) {
         puntosJugador.alcanzanPuntos(costoUnidad);
         this.posicion = posicion;
         this.emisario = emisario;
@@ -32,7 +35,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void modificarPosicion(Posicion posicion) throws MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void modificarPosicion(Posicion posicion) {
         this.posicion = posicion;
         this.emisario.notificar(this);
     }
@@ -42,7 +45,7 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException, CurarException, UnidadNulaException {
+    public void atacarDistanciaCerca(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         if (!esUnidadAliada){
             throw new CurarException("No se puede curar un enemigo");
         }
@@ -50,12 +53,12 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws NoPuedeAtacarException,CurarException{
+    public void atacarDistanciaMediana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
     @Override
-    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, HashMap tablero) throws CurarException, NoPuedeAtacarException {
+    public void atacarDistanciaLejana(Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
         throw new NoPuedeAtacarException("El curandero solo puede curar a distancia cercana");
     }
 
@@ -70,28 +73,48 @@ public class Curandero implements Unidad {
     }
 
     @Override
-    public void curarse(int vidaACurar) throws CurarException {
+    public void curarse(int vidaACurar) {
         vidaUnidad += vidaACurar;
     }
 
     @Override
-    public ArrayList habilidadMoverse(Unidad unidadAMover, HashMap tablero, ArrayList unidadesAliadas) throws MovimientoInvalidoException {
-        ArrayList listaUnidadesAMover = new ArrayList();
+    public List<Unidad> habilidadMoverse(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> unidadesAliadas) {
+        List<Unidad> listaUnidadesAMover = new ArrayList<>();
         listaUnidadesAMover.add(this);
         return listaUnidadesAMover;
     }
 
     @Override
-    public boolean esSoldado(){ return false; }
-
-    @Override
-    public void enCasilleroEnemigo(){
-        this.danioExtra = 0.05;
+    public void setDanioPorCasillero(double danioExtra) {
+        this.danioExtra = danioExtra;
     }
 
     @Override
-    public void enCasilleroAliado(){
-        this.danioExtra = 0.00;
+    public void agregarSoldadoAListaDeSoldados(List<Unidad> listaDeSoldados){
+
     }
 
+    @Override
+    public void agregarUnidadCercana(List<Unidad> batallonUnidades, List<Unidad> listaUnidades) {
+        if(!batallonUnidades.contains(this)){
+            batallonUnidades.add(this);
+            listaUnidades.add(this);
+        }
+    }
+    @Override
+    public void agregarUnidadADistancia(List<Unidad> unidadesADistanciaCercana) {
+        unidadesADistanciaCercana.add(this);
+    }
+
+    @Override
+    public Posicion calcularPosicionCercana(Direccion direccionActual, int counter) {
+        Posicion posicionNueva = posicion.posicionNueva(direccionActual);
+        return posicionNueva.posicionNuevaCercana(direccionActual,counter);
+    }
+    @Override
+    public void sigueViva(List<Unidad> unidadesDisponibles) {
+        if (vidaUnidad > 0){
+            unidadesDisponibles.add(this);
+        }
+    }
 }

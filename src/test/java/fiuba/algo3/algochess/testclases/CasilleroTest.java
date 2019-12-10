@@ -4,10 +4,7 @@ import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
 import fiuba.algo3.algochess.Modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
-import fiuba.algo3.algochess.Modelo.juego.Casillero;
-import fiuba.algo3.algochess.Modelo.juego.Jugador;
-import fiuba.algo3.algochess.Modelo.juego.Posicion;
-import fiuba.algo3.algochess.Modelo.juego.Puntos;
+import fiuba.algo3.algochess.Modelo.juego.*;
 import fiuba.algo3.algochess.Modelo.unidades.EmisarioNulo;
 import fiuba.algo3.algochess.Modelo.unidades.Soldado;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +15,7 @@ public class CasilleroTest {
     @Test
     public void seCrearCasilleroVacioCorrectamente(){
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
+        Casillero casillero = new Casillero(posicion);
         try {
             casillero.obtenerUnidad();
         } catch (CasilleroVacioExcepcion e) {
@@ -26,9 +23,9 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void seCreaCasilleroYSeAgregaUnidadCorrectamente() {
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
+        Casillero casillero = new Casillero(posicion);
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         casillero.guardarUnidad(soldado);
@@ -36,10 +33,10 @@ public class CasilleroTest {
         Assertions.assertEquals(soldado.getPosicion(),soldado2.getPosicion());
     }
     @Test
-    public void seQuiereAgregarUnidadACasilleroOcupado() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, MovimientoInvalidoException, CasilleroVacioExcepcion {
+    public void seQuiereAgregarUnidadACasilleroOcupado() {
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
-        Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
+        Casillero casillero = new Casillero(posicion);
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());
         Soldado soldado1 = new Soldado(puntos,posicion1, new EmisarioNulo());
@@ -51,9 +48,9 @@ public class CasilleroTest {
         }
     }
     @Test
-    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() throws NoAlcanzanLosPuntosException, CasilleroOcupadoException, CasilleroVacioExcepcion, MovimientoInvalidoException {
+    public void eliminarUnidadDeCasilleroFuncionaCorrectamente() {
         Posicion posicion = new Posicion(1,1);
-        Casillero casillero = new Casillero(posicion,true, new Jugador("nulo"));
+        Casillero casillero = new Casillero(posicion);
 
         Puntos puntos = new Puntos(20);
         Soldado soldado = new Soldado(puntos,posicion, new EmisarioNulo());

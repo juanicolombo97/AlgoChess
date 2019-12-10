@@ -8,13 +8,12 @@ import fiuba.algo3.algochess.Modelo.juego.Jugador;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TiendaUnidades {
 
-    public static VBox crearUnidades(Jugador jugador, TableroInterfaz tablero, Stage ventana){
+    public static VBox crearUnidades(Jugador jugador, TableroInterfaz tablero, Stage ventana, Tablero tableroJuego){
         VBox vBox = new VBox(20);
 
         Label unidades = new Label("Unidades disponibles");
@@ -24,10 +23,10 @@ public class TiendaUnidades {
         Button botonCurandero = new Button("Crear Curandero");
         Button unidadesListas = new Button("Fin colocaccion unidades");
 
-        botonSoldado.setOnAction(e -> CrearSoldado.crear(jugador,tablero));
-        botonJinete.setOnAction(e -> CrearJinete.crear(jugador,tablero));
-        botonCurandero.setOnAction(e -> CrearCurandero.crear(jugador,tablero));
-        botonCatapulta.setOnAction(e -> CrearCatapulta.crear(jugador,tablero));
+        botonSoldado.setOnAction(e -> CrearSoldado.crear(jugador,tablero,tableroJuego));
+        botonJinete.setOnAction(e -> CrearJinete.crear(jugador,tablero,tableroJuego));
+        botonCurandero.setOnAction(e -> CrearCurandero.crear(jugador,tablero,tableroJuego));
+        botonCatapulta.setOnAction(e -> CrearCatapulta.crear(jugador,tablero,tableroJuego));
         unidadesListas.setOnAction(e -> {
             if (jugador.getPuntosDisponibles() > 0){
                 MensajesAJugador.setMensaje("Todavia tienes puntos");

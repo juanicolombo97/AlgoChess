@@ -1,33 +1,28 @@
 package fiuba.algo3.algochess.Modelo.unidades;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroVacioExcepcion;
+import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Posicion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Batallon {
 
     private UnidadesCercanas unidadesCercanas = new UnidadesCercanas();
-    private ArrayList unidades = new ArrayList();
 
-    public ArrayList calcularBatallon(Unidad unidadAtacada, HashMap tablero) throws CasilleroVacioExcepcion {
-        return  unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAtacada);
-    }
-
-    public ArrayList calcularBatallonDeSoldados(Unidad unidadAMover,HashMap tablero,ArrayList listaUnidadesAliadas) throws CasilleroVacioExcepcion {
-       ArrayList listaUnidades = unidadesCercanas.unidadesCercanas(tablero,unidades,unidadAMover);
+    public List<Unidad> calcularBatallonDeSoldados(Unidad unidadAMover, Map<Posicion, Casillero> tablero, List<Unidad> listaUnidadesAliadas) {
+       List<Unidad> listaUnidades = unidadesCercanas.unidadesCercanas(tablero, unidadAMover);
        return listaSoldados(listaUnidades,listaUnidadesAliadas);
     }
 
-    private ArrayList listaSoldados(ArrayList listaUnidades,ArrayList unidadesAliadas) {
-        ArrayList<Soldado> listaSoldados = new ArrayList<>();
-        for (int x = 0; x < listaUnidades.size(); x++) {
-            Unidad unidad = (Unidad) listaUnidades.get(x);
-            if (unidadesAliadas.contains(unidad)) {
-                try {
-                    listaSoldados.add((Soldado) unidad);
-                }catch (ClassCastException e) {
-                }
+    private List<Unidad> listaSoldados(List<Unidad> listaUnidades, List<Unidad> unidadesAliadas) {
+        List<Unidad> listaSoldados = new ArrayList<>();
+        for (Unidad unidadActual : listaUnidades) {
+            if (unidadesAliadas.contains(unidadActual)) {
+                unidadActual.agregarSoldadoAListaDeSoldados(listaSoldados);
             }
         }
         return listaSoldados;
