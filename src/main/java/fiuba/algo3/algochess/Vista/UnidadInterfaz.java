@@ -31,7 +31,10 @@ public class UnidadInterfaz extends Pane {
         }
 
         relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero, posicion.posicionY * TableroInterfaz.tamanioCasillero);
-
+        setOnMouseClicked( e -> {
+            FaseInicial.nombreUnidad.setText(nombreUnidad);
+            FaseInicial.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
+        });
         getChildren().add(nombre);
     }
 

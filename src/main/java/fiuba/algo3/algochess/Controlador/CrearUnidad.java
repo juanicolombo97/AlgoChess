@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Controlador;
 
+import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
@@ -28,6 +29,7 @@ public class CrearUnidad {
                    casilleroInterfaz.setUnidad(unidadInterfaz);
                    FaseInicial.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());
                    FaseInicial.turnoDe.setText("Turno de " + juego.jugadorActual().getNombreJugador());
+                   FaseInicial.mensajeDeError.setText("");
                }
             }catch (Exception error){
                 FaseInicial.mensajeDeError.setText(error.getMessage());
