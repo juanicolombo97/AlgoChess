@@ -21,13 +21,13 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FaseInicial {
+public class FaseJuego {
 
 
-    private static GridPane tableroInterfaz;
+    public static GridPane tableroInterfaz;
     private static VBox ladoDerecho;
     private static VBox ladoIzquierdo;
-    private static HBox infoUnidad;
+    private static VBox infoUnidad;
     public static Label nombreUnidad;
     public static Label vidaUnidad;
     public static Label turnoDe;
@@ -35,12 +35,13 @@ public class FaseInicial {
     public static Label mensajeDeError;
     public static Stage ventana;
     private static BorderPane interfasJuego;
+    public static Juego juego;
 
     public static void display(Stage ventana) {
         //Inicializo Jugadores y Juego
         String jugador1 = VentanaLoguear.display("Registro Jugador 1");
         String jugador2 = VentanaLoguear.display("Registro Jugador 2");
-        Juego juego = new Juego(jugador1,jugador2);
+        juego = new Juego(jugador1,jugador2);
         etapaColocarFichas(juego);
     }
 
@@ -53,16 +54,12 @@ public class FaseInicial {
         tableroInterfaz = TableroInterfaz.crearTablero(juego.tablero);
         ladoDerecho = crearUnidadesVbox(juego);
         ladoIzquierdo = crearMensajesJugador(juego);
-        infoUnidad = crearInfoUnidad(juego);
 
         interfasJuego = new BorderPane();
 
         interfasJuego.setCenter(tableroInterfaz);
         BorderPane.setMargin(tableroInterfaz,new Insets(10));
 
-
-        interfasJuego.setBottom(infoUnidad);
-        BorderPane.setAlignment(infoUnidad, Pos.BOTTOM_CENTER);
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
 
@@ -73,8 +70,8 @@ public class FaseInicial {
         ventana.show();
     }
 
-    private static HBox crearInfoUnidad(Juego juego) {
-        HBox hBox = new HBox(10);
+    private static VBox crearInfoUnidad(Juego juego) {
+        VBox hBox = new VBox(10);
 
         nombreUnidad = new Label();
         vidaUnidad = new Label();
@@ -123,6 +120,10 @@ public class FaseInicial {
 
     public static void inicioJuego(){
         mensajeDeError.setText("Comienzo etapa juego");
+        puntosDisponibles.setText("");
+        infoUnidad = crearInfoUnidad(juego);
+        cambiarLadoDerechoInterfaz(infoUnidad);
+
     }
 
     public static void cambiarLadoDerechoInterfaz(VBox ladoDerecho){

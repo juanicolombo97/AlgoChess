@@ -1,24 +1,28 @@
 package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
-import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 
 import javafx.scene.paint.Color;
 
 import javafx.scene.control.Label;
 
+import javafx.scene.input.MouseEvent;
+
 public class UnidadInterfaz extends Pane {
 
     private Unidad unidad;
     private Posicion posicion;
+    private double clickMouseX,clickMouseY;
+    private double dragMouseX,dragMouseY;
 
     public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad){
         this.unidad = unidad;
         posicion = unidad.getPosicion();
+
+        mover(posicion.posicionX,posicion.posicionY);
+
         Label nombre = new Label(nombreUnidad);
 
         if (color){
@@ -30,12 +34,26 @@ public class UnidadInterfaz extends Pane {
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
 
-        relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero, posicion.posicionY * TableroInterfaz.tamanioCasillero);
-        setOnMouseClicked( e -> {
-            FaseInicial.nombreUnidad.setText(nombreUnidad);
-            FaseInicial.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
+
+        setOnMouseClicked( unidadPresionada -> {
+            int x = (int) unidadPresionada.getX() / TableroInterfaz.tamanioCasillero;
+            int y = (int) unidadPresionada.getY() / TableroInterfaz.tamanioCasillero;
+            System.out.println("pos inicial x: "+posicion.posicionX);
+            System.out.println(" presiono en x : " + x);
+            System.out.println("pos inicial y: "+posicion.posicionY);
+            System.out.println(" presiono en y: " + y);
+            FaseJuego.nombreUnidad.setText(nombreUnidad);
+            FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
         });
+
+
         getChildren().add(nombre);
+    }
+
+    public void mover(int x, int y){
+        dragMouseX = x * TableroInterfaz.tamanioCasillero;
+        dragMouseY = y * TableroInterfaz.tamanioCasillero;
+        relocate(dragMouseX,dragMouseY);
     }
 
 }

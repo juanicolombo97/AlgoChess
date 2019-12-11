@@ -31,6 +31,7 @@ public class CasilleroInterfaz extends StackPane {
         }
         rectangle.setFill(casilleroAliado ? Color.valueOf("#feb") : Color.valueOf("#582"));
         getChildren().add(rectangle);
+
     }
 
     public Posicion getPosicion(){
