@@ -28,7 +28,7 @@ public class CasilleroInterfaz extends StackPane {
         rectangle.setFill(casilleroAliado ? Color.valueOf("#feb") : Color.valueOf("#582"));
         getChildren().add(rectangle);
 
-        setOnMouseClicked(e -> seleccionarUnidad(juegoHaComenzado));
+        //setOnMouseClicked(e -> seleccionarUnidad(juegoHaComenzado));
 
     }
 

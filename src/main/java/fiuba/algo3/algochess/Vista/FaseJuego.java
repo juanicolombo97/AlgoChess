@@ -1,6 +1,6 @@
 package fiuba.algo3.algochess.Vista;
 
-import fiuba.algo3.algochess.Controlador.Atacar;
+import fiuba.algo3.algochess.Controlador.ControlarFaseAtaque;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
 import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -135,18 +135,9 @@ public class FaseJuego {
         VBox conjuntoAcciones = new VBox(10);
         conjuntoAcciones.getChildren().addAll(botonesAccionar,infoUnidad);
 
-        tableroInterfaz = TableroInterfaz.convertirCasillerosAClickeables(juego.tablero,comienzoJuego);
-
-        interfazJuego = new BorderPane();
-        interfazJuego.setCenter(tableroInterfaz);
-        BorderPane.setMargin(tableroInterfaz,new Insets(10));
-
         cambiarLadoDerechoInterfaz(conjuntoAcciones);
         //hacer que lado izquierdo de indicaciones de como atacar y mover?
 
-        Scene scene = new Scene(interfazJuego);
-        ventana.setScene(scene);
-        ventana.show();
     }
 
     private static VBox acciones(boolean juegoHaComenzado /* es comienzoJuego */) {
@@ -155,40 +146,11 @@ public class FaseJuego {
         Button botonMover = new Button("Mover");
         Button botonAtaque = new Button("Atacar/Curar");
 
-        botonAtaque.setOnAction(e -> instanciaDeAtaque(juegoHaComenzado));
-        //botonMover.setOnAction(e -> instanciaDeMovimiento(juegoHaComenzado));
+        botonAtaque.setOnAction(e -> new ControlarFaseAtaque(juego,tableroInterfaz));
+        //botonMover.setOnAction(e -> new ControlarFaseMovimiento(juego,tableroInterfaz));
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;
     }
-
-    private static void instanciaDeAtaque(boolean juegoHaComenzado) {
-        // seleccionar la unidad atacante -> obtener su posicion (casillero clickeable)
-        while(unidadSeleccionada == null){
-        }
-        unidadAtacanteSeleccionada =  unidadSeleccionada;
-        Unidad unidadAtacante = unidadAtacanteSeleccionada;
-        unidadSeleccionada = null;
-        unidadAtacanteSeleccionada = null;
-
-        // seleccionar la unidad a atacar -> obtener su posicion (casillero clickeable)
-        while(unidadSeleccionada == null){
-        }
-        unidadAtacadaSeleccionada = unidadSeleccionada;
-        Unidad unidadAtacada = unidadAtacadaSeleccionada;
-        unidadSeleccionada = null;
-        unidadAtacadaSeleccionada = null;
-
-        // delegar al controlador que le indique al Modelo que se realicen los procedimientos
-        new Atacar(juego,unidadAtacante,unidadAtacada);
-
-        // actualizar las vistas -> ???
-    }
-
-    /*
-    private static void instanciaDeMovimiento(boolean juegoHaComenzado){
-    }
-    */
-
 }
 
