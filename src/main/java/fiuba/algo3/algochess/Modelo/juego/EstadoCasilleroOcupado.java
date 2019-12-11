@@ -15,7 +15,7 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
 
     @Override
     public EstadoCasillero guardarUnidad(Unidad unidad){
-        throw new CasilleroOcupadoException("El casillero se encuentra ocupado");
+        throw new CasilleroOcupadoException("Casillero Ocupado");
     }
 
     @Override

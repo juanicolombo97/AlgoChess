@@ -18,12 +18,12 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
 
     @Override
     public EstadoCasillero eliminarUnidad(){
-        throw new CasilleroVacioExcepcion("El casillero esta vacio");
+        throw new CasilleroVacioExcepcion("Casillero esta vacio");
     }
 
     @Override
     public Unidad obtenerUnidad(){
-        throw new CasilleroVacioExcepcion("El casillero esta vacio");
+        throw new CasilleroVacioExcepcion("Casillero esta vacio");
     }
 
     @Override
