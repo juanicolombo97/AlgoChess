@@ -3,10 +3,8 @@ package fiuba.algo3.algochess.Vista;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
-import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 
@@ -22,17 +20,32 @@ public class TableroInterfaz {
 
 
 
-    public static GridPane crearTablero(Tablero tablero){
+    public static GridPane crearTablero(Tablero tablero, boolean juegoHaComenzado){
         GridPane pane = new GridPane();
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
         for (Casillero casilleroActual : tablero.getTablero().values() ){
-            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
+            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual,juegoHaComenzado);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
         pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
         return pane;
     }
+
+    public static GridPane convertirCasillerosAClickeables(Tablero tablero, boolean juegoHaComenzado){
+        GridPane pane = new GridPane();
+        pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
+        for (Casillero casilleroActual : tablero.getTablero().values() ){
+            UnidadInterfaz unidadInterfazActual = tableroInterfaz.get(casilleroActual.getPosicionCasillero()).getUnidad();
+            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual,juegoHaComenzado);
+            casilleroNuevo.setUnidad(unidadInterfazActual);
+            tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
+            grupoCasilleros.getChildren().add(casilleroNuevo);
+        }
+        pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
+        return pane;
+    }
+
     public static CasilleroInterfaz getCasillero(Posicion posicion){
         return tableroInterfaz.get(posicion);
     }

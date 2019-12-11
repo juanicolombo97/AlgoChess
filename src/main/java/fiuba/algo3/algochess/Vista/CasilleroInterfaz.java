@@ -2,10 +2,6 @@ package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
-
-
-import fiuba.algo3.algochess.Modelo.unidades.Unidad;
-import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -17,7 +13,7 @@ public class CasilleroInterfaz extends StackPane {
     private boolean casilleroAliado = false;
 
 
-    public CasilleroInterfaz(Casillero casillero){
+    public CasilleroInterfaz(Casillero casillero, boolean juegoHaComenzado){
         Posicion posicion = casillero.getPosicionCasillero();
         this.casillero = casillero;
 
@@ -32,6 +28,14 @@ public class CasilleroInterfaz extends StackPane {
         rectangle.setFill(casilleroAliado ? Color.valueOf("#feb") : Color.valueOf("#582"));
         getChildren().add(rectangle);
 
+        setOnMouseClicked(e -> seleccionarUnidad(juegoHaComenzado));
+
+    }
+
+    private void seleccionarUnidad(boolean juegoHaComenzado) {
+        if(juegoHaComenzado){
+            FaseJuego.unidadSeleccionada = casillero.obtenerUnidad();
+        }
     }
 
     public Posicion getPosicion(){
@@ -41,6 +45,10 @@ public class CasilleroInterfaz extends StackPane {
     public void setUnidad(UnidadInterfaz unidad){
         this.unidad = unidad;
         getChildren().add(unidad);
+    }
+
+    public UnidadInterfaz getUnidad(){
+        return this.unidad;
     }
     public boolean casilleroAliado(){
         return casilleroAliado;
