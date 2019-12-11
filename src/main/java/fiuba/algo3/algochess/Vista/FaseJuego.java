@@ -63,7 +63,6 @@ public class FaseJuego {
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
 
-        interfasJuego.setPrefSize(600,600);
         Scene scene = new Scene(interfasJuego);
 
         ventana.setScene(scene);
@@ -128,7 +127,6 @@ public class FaseJuego {
 
     public static void cambiarLadoDerechoInterfaz(VBox ladoDerecho){
         interfasJuego.setRight(ladoDerecho);
-        BorderPane.setMargin(ladoDerecho,new Insets(10,40,10,10));
     }
 
     private static void cambiarLadoIzquierdoInterfaz(VBox ladoIzquierdo) {
