@@ -36,7 +36,7 @@ public class FaseJuego {
     public static Stage ventana;
     private static BorderPane interfasJuego;
     public static Juego juego;
-    public static boolean comienzoJuego;
+    public static boolean comienzoJuego = false;
 
     public static void display(Stage ventana) {
         //Inicializo Jugadores y Juego
@@ -122,8 +122,22 @@ public class FaseJuego {
         mensajeDeError.setText("Comienzo etapa juego");
         puntosDisponibles.setText("");
         infoUnidad = crearInfoUnidad(juego);
-        cambiarLadoDerechoInterfaz(infoUnidad);
+        VBox botonesAccionar = acciones();
+        VBox conjunto = new VBox(10);
+        conjunto.getChildren().addAll(botonesAccionar,infoUnidad);
+        cambiarLadoDerechoInterfaz(conjunto);
+        comienzoJuego = true;
 
+    }
+
+    private static VBox acciones() {
+        VBox vBox = new VBox(10);
+
+        Button botonMover = new Button("Mover");
+        Button botonAtaque = new Button("Atacar/Mover");
+
+        vBox.getChildren().addAll(botonAtaque,botonMover);
+        return vBox;
     }
 
     public static void cambiarLadoDerechoInterfaz(VBox ladoDerecho){
