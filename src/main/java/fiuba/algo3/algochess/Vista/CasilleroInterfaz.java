@@ -46,11 +46,18 @@ public class CasilleroInterfaz extends StackPane {
         this.unidad = unidad;
         getChildren().add(unidad);
     }
-
     public UnidadInterfaz getUnidad(){
         return this.unidad;
     }
+
+    public void removeUnidad(){
+        unidad = null;
+    }
     public boolean casilleroAliado(){
         return casilleroAliado;
+    }
+
+    public UnidadInterfaz getUnidad(){
+        return unidad;
     }
 }

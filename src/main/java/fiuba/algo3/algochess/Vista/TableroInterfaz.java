@@ -50,4 +50,11 @@ public class TableroInterfaz {
         return tableroInterfaz.get(posicion);
     }
 
+    public static void actualizarPosicionUnidades(){
+    for (int x = 0; x < grupoUnidades.getChildren().size(); x++){
+        UnidadInterfaz unidadInterfaz = (UnidadInterfaz) grupoUnidades.getChildren().get(x);
+        unidadInterfaz.actualizarPosicion();
+        }
+    }
+
 }
