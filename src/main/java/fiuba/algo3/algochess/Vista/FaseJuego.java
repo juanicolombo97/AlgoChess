@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Controlador.ControladorMovimiento;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
 import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -10,10 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -60,11 +58,11 @@ public class FaseJuego {
 
         interfasJuego.setCenter(tableroInterfaz);
         BorderPane.setMargin(tableroInterfaz,new Insets(10));
-
+        interfasJuego.setStyle("-fx-background-color: #45647e;");
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
 
-        Scene scene = new Scene(interfasJuego);
+        Scene scene = new Scene(interfasJuego,950,700);
 
         ventana.setScene(scene);
         ventana.show();
@@ -72,7 +70,7 @@ public class FaseJuego {
 
     private static VBox crearInfoUnidad(Juego juego) {
         VBox hBox = new VBox(10);
-
+        hBox.setStyle("-fx-background-color: #7a7e31;");
         nombreUnidad = new Label();
         vidaUnidad = new Label();
 
@@ -134,7 +132,8 @@ public class FaseJuego {
         VBox vBox = new VBox(10);
 
         Button botonMover = new Button("Mover");
-        Button botonAtaque = new Button("Atacar/Mover");
+        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tableroInterfaz));
+        Button botonAtaque = new Button("Atacar/Curar");
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;

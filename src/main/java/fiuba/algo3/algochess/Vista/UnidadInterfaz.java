@@ -12,8 +12,8 @@ import javafx.scene.input.MouseEvent;
 
 public class UnidadInterfaz extends Pane {
 
-    private Unidad unidad;
-    private Posicion posicion;
+    private static Unidad unidad;
+    private static Posicion posicion;
     private double clickMouseX,clickMouseY;
     private double dragMouseX,dragMouseY;
 
@@ -33,17 +33,8 @@ public class UnidadInterfaz extends Pane {
             setStyle("-fx-background-color: #e7e7e7");
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
-
-
-            System.out.println("tetete");
             setOnMouseClicked(unidadPresionada -> {
                 if (FaseJuego.comienzoJuego) {
-                    int x = (int) unidadPresionada.getX() / TableroInterfaz.tamanioCasillero;
-                    int y = (int) unidadPresionada.getY() / TableroInterfaz.tamanioCasillero;
-                    System.out.println("pos inicial x: " + posicion.posicionX);
-                    System.out.println(" presiono en x : " + x);
-                    System.out.println("pos inicial y: " + posicion.posicionY);
-                    System.out.println(" presiono en y: " + y);
                     FaseJuego.nombreUnidad.setText(nombreUnidad);
                     FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
                 }
@@ -58,6 +49,16 @@ public class UnidadInterfaz extends Pane {
         dragMouseX = x * TableroInterfaz.tamanioCasillero;
         dragMouseY = y * TableroInterfaz.tamanioCasillero;
         relocate(dragMouseX,dragMouseY);
+    }
+
+    public void actualizarPosicion(){
+        posicion = unidad.getPosicion();
+        mover(posicion.posicionX,posicion.posicionY);
+
+    }
+
+    public Unidad getUnidad(){
+        return unidad;
     }
 
 }
