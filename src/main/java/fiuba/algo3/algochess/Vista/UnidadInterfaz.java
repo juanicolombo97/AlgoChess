@@ -34,17 +34,18 @@ public class UnidadInterfaz extends Pane {
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
 
-
-        setOnMouseClicked( unidadPresionada -> {
-            int x = (int) unidadPresionada.getX() / TableroInterfaz.tamanioCasillero;
-            int y = (int) unidadPresionada.getY() / TableroInterfaz.tamanioCasillero;
-            System.out.println("pos inicial x: "+posicion.posicionX);
-            System.out.println(" presiono en x : " + x);
-            System.out.println("pos inicial y: "+posicion.posicionY);
-            System.out.println(" presiono en y: " + y);
-            FaseJuego.nombreUnidad.setText(nombreUnidad);
-            FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
-        });
+        if (FaseJuego.comienzoJuego) {
+            setOnMouseClicked(unidadPresionada -> {
+                int x = (int) unidadPresionada.getX() / TableroInterfaz.tamanioCasillero;
+                int y = (int) unidadPresionada.getY() / TableroInterfaz.tamanioCasillero;
+                System.out.println("pos inicial x: " + posicion.posicionX);
+                System.out.println(" presiono en x : " + x);
+                System.out.println("pos inicial y: " + posicion.posicionY);
+                System.out.println(" presiono en y: " + y);
+                FaseJuego.nombreUnidad.setText(nombreUnidad);
+                FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
+            });
+        }
 
 
         getChildren().add(nombre);

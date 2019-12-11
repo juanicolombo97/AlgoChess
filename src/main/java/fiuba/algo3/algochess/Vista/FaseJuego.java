@@ -36,6 +36,7 @@ public class FaseJuego {
     public static Stage ventana;
     private static BorderPane interfasJuego;
     public static Juego juego;
+    public static boolean comienzoJuego;
 
     public static void display(Stage ventana) {
         //Inicializo Jugadores y Juego

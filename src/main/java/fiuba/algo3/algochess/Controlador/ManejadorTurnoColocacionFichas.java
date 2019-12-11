@@ -13,6 +13,8 @@ public class ManejadorTurnoColocacionFichas{
                 mensajeDeError.setText("Todavia dispone de puntos");
             } else {
                 FaseJuego.inicioJuego();
+                FaseJuego.comienzoJuego = true;
+
             }
 
         }
