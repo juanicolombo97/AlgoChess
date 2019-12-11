@@ -1,7 +1,7 @@
 package fiuba.algo3.algochess.Vista;
 
-import fiuba.algo3.algochess.Controlador.ControlarFaseAtaque;
 import fiuba.algo3.algochess.Controlador.ControladorMovimiento;
+import fiuba.algo3.algochess.Controlador.ControlarFaseAtaque;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
 import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -9,10 +9,9 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.layout.*;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -60,11 +59,11 @@ public class FaseJuego {
 
         interfazJuego.setCenter(tableroInterfaz);
         BorderPane.setMargin(tableroInterfaz,new Insets(10));
-        interfasJuego.setStyle("-fx-background-color: #45647e;");
+        interfazJuego.setStyle("-fx-background-color: #45647e;");
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
 
-        Scene scene = new Scene(interfasJuego,950,700);
+        Scene scene = new Scene(interfazJuego,950,700);
 
         ventana.setScene(scene);
         ventana.show();
@@ -133,24 +132,21 @@ public class FaseJuego {
         puntosDisponibles.setText("");
         infoUnidad = crearInfoUnidad(juego);
 
-        VBox botonesAccionar = acciones(comienzoJuego);
+        VBox botonesAccionar = acciones();
         VBox conjuntoAcciones = new VBox(10);
         conjuntoAcciones.getChildren().addAll(botonesAccionar,infoUnidad);
 
         cambiarLadoDerechoInterfaz(conjuntoAcciones);
-        //hacer que lado izquierdo de indicaciones de como atacar y mover?
-
     }
 
-    private static VBox acciones(boolean juegoHaComenzado /* es comienzoJuego */) {
+    private static VBox acciones() {
         VBox vBox = new VBox(10);
 
         Button botonMover = new Button("Mover");
-        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tableroInterfaz));
         Button botonAtaque = new Button("Atacar/Curar");
 
+        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tableroInterfaz));
         botonAtaque.setOnAction(e -> new ControlarFaseAtaque(juego,tableroInterfaz));
-        //botonMover.setOnAction(e -> new ControlarFaseMovimiento(juego,tableroInterfaz));
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;

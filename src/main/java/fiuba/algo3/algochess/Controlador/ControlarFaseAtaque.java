@@ -4,6 +4,8 @@ import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
+import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import javafx.scene.layout.GridPane;
 
@@ -23,9 +25,9 @@ public class ControlarFaseAtaque {
             int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
             int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
             Posicion posicion = new Posicion(x,y);
-                Casillero casillero = juego.tablero.getTablero().get(posicion);
-                Unidad unidadAtacante = casillero.obtenerUnidad();
-                seleccionarUniddadAtacada(unidadAtacante);
+            Casillero casillero = juego.tablero.getTablero().get(posicion);
+            Unidad unidadAtacante = casillero.obtenerUnidad();
+            seleccionarUniddadAtacada(unidadAtacante);
         });
     }
 
@@ -43,7 +45,13 @@ public class ControlarFaseAtaque {
     public static void realizarAtaque(Unidad unidadAtacante, Unidad unidadAtacada){
         Posicion posicionAtacante = unidadAtacante.getPosicion();
         Posicion posicionAtacada = unidadAtacada.getPosicion();
-        juego.atacar(posicionAtacante,posicionAtacada);
-        //actualizar vista?
+        try{
+            CasilleroInterfaz casilleroAtacado = TableroInterfaz.getCasillero(posicionAtacada);
+            juego.atacar(posicionAtacante,posicionAtacada);
+            TableroInterfaz.actualizarVistaUnidades();
+            FaseJuego.turnoDe.setText(juego.jugadorActual().getNombreJugador());
+        }catch(Exception error){
+            FaseJuego.mensajeDeError.setText(error.getMessage());
+        }
     }
 }

@@ -3,6 +3,7 @@ package fiuba.algo3.algochess.Vista;
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
+import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 
@@ -32,20 +33,6 @@ public class TableroInterfaz {
         return pane;
     }
 
-    public static GridPane convertirCasillerosAClickeables(Tablero tablero, boolean juegoHaComenzado){
-        GridPane pane = new GridPane();
-        pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
-        for (Casillero casilleroActual : tablero.getTablero().values() ){
-            UnidadInterfaz unidadInterfazActual = tableroInterfaz.get(casilleroActual.getPosicionCasillero()).getUnidad();
-            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual,juegoHaComenzado);
-            casilleroNuevo.setUnidad(unidadInterfazActual);
-            tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
-            grupoCasilleros.getChildren().add(casilleroNuevo);
-        }
-        pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
-        return pane;
-    }
-
     public static CasilleroInterfaz getCasillero(Posicion posicion){
         return tableroInterfaz.get(posicion);
     }
@@ -57,4 +44,13 @@ public class TableroInterfaz {
         }
     }
 
+    public static void actualizarVistaUnidades() {
+        for (int x = 0; x < grupoUnidades.getChildren().size(); x++){
+            UnidadInterfaz unidadInterfaz = (UnidadInterfaz) grupoUnidades.getChildren().get(x);
+            Unidad unidad = unidadInterfaz.getUnidad();
+            if(unidad.getVidaUnidad() <= 0){
+                unidadInterfaz.removeUnidad();
+            }
+        }
+    }
 }

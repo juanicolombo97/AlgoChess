@@ -2,13 +2,9 @@ package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
-import javafx.scene.layout.*;
-
-import javafx.scene.paint.Color;
-
 import javafx.scene.control.Label;
-
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class UnidadInterfaz extends Pane {
 
@@ -39,9 +35,6 @@ public class UnidadInterfaz extends Pane {
                     FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
                 }
             });
-
-
-
         getChildren().add(nombre);
     }
 
@@ -54,11 +47,13 @@ public class UnidadInterfaz extends Pane {
     public void actualizarPosicion(){
         posicion = unidad.getPosicion();
         mover(posicion.posicionX,posicion.posicionY);
-
     }
 
     public Unidad getUnidad(){
         return unidad;
     }
 
+    public void removeUnidad() {
+        unidad = null;
+    }
 }
