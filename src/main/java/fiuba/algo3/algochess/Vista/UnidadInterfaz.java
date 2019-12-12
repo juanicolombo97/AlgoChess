@@ -13,18 +13,20 @@ import javafx.scene.input.MouseEvent;
 
 public class UnidadInterfaz extends Pane {
 
-    private static Unidad unidad;
-    private static Posicion posicion;
-    private double clickMouseX,clickMouseY;
-    private double dragMouseX,dragMouseY;
+    private  Unidad unidad;
+    private  Posicion posicion;
 
-    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego){
+    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, int tamanioCasillero){
+
         this.unidad = unidad;
         posicion = unidad.getPosicion();
-
-        mover(posicion.posicionX,posicion.posicionY);
+        System.out.println("Posicion unidad X: " + posicion.posicionX);
+        System.out.println("Posicion unidad y: " + posicion.posicionY);
+        setWidth(tamanioCasillero);
+        setHeight(tamanioCasillero);
 
         Label nombre = new Label(nombreUnidad);
+
 
         if (color){
             setStyle("-fx-background-color: #000000");
@@ -46,17 +48,7 @@ public class UnidadInterfaz extends Pane {
         getChildren().add(nombre);
     }
 
-    public void mover(int x, int y){
-        dragMouseX = x * TableroInterfaz.tamanioCasillero;
-        dragMouseY = y * TableroInterfaz.tamanioCasillero;
-        relocate(dragMouseX,dragMouseY);
-    }
 
-    public void actualizarPosicion(){
-        posicion = unidad.getPosicion();
-        mover(posicion.posicionX,posicion.posicionY);
-
-    }
 
     public Unidad getUnidad(){
         return unidad;

@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.Vista;
 
-import fiuba.algo3.algochess.Controlador.ControladorMovimiento;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
 import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
@@ -30,7 +29,7 @@ public class FaseJuego {
     public  Juego juego;
     private  boolean comienzoJuego = false;
     private GridPane tablero;
-    private TableroInterfaz tableroInterfaz;
+    public TableroInterfaz tableroInterfaz;
 
 
     public  void display(Stage ventana) {
@@ -40,8 +39,6 @@ public class FaseJuego {
         juego = new Juego(jugador1,jugador2);
         etapaColocarFichas(juego);
     }
-
-
 
     public  void etapaColocarFichas(Juego juego) {
         ventana = new Stage();
@@ -56,6 +53,7 @@ public class FaseJuego {
 
         interfasJuego.setCenter(tablero);
         BorderPane.setMargin(tablero,new Insets(10));
+        interfasJuego.setPadding(new Insets(10));
         interfasJuego.setStyle("-fx-background-color: #45647e;");
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
@@ -75,7 +73,6 @@ public class FaseJuego {
         hBox.getChildren().addAll(nombreUnidad,vidaUnidad);
         return hBox;
     }
-
 
     private  VBox crearMensajesJugador(Juego juego) {
         VBox vBox = new VBox(10);
@@ -130,7 +127,7 @@ public class FaseJuego {
         VBox vBox = new VBox(10);
 
         Button botonMover = new Button("Mover");
-        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tablero,this,tableroInterfaz));
+
         Button botonAtaque = new Button("Atacar/Curar");
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
@@ -160,5 +157,7 @@ public class FaseJuego {
     public void cambiarMensajeError(String error){
         mensajeDeError.setText(error);
     }
+
+
 }
 

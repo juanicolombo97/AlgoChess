@@ -14,12 +14,12 @@ import java.util.HashMap;
 
 public class TableroInterfaz {
 
-    public static int tamanioCasillero = 30;
-    public static int filas = 20;
-    public static int columnas = 20;
-    private static Group grupoCasilleros = new Group();
-    private static Group grupoUnidades = new Group();
-    private static HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
+    public int tamanioCasillero = 30;
+    public  int filas = 20;
+    public  int columnas = 20;
+    private  Group grupoCasilleros = new Group();
+    private  Group grupoUnidades = new Group();
+    private  HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
     private Juego juego;
 
     private GridPane tablero;
@@ -32,7 +32,7 @@ public class TableroInterfaz {
         GridPane pane = new GridPane();
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
         for (Casillero casilleroActual : juego.tablero.getTablero().values() ){
-            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
+            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual,tamanioCasillero);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
