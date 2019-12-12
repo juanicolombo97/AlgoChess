@@ -225,7 +225,7 @@ public class JuegoTest {
     }
 
     @Test
-    void aliadoMueveFichaYAlMoverDenuevoLanzaErrorPorqueEsTurnoEnemigo(){
+    void aliadoMueveFichaYAlMoverDeNuevoLanzaErrorPorqueEsTurnoEnemigo(){
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -294,7 +294,7 @@ public class JuegoTest {
         Assertions.assertEquals(posicionResultante,posicion11);
     }
     @Test
-    void sistemaDeTurnorAndaCorrectamente(){
+    void sistemaDeTurnosAndaCorrectamente(){
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -367,6 +367,47 @@ public class JuegoTest {
         Assertions.assertEquals(30,vidaUnidad);
 
     }
+
+    @Test
+    void ataqueDeCatapultaABatallonFuncionaCorrectamente(){
+        Juego juego = new Juego("nicolas","juani");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+        Posicion posicion9 = new Posicion(14,14);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion1);
+        juego.crearUnidad("jinete",posicion2);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("curandero",posicion8);
+        juego.crearUnidad("jinete",posicion9);
+
+        juego.atacar(posicion,posicion5);
+        juego.atacar(posicion5, posicion);
+
+        Unidad unidadAtacada1 = juego.jugadorAliado.getUnidadesDisponibles().get(0);
+        Unidad unidadAtacada2 = juego.jugadorAliado.getUnidadesDisponibles().get(1);
+        Unidad unidadAtacada3 = juego.jugadorAliado.getUnidadesDisponibles().get(2);
+        double vidaUnidad1 = unidadAtacada1.getVidaUnidad();
+        Assertions.assertEquals(30,vidaUnidad1);
+        double vidaUnidad2 = unidadAtacada2.getVidaUnidad();
+        Assertions.assertEquals(55,vidaUnidad2);
+        double vidaUnidad3 = unidadAtacada3.getVidaUnidad();
+        Assertions.assertEquals(80,vidaUnidad3);
+
+    }
+
     @Test
     void jugadorAliadoNoPuedeAtacarEnTurnoEnemigo(){
         Juego juego = new Juego("juani","carlos");
