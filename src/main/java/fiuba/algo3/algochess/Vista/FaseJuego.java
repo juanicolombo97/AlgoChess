@@ -53,7 +53,7 @@ public class FaseJuego {
 
         interfasJuego.setCenter(tablero);
         BorderPane.setMargin(tablero,new Insets(10));
-        interfasJuego.setPadding(new Insets(10));
+        interfasJuego.setPadding(new Insets(15));
         interfasJuego.setStyle("-fx-background-color: #45647e;");
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
