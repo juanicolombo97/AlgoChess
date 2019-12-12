@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
@@ -19,29 +20,33 @@ public class TableroInterfaz {
     private static Group grupoCasilleros = new Group();
     private static Group grupoUnidades = new Group();
     private static HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
+    private Juego juego;
 
+    private GridPane tablero;
 
+    public  TableroInterfaz(Juego juego){
+        this.juego = juego;
+    }
 
-    public static GridPane crearTablero(Tablero tablero){
+    public  GridPane crearTablero( ){
         GridPane pane = new GridPane();
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
-        for (Casillero casilleroActual : tablero.getTablero().values() ){
+        for (Casillero casilleroActual : juego.tablero.getTablero().values() ){
             CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
         pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
+        tablero = pane;
         return pane;
     }
-    public static CasilleroInterfaz getCasillero(Posicion posicion){
+    public  CasilleroInterfaz getCasillero(Posicion posicion){
         return tableroInterfaz.get(posicion);
     }
 
-    public static void actualizarPosicionUnidades(){
-    for (int x = 0; x < grupoUnidades.getChildren().size(); x++){
-        UnidadInterfaz unidadInterfaz = (UnidadInterfaz) grupoUnidades.getChildren().get(x);
-        unidadInterfaz.actualizarPosicion();
-        }
+
+    public GridPane getTablero(){
+        return tablero;
     }
 
 }

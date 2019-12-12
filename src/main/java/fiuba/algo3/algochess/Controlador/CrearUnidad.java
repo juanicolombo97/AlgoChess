@@ -9,12 +9,11 @@ import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import fiuba.algo3.algochess.Vista.UnidadInterfaz;
-import javafx.scene.layout.GridPane;
 
 public class CrearUnidad {
 
-    public CrearUnidad(String nombreUnidad, Juego juego, GridPane tableroInterfaz, FaseJuego faseJuego) {
-        tableroInterfaz.setOnMouseClicked(e -> {
+    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego) {
+        tableroInterfaz.getTablero().setOnMouseClicked(e -> {
             int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
             int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
             Posicion posicion = new Posicion(x,y);
@@ -23,7 +22,7 @@ public class CrearUnidad {
                juego.crearUnidad(nombreUnidad,posicion);
                Unidad unidad = casillero.obtenerUnidad();
                if (!unidad.getClass().equals(UnidadNula.class)) {
-                   CasilleroInterfaz casilleroInterfaz = TableroInterfaz.getCasillero(posicion);
+                   CasilleroInterfaz casilleroInterfaz = tableroInterfaz.getCasillero(posicion);
                    UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad, casilleroInterfaz.casilleroAliado(), nombreUnidad,faseJuego);
                    casilleroInterfaz.setUnidad(unidadInterfaz);
                    faseJuego.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());

@@ -156,7 +156,7 @@ public class JuegoTest {
     }
 
     @Test
-    void terminaFaseCreacionFichasYJugadorAliadoPuedeMover(){
+    void terminaFaseCreacionFichasYJugadorAliadoPuedeMover() throws Exception{
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,1);
@@ -218,14 +218,14 @@ public class JuegoTest {
         juego.crearUnidad("jinete",posicion9);
         try {
             juego.mover(posicion7,posicion11);
-        }catch (UnidadInvalidaException e){
+        }catch( Exception e){
             Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
 
     }
 
     @Test
-    void aliadoMueveFichaYAlMoverDenuevoLanzaErrorPorqueEsTurnoEnemigo(){
+    void aliadoMueveFichaYAlMoverDenuevoLanzaErrorPorqueEsTurnoEnemigo() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -252,13 +252,13 @@ public class JuegoTest {
         juego.mover(posicion1,posicion10);
         try {
             juego.mover(posicion2,posicion11);
-        }catch (UnidadInvalidaException e){
+        }catch (Exception e){
             Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
     }
 
     @Test
-   void enemigoPuedeMoverFichasUnaVesQueAliadoEliga(){
+   void enemigoPuedeMoverFichasUnaVesQueAliadoEliga() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -294,7 +294,7 @@ public class JuegoTest {
         Assertions.assertEquals(posicionResultante,posicion11);
     }
     @Test
-    void sistemaDeTurnorAndaCorrectamente(){
+    void sistemaDeTurnorAndaCorrectamente() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -653,7 +653,7 @@ public class JuegoTest {
     }
 
     @Test
-    void unidadNoSePuedeMoverMasDeUnCasillero(){
+    void unidadNoSePuedeMoverMasDeUnCasillero() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);

@@ -12,32 +12,49 @@ import javafx.scene.layout.GridPane;
 
 public class ControladorMovimiento {
 
-    private Juego juego;
+    private Juego juegoActual;
+    private Posicion posicionInicial;
+    private Posicion posicionFinal;
+    private GridPane tablero;
+    private FaseJuego faseJuego;
+    private TableroInterfaz tableroInterfaz;
 
-    public ControladorMovimiento(Juego juego, GridPane tableroInterfaz, FaseJuego faseJuego) {
-       tableroInterfaz.setOnMouseClicked( e -> {
-           int posXInicial = (int) e.getX() / TableroInterfaz.tamanioCasillero;
-           int posYInicial = (int) e.getY() / TableroInterfaz.tamanioCasillero;
-           Posicion posicionInicial = new Posicion(posXInicial,posYInicial);
-           tableroInterfaz.setOnMouseClicked( mouse -> {
-               int posXFinal = (int) mouse.getX() / TableroInterfaz.tamanioCasillero;
-               int poYFinal = (int) mouse.getY() / TableroInterfaz.tamanioCasillero;
-               Posicion posicionFinal = new Posicion(posXFinal,poYFinal);
-               try {
-                   juego.mover(posicionInicial,posicionFinal);
-                   CasilleroInterfaz casilleroInicial = TableroInterfaz.getCasillero(posicionInicial);
-                   CasilleroInterfaz casilleroFinal = TableroInterfaz.getCasillero(posicionFinal);
-                   UnidadInterfaz unidad = casilleroInicial.getUnidad();
-                   casilleroInicial.removeUnidad();
-                   casilleroFinal.setUnidad(unidad);
-                   unidad.actualizarPosicion();
-                   faseJuego.cambiarJugadorActual(juego.jugadorActual().getNombreJugador());
-                   faseJuego.cambiarMensajeError("");
-               }catch (Exception error){
-                   faseJuego.cambiarMensajeError(error.getMessage());
-               }
-           });
+    public ControladorMovimiento(Juego juego, GridPane tableroInterfaz, FaseJuego faseJuego, TableroInterfaz interfaz) {
+        tablero = tableroInterfaz;
+        this.juegoActual = juego;
+        this.faseJuego = faseJuego;
+        this.tableroInterfaz = interfaz;
+        accionMover();
+    }
 
-       });
+    public void accionMover(){
+        tablero.setOnMouseClicked( e -> {
+
+            int posXInicial = (int) e.getX() / TableroInterfaz.tamanioCasillero;
+            int posYInicial = (int) e.getY() / TableroInterfaz.tamanioCasillero;
+            posicionInicial = new Posicion(posXInicial,posYInicial);
+            tablero.setOnMouseClicked( mouse -> {
+                int posXFinal = (int) mouse.getX() / TableroInterfaz.tamanioCasillero;
+                int poYFinal = (int) mouse.getY() / TableroInterfaz.tamanioCasillero;
+                posicionFinal = new Posicion(posXFinal,poYFinal);
+                System.out.println("Posicion FINAL x:" +posicionFinal.posicionX);
+                System.out.println("Posicion FINAL Y:" +posicionFinal.posicionY);
+                try {
+                    juegoActual.mover(posicionInicial,posicionFinal);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+                CasilleroInterfaz casilleroInicial = tableroInterfaz.getCasillero(posicionInicial);
+                CasilleroInterfaz casilleroFinal = tableroInterfaz.getCasillero(posicionFinal);
+                UnidadInterfaz unidad = casilleroInicial.getUnidad();
+                casilleroInicial.removeUnidad();
+                casilleroFinal.setUnidad(unidad);
+                unidad.actualizarPosicion();
+                faseJuego.cambiarJugadorActual(juegoActual.jugadorActual().getNombreJugador());
+                faseJuego.cambiarMensajeError("");
+
+            });
+
+        });
     }
 }

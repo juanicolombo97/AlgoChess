@@ -21,8 +21,10 @@ public class Juego {
         estadoJuego = estadoJuego.crearUnidad(tablero,nombreUnidad,posicion);
     }
 
-    public void mover(Posicion posicionInicial,Posicion posicionFinal){
+    public void mover(Posicion posicionInicial,Posicion posicionFinal) throws Exception{
+        System.out.println("Antes error");
         estadoJuego = estadoJuego.mover(posicionInicial,posicionFinal,tablero);
+        System.out.println("Despues error");
     }
 
     public void atacar(Posicion posicionAtancate,Posicion posicionAtacado){

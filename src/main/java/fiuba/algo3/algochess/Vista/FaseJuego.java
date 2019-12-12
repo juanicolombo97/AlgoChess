@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 public class FaseJuego {
 
 
-    private  GridPane tableroInterfaz;
+
     private  VBox ladoDerecho;
     private  VBox ladoIzquierdo;
     private  VBox infoUnidad;
@@ -29,6 +29,9 @@ public class FaseJuego {
     private  BorderPane interfasJuego;
     public  Juego juego;
     private  boolean comienzoJuego = false;
+    private GridPane tablero;
+    private TableroInterfaz tableroInterfaz;
+
 
     public  void display(Stage ventana) {
         //Inicializo Jugadores y Juego
@@ -44,14 +47,15 @@ public class FaseJuego {
         ventana = new Stage();
         ventana.setTitle("AlgoChess");
 
-        tableroInterfaz = TableroInterfaz.crearTablero(juego.tablero);
+        tableroInterfaz = new TableroInterfaz(juego);
+        tablero = tableroInterfaz.crearTablero();
         ladoDerecho = crearUnidadesVbox(juego);
         ladoIzquierdo = crearMensajesJugador(juego);
 
         interfasJuego = new BorderPane();
 
-        interfasJuego.setCenter(tableroInterfaz);
-        BorderPane.setMargin(tableroInterfaz,new Insets(10));
+        interfasJuego.setCenter(tablero);
+        BorderPane.setMargin(tablero,new Insets(10));
         interfasJuego.setStyle("-fx-background-color: #45647e;");
         cambiarLadoDerechoInterfaz(ladoDerecho);
         cambiarLadoIzquierdoInterfaz(ladoIzquierdo);
@@ -126,7 +130,7 @@ public class FaseJuego {
         VBox vBox = new VBox(10);
 
         Button botonMover = new Button("Mover");
-        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tableroInterfaz,this));
+        botonMover.setOnAction( e -> new ControladorMovimiento(juego,tablero,this,tableroInterfaz));
         Button botonAtaque = new Button("Atacar/Curar");
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
