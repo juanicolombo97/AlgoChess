@@ -26,7 +26,8 @@ public class UnidadInterfaz extends Pane {
         setHeight(tamanioCasillero);
 
         Label nombre = new Label(nombreUnidad);
-
+        nombre.setMaxWidth(tamanioCasillero);
+        nombre.setMaxHeight(tamanioCasillero);
 
         if (color){
             setStyle("-fx-background-color: #000000");
