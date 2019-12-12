@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Controlador.ControladorMovimiento;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
 import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;

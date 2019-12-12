@@ -13,8 +13,8 @@ import javafx.scene.input.MouseEvent;
 
 public class UnidadInterfaz extends Pane {
 
-    private  Unidad unidad;
-    private  Posicion posicion;
+    private Unidad unidad;
+    public  Posicion posicion;
 
     public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, int tamanioCasillero){
 
@@ -53,4 +53,7 @@ public class UnidadInterfaz extends Pane {
         return unidad;
     }
 
+    public void modificarPosicion(){
+        posicion = unidad.getPosicion();
+    }
 }

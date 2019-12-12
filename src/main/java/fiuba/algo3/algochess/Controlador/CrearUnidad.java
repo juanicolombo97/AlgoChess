@@ -29,6 +29,7 @@ public class CrearUnidad {
                    faseJuego.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());
                    faseJuego.cambiarJugadorActual(juego.jugadorActual().getNombreJugador());
                    faseJuego.cambiarMensajeError("");
+                   tableroInterfaz.agregarUnidad(unidadInterfaz);
 
                }
             }catch (Exception error){

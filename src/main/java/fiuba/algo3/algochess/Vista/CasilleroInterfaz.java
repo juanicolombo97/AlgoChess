@@ -55,6 +55,7 @@ public class CasilleroInterfaz extends StackPane {
     }
 
     public void eliminarUnidad(){
+        getChildren().remove(unidad);
         unidad = null;
     }
 

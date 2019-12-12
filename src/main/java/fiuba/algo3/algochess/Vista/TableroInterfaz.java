@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -18,6 +19,7 @@ public class TableroInterfaz {
     public  int filas = 20;
     public  int columnas = 20;
     private  Group grupoCasilleros = new Group();
+    public ArrayList<UnidadInterfaz> unidadesJuego = new ArrayList<>();
 
     private  HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
     private Juego juego;
@@ -49,8 +51,26 @@ public class TableroInterfaz {
         return tablero;
     }
 
-   
+
+    public void agregarUnidad(UnidadInterfaz unidadInterfaz) {
+        unidadesJuego.add(unidadInterfaz);
+
+    }
+
     public void actualizarPosiciones() {
+
+        for (UnidadInterfaz unidadInterfaz : unidadesJuego){
+            CasilleroInterfaz casilleroInicial = getCasillero(unidadInterfaz.posicion);
+            System.out.println(unidadInterfaz.posicion.posicionX + " pos x ini");
+            System.out.println(unidadInterfaz.posicion.posicionY + " pos Y ini");
+            unidadInterfaz.modificarPosicion();
+            System.out.println(unidadInterfaz.posicion.posicionX + " pos x Final");
+            System.out.println(unidadInterfaz.posicion.posicionY + " pos Y final");
+            CasilleroInterfaz casilleroFinal = getCasillero(unidadInterfaz.posicion);
+            casilleroInicial.eliminarUnidad();
+            casilleroFinal.setUnidad(unidadInterfaz);
+
+        }
 
     }
 }

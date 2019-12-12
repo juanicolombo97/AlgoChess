@@ -1,6 +1,9 @@
-package fiuba.algo3.algochess.Vista;
+package fiuba.algo3.algochess.Controlador;
 
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
+import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
+import fiuba.algo3.algochess.Vista.FaseJuego;
+import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import javafx.scene.layout.GridPane;
 
 public class ControladorMovimiento {
@@ -10,8 +13,6 @@ public class ControladorMovimiento {
     private Posicion posicionInicial;
     private Posicion posicionFinal;
     private TableroInterfaz tableroInterfaz;
-    private CasilleroInterfaz casilleroInicial;
-    private CasilleroInterfaz casilleroFinal;
     private boolean seleccionoUnidad = false;
 
     public ControladorMovimiento(FaseJuego faseJuego, GridPane tablero) {
@@ -28,7 +29,7 @@ public class ControladorMovimiento {
             int posicionMouseX = (int) mouse1.getX() / tableroInterfaz.tamanioCasillero;
             int posicionMouseY = (int) mouse1.getY() / tableroInterfaz.tamanioCasillero;
             posicionInicial = new Posicion(posicionMouseX,posicionMouseY);
-            casilleroInicial = tableroInterfaz.getCasillero(posicionInicial);
+
             casilleroDestino();
         });
 
@@ -42,15 +43,12 @@ public class ControladorMovimiento {
                 int posicionMouseX = (int) mouse2.getX() / tableroInterfaz.tamanioCasillero;
                 int posicionMouseY = (int) mouse2.getY() / tableroInterfaz.tamanioCasillero;
                 posicionFinal = new Posicion(posicionMouseX, posicionMouseY);
-                casilleroFinal = tableroInterfaz.getCasillero(posicionFinal);
                 try {
                     faseJuego.juego.mover(posicionInicial,posicionFinal);
-                    UnidadInterfaz unidadAMover = casilleroInicial.getUnidad();
-                    casilleroFinal.setUnidad(unidadAMover);
-                    casilleroInicial.eliminarUnidad();
+                    tableroInterfaz.actualizarPosiciones();
                     faseJuego.cambiarMensajeError("");
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
-                    tableroInterfaz.actualizarPosiciones();
+
                 }catch (Exception error){
                     faseJuego.cambiarMensajeError(error.getMessage());
                 }
