@@ -47,10 +47,11 @@ public class ControlarFaseAtaque {
         try{
             CasilleroInterfaz casilleroAtacado = TableroInterfaz.getCasillero(posicionAtacada);
             juego.atacar(posicionAtacante,posicionAtacada);
-            TableroInterfaz.actualizarVistaUnidades();
-            FaseJuego.turnoDe.setText(juego.jugadorActual().getNombreJugador());
+            //TableroInterfaz.actualizarVistaUnidades();
+           // FaseJuego.turnoDe.setText(juego.jugadorActual().getNombreJugador());
         }catch(Exception error){
-            FaseJuego.mensajeDeError.setText(error.getMessage());
+            //FaseJuego.mensajeDeError.setText(error.getMessage());
+            System.out.print(error.getMessage());
         }
     }
 }
