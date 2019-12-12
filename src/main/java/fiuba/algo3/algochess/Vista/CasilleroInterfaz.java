@@ -16,10 +16,11 @@ public class CasilleroInterfaz extends StackPane {
     private Casillero casillero;
     private UnidadInterfaz unidad;
     private boolean casilleroAliado = false;
+    private Posicion posicion;
 
 
     public CasilleroInterfaz(Casillero casillero, int tamanioCasillero){
-        Posicion posicion = casillero.getPosicionCasillero();
+         this.posicion = casillero.getPosicionCasillero();
         this.casillero = casillero;
 
         Rectangle rectangle = new Rectangle();
@@ -36,6 +37,7 @@ public class CasilleroInterfaz extends StackPane {
     }
 
     public Posicion getPosicion(){
+
         return casillero.getPosicionCasillero();
     }
 

@@ -127,7 +127,7 @@ public class FaseJuego {
         VBox vBox = new VBox(10);
 
         Button botonMover = new Button("Mover");
-
+        botonMover.setOnMousePressed( e -> new ControladorMovimiento(this,tablero));
         Button botonAtaque = new Button("Atacar/Curar");
 
         vBox.getChildren().addAll(botonAtaque,botonMover);

@@ -14,6 +14,7 @@ public class CrearUnidad {
 
     public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego) {
         tableroInterfaz.getTablero() .setOnMouseClicked(e -> {
+
             int x = (int) e.getX() / tableroInterfaz.tamanioCasillero;
             int y = (int) e.getY() / tableroInterfaz.tamanioCasillero;
             Posicion posicion = new Posicion(x,y);

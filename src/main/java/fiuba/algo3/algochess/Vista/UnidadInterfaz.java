@@ -20,8 +20,6 @@ public class UnidadInterfaz extends Pane {
 
         this.unidad = unidad;
         posicion = unidad.getPosicion();
-        System.out.println("Posicion unidad X: " + posicion.posicionX);
-        System.out.println("Posicion unidad y: " + posicion.posicionY);
         setWidth(tamanioCasillero);
         setHeight(tamanioCasillero);
 
