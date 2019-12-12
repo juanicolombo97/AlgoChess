@@ -9,6 +9,8 @@ import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import javafx.scene.layout.GridPane;
 
+import java.util.Scanner;
+
 public class ControlarFaseAtaque {
     public static Juego juego;
     public static GridPane tableroInterfaz;
@@ -20,25 +22,27 @@ public class ControlarFaseAtaque {
     }
 
     public static void seleccionarUnidadAtacante(){
-        tableroInterfaz.setOnMouseClicked(e -> {
-            int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
-            int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
-            Posicion posicion = new Posicion(x,y);
+        Scanner inputLn = new Scanner(System.in);
+        System.out.println("enter the command:");
+        String command = inputLn.nextLine();
+        if (command.equals("1 1")){
+            Posicion posicion = new Posicion(1,1);
             Casillero casillero = juego.tablero.getTablero().get(posicion);
             Unidad unidadAtacante = casillero.obtenerUnidad();
             seleccionarUnidadAtacada(unidadAtacante);
-        });
+        }
     }
 
     public static void seleccionarUnidadAtacada(Unidad unidadAtacante){
-        tableroInterfaz.setOnMouseClicked(e -> {
-            int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
-            int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
-            Posicion posicion = new Posicion(x,y);
+        Scanner inputLn = new Scanner(System.in);
+        System.out.println("enter the command:");
+        String command = inputLn.nextLine();
+        if (command.equals("10 10")){
+            Posicion posicion = new Posicion(10,10);
             Casillero casillero = juego.tablero.getTablero().get(posicion);
             Unidad unidadAtacada = casillero.obtenerUnidad();
             realizarAtaque(unidadAtacante,unidadAtacada);
-        });
+        }
     }
 
     public static void realizarAtaque(Unidad unidadAtacante, Unidad unidadAtacada){
