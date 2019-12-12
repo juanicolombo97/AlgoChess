@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.layout.*;
@@ -17,7 +18,7 @@ public class UnidadInterfaz extends Pane {
     private double clickMouseX,clickMouseY;
     private double dragMouseX,dragMouseY;
 
-    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad){
+    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego){
         this.unidad = unidad;
         posicion = unidad.getPosicion();
 
@@ -34,9 +35,9 @@ public class UnidadInterfaz extends Pane {
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
             setOnMouseClicked(unidadPresionada -> {
-                if (FaseJuego.comienzoJuego) {
-                    FaseJuego.nombreUnidad.setText(nombreUnidad);
-                    FaseJuego.vidaUnidad.setText("Vida unidad: " + unidad.getVidaUnidad());
+                if (juego.comenzoElJuego()) {
+                    juego.cambiarJugadorActual(nombreUnidad);
+                    juego.cambiarVidaUnidad(unidad.getVidaUnidad());
                 }
             });
 

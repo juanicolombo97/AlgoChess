@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 
 public class CrearUnidad {
 
-    public CrearUnidad(String nombreUnidad, Juego juego, GridPane tableroInterfaz) {
+    public CrearUnidad(String nombreUnidad, Juego juego, GridPane tableroInterfaz, FaseJuego faseJuego) {
         tableroInterfaz.setOnMouseClicked(e -> {
             int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
             int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;
@@ -24,14 +24,14 @@ public class CrearUnidad {
                Unidad unidad = casillero.obtenerUnidad();
                if (!unidad.getClass().equals(UnidadNula.class)) {
                    CasilleroInterfaz casilleroInterfaz = TableroInterfaz.getCasillero(posicion);
-                   UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad, casilleroInterfaz.casilleroAliado(), nombreUnidad);
+                   UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad, casilleroInterfaz.casilleroAliado(), nombreUnidad,faseJuego);
                    casilleroInterfaz.setUnidad(unidadInterfaz);
-                   FaseJuego.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());
-                   FaseJuego.turnoDe.setText("Turno de " + juego.jugadorActual().getNombreJugador());
-                   FaseJuego.mensajeDeError.setText("");
+                   faseJuego.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());
+                   faseJuego.cambiarJugadorActual(juego.jugadorActual().getNombreJugador());
+                   faseJuego.cambiarMensajeError("");
                }
             }catch (Exception error){
-                FaseJuego.mensajeDeError.setText(error.getMessage());
+                faseJuego.cambiarMensajeError(error.getMessage());
             }
         });
     }

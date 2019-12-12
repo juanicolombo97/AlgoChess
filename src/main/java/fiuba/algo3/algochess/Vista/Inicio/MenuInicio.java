@@ -37,17 +37,10 @@ public class MenuInicio extends Application {
         scene = new Scene(stackPane, 800,600);
 
         botonJugar.setOnAction(e -> {
+            FaseJuego faseJuego = new FaseJuego();
+            faseJuego.display(ventana);
+            ventana.close();
 
-            try {
-                FaseJuego.display(ventana);
-                ventana.close();
-            } catch (CasilleroOcupadoException ex) {
-                ex.printStackTrace();
-            } catch (UnidadInvalidaException ex) {
-                ex.printStackTrace();
-            } catch (NoAlcanzanLosPuntosException ex) {
-                ex.printStackTrace();
-            }
 
         });
 

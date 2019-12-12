@@ -7,12 +7,12 @@ import javafx.scene.control.*;
 
 public class ManejadorTurnoColocacionFichas{
 
-    public ManejadorTurnoColocacionFichas(Juego juego, Label mensajeDeError) {
+    public ManejadorTurnoColocacionFichas(Juego juego, Label mensajeDeError, FaseJuego faseJuego) {
         {
             if (juego.jugadorActual().getPuntosDisponibles() > 0) {
                 mensajeDeError.setText("Todavia dispone de puntos");
             } else {
-                FaseJuego.inicioJuego();
+                faseJuego.inicioJuego();
 
             }
 

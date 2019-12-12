@@ -46,6 +46,7 @@ public class CasilleroInterfaz extends StackPane {
     public void removeUnidad(){
         unidad = null;
     }
+
     public boolean casilleroAliado(){
         return casilleroAliado;
     }

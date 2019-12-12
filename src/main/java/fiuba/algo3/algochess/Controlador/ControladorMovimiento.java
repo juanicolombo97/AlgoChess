@@ -14,7 +14,7 @@ public class ControladorMovimiento {
 
     private Juego juego;
 
-    public ControladorMovimiento(Juego juego, GridPane tableroInterfaz) {
+    public ControladorMovimiento(Juego juego, GridPane tableroInterfaz, FaseJuego faseJuego) {
        tableroInterfaz.setOnMouseClicked( e -> {
            int posXInicial = (int) e.getX() / TableroInterfaz.tamanioCasillero;
            int posYInicial = (int) e.getY() / TableroInterfaz.tamanioCasillero;
@@ -31,9 +31,10 @@ public class ControladorMovimiento {
                    casilleroInicial.removeUnidad();
                    casilleroFinal.setUnidad(unidad);
                    unidad.actualizarPosicion();
-                   FaseJuego.turnoDe.setText(juego.jugadorActual().getNombreJugador());
+                   faseJuego.cambiarJugadorActual(juego.jugadorActual().getNombreJugador());
+                   faseJuego.cambiarMensajeError("");
                }catch (Exception error){
-                   FaseJuego.mensajeDeError.setText(error.getMessage());
+                   faseJuego.cambiarMensajeError(error.getMessage());
                }
            });
 

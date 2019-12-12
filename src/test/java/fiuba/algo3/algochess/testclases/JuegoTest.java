@@ -650,7 +650,35 @@ public class JuegoTest {
             Assertions.assertEquals("El jugador perdio",e.getMessage());
         }
 
+    }
 
+    @Test
+    void unidadNoSePuedeMoverMasDeUnCasillero(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(11,11);
+        Posicion posicion7 = new Posicion(12,12);
+        Posicion posicion8 = new Posicion(13,13);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("catapulta",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion4);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+        Posicion posicion2 = new Posicion(7,7);
+        try {
+            juego.mover(posicion4,posicion2);
+        }catch (MovimientoInvalidoException e){
+            Assertions.assertEquals("Solo se mueve de a 1 casillero",e.getMessage());
+        }
 
     }
 
