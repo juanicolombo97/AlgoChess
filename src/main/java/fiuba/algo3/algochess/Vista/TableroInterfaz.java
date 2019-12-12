@@ -18,7 +18,7 @@ public class TableroInterfaz {
     public  int filas = 20;
     public  int columnas = 20;
     private  Group grupoCasilleros = new Group();
-    private  Group grupoUnidades = new Group();
+
     private  HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
     private Juego juego;
 
@@ -36,7 +36,7 @@ public class TableroInterfaz {
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
-        pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
+        pane.getChildren().addAll(grupoCasilleros);
         tablero = pane;
         return pane;
     }
@@ -49,4 +49,8 @@ public class TableroInterfaz {
         return tablero;
     }
 
+   
+    public void actualizarPosiciones() {
+
+    }
 }

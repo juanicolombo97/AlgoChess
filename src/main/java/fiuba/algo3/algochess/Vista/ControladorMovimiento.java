@@ -50,6 +50,7 @@ public class ControladorMovimiento {
                     casilleroInicial.eliminarUnidad();
                     faseJuego.cambiarMensajeError("");
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
+                    tableroInterfaz.actualizarPosiciones();
                 }catch (Exception error){
                     faseJuego.cambiarMensajeError(error.getMessage());
                 }
