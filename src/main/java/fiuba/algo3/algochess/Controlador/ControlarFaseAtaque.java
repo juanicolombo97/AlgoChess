@@ -49,6 +49,7 @@ public class ControlarFaseAtaque {
             juego.atacar(posicionAtacante,posicionAtacada);
             TableroInterfaz.actualizarVistaUnidades();
             FaseJuego.turnoDe.setText(juego.jugadorActual().getNombreJugador());
+            FaseJuego.mensajeDeError.setText("");
         }catch(Exception error){
             FaseJuego.mensajeDeError.setText(error.getMessage());
         }
