@@ -9,14 +9,13 @@ import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import javafx.scene.layout.GridPane;
 
-
 public class ControlarFaseAtaque {
     public static Juego juego;
     public static GridPane tableroInterfaz;
 
     public ControlarFaseAtaque(Juego juego, GridPane tableroInterfaz){
-        this.juego = juego;
-        this.tableroInterfaz = tableroInterfaz;
+        ControlarFaseAtaque.juego = juego;
+        ControlarFaseAtaque.tableroInterfaz = tableroInterfaz;
         seleccionarUnidadAtacante();
     }
 
@@ -27,11 +26,11 @@ public class ControlarFaseAtaque {
             Posicion posicion = new Posicion(x,y);
             Casillero casillero = juego.tablero.getTablero().get(posicion);
             Unidad unidadAtacante = casillero.obtenerUnidad();
-            seleccionarUniddadAtacada(unidadAtacante);
+            seleccionarUnidadAtacada(unidadAtacante);
         });
     }
 
-    public static void seleccionarUniddadAtacada(Unidad unidadAtacante){
+    public static void seleccionarUnidadAtacada(Unidad unidadAtacante){
         tableroInterfaz.setOnMouseClicked(e -> {
             int x = (int) e.getX() / TableroInterfaz.tamanioCasillero;
             int y = (int) e.getY() / TableroInterfaz.tamanioCasillero;

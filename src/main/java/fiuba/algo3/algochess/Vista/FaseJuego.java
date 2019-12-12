@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class FaseJuego {
 
-
     public static GridPane tableroInterfaz;
     public static Unidad unidadSeleccionada = null;
     private static VBox ladoDerecho;
@@ -45,8 +44,6 @@ public class FaseJuego {
         etapaColocarFichas(juego);
     }
 
-
-
     public static void etapaColocarFichas(Juego juego) {
         ventana = new Stage();
         ventana.setTitle("AlgoChess");
@@ -69,7 +66,7 @@ public class FaseJuego {
         ventana.show();
     }
 
-    private static VBox crearInfoUnidad(Juego juego) {
+    private static VBox crearInfoUnidad() {
         VBox hBox = new VBox(10);
         hBox.setStyle("-fx-background-color: #7a7e31;");
         nombreUnidad = new Label();
@@ -125,12 +122,11 @@ public class FaseJuego {
         interfazJuego.setLeft(ladoIzquierdo);
     }
 
-
     public static void inicioJuego(){
         comienzoJuego = true;
         mensajeDeError.setText("Comienzo etapa juego");
         puntosDisponibles.setText("");
-        infoUnidad = crearInfoUnidad(juego);
+        infoUnidad = crearInfoUnidad();
 
         VBox botonesAccionar = acciones();
         VBox conjuntoAcciones = new VBox(10);
