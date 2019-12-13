@@ -27,7 +27,7 @@ public class FaseJuego {
     public  Label turnoDe;
     public   Label puntosDisponibles;
     public  Label mensajeDeError;
-    private   Stage ventana;
+    public    Stage ventana;
     private  BorderPane interfasJuego;
     public  Juego juego;
     private  boolean comienzoJuego = false;
@@ -167,6 +167,10 @@ public class FaseJuego {
 
     public void cambiarNombreUnidad(String nombreUnidad){
         this.nombreUnidad.setText("Unidad : " + nombreUnidad);
+    }
+
+    public void cerrarJuego() {
+        ventana.close();
     }
 }
 

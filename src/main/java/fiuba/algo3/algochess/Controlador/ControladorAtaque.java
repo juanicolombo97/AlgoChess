@@ -47,7 +47,11 @@ public class ControladorAtaque {
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
                     faseJuego.cambiarVidaUnidad(unidadAAtacar.getUnidad().getVidaUnidad());
                     faseJuego.cambiarNombreUnidad("(Atacada) " + unidadAAtacar.nombre);
-                } catch (Exception error){
+                    faseJuego.tableroInterfaz.actualizarVidaUnidades();
+
+                }catch (JugadorPerdioException e) {
+                    new ControladorGanador(faseJuego,e.getMessage());
+                }catch (Exception error){
                     faseJuego.cambiarMensajeError(error.getMessage());
                 }
             }
