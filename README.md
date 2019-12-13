@@ -1,6 +1,6 @@
 # AlgoChess
 
-[![Build Status](https://travis-ci.org/juanicolombo97/AlgoChess.svg?branch=master)](https://travis-ci.org/juanicolombo97/AlgoChess) [![codecov](https://codecov.io/gh/juanicolombo97/AlgoChess/branch/master/graph/badge.svg)](https://codecov.io/gh/juanicolombo97/AlgoChess) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6de97cc998d24332adba6782c03a1de9)](https://www.codacy.com/manual/juanicolombo97/AlgoChess?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juanicolombo97/AlgoChess&amp;utm_campaign=Badge_Grade)  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/juanicolombo97/AlgoChess.svg?branch=master)](https://travis-ci.org/juanicolombo97/AlgoChess)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6de97cc998d24332adba6782c03a1de9)](https://www.codacy.com/manual/juanicolombo97/AlgoChess?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juanicolombo97/AlgoChess&amp;utm_campaign=Badge_Grade)  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 Informe:
 
