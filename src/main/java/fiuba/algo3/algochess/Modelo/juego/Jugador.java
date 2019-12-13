@@ -51,7 +51,7 @@ public class Jugador {
 
     public void esCasilleroAliado(Casillero casillero){
         if (!casilleroJugador.contains(casillero)){
-            throw new CasilleroEnemigoException("El casillero pertenece al enemigo");
+            throw new CasilleroEnemigoException("Casillero Enemigo");
         }
     }
 
@@ -61,7 +61,7 @@ public class Jugador {
 
     public void unidadPerteneceAJugador(Unidad unidad) {
         if (!unidadesDisponibles.contains(unidad)) {
-            throw new UnidadInvalidaException("Unidad pertenece al enemigo");
+            throw new UnidadInvalidaException("Unidad enemiga");
         }
     }
 
@@ -78,11 +78,13 @@ public class Jugador {
     }
 
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
+
        unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = esUnidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
         accion.accionNueva(atacante, atacado, tablero, esUnidadAliada, distancia);
+
 
     }
 

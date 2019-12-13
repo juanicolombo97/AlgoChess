@@ -1,6 +1,7 @@
 package fiuba.algo3.algochess.Vista;
 
 import fiuba.algo3.algochess.Modelo.juego.Casillero;
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
@@ -8,45 +9,75 @@ import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class TableroInterfaz {
 
-    public static int tamanioCasillero = 38;
-    public static int filas = 20;
-    public static int columnas = 20;
-    private static Group grupoCasilleros = new Group();
-    private static Group grupoUnidades = new Group();
-    private static HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
+    public int tamanioCasillero = 30;
+    public  int filas = 20;
+    public  int columnas = 20;
+    private  Group grupoCasilleros = new Group();
+    public ArrayList<UnidadInterfaz> unidadesJuego = new ArrayList<>();
+
+    private  HashMap<Posicion,CasilleroInterfaz> tableroInterfaz = new HashMap<>();
+    private Juego juego;
+
     private GridPane tablero;
-    private Tablero tableroJuego;
 
+    public  TableroInterfaz(Juego juego){
+        this.juego = juego;
+    }
 
-    public  void crearTablero(Tablero tablero){
+    public  GridPane crearTablero( ){
         GridPane pane = new GridPane();
-        tableroJuego = tablero;
         pane.setPrefSize(filas * tamanioCasillero,columnas * tamanioCasillero);
-        for (Casillero casilleroActual : tableroJuego.getTablero().values() ){
-            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual);
+        for (Casillero casilleroActual : juego.tablero.getTablero().values() ){
+            CasilleroInterfaz casilleroNuevo = new CasilleroInterfaz(casilleroActual,tamanioCasillero);
             tableroInterfaz.put(casilleroNuevo.getPosicion(),casilleroNuevo);
             grupoCasilleros.getChildren().add(casilleroNuevo);
         }
-        pane.getChildren().addAll(grupoCasilleros,grupoUnidades);
-        this.tablero = pane;
+        pane.getChildren().addAll(grupoCasilleros);
+        tablero = pane;
+        return pane;
     }
-
-    public Tablero getTableroJuego(){
-        return tableroJuego;
-    }
-
-    public GridPane getTableroInterfaz(){
-        return tablero;
-    }
-
-    public CasilleroInterfaz getCasillero(Posicion posicion){
+    public  CasilleroInterfaz getCasillero(Posicion posicion){
         return tableroInterfaz.get(posicion);
     }
 
 
+    public GridPane getTablero(){
+        return tablero;
+    }
+
+
+    public void agregarUnidad(UnidadInterfaz unidadInterfaz) {
+        unidadesJuego.add(unidadInterfaz);
+
+    }
+
+    public void actualizarPosiciones() {
+
+        for (UnidadInterfaz unidadInterfaz : unidadesJuego){
+            CasilleroInterfaz casilleroInicial = getCasillero(unidadInterfaz.posicion);
+            unidadInterfaz.modificarPosicion();
+            CasilleroInterfaz casilleroFinal = getCasillero(unidadInterfaz.posicion);
+            casilleroInicial.eliminarUnidad();
+            casilleroFinal.setUnidad(unidadInterfaz);
+
+        }
+
+    }
+
+    public void actualizarVidaUnidades() {
+        for (UnidadInterfaz unidadInterfaz : unidadesJuego){
+            Unidad unidad = unidadInterfaz.getUnidad();
+            if (unidad.getVidaUnidad() < 0){
+                CasilleroInterfaz casilleroInterfaz = getCasillero(unidadInterfaz.posicion);
+                casilleroInterfaz.eliminarUnidad();
+            }
+
+        }
+    }
 }

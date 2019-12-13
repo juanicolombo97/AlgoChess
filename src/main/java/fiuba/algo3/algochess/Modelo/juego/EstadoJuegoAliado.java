@@ -1,7 +1,8 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
-import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EstadoJuegoAliado implements EstadoJuego {
 
@@ -13,7 +14,7 @@ public class EstadoJuegoAliado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego crearUnidad(Tablero tablero, String nombreUnidad, Posicion posicion) {
+    public EstadoJuego crearUnidad(Tablero tablero, String nombreUnidad, Posicion posicion ) {
         try {
             tablero.crearUnidad(jugador,posicion,nombreUnidad);
             jugador.puedeSeguirColocandoFichas();
@@ -34,6 +35,15 @@ public class EstadoJuegoAliado implements EstadoJuego {
         tablero.atacar(posicionAtancate,posicionAtacado,jugador);
         jugadorEnemigo.actualizarUnidadesDisponibles();
         jugadorEnemigo.verificarSiPuedeSeguirJugando();
+        return new EstadoJuegoEnemigo(jugadorEnemigo,jugador);
+    }
+
+    @Override
+    public Jugador jugadorActual() {
+        return jugador;
+    }
+    @Override
+    public EstadoJuego cambiarTurno() {
         return new EstadoJuegoEnemigo(jugadorEnemigo,jugador);
     }
 }

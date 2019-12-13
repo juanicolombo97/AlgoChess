@@ -24,7 +24,7 @@ public class Posicion {
     private void distanciaValidaHasta(int posicionX, int posicionY) {
         int distanciaX = Math.abs(this.posicionX - posicionX);
         int distanciaY = Math.abs(this.posicionY - posicionY);
-        if (distanciaX > 1 && distanciaY > 1){
+        if (distanciaX > 1 || distanciaY > 1){
             throw new MovimientoInvalidoException("Solo se mueve de a 1 casillero");
         }
     }
@@ -54,7 +54,7 @@ public class Posicion {
     }
 
     private boolean esPosicionValida(){
-        return (posicionX > 0 && posicionX < 20) && (posicionY > 0 && posicionY < 20);
+        return (posicionX >= 0 && posicionX < 20) && (posicionY >= 0 && posicionY < 20);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class CasilleroTest {
         try {
             casillero.obtenerUnidad();
         } catch (CasilleroVacioExcepcion e) {
-            Assertions.assertEquals("El casillero esta vacio",e.getMessage());
+            Assertions.assertEquals("Casillero esta vacio",e.getMessage());
         }
     }
     @Test
@@ -44,7 +44,7 @@ public class CasilleroTest {
         try {
             casillero.guardarUnidad(soldado1);
         }catch (CasilleroOcupadoException e){
-            Assertions.assertEquals("El casillero se encuentra ocupado",e.getMessage());
+            Assertions.assertEquals("Casillero Ocupado",e.getMessage());
         }
     }
     @Test
@@ -59,7 +59,7 @@ public class CasilleroTest {
         try {
             casillero.obtenerUnidad();
         }catch (CasilleroVacioExcepcion e){
-            Assertions.assertEquals("El casillero esta vacio",e.getMessage());
+            Assertions.assertEquals("Casillero esta vacio",e.getMessage());
         }
 
     }

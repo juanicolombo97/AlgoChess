@@ -23,12 +23,14 @@ public class Distancia {
     public void calcularDistanciaAccion(Unidad atacante, Unidad atacado, boolean esUnidadAliada, Map<Posicion, Casillero> tablero) {
 
         if((distanciaX <= 2) && (distanciaY <= 2)){
+
             new AccionCercana(atacante,atacado,esUnidadAliada,tablero);
         }
         else if((distanciaX <= 5) && (distanciaY <= 5)){
             new AccionMedia(atacante,atacado,esUnidadAliada,tablero);
         }
-        else if((distanciaX >= 6) && (distanciaY >= 6)){
+        else if((distanciaX >= 6) || (distanciaY >= 6)){
+
             new AccionLejana(atacante,atacado,esUnidadAliada,tablero);
         }
     }

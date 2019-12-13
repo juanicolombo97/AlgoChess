@@ -3,11 +3,10 @@ package fiuba.algo3.algochess.Vista.Inicio;
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.Vista.FaseInicial;
+import fiuba.algo3.algochess.Vista.FaseJuego;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -38,17 +37,10 @@ public class MenuInicio extends Application {
         scene = new Scene(stackPane, 800,600);
 
         botonJugar.setOnAction(e -> {
+            FaseJuego faseJuego = new FaseJuego();
+            faseJuego.display(ventana);
+            ventana.close();
 
-            try {
-                FaseInicial.display(ventana);
-                ventana.close();
-            } catch (CasilleroOcupadoException ex) {
-                ex.printStackTrace();
-            } catch (UnidadInvalidaException ex) {
-                ex.printStackTrace();
-            } catch (NoAlcanzanLosPuntosException ex) {
-                ex.printStackTrace();
-            }
 
         });
 

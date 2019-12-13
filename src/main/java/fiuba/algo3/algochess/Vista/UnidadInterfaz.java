@@ -1,25 +1,31 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
-import fiuba.algo3.algochess.Modelo.juego.Tablero;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 
 import javafx.scene.paint.Color;
 
 import javafx.scene.control.Label;
 
+import javafx.scene.input.MouseEvent;
+
 public class UnidadInterfaz extends Pane {
 
     private Unidad unidad;
-    private Posicion posicion;
+    public  Posicion posicion;
 
-    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad){
+    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, int tamanioCasillero){
+
         this.unidad = unidad;
         posicion = unidad.getPosicion();
+        setWidth(tamanioCasillero);
+        setHeight(tamanioCasillero);
+
         Label nombre = new Label(nombreUnidad);
+        nombre.setMaxWidth(tamanioCasillero);
+        nombre.setMaxHeight(tamanioCasillero);
 
         if (color){
             setStyle("-fx-background-color: #000000");
@@ -29,10 +35,26 @@ public class UnidadInterfaz extends Pane {
             setStyle("-fx-background-color: #e7e7e7");
             setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         }
+            setOnMouseClicked(unidadPresionada -> {
+                if (juego.comenzoElJuego()) {
+                    juego.cambiarJugadorActual(juego.juego.jugadorActual().getNombreJugador());
+                    juego.cambiarVidaUnidad(unidad.getVidaUnidad());
+                    juego.cambiarNombreUnidad(nombreUnidad);
+                }
+            });
 
-        relocate(posicion.posicionX * TableroInterfaz.tamanioCasillero, posicion.posicionY * TableroInterfaz.tamanioCasillero);
-        setOnMouseClicked(e -> System.out.println("fefefefe"));
+
+
         getChildren().add(nombre);
     }
 
+
+
+    public Unidad getUnidad(){
+        return unidad;
+    }
+
+    public void modificarPosicion(){
+        posicion = unidad.getPosicion();
+    }
 }
