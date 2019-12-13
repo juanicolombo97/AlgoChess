@@ -2,9 +2,6 @@
 
 [![Build Status](https://travis-ci.org/juanicolombo97/AlgoChess.svg?branch=master)](https://travis-ci.org/juanicolombo97/AlgoChess)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6de97cc998d24332adba6782c03a1de9)](https://www.codacy.com/manual/juanicolombo97/AlgoChess?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juanicolombo97/AlgoChess&amp;utm_campaign=Badge_Grade)  [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
-Informe:
-
-https://www.overleaf.com/8441318158sgdcrsxndzjc
 
 Las únicas herramientas necesarias para trabajar en el proyecto son el entorno de desarrollo de Java ([JDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)), [Apache Maven](https://maven.apache.org) para la construcción automatizada y Git para el control de versiones.
 
