@@ -28,7 +28,7 @@ public class JuegoTest {
         try {
             juego.crearUnidad("soldado",posicion);
         }catch (CasilleroEnemigoException e){
-            Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Casillero Enemigo",e.getMessage());
         }
     }
 
@@ -61,7 +61,7 @@ public class JuegoTest {
         try {
             juego.crearUnidad("soldado",posicion);
         }catch (CasilleroEnemigoException e){
-            Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Casillero Enemigo",e.getMessage());
         }
     }
 
@@ -119,7 +119,7 @@ public class JuegoTest {
         try {
             juego.crearUnidad("soldado",posicion4);
         }catch (CasilleroEnemigoException e){
-            Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Casillero Enemigo",e.getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ public class JuegoTest {
         try {
             juego.crearUnidad("soldado",posicion);
         }catch (CasilleroOcupadoException e){
-            Assertions.assertEquals("El casillero se encuentra ocupado",e.getMessage());
+            Assertions.assertEquals("Casillero Ocupado",e.getMessage());
         }
     }
     @Test
@@ -151,12 +151,12 @@ public class JuegoTest {
         try {
             juego.crearUnidad("soldado",posicion4);
         }catch (CasilleroOcupadoException e){
-            Assertions.assertEquals("El casillero se encuentra ocupado",e.getMessage());
+            Assertions.assertEquals("Casillero Ocupado",e.getMessage());
         }
     }
 
     @Test
-    void terminaFaseCreacionFichasYJugadorAliadoPuedeMover(){
+    void terminaFaseCreacionFichasYJugadorAliadoPuedeMover() throws Exception{
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,1);
@@ -218,14 +218,14 @@ public class JuegoTest {
         juego.crearUnidad("jinete",posicion9);
         try {
             juego.mover(posicion7,posicion11);
-        }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }catch( Exception e){
+            Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
 
     }
 
     @Test
-    void aliadoMueveFichaYAlMoverDenuevoLanzaErrorPorqueEsTurnoEnemigo(){
+    void aliadoMueveFichaYAlMoverDenuevoLanzaErrorPorqueEsTurnoEnemigo() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -252,13 +252,13 @@ public class JuegoTest {
         juego.mover(posicion1,posicion10);
         try {
             juego.mover(posicion2,posicion11);
-        }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+        }catch (Exception e){
+            Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
     }
 
     @Test
-   void enemigoPuedeMoverFichasUnaVesQueAliadoEliga(){
+   void enemigoPuedeMoverFichasUnaVesQueAliadoEliga() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -294,7 +294,7 @@ public class JuegoTest {
         Assertions.assertEquals(posicionResultante,posicion11);
     }
     @Test
-    void sistemaDeTurnorAndaCorrectamente(){
+    void sistemaDeTurnorAndaCorrectamente() throws Exception {
         Juego juego = new Juego("juani","carlos");
         Posicion posicion = new Posicion(1,1);
         Posicion posicion1 = new Posicion(2,2);
@@ -396,7 +396,7 @@ public class JuegoTest {
         try {
             juego.atacar(posicion,posicion5);
         }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
 
     }
@@ -463,7 +463,7 @@ public class JuegoTest {
         try {
             juego.atacar(posicion5,posicion);
         }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
 
     }
@@ -502,7 +502,7 @@ public class JuegoTest {
         try {
             juego.atacar(posicion5,posicion);
         }catch (UnidadInvalidaException e){
-            Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
     }
 
@@ -647,11 +647,71 @@ public class JuegoTest {
         try {
             juego.atacar(posicion,posicion5);
         }catch (JugadorPerdioException e){
-            Assertions.assertEquals("El jugador perdio",e.getMessage());
+            Assertions.assertEquals("Felicitaciones juani has ganado.",e.getMessage());
         }
 
+    }
 
+    @Test
+    void unidadNoSePuedeMoverMasDeUnCasillero() throws Exception {
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(2,2);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(12,12);
+        Posicion posicion7 = new Posicion(14,14);
+        Posicion posicion8 = new Posicion(16,16);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion4);
+        juego.crearUnidad("jinete",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion2);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+        Posicion posicion29= new Posicion(6,7);
+        try {
+            juego.mover(posicion4,posicion29);
+        }catch (MovimientoInvalidoException e){
+            Assertions.assertEquals("Solo se mueve de a 1 casillero",e.getMessage());
+        }
 
     }
+    @Test
+    void moverUnidadContraUnidadEnemiga(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(9,9);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(12,12);
+        Posicion posicion7 = new Posicion(14,14);
+        Posicion posicion8 = new Posicion(16,16);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion4);
+        juego.crearUnidad("jinete",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion2);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+        try{
+            juego.mover(posicion1,posicion5);
+        }catch (CasilleroOcupadoException e){
+            Assertions.assertEquals("Casillero Ocupado" , e.getMessage());
+        }
+
+    }
+
 
 }

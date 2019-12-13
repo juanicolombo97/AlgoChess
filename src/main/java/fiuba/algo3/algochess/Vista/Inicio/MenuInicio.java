@@ -1,18 +1,24 @@
 package fiuba.algo3.algochess.Vista.Inicio;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
-import fiuba.algo3.algochess.Vista.FaseInicial;
+import fiuba.algo3.algochess.Vista.FaseJuego;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+
+import javafx.scene.media.AudioClip;
+
+
+import java.io.File;
 
 public class MenuInicio extends Application {
 
@@ -21,7 +27,7 @@ public class MenuInicio extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws UnidadInvalidaException,CasilleroOcupadoException {
+    public void start(Stage primaryStage) throws UnidadInvalidaException, CasilleroOcupadoException {
 
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
@@ -32,23 +38,23 @@ public class MenuInicio extends Application {
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
 
-        //Setteo sonido click.
+        //Imagen
 
+        final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
+        Media media = new Media(new File("/Users/juanicolombo/Desktop/AlgoChess/src/main/resources/sonidos/Game-Menu.mp3").toURI().toString());
+        MediaPlayer reproductor = new MediaPlayer(media);
+        reproductor.play();
 
         scene = new Scene(stackPane, 800,600);
+        imagen.fitHeightProperty().bind(scene.heightProperty());
+        imagen.fitWidthProperty().bind(scene.widthProperty());
+
 
         botonJugar.setOnAction(e -> {
+            FaseJuego faseJuego = new FaseJuego();
+            faseJuego.display(ventana);
+            ventana.close();
 
-            try {
-                FaseInicial.display(ventana);
-                ventana.close();
-            } catch (CasilleroOcupadoException ex) {
-                ex.printStackTrace();
-            } catch (UnidadInvalidaException ex) {
-                ex.printStackTrace();
-            } catch (NoAlcanzanLosPuntosException ex) {
-                ex.printStackTrace();
-            }
 
         });
 
@@ -67,7 +73,7 @@ public class MenuInicio extends Application {
 
         layout.getChildren().addAll(botonJugar,botonSalir);
         layout.setAlignment(Pos.CENTER);
-        stackPane.getChildren().addAll(layout);
+        stackPane.getChildren().addAll(imagen,layout);
         ventana.setScene(scene);
         ventana.show();
     }

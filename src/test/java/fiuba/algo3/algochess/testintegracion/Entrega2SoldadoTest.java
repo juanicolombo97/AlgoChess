@@ -38,6 +38,32 @@ public class Entrega2SoldadoTest {
     }
 
     @Test
+    public void seVerificaQueTresSoldadosContiguosSeMuevenAlMismoTiempo2() {
+        Jugador jugador = new Jugador("juani");
+        Jugador jugador1 = new Jugador("carlos");
+        Tablero tablero = new Tablero(jugador,jugador1);
+
+        Posicion posicion = new Posicion(0,0);
+        Posicion posicion1 = new Posicion(0,1);
+        Posicion posicion2 = new Posicion(0,2);
+        Posicion posicion3 = new Posicion(0,3);
+
+        tablero.crearUnidad(jugador,posicion,"soldado");
+        tablero.crearUnidad(jugador,posicion1,"soldado");
+        tablero.crearUnidad(jugador,posicion2,"soldado");
+
+        tablero.moverUnidad(posicion2,posicion3,jugador);
+
+        List<Unidad> listaUnidades = jugador.getUnidadesDisponibles();
+        //Agarro la unidad en la posicion 0 , que es la que estaba en la pos 1,1.
+        Unidad unidad = listaUnidades.get(0);
+        Posicion posicionFinal = unidad.getPosicion();
+
+        Assertions.assertEquals(posicion1,posicionFinal);
+
+    }
+
+    @Test
     public void teniendo3SoldadosYUnoObstruidoSeMuevenLosOtrosMenos1() {
         Jugador jugador = new Jugador("juani");
         Jugador jugador1 = new Jugador("carlos");

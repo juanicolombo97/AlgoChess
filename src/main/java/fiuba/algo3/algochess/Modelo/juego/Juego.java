@@ -1,12 +1,14 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Juego {
 
     public Jugador jugadorAliado;
     public Jugador jugadorEnemigo;
-    private Tablero tablero;
-    private EstadoJuego estadoJuego;
+    public Tablero tablero;
+    public EstadoJuego estadoJuego;
 
 
     public Juego(String jugador1, String jugador2) {
@@ -22,13 +24,19 @@ public class Juego {
     }
 
     public void mover(Posicion posicionInicial,Posicion posicionFinal){
-        estadoJuego = estadoJuego.mover(posicionInicial,posicionFinal,tablero);
+        Posicion posicion = new Posicion(posicionInicial.posicionX,posicionInicial.posicionY);
+        Posicion posicion1 = new Posicion(posicionFinal.posicionX,posicionFinal.posicionY);
+        estadoJuego = estadoJuego.mover(posicion,posicion1,tablero);
+
     }
 
     public void atacar(Posicion posicionAtancate,Posicion posicionAtacado){
         estadoJuego = estadoJuego.atacar(posicionAtancate,posicionAtacado,tablero);
     }
 
+    public Jugador jugadorActual(){
+        return estadoJuego.jugadorActual();
+    }
 
 
 }

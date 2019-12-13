@@ -18,18 +18,26 @@ public class EstadoCasilleroVacio implements EstadoCasillero {
 
     @Override
     public EstadoCasillero eliminarUnidad(){
-        throw new CasilleroVacioExcepcion("El casillero esta vacio");
+        throw new CasilleroVacioExcepcion("Casillero esta vacio");
     }
 
     @Override
     public Unidad obtenerUnidad(){
-        throw new CasilleroVacioExcepcion("El casillero esta vacio");
+        throw new CasilleroVacioExcepcion("Casillero esta vacio");
     }
 
     @Override
 
     public Unidad obtenerUnidadCercana() {
         return new UnidadNula(new Posicion(0,0));
+    }
+
+    @Override
+    public void guardarUnidadDesdeCasillero(Casillero casilleroInicial, Casillero casilleroDestino, Jugador jugador, Unidad unidad){
+        casilleroDestino.modificarEstadoCasillero(new EstadoCasilleroOcupado(unidad));
+        unidad.modificarPosicion(casilleroDestino.getPosicionCasillero());
+        jugador.unidadModificarPosicionCasillero(unidad, casilleroDestino);
+        casilleroInicial.eliminarUnidad();
     }
 
     @Override

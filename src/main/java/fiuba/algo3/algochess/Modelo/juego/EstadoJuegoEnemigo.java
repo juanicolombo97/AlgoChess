@@ -1,7 +1,9 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
-import fiuba.algo3.algochess.Modelo.unidades.Unidad;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EstadoJuegoEnemigo implements EstadoJuego {
 
@@ -14,7 +16,7 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
 
     }
     @Override
-    public EstadoJuego crearUnidad(Tablero tablero, String nombreUnidad, Posicion posicion) {
+    public EstadoJuego crearUnidad(Tablero tablero, String nombreUnidad, Posicion posicion ) {
         try {
             tablero.crearUnidad(jugador,posicion,nombreUnidad);
             jugador.puedeSeguirColocandoFichas();
@@ -33,9 +35,24 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     }
     @Override
     public EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero) {
-        tablero.atacar(posicionAtancate,posicionAtacado,jugador);
-        jugadorEnemigo.actualizarUnidadesDisponibles();
-        jugadorEnemigo.verificarSiPuedeSeguirJugando();
+        try {
+            tablero.atacar(posicionAtancate,posicionAtacado,jugador);
+            jugadorEnemigo.actualizarUnidadesDisponibles();
+            jugadorEnemigo.verificarSiPuedeSeguirJugando();
+            return new EstadoJuegoAliado(jugadorEnemigo,jugador);
+        }catch (JugadorPerdioException e){
+            throw new JugadorPerdioException("Felicitaciones " + jugadorActual().getNombreJugador() + " has ganado");
+        }
+
+    }
+
+    @Override
+    public Jugador jugadorActual() {
+        return jugador;
+    }
+
+    @Override
+    public EstadoJuego cambiarTurno() {
         return new EstadoJuegoAliado(jugadorEnemigo,jugador);
     }
 }

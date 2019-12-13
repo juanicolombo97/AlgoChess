@@ -28,7 +28,7 @@ public class Entrega1TableroTest {
         try {
             tablero.crearUnidad(jugador,posicion,"jinete");
         }catch (CasilleroOcupadoException e){
-            Assertions.assertEquals("El casillero se encuentra ocupado",e.getMessage());
+            Assertions.assertEquals("Casillero Ocupado",e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class Entrega1TableroTest {
         try {
             tablero.crearUnidad(jugador,posicion,"soldado");
         }catch (CasilleroEnemigoException e){
-            Assertions.assertEquals("El casillero pertenece al enemigo",e.getMessage());
+            Assertions.assertEquals("Casillero Enemigo",e.getMessage());
         }
 
     }
@@ -97,7 +97,7 @@ public class Entrega1TableroTest {
         try {
             tablero.moverUnidad(posicion,posicionFinal,jugador);
         }catch (UnidadInvalidaException e){
-                Assertions.assertEquals("Unidad pertenece al enemigo",e.getMessage());
+                Assertions.assertEquals("Unidad enemiga",e.getMessage());
         }
     }
 }
