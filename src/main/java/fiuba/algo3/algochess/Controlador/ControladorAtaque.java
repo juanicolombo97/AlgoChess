@@ -1,9 +1,11 @@
 package fiuba.algo3.algochess.Controlador;
 
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
+import fiuba.algo3.algochess.Vista.UnidadInterfaz;
 import javafx.scene.layout.GridPane;
 
 public class ControladorAtaque {
@@ -37,12 +39,15 @@ public class ControladorAtaque {
                 int posicionAtacadoX = (int) unidadAtacada.getX() / faseJuego.tableroInterfaz.tamanioCasillero;
                 int posicionAtacadoY = (int) unidadAtacada.getY() / faseJuego.tableroInterfaz.tamanioCasillero;
                 posicionAtacado = new Posicion(posicionAtacadoX, posicionAtacadoY);
+                CasilleroInterfaz casilleroInterfazAtacado = faseJuego.tableroInterfaz.getCasillero(posicionAtacado);
+                UnidadInterfaz unidadAAtacar = casilleroInterfazAtacado.getUnidad();
                 try {
-
                     faseJuego.juego.atacar(posicionAtacante,posicionAtacado);
                     faseJuego.cambiarMensajeError("");
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
-                }catch (Exception error){
+                    faseJuego.cambiarVidaUnidad(unidadAAtacar.getUnidad().getVidaUnidad());
+                    faseJuego.cambiarNombreUnidad("(Atacada) " + unidadAAtacar.nombre);
+                } catch (Exception error){
                     faseJuego.cambiarMensajeError(error.getMessage());
                 }
             }

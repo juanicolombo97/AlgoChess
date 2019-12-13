@@ -8,7 +8,7 @@ public class Juego {
     public Jugador jugadorAliado;
     public Jugador jugadorEnemigo;
     public Tablero tablero;
-    private EstadoJuego estadoJuego;
+    public EstadoJuego estadoJuego;
 
 
     public Juego(String jugador1, String jugador2) {

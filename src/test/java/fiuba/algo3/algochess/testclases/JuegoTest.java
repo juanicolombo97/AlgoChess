@@ -647,7 +647,7 @@ public class JuegoTest {
         try {
             juego.atacar(posicion,posicion5);
         }catch (JugadorPerdioException e){
-            Assertions.assertEquals("El jugador perdio",e.getMessage());
+            Assertions.assertEquals("Felicitaciones juani has ganado.",e.getMessage());
         }
 
     }

@@ -1,5 +1,6 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
+import fiuba.algo3.algochess.Modelo.excepciones.JugadorPerdioException;
 import fiuba.algo3.algochess.Modelo.excepciones.JugadorSeQuedoSinPuntosException;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -34,10 +35,15 @@ public class EstadoJuegoEnemigo implements EstadoJuego {
     }
     @Override
     public EstadoJuego atacar(Posicion posicionAtancate, Posicion posicionAtacado, Tablero tablero) {
-        tablero.atacar(posicionAtancate,posicionAtacado,jugador);
-        jugadorEnemigo.actualizarUnidadesDisponibles();
-        jugadorEnemigo.verificarSiPuedeSeguirJugando();
-        return new EstadoJuegoAliado(jugadorEnemigo,jugador);
+        try {
+            tablero.atacar(posicionAtancate,posicionAtacado,jugador);
+            jugadorEnemigo.actualizarUnidadesDisponibles();
+            jugadorEnemigo.verificarSiPuedeSeguirJugando();
+            return new EstadoJuegoAliado(jugadorEnemigo,jugador);
+        }catch (JugadorPerdioException e){
+            throw new JugadorPerdioException("Felicitaciones " + jugadorActual().getNombreJugador() + " has ganado");
+        }
+
     }
 
     @Override

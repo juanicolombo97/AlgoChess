@@ -12,17 +12,19 @@ import javafx.scene.control.Label;
 
 import javafx.scene.input.MouseEvent;
 
-public class UnidadInterfaz extends Pane {
+public class UnidadInterfaz extends StackPane {
 
     private Unidad unidad;
     public  Posicion posicion;
     private int tamanioCasillero;
     private TableroInterfaz tableroInterfaz;
     private final ImageView imagen;
+    public String nombre;
 
     public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, String imagenAliada,String imagenEnemiga){
 
         this.unidad = unidad;
+        this.nombre = nombreUnidad;
         posicion = unidad.getPosicion();
         this.tableroInterfaz = juego.tableroInterfaz;
         this.tamanioCasillero = tableroInterfaz.tamanioCasillero;
@@ -45,9 +47,11 @@ public class UnidadInterfaz extends Pane {
                     juego.cambiarNombreUnidad(nombreUnidad);
                 }
             });
+
         imagen.setFitHeight(tamanioCasillero);
         imagen.setFitWidth(tamanioCasillero);
-
+        setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         getChildren().add(imagen);
     }
 
