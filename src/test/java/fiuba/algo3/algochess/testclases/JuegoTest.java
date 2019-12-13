@@ -705,8 +705,12 @@ public class JuegoTest {
         juego.crearUnidad("catapulta",posicion6);
         juego.crearUnidad("catapulta",posicion7);
         juego.crearUnidad("catapulta",posicion8);
+        try{
+            juego.mover(posicion1,posicion5);
+        }catch (CasilleroOcupadoException e){
+            Assertions.assertEquals("Casillero Ocupado" , e.getMessage());
+        }
 
-        juego.mover(posicion1,posicion5);
     }
 
 
