@@ -8,7 +8,10 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -74,6 +77,9 @@ public class TableroInterfaz {
         for (UnidadInterfaz unidadInterfaz : unidadesJuego){
             Unidad unidad = unidadInterfaz.getUnidad();
             if (unidad.getVidaUnidad() < 0){
+                Media media = new Media(new File("src/main/resources/sonidos/humanoMuerte.mp3").toURI().toString());
+                MediaPlayer ruidoMuerte = new MediaPlayer(media);
+                ruidoMuerte.play();
                 CasilleroInterfaz casilleroInterfaz = getCasillero(unidadInterfaz.posicion);
                 casilleroInterfaz.eliminarUnidad();
             }

@@ -7,6 +7,10 @@ import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.UnidadInterfaz;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class ControladorAtaque {
 
@@ -43,6 +47,9 @@ public class ControladorAtaque {
                 UnidadInterfaz unidadAAtacar = casilleroInterfazAtacado.getUnidad();
                 try {
                     faseJuego.juego.atacar(posicionAtacante,posicionAtacado);
+                    Media media = new Media(new File("src/main/resources/sonidos/attack.mp3").toURI().toString());
+                    MediaPlayer sonidoAtaque = new MediaPlayer(media);
+                    sonidoAtaque.play();
                     faseJuego.cambiarMensajeError("");
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
                     faseJuego.cambiarVidaUnidad(unidadAAtacar.getUnidad().getVidaUnidad());
