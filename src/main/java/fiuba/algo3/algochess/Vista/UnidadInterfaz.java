@@ -39,6 +39,7 @@ public class UnidadInterfaz extends Pane {
                 if (juego.comenzoElJuego()) {
                     juego.cambiarJugadorActual(juego.juego.jugadorActual().getNombreJugador());
                     juego.cambiarVidaUnidad(unidad.getVidaUnidad());
+                    juego.cambiarNombreUnidad(nombreUnidad);
                 }
             });
 

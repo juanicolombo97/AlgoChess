@@ -1,6 +1,8 @@
 package fiuba.algo3.algochess.Modelo.juego;
 
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Juego {
 
     public Jugador jugadorAliado;
@@ -36,8 +38,5 @@ public class Juego {
         return estadoJuego.jugadorActual();
     }
 
-    public void cambiarTurno(){
-        estadoJuego = estadoJuego.cambiarTurno();
-    }
 
 }

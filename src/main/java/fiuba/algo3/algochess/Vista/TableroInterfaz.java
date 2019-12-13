@@ -61,16 +61,23 @@ public class TableroInterfaz {
 
         for (UnidadInterfaz unidadInterfaz : unidadesJuego){
             CasilleroInterfaz casilleroInicial = getCasillero(unidadInterfaz.posicion);
-            System.out.println(unidadInterfaz.posicion.posicionX + " pos x ini");
-            System.out.println(unidadInterfaz.posicion.posicionY + " pos Y ini");
             unidadInterfaz.modificarPosicion();
-            System.out.println(unidadInterfaz.posicion.posicionX + " pos x Final");
-            System.out.println(unidadInterfaz.posicion.posicionY + " pos Y final");
             CasilleroInterfaz casilleroFinal = getCasillero(unidadInterfaz.posicion);
             casilleroInicial.eliminarUnidad();
             casilleroFinal.setUnidad(unidadInterfaz);
 
         }
 
+    }
+
+    public void actualizarVidaUnidades() {
+        for (UnidadInterfaz unidadInterfaz : unidadesJuego){
+            Unidad unidad = unidadInterfaz.getUnidad();
+            if (unidad.getVidaUnidad() < 0){
+                CasilleroInterfaz casilleroInterfaz = getCasillero(unidadInterfaz.posicion);
+                casilleroInterfaz.eliminarUnidad();
+            }
+
+        }
     }
 }

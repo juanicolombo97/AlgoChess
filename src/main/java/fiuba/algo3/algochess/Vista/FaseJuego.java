@@ -1,8 +1,8 @@
 package fiuba.algo3.algochess.Vista;
 
+import fiuba.algo3.algochess.Controlador.ControladorAtaque;
 import fiuba.algo3.algochess.Controlador.ControladorMovimiento;
 import fiuba.algo3.algochess.Controlador.CrearUnidad;
-import fiuba.algo3.algochess.Controlador.ManejadorTurnoColocacionFichas;
 import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.geometry.Insets;
@@ -105,10 +105,9 @@ public class FaseJuego {
         Button crearCatapulta = new Button("Crear Catapulta");
         crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this));
 
-        Button terminarTurno = new Button("Terminar Turnos");
-        terminarTurno.setOnAction(e -> new ManejadorTurnoColocacionFichas(juego,mensajeDeError,this));
+
         
-        vBox.getChildren().addAll(unidadesDisponibles,crearSoldado,crearCurandero,crearJinete,crearCatapulta,terminarTurno);
+        vBox.getChildren().addAll(unidadesDisponibles,crearSoldado,crearCurandero,crearJinete,crearCatapulta);
         return vBox;
     }
 
@@ -129,7 +128,9 @@ public class FaseJuego {
 
         Button botonMover = new Button("Mover");
         botonMover.setOnMousePressed( e -> new ControladorMovimiento(this,tablero));
+
         Button botonAtaque = new Button("Atacar/Curar");
+        botonAtaque.setOnMousePressed( e -> new ControladorAtaque(this,tablero));
 
         vBox.getChildren().addAll(botonAtaque,botonMover);
         return vBox;
@@ -159,6 +160,8 @@ public class FaseJuego {
         mensajeDeError.setText(error);
     }
 
-
+    public void cambiarNombreUnidad(String nombreUnidad){
+        this.nombreUnidad.setText("Unidad : " + nombreUnidad);
+    }
 }
 

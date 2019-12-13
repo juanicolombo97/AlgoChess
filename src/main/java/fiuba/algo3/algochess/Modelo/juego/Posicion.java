@@ -54,7 +54,7 @@ public class Posicion {
     }
 
     private boolean esPosicionValida(){
-        return (posicionX > 0 && posicionX < 20) && (posicionY > 0 && posicionY < 20);
+        return (posicionX >= 0 && posicionX < 20) && (posicionY >= 0 && posicionY < 20);
     }
 
     @Override

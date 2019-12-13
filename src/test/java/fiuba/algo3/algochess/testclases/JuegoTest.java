@@ -683,6 +683,31 @@ public class JuegoTest {
         }
 
     }
+    @Test
+    void moverUnidadContraUnidadEnemiga(){
+        Juego juego = new Juego("juani","carlos");
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion1 = new Posicion(9,9);
+        Posicion posicion2 = new Posicion(3,3);
+        Posicion posicion3 = new Posicion(4,4);
+        Posicion posicion4 = new Posicion(5,5);
+        Posicion posicion5 = new Posicion(10,10);
+        Posicion posicion6 = new Posicion(12,12);
+        Posicion posicion7 = new Posicion(14,14);
+        Posicion posicion8 = new Posicion(16,16);
+
+        juego.crearUnidad("catapulta",posicion);
+        juego.crearUnidad("curandero",posicion4);
+        juego.crearUnidad("jinete",posicion1);
+        juego.crearUnidad("catapulta",posicion3);
+        juego.crearUnidad("catapulta",posicion2);
+        juego.crearUnidad("catapulta",posicion5);
+        juego.crearUnidad("catapulta",posicion6);
+        juego.crearUnidad("catapulta",posicion7);
+        juego.crearUnidad("catapulta",posicion8);
+
+        juego.mover(posicion1,posicion5);
+    }
 
 
 }

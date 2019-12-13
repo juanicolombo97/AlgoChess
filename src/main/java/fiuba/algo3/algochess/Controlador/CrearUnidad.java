@@ -32,6 +32,9 @@ public class CrearUnidad {
                    tableroInterfaz.agregarUnidad(unidadInterfaz);
 
                }
+              if (juego.jugadorActual().getPuntosDisponibles() == 0){
+                  faseJuego.inicioJuego();
+              }
             }catch (Exception error){
                 faseJuego.cambiarMensajeError(error.getMessage());
             }

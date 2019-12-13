@@ -4,6 +4,7 @@ import fiuba.algo3.algochess.Modelo.juego.Posicion;
 import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
+import javafx.concurrent.Task;
 import javafx.scene.layout.GridPane;
 
 public class ControladorMovimiento {
@@ -45,9 +46,9 @@ public class ControladorMovimiento {
                 posicionFinal = new Posicion(posicionMouseX, posicionMouseY);
                 try {
                     faseJuego.juego.mover(posicionInicial,posicionFinal);
-                    tableroInterfaz.actualizarPosiciones();
                     faseJuego.cambiarMensajeError("");
                     faseJuego.cambiarJugadorActual(faseJuego.juego.jugadorActual().getNombreJugador());
+                    tableroInterfaz.actualizarPosiciones();
 
                 }catch (Exception error){
                     faseJuego.cambiarMensajeError(error.getMessage());

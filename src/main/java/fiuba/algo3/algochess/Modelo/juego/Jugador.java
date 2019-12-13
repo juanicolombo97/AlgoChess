@@ -78,11 +78,13 @@ public class Jugador {
     }
 
     public void atacar(Unidad atacante, Unidad atacado, Casillero casillero, Map<Posicion, Casillero> tablero, Distancia distancia) {
+
        unidadPerteneceAJugador(atacante);
         AccionJugador accion = new AccionJugador();
         boolean esUnidadAliada = esUnidadAliada(atacado);
         //Si la unidad no es una catapulta no puede atacar aliados
         accion.accionNueva(atacante, atacado, tablero, esUnidadAliada, distancia);
+
 
     }
 
