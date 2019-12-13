@@ -12,6 +12,6 @@ public interface EstadoCasillero {
      EstadoCasillero eliminarUnidad();
      Unidad obtenerUnidad();
      Unidad obtenerUnidadCercana();
-
+     void guardarUnidadDesdeCasillero(Casillero casilleroInicial, Casillero casilleroDestino, Jugador jugador, Unidad unidad);
     void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casillero);
 }

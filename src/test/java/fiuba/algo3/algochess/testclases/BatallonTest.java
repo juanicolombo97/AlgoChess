@@ -77,8 +77,9 @@ public class BatallonTest {
         tablero.crearUnidad(jugador2, posicionSoldado2,"soldado");
         tablero.crearUnidad(jugador2, posicionSoldado3,"soldado");
         // Muevo el soldado del (12, 12) al (13, 13)
+        Posicion posicionFinal = new Posicion(14, 14);
         // Al mover el batallón, todas las unidades deben moverse (1, 1)
-        tablero.moverUnidad(posicionSoldado1, posicionSoldado2, jugador2);
+        tablero.moverUnidad(posicionSoldado2, posicionFinal, jugador2);
         List<Unidad> unidades = jugador2.getUnidadesDisponibles();
         // Obtengo dicho soldado
         Unidad unidad = unidades.get(1);
@@ -115,31 +116,31 @@ public class BatallonTest {
         Jugador jugador1 = new Jugador("juan");
         Jugador jugador2 = new Jugador("pedro");
         Tablero tablero = new Tablero(jugador1,jugador2);
-        Posicion posicionSoldado1 = new Posicion(15, 15);
+        Posicion posicionSoldado1 = new Posicion(15, 14);
         Posicion posicionSoldado2 = new Posicion(14, 14);
-        Posicion posicionSoldado3 = new Posicion(14, 13);
-        Posicion posicionCatapulta = new Posicion(15, 14);
+        Posicion posicionSoldado3 = new Posicion(13, 14);
+        Posicion posicionCatapulta = new Posicion(15, 15);
         tablero.crearUnidad(jugador2, posicionSoldado1,"soldado");
         tablero.crearUnidad(jugador2, posicionSoldado2,"soldado");
         tablero.crearUnidad(jugador2, posicionSoldado3,"soldado");
         tablero.crearUnidad(jugador2, posicionCatapulta,"catapulta");
 
         // Muevo la unidad y un obstáculo bloquea al soldado de la posición (14, 13)
-        Posicion posicion1616 = new Posicion(16,16);
-        Posicion posicion1717 = new Posicion(17,17);
-        Posicion posicion1818 = new Posicion(18,18);
-        tablero.moverUnidad(posicionSoldado1, posicion1616, jugador2);
-        tablero.moverUnidad(posicion1616, posicion1717, jugador2);
+        Posicion posicion1415 = new Posicion(14,15);
+        Posicion posicion1416 = new Posicion(14,16);
+        Posicion posicion1417 = new Posicion(14,17);
+        tablero.moverUnidad(posicionSoldado2, posicion1415, jugador2);
+        tablero.moverUnidad(posicion1415, posicion1416, jugador2);
 
-        // Ahora al mover la unidad en 17,17 la de 16,16 no se deberia mover ya que se disolvio el batallon
+        // Ahora al mover la unidad en 14,16 a la de 14,17 no se deberia mover ya que se disolvio el batallon
 
-        tablero.moverUnidad(posicion1717, posicion1818, jugador2);
+        tablero.moverUnidad(posicion1416, posicion1417, jugador2);
 
         List<Unidad> unidades = jugador2.getUnidadesDisponibles();
 
         // La unidad de la pos 16,16 se queda ahi, ya que no es mas un batallon.
-        Unidad unidad = unidades.get(1);
-        Posicion posicionEsperada = new Posicion(16,16);
+        Unidad unidad = unidades.get(0);
+        Posicion posicionEsperada = new Posicion(15,14);
         Assertions.assertTrue(posicionEsperada.equals(unidad.getPosicion()));
     }
 
