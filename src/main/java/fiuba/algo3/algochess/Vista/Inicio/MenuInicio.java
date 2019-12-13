@@ -19,6 +19,8 @@ import javafx.scene.media.AudioClip;
 
 
 import java.io.File;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class MenuInicio extends Application {
 
@@ -41,9 +43,7 @@ public class MenuInicio extends Application {
         //Imagen
 
         final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
-        Media media = new Media(new File("/Users/juanicolombo/Desktop/AlgoChess/src/main/resources/sonidos/Game-Menu.mp3").toURI().toString());
-        MediaPlayer reproductor = new MediaPlayer(media);
-        reproductor.play();
+
 
         scene = new Scene(stackPane, 800,600);
         imagen.fitHeightProperty().bind(scene.heightProperty());
