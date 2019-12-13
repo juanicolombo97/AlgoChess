@@ -7,9 +7,7 @@ import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -99,16 +97,16 @@ public class FaseJuego {
         unidadesDisponibles.setTextFill(Color.web("#ff0000", 0.8));
 
         Button crearSoldado = new Button("Crear Soldado");
-        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this, "imagenes/soldado4.jpg","imagenes/soldado3.jpg"));
+        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this, "imagenes/soldado4.jpg","imagenes/soldado3.jpg", "sonidos/SoldadoCreacion.mp3"));
 
         Button crearJinete = new Button("Crear Jinete");
-        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this,  "imagenes/jinete3der.jpg","imagenes/jinete3ladoizq.jpg"));
+        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this, "imagenes/jinete3der.jpg", "imagenes/jinete3ladoizq.jpg","sonidos/caballeroCreacion.mp3"));
 
         Button crearCurandero = new Button("Crear Curandero");
-        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, "imagenes/curandero.png","imagenes/curandero2.png"));
+        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, "imagenes/curandero2.png", "imagenes/curandero.png","sonidos/curanderoCreacion.mp3"));
 
         Button crearCatapulta = new Button("Crear Catapulta");
-        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, "imagenes/catapulta1.jpg","imagenes/catapultaladoder.jpg"));
+        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, "imagenes/catapultaMiraDerecha.png", "imagenes/catapultaMiraIzquierda.png","sonidos/catapultaCreacion.mp3"));
 
 
         

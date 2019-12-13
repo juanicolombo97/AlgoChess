@@ -12,7 +12,7 @@ import fiuba.algo3.algochess.Vista.UnidadInterfaz;
 
 public class CrearUnidad {
 
-    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego, String imagenAliada,String imagenEnemiga) {
+    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego, String imagenAliada, String imagenEnemiga, String audio) {
         tableroInterfaz.getTablero() .setOnMouseClicked(e -> {
 
             int x = (int) e.getX() / tableroInterfaz.tamanioCasillero;
