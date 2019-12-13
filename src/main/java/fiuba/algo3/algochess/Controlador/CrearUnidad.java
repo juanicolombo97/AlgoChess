@@ -9,10 +9,11 @@ import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import fiuba.algo3.algochess.Vista.UnidadInterfaz;
+import javafx.scene.media.AudioClip;
 
 public class CrearUnidad {
 
-    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego) {
+    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego, AudioClip reproductor) {
         tableroInterfaz.getTablero() .setOnMouseClicked(e -> {
 
             int x = (int) e.getX() / tableroInterfaz.tamanioCasillero;
@@ -33,6 +34,7 @@ public class CrearUnidad {
 
                }
               if (juego.jugadorActual().getPuntosDisponibles() == 0){
+                  reproductor.stop();
                   faseJuego.inicioJuego();
               }
             }catch (Exception error){

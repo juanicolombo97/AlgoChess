@@ -7,11 +7,19 @@ import fiuba.algo3.algochess.Vista.FaseJuego;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+
+import javafx.scene.media.AudioClip;
+
+
+import java.io.File;
 
 public class MenuInicio extends Application {
 
@@ -20,7 +28,7 @@ public class MenuInicio extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws UnidadInvalidaException,CasilleroOcupadoException {
+    public void start(Stage primaryStage) throws UnidadInvalidaException, CasilleroOcupadoException {
 
         //Configuro el nombre del juego y hago la ventana.
         ventana = primaryStage;
@@ -31,10 +39,14 @@ public class MenuInicio extends Application {
         Button botonJugar = new Button("Jugar");
         Button botonSalir = new Button("Salir");
 
-        //Setteo sonido click.
+        //Imagen
 
-
+        final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
+        
         scene = new Scene(stackPane, 800,600);
+        imagen.fitHeightProperty().bind(scene.heightProperty());
+        imagen.fitWidthProperty().bind(scene.widthProperty());
+
 
         botonJugar.setOnAction(e -> {
             FaseJuego faseJuego = new FaseJuego();
@@ -59,7 +71,7 @@ public class MenuInicio extends Application {
 
         layout.getChildren().addAll(botonJugar,botonSalir);
         layout.setAlignment(Pos.CENTER);
-        stackPane.getChildren().addAll(layout);
+        stackPane.getChildren().addAll(imagen,layout);
         ventana.setScene(scene);
         ventana.show();
     }
