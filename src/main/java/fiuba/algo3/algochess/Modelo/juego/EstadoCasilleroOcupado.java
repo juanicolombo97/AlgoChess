@@ -34,6 +34,11 @@ public class EstadoCasilleroOcupado implements EstadoCasillero {
     }
 
     @Override
+    public void guardarUnidadDesdeCasillero(Casillero casilleroInicial, Casillero casilleroDestino, Jugador jugador, Unidad unidad){
+        throw new CasilleroOcupadoException("Casillero Ocupado");
+    }
+
+    @Override
     public void guardarUnidadCercana(Unidad unidad, Jugador jugador, Casillero casilleroInicio, AtomicInteger contador, Casillero casillero) {
     }
 

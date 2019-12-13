@@ -41,7 +41,7 @@ public class Entrega1UnidadesTest {
         try {
             tablero.moverUnidad(posicion1,posicion,jugador);
         }catch (CasilleroOcupadoException | UnidadNulaException | MovimientoInvalidoException | CasilleroVacioExcepcion e){
-            Assertions.assertEquals("El casillero se encuentra ocupado",e.getMessage());
+            Assertions.assertEquals("Casillero Ocupado",e.getMessage());
         }
     }
     @Test

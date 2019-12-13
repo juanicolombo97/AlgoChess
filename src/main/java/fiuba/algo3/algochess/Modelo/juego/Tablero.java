@@ -65,8 +65,11 @@ public class Tablero {
         //Verifico que la unidad se peuda mover y que sea del jugador.
         Unidad unidadAMover = casilleroInicial.obtenerUnidad();
         List<Unidad> listaUnidadesAMover = jugador.unidadesAMover(unidadAMover, tablero);
-        while (contador.get() != 3 && listaUnidadesAMover.size() != 0){
-            Unidad unidad = listaUnidadesAMover.remove(0);
+        Unidad unidad = listaUnidadesAMover.remove(0);
+        jugador.unidadPerteneceAJugador(unidad);
+        casilleroDestino.guardarUnidadDesdeCasillero(unidad, jugador, casilleroInicial);
+        while (contador.get() != 2 && listaUnidadesAMover.size() != 0){
+            unidad = listaUnidadesAMover.remove(0);
             jugador.unidadPerteneceAJugador(unidad);
             Posicion posicion = unidad.getPosicion();
             Posicion posicionDestino = posicion.posicionNueva(direccionMovimiento);
