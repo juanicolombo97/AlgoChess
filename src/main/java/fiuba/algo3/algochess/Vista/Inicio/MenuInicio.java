@@ -41,7 +41,7 @@ public class MenuInicio extends Application {
         //Imagen
 
         final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
-        Media media = new Media(new File("sonidos/audioMenu.mp3").toURI().toString());
+        Media media = new Media(new File("/Users/juanicolombo/Desktop/AlgoChess/src/main/resources/sonidos/Game-Menu.mp3").toURI().toString());
         MediaPlayer reproductor = new MediaPlayer(media);
         reproductor.play();
 

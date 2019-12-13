@@ -7,6 +7,7 @@ import fiuba.algo3.algochess.Modelo.juego.Juego;
 import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -32,7 +33,7 @@ public class FaseJuego {
     private  boolean comienzoJuego = false;
     private GridPane tablero;
     public TableroInterfaz tableroInterfaz;
-    private AudioClip reproductor;
+
 
 
 
@@ -98,16 +99,16 @@ public class FaseJuego {
         unidadesDisponibles.setTextFill(Color.web("#ff0000", 0.8));
 
         Button crearSoldado = new Button("Crear Soldado");
-        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this,reproductor));
+        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this, "imagenes/soldado4.jpg","imagenes/soldado3.jpg"));
 
         Button crearJinete = new Button("Crear Jinete");
-        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this, reproductor));
+        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this,  "imagenes/jinete3der.jpg","imagenes/jinete3ladoizq.jpg"));
 
         Button crearCurandero = new Button("Crear Curandero");
-        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, reproductor));
+        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, "imagenes/curandero.png","imagenes/curandero2.png"));
 
         Button crearCatapulta = new Button("Crear Catapulta");
-        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, reproductor));
+        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, "imagenes/catapulta1.jpg","imagenes/catapultaladoder.jpg"));
 
 
         

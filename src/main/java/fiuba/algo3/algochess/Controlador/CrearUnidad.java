@@ -9,11 +9,10 @@ import fiuba.algo3.algochess.Vista.CasilleroInterfaz;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import fiuba.algo3.algochess.Vista.TableroInterfaz;
 import fiuba.algo3.algochess.Vista.UnidadInterfaz;
-import javafx.scene.media.AudioClip;
 
 public class CrearUnidad {
 
-    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego, AudioClip reproductor) {
+    public CrearUnidad(String nombreUnidad, Juego juego, TableroInterfaz tableroInterfaz, FaseJuego faseJuego, String imagenAliada,String imagenEnemiga) {
         tableroInterfaz.getTablero() .setOnMouseClicked(e -> {
 
             int x = (int) e.getX() / tableroInterfaz.tamanioCasillero;
@@ -25,7 +24,7 @@ public class CrearUnidad {
                Unidad unidad = casillero.obtenerUnidad();
                if (!unidad.getClass().equals(UnidadNula.class)) {
                    CasilleroInterfaz casilleroInterfaz = tableroInterfaz.getCasillero(posicion);
-                   UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad, casilleroInterfaz.casilleroAliado(), nombreUnidad,faseJuego,tableroInterfaz.tamanioCasillero);
+                   UnidadInterfaz unidadInterfaz = new UnidadInterfaz(unidad, casilleroInterfaz.casilleroAliado(), nombreUnidad,faseJuego,imagenAliada,imagenEnemiga);
                    casilleroInterfaz.setUnidad(unidadInterfaz);
                    faseJuego.puntosDisponibles.setText("Puntos disponibles: " + juego.jugadorActual().getPuntosDisponibles());
                    faseJuego.cambiarJugadorActual(juego.jugadorActual().getNombreJugador());
@@ -34,7 +33,6 @@ public class CrearUnidad {
 
                }
               if (juego.jugadorActual().getPuntosDisponibles() == 0){
-                  reproductor.stop();
                   faseJuego.inicioJuego();
               }
             }catch (Exception error){
