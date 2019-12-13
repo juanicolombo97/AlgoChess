@@ -1,17 +1,16 @@
 package fiuba.algo3.algochess.Vista.Inicio;
 
 import fiuba.algo3.algochess.Modelo.excepciones.CasilleroOcupadoException;
-import fiuba.algo3.algochess.Modelo.excepciones.NoAlcanzanLosPuntosException;
 import fiuba.algo3.algochess.Modelo.excepciones.UnidadInvalidaException;
 import fiuba.algo3.algochess.Vista.FaseJuego;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -42,7 +41,10 @@ public class MenuInicio extends Application {
         //Imagen
 
         final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
-        
+        Media media = new Media(new File("sonidos/audioMenu.mp3").toURI().toString());
+        MediaPlayer reproductor = new MediaPlayer(media);
+        reproductor.play();
+
         scene = new Scene(stackPane, 800,600);
         imagen.fitHeightProperty().bind(scene.heightProperty());
         imagen.fitWidthProperty().bind(scene.widthProperty());
