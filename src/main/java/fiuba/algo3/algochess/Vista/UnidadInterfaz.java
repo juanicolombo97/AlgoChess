@@ -6,11 +6,15 @@ import fiuba.algo3.algochess.Modelo.unidades.Unidad;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 import javafx.scene.control.Label;
 
 import javafx.scene.input.MouseEvent;
+
+import java.io.File;
 
 public class UnidadInterfaz extends StackPane {
 
@@ -21,8 +25,10 @@ public class UnidadInterfaz extends StackPane {
     private final ImageView imagen;
     public String nombre;
 
-    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, String imagenAliada,String imagenEnemiga){
-
+    public UnidadInterfaz(Unidad unidad, boolean color, String nombreUnidad, FaseJuego juego, String imagenAliada, String imagenEnemiga, String audio){
+        Media media = new Media(new File(audio).toURI().toString());
+        MediaPlayer ruidoUnidad = new MediaPlayer(media);
+        ruidoUnidad.play();
         this.unidad = unidad;
         this.nombre = nombreUnidad;
         posicion = unidad.getPosicion();

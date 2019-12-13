@@ -43,7 +43,11 @@ public class MenuInicio extends Application {
         //Imagen
 
         final ImageView imagen = new ImageView("imagenes/fondomenu.jpg");
-
+        Media media = new Media(new File("src/main/resources/sonidos/Click2-Sebastian-759472264.wav").toURI().toString());
+        MediaPlayer click = new MediaPlayer(media);
+        Media mediaMenuInicio = new Media(new File("src/main/resources/sonidos/Game-Menu.mp3").toURI().toString());
+        MediaPlayer menuinicio = new MediaPlayer(mediaMenuInicio);
+        menuinicio.play();
 
         scene = new Scene(stackPane, 800,600);
         imagen.fitHeightProperty().bind(scene.heightProperty());
@@ -51,8 +55,9 @@ public class MenuInicio extends Application {
 
 
         botonJugar.setOnAction(e -> {
+            click.play();
             FaseJuego faseJuego = new FaseJuego();
-            faseJuego.display(ventana);
+            faseJuego.display(ventana,menuinicio);
             ventana.close();
 
 
@@ -65,6 +70,7 @@ public class MenuInicio extends Application {
         });
 
         botonSalir.setOnAction(e -> {
+            click.play();
             e.consume();
             cerrarPrograma();
         });

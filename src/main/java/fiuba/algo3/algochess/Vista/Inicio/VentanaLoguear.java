@@ -1,6 +1,5 @@
 package fiuba.algo3.algochess.Vista.Inicio;
 
-import fiuba.algo3.algochess.Vista.Inicio.DeseaSalirAlerta;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,8 +7,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 
 public class VentanaLoguear {
@@ -31,10 +34,13 @@ public class VentanaLoguear {
         TextField usuarioInput = new TextField();
         usuarioInput.setPromptText("Jugador");
         GridPane.setConstraints(usuarioInput,1,1);
+        Media media = new Media(new File("src/main/resources/sonidos/Click2-Sebastian-759472264.wav").toURI().toString());
+        MediaPlayer click = new MediaPlayer(media);
 
 
         Button botonCrearJugador = new Button("Crear Jugador");
         botonCrearJugador.setOnAction(e -> {
+            click.play();
             nombreJugador = usuarioInput.getText();
             ventana.close();
 

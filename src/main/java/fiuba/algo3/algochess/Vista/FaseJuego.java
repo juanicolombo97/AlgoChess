@@ -8,10 +8,14 @@ import fiuba.algo3.algochess.Vista.Inicio.VentanaLoguear;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.scene.control.*;
+
+import java.io.File;
 
 public class FaseJuego {
 
@@ -35,16 +39,16 @@ public class FaseJuego {
 
 
 
-
-    public  void display(Stage ventana) {
+    public  void display(Stage ventana, MediaPlayer menuInicio) {
         //Inicializo Jugadores y Juego
         String jugador1 = VentanaLoguear.display("Registro Jugador 1");
         String jugador2 = VentanaLoguear.display("Registro Jugador 2");
+        menuInicio.stop();
         juego = new Juego(jugador1,jugador2);
         etapaColocarFichas(juego);
     }
 
-    public  void etapaColocarFichas(Juego juego) {
+    public  void etapaColocarFichas(Juego juego ) {
         ventana = new Stage();
         ventana.setTitle("AlgoChess");
 
@@ -97,16 +101,16 @@ public class FaseJuego {
         unidadesDisponibles.setTextFill(Color.web("#ff0000", 0.8));
 
         Button crearSoldado = new Button("Crear Soldado");
-        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this, "imagenes/soldado4.jpg","imagenes/soldado3.jpg", "sonidos/SoldadoCreacion.mp3"));
+        crearSoldado.setOnAction( e -> new CrearUnidad("soldado",juego,tableroInterfaz,this, "imagenes/soldado4.jpg","imagenes/soldado3.jpg", "src/main/resources/sonidos/SoldadoCreacion.mp3"));
 
         Button crearJinete = new Button("Crear Jinete");
-        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this, "imagenes/jinete3der.jpg", "imagenes/jinete3ladoizq.jpg","sonidos/caballeroCreacion.mp3"));
+        crearJinete.setOnAction( e -> new CrearUnidad("jinete",juego,tableroInterfaz, this, "imagenes/jinete3der.jpg", "imagenes/jinete3ladoizq.jpg","src/main/resources/sonidos/caballeroCreacion.mp3"));
 
         Button crearCurandero = new Button("Crear Curandero");
-        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, "imagenes/curandero2.png", "imagenes/curandero.png","sonidos/curanderoCreacion.mp3"));
+        crearCurandero.setOnAction( e -> new CrearUnidad("curandero",juego,tableroInterfaz, this, "imagenes/curandero2.png", "imagenes/curandero.png","src/main/resources/sonidos/curanderoCreacion.mp3"));
 
         Button crearCatapulta = new Button("Crear Catapulta");
-        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, "imagenes/catapultaMiraDerecha.png", "imagenes/catapultaMiraIzquierda.png","sonidos/catapultaCreacion.mp3"));
+        crearCatapulta.setOnAction( e -> new CrearUnidad("catapulta",juego,tableroInterfaz, this, "imagenes/catapultaMiraDerecha.png", "imagenes/catapultaMiraIzquierda.png","src/main/resources/sonidos/catapultaCreacion.mp3"));
 
 
         
@@ -115,6 +119,7 @@ public class FaseJuego {
     }
 
     public  void inicioJuego(){
+
         mensajeDeError.setText("Comienzo etapa juego");
         puntosDisponibles.setText("");
         infoUnidad = crearInfoUnidad(juego);
