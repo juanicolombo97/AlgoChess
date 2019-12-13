@@ -74,11 +74,11 @@ public class TableroInterfaz {
     }
 
     public void actualizarVidaUnidades() {
+        Media media = new Media(new File("src/main/resources/sonidos/humanoMuerte.mp3").toURI().toString());
+        MediaPlayer ruidoMuerte = new MediaPlayer(media);
         for (UnidadInterfaz unidadInterfaz : unidadesJuego){
             Unidad unidad = unidadInterfaz.getUnidad();
             if (unidad.getVidaUnidad() < 0){
-                Media media = new Media(new File("src/main/resources/sonidos/humanoMuerte.mp3").toURI().toString());
-                MediaPlayer ruidoMuerte = new MediaPlayer(media);
                 ruidoMuerte.play();
                 CasilleroInterfaz casilleroInterfaz = getCasillero(unidadInterfaz.posicion);
                 casilleroInterfaz.eliminarUnidad();
